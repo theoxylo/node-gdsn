@@ -12,15 +12,12 @@ Install with [npm] (http://github.com/isaacs/npm):
 
 ## Usage
 
-    var gdsn = require('../node-gdsn');
+    var gdsn = require('gdsn');
 
-    gdsn.getInstanceIdFromFile('test/cin.xml', 
+    gdsn.getInstanceIdFromFile('./node_modules/gdsn/test/cin.xml',
         function(err, id)
         {
             if (err) console.log(err);
-            assert(id);
             console.log('doc instance id: ' + id);
         }
     );
-
-

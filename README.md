@@ -1,4 +1,14 @@
-node-gdsn
-=========
+## node-gdsn
+A GDSN component library for Node.js
 
-A GDSN component library for Node.js {keywords: ["gdsn", "node", "eip", "xpath", "xml"]}
+
+## Installation
+Install with [npm] (http://github.com/isaacs/npm):
+
+    npm install gdsn
+
+
+## Usage
+node node-gdsn
+
+

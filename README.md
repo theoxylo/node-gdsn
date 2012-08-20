@@ -1,6 +1,6 @@
 ## node-gdsn
 
-A GDSN component library for Node.js
+A GDSN EIP component library for Node.js
 
 
 ## Installation
@@ -14,10 +14,15 @@ Install with [npm] (http://github.com/isaacs/npm):
 
     var gdsn = require('gdsn');
 
-    gdsn.getInstanceIdFromFile('./node_modules/gdsn/test/cin.xml',
+    gdsn.getInstanceIdFromFile('path/cin.xml',
         function(err, id)
         {
             if (err) console.log(err);
-            console.log('doc instance id: ' + id);
+            console.log('cin doc instance id: ' + id);
         }
     );
+
+## Development
+
+    git clone https://github.com/theoxylo/node-gdsn.git
+    node node-gdsn/test/test.js node-gdsn/test/cin.xml

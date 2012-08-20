@@ -5,7 +5,7 @@ A GDSN EIP component library for Node.js
 
 ## Installation
 
-Install with [npm] (http://github.com/isaacs/npm):
+Install latest published release from [npm] (http://github.com/isaacs/npm) [v001_20120820]
 
     npm install gdsn
 

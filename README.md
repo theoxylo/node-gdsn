@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/theoxylo/node-gdsn.png)](http://travis-ci.org/theoxylo/node-gdsn)
 ## node-gdsn
 
 A GDSN EIP component library for Node.js

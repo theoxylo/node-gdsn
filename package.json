@@ -14,7 +14,7 @@
         "type":"git", 
         "url":"https://github.com/theoxylo/node-gdsn.git"
     },
-    "main": "./node-gdsn.js",
+    "main": "index",
     "directories": { },
     "keywords": ["gdsn", "node", "eip", "xpath", "xml"],
     "licenses": [{ 

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:StandardBusinessDocument xmlns:ns2="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="urn:ean.ucc:gdsn:2" xmlns:ns4="urn:ean.ucc:2" xmlns:ns5="urn:ean.ucc:softlines:2" xmlns:ns6="urn:ean.ucc:hardlines:2" xmlns:ns7="urn:ean.ucc:align:fmcg:2" xmlns:ns8="urn:ean.ucc:align:food_beverage_tobacco:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gs1globalregistry.net/2.7/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.7/schemas/CatalogueItemNotificationProxy.xsd">
-    <ns2:StandardBusinessDocumentHeader>
-        <ns2:HeaderVersion>1.0</ns2:HeaderVersion>
-        <ns2:Sender>
-            <ns2:Identifier Authority="EAN.UCC">1100001011285</ns2:Identifier>
-        </ns2:Sender>
-        <ns2:Receiver>
-            <ns2:Identifier Authority="EAN.UCC">0074865000000</ns2:Identifier>
-        </ns2:Receiver>
-        <ns2:DocumentIdentification>
-            <ns2:Standard>EAN.UCC</ns2:Standard>
-            <ns2:TypeVersion>2.7</ns2:TypeVersion>
-            <ns2:InstanceIdentifier>CIN_IN_174077_r1</ns2:InstanceIdentifier>
-            <ns2:Type>catalogueItemNotification</ns2:Type>
-            <ns2:CreationDateAndTime>2012-08-14T15:31:06.069-07:00</ns2:CreationDateAndTime>
-        </ns2:DocumentIdentification>
-    </ns2:StandardBusinessDocumentHeader>
-    <ns4:message>
+<sh:StandardBusinessDocument xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="urn:ean.ucc:gdsn:2" xmlns:eanucc="urn:ean.ucc:2" xmlns:ns5="urn:ean.ucc:softlines:2" xmlns:ns6="urn:ean.ucc:hardlines:2" xmlns:ns7="urn:ean.ucc:align:fmcg:2" xmlns:ns8="urn:ean.ucc:align:food_beverage_tobacco:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gs1globalregistry.net/2.7/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.7/schemas/CatalogueItemNotificationProxy.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="EAN.UCC">0074865000000</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>EAN.UCC</sh:Standard>
+            <sh:TypeVersion>2.7</sh:TypeVersion>
+            <sh:InstanceIdentifier>CIN_IN_174077_r1</sh:InstanceIdentifier>
+            <sh:Type>catalogueItemNotification</sh:Type>
+            <sh:CreationDateAndTime>2012-08-14T15:31:06.069-07:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <eanucc:message>
         <entityIdentification>
             <uniqueCreatorIdentification>CIN_IN_174077_r1</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011285</gln>
             </contentOwner>
         </entityIdentification>
-        <ns4:transaction>
+        <eanucc:transaction>
             <entityIdentification>
                 <uniqueCreatorIdentification>CIN_IN_174077_r1_TXN1</uniqueCreatorIdentification>
                 <contentOwner>
@@ -31,7 +31,7 @@
                 </contentOwner>
             </entityIdentification>
             <command>
-                <ns4:documentCommand>
+                <eanucc:documentCommand>
                     <documentCommandHeader type="ADD">
                         <entityIdentification>
                             <uniqueCreatorIdentification>CIN_IN_174077_r1_TXN1_CMD1</uniqueCreatorIdentification>
@@ -514,8 +514,8 @@
                             </catalogueItemNotificationIdentification>
                         </ns3:catalogueItemNotification>
                     </documentCommandOperand>
-                </ns4:documentCommand>
+                </eanucc:documentCommand>
             </command>
-        </ns4:transaction>
-    </ns4:message>
-</ns2:StandardBusinessDocument>
+        </eanucc:transaction>
+    </eanucc:message>
+</sh:StandardBusinessDocument>

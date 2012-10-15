@@ -17,12 +17,12 @@ Or add to package.json and
 ## Usage
 
     var gdsn = require('gdsn');
+    var file = 'path/cin.xml';
 
     // read id from file:
     gdsn.getInstanceIdFromFile(
-        'path/cin.xml',
-        function(err, id)
-        {
+        file,
+        function(err, id) {
             if (err) console.log(err);
             console.log('cin doc instance id: ' + id);
         }
@@ -30,10 +30,9 @@ Or add to package.json and
     
     // update id and save to new file:
     gdsn.readXmlFile(
-        'path/cin.xml',
+        file,
         function (err, xml) {
             if (err)  throw err;
-            
             var oldId = gdsn.getInstanceId(xml);
             var modXml = gdsn.updateInstanceId(xml, oldId + '_MOD');
             gdsn.writeXmlFile(file + '-MOD', modXml);

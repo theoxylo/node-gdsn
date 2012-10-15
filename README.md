@@ -9,13 +9,18 @@ Get the latest published release from [npm] (http://github.com/isaacs/npm) [v002
 
     npm install gdsn
 
+Or add to package.json and 
+
+    npm install
+
 
 ## Usage
 
     var gdsn = require('gdsn');
 
     // read id from file:
-    gdsn.getInstanceIdFromFile('path/cin.xml',
+    gdsn.getInstanceIdFromFile(
+        'path/cin.xml',
         function(err, id)
         {
             if (err) console.log(err);
@@ -25,7 +30,7 @@ Get the latest published release from [npm] (http://github.com/isaacs/npm) [v002
     
     // update id and save to new file:
     gdsn.readXmlFile(
-        file,
+        'path/cin.xml',
         function (err, xml) {
             if (err)  throw err;
             

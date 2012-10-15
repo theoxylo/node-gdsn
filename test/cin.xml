@@ -1,518 +1,129 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<sh:StandardBusinessDocument xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:ns3="urn:ean.ucc:gdsn:2" xmlns:eanucc="urn:ean.ucc:2" xmlns:ns5="urn:ean.ucc:softlines:2" xmlns:ns6="urn:ean.ucc:hardlines:2" xmlns:ns7="urn:ean.ucc:align:fmcg:2" xmlns:ns8="urn:ean.ucc:align:food_beverage_tobacco:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gs1globalregistry.net/2.7/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.7/schemas/CatalogueItemNotificationProxy.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<sh:StandardBusinessDocument xmlns:eanucc="urn:ean.ucc:2" xmlns:food="urn:ean.ucc:align:food_beverage_tobacco:2" xmlns:gdsn="urn:ean.ucc:gdsn:2" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ean.ucc:2 http://www.gs1globalregistry.net/2.8/schemas/AttributeValuePairExtensionProxy.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.8/schemas/FoodAndBeverageTradeItemExtensionProxy.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.8/schemas/CatalogueItemNotificationProxy.xsd http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gs1globalregistry.net/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd ">
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
-            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+            <sh:Identifier Authority="EAN.UCC">0077589000004</sh:Identifier>
         </sh:Sender>
         <sh:Receiver>
-            <sh:Identifier Authority="EAN.UCC">0074865000000</sh:Identifier>
+            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
         </sh:Receiver>
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
-            <sh:TypeVersion>2.7</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_IN_174077_r1</sh:InstanceIdentifier>
+            <sh:TypeVersion>2.8</sh:TypeVersion>
+            <sh:InstanceIdentifier>cin_msg_12345</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
-            <sh:CreationDateAndTime>2012-08-14T15:31:06.069-07:00</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2012-10-05T13:49:24.849-07:00</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_IN_174077_r1</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>cin_msg_12345</uniqueCreatorIdentification>
             <contentOwner>
-                <gln>1100001011285</gln>
+                <gln>0077589000004</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_IN_174077_r1_TXN1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>cin_msg_12345_TXN-1</uniqueCreatorIdentification>
                 <contentOwner>
-                    <gln>1100001011285</gln>
+                    <gln>0077589000004</gln>
                 </contentOwner>
             </entityIdentification>
             <command>
                 <eanucc:documentCommand>
-                    <documentCommandHeader type="ADD">
+                    <documentCommandHeader type="CORRECT">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_IN_174077_r1_TXN1_CMD1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>cin_msg_12345_TXN-1_CMD-1</uniqueCreatorIdentification>
                             <contentOwner>
-<gln>1100001011285</gln>
+                                <gln>0077589000004</gln>
                             </contentOwner>
                         </entityIdentification>
                     </documentCommandHeader>
                     <documentCommandOperand>
-                        <ns3:catalogueItemNotification isReload="true" documentStatus="ORIGINAL" creationDateTime="2012-08-14T15:31:06.070-07:00">
-                            <contentVersion>
-<versionIdentification>2.7</versionIdentification>
-                            </contentVersion>
-                            <documentStructureVersion>
-<versionIdentification>2.7</versionIdentification>
-                            </documentStructureVersion>
+                        <gdsn:catalogueItemNotification creationDateTime="2012-10-05T13:49:30.808-07:00" documentStatus="ORIGINAL" isReload="false">
                             <catalogueItem>
-<catalogueItemState state="REGISTERED"/>
-<tradeItem>
-    <tradeItemUnitDescriptor>CASE</tradeItemUnitDescriptor>
-    <tradeItemIdentification>
-        <gtin>00018627350095</gtin>
-        <additionalTradeItemIdentification>
-            <additionalTradeItemIdentificationValue>1862735009</additionalTradeItemIdentificationValue>
-            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
-        </additionalTradeItemIdentification>
-    </tradeItemIdentification>
-    <nextLowerLevelTradeItemInformation>
-        <quantityOfChildren>1</quantityOfChildren>
-        <totalQuantityOfNextLowerLevelTradeItem>6</totalQuantityOfNextLowerLevelTradeItem>
-        <childTradeItem>
-            <quantityofNextLowerLevelTradeItem>6</quantityofNextLowerLevelTradeItem>
-            <tradeItemIdentification>
-                <gtin>00018627350118</gtin>
-            </tradeItemIdentification>
-        </childTradeItem>
-    </nextLowerLevelTradeItemInformation>
-    <tradeItemInformation>
-        <informationProviderOfTradeItem>
-            <informationProvider>
-                <gln>0038000000010</gln>
-            </informationProvider>
-            <nameOfInformationProvider>Kellogg Company US</nameOfInformationProvider>
-        </informationProviderOfTradeItem>
-        <targetMarketInformation>
-            <targetMarketCountryCode>
-                <countryISOCode>840</countryISOCode>
-            </targetMarketCountryCode>
-            <targetMarketDescription>
-                <language>
-                    <languageISOCode>en</languageISOCode>
-                </language>
-                <shortText>United States Of America</shortText>
-            </targetMarketDescription>
-        </targetMarketInformation>
-        <classificationCategoryCode>
-            <classificationCategoryCode>10000287</classificationCategoryCode>
-            <classificationCategoryDefinition>Cereal/Muesli Bars</classificationCategoryDefinition>
-            <classificationCategoryName>Cereal/Muesli Bars</classificationCategoryName>
-            <additionalClassification>
-                <additionalClassificationAgencyName>1</additionalClassificationAgencyName>
-                <additionalClassificationCategoryCode>02.0013.0053</additionalClassificationCategoryCode>
-                <additionalClassificationCategoryDescription>BAKERY GOODS OTHER (SHELF STABLE): BAKERY GOODS OTHER (SHELF STABLE)</additionalClassificationCategoryDescription>
-            </additionalClassification>
-        </classificationCategoryCode>
-        <tradeItemDescriptionInformation>
-            <brandName>KASHI</brandName>
-            <descriptionShort>
-                <description>
-                    <language>
-                        <languageISOCode>en</languageISOCode>
-                    </language>
-                    <shortText>GOLEAN BARS</shortText>
-                </description>
-            </descriptionShort>
-            <functionalName>
-                <description>
-                    <language>
-                        <languageISOCode>en</languageISOCode>
-                    </language>
-                    <shortText>GoLean Bar Crunchy Choc Pretzel</shortText>
-                </description>
-            </functionalName>
-            <tradeItemDescription>
-                <language>
-                    <languageISOCode>en</languageISOCode>
-                </language>
-                <text>Kashi® GOLEAN® Crisps Bar Chocolate Pretzel '1.59 oz./72 ct. 'Kashi® GOLEAN® Bars</text>
-            </tradeItemDescription>
-            <additionalTradeItemDescription>
-                <language>
-                    <languageISOCode>en</languageISOCode>
-                </language>
-                <text>Kashi® GOLEAN® Crisps Bar Chocolate Pretzel '1.59 oz./72 ct. 'Kashi® GOLEAN® Bars</text>
-            </additionalTradeItemDescription>
-        </tradeItemDescriptionInformation>
-        <tradingPartnerNeutralTradeItemInformation>
-            <tradeItemUnitIndicator>
-                <isTradeItemABaseUnit>false</isTradeItemABaseUnit>
-                <isTradeItemAConsumerUnit>false</isTradeItemAConsumerUnit>
-                <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
-                <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
-                <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
-            </tradeItemUnitIndicator>
-            <brandOwnerOfTradeItem>
-                <brandOwner>
-                    <gln>0038000000010</gln>
-                </brandOwner>
-                <nameOfBrandOwner>Kellogg Company US</nameOfBrandOwner>
-            </brandOwnerOfTradeItem>
-            <manufacturerOfTradeItem>
-                <manufacturer>
-                    <gln>0038000000010</gln>
-                </manufacturer>
-                <nameOfManufacturer>Kellogg Company US</nameOfManufacturer>
-            </manufacturerOfTradeItem>
-            <packagingMarking>
-                <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
-            </packagingMarking>
-            <privateInformation>
-                <partyReceivingPrivateData>
-                    <gln>0074865000000</gln>
-                </partyReceivingPrivateData>
-            </privateInformation>
-            <tradeItemDateInformation>
-                <effectiveDate>2012-08-09</effectiveDate>
-                <lastChangeDateTime>2012-08-08T17:05:53</lastChangeDateTime>
-                <publicationDate>2012-08-14</publicationDate>
-                <startAvailabilityDateTime>2007-03-30T00:00:00</startAvailabilityDateTime>
-            </tradeItemDateInformation>
-            <tradeItemHandlingInformation>
-                <minimumTradeItemLifespanFromTimeOfProduction>365</minimumTradeItemLifespanFromTimeOfProduction>
-            </tradeItemHandlingInformation>
-            <tradeItemMarking/>
-            <tradeItemMeasurements>
-                <depth>
-                    <measurementValue unitOfMeasure="IN">
-                        <value>17.5</value>
-                    </measurementValue>
-                </depth>
-                <grossWeight>
-                    <measurementValue unitOfMeasure="LB">
-                        <value>9.69</value>
-                    </measurementValue>
-                </grossWeight>
-                <height>
-                    <measurementValue unitOfMeasure="IN">
-                        <value>5.13</value>
-                    </measurementValue>
-                </height>
-                <width>
-                    <measurementValue unitOfMeasure="IN">
-                        <value>11.25</value>
-                    </measurementValue>
-                </width>
-                <netWeight>
-                    <measurementValue unitOfMeasure="LB">
-                        <value>7.125</value>
-                    </measurementValue>
-                </netWeight>
-            </tradeItemMeasurements>
-            <tradeItemOrderInformation>
-                <orderQuantityMinimum>1</orderQuantityMinimum>
-            </tradeItemOrderInformation>
-            <tradeItemTemperatureInformation>
-                <storageHandlingTemperatureMaximum>
-                    <measurementValue unitOfMeasure="FA">
-                        <value>85</value>
-                    </measurementValue>
-                </storageHandlingTemperatureMaximum>
-                <storageHandlingTemperatureMinimum>
-                    <measurementValue unitOfMeasure="FA">
-                        <value>35</value>
-                    </measurementValue>
-                </storageHandlingTemperatureMinimum>
-            </tradeItemTemperatureInformation>
-        </tradingPartnerNeutralTradeItemInformation>
-    </tradeItemInformation>
-    <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
-</tradeItem>
-<dataRecipient>0074865000000</dataRecipient>
-<sourceDataPool>0838016003001</sourceDataPool>
-<catalogueItemChildItemLink quantity="6">
-    <catalogueItem>
-        <catalogueItemState state="REGISTERED"/>
-        <tradeItem>
-            <tradeItemUnitDescriptor>PACK_OR_INNER_PACK</tradeItemUnitDescriptor>
-            <tradeItemIdentification>
-                <gtin>00018627350118</gtin>
-            </tradeItemIdentification>
-            <nextLowerLevelTradeItemInformation>
-                <quantityOfChildren>1</quantityOfChildren>
-                <totalQuantityOfNextLowerLevelTradeItem>12</totalQuantityOfNextLowerLevelTradeItem>
-                <childTradeItem>
-                    <quantityofNextLowerLevelTradeItem>12</quantityofNextLowerLevelTradeItem>
-                    <tradeItemIdentification>
-                        <gtin>00018627350125</gtin>
-                    </tradeItemIdentification>
-                </childTradeItem>
-            </nextLowerLevelTradeItemInformation>
-            <tradeItemInformation>
-                <informationProviderOfTradeItem>
-                    <informationProvider>
-                        <gln>0038000000010</gln>
-                    </informationProvider>
-                    <nameOfInformationProvider>Kellogg Company US</nameOfInformationProvider>
-                </informationProviderOfTradeItem>
-                <targetMarketInformation>
-                    <targetMarketCountryCode>
-                        <countryISOCode>840</countryISOCode>
-                    </targetMarketCountryCode>
-                    <targetMarketDescription>
-                        <language>
-                            <languageISOCode>en</languageISOCode>
-                        </language>
-                        <shortText>United States Of America</shortText>
-                    </targetMarketDescription>
-                </targetMarketInformation>
-                <classificationCategoryCode>
-                    <classificationCategoryCode>10000287</classificationCategoryCode>
-                    <classificationCategoryDefinition>Cereal/Muesli Bars</classificationCategoryDefinition>
-                    <classificationCategoryName>Cereal/Muesli Bars</classificationCategoryName>
-                    <additionalClassification>
-                        <additionalClassificationAgencyName>1</additionalClassificationAgencyName>
-                        <additionalClassificationCategoryCode>02.0013.0053</additionalClassificationCategoryCode>
-                        <additionalClassificationCategoryDescription>BAKERY GOODS OTHER (SHELF STABLE): BAKERY GOODS OTHER (SHELF STABLE)</additionalClassificationCategoryDescription>
-                    </additionalClassification>
-                </classificationCategoryCode>
-                <tradeItemDescriptionInformation>
-                    <brandName>KASHI</brandName>
-                    <descriptionShort>
-                        <description>
-                            <language>
-<languageISOCode>en</languageISOCode>
-                            </language>
-                            <shortText>GOLEAN BARS</shortText>
-                        </description>
-                    </descriptionShort>
-                    <functionalName>
-                        <description>
-                            <language>
-<languageISOCode>en</languageISOCode>
-                            </language>
-                            <shortText>GoLean Bar Crunchy Choc Pretzel</shortText>
-                        </description>
-                    </functionalName>
-                    <tradeItemDescription>
-                        <language>
-                            <languageISOCode>en</languageISOCode>
-                        </language>
-                        <text>GoLean Bar Crunchy Choc Pretzel</text>
-                    </tradeItemDescription>
-                </tradeItemDescriptionInformation>
-                <tradingPartnerNeutralTradeItemInformation>
-                    <tradeItemUnitIndicator>
-                        <isTradeItemABaseUnit>false</isTradeItemABaseUnit>
-                        <isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
-                        <isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
-                        <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
-                        <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                        <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
-                    </tradeItemUnitIndicator>
-                    <brandOwnerOfTradeItem>
-                        <brandOwner>
-                            <gln>0038000000010</gln>
-                        </brandOwner>
-                        <nameOfBrandOwner>Kellogg Company US</nameOfBrandOwner>
-                    </brandOwnerOfTradeItem>
-                    <manufacturerOfTradeItem>
-                        <manufacturer>
-                            <gln>0038000000010</gln>
-                        </manufacturer>
-                        <nameOfManufacturer>Kellogg Company US</nameOfManufacturer>
-                    </manufacturerOfTradeItem>
-                    <packagingMarking>
-                        <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
-                    </packagingMarking>
-                    <privateInformation>
-                        <partyReceivingPrivateData>
-                            <gln>0074865000000</gln>
-                        </partyReceivingPrivateData>
-                    </privateInformation>
-                    <tradeItemDateInformation>
-                        <effectiveDate>2012-08-09</effectiveDate>
-                        <lastChangeDateTime>2012-08-08T17:05:54</lastChangeDateTime>
-                        <publicationDate>2012-08-14</publicationDate>
-                        <startAvailabilityDateTime>2007-03-30T00:00:00</startAvailabilityDateTime>
-                    </tradeItemDateInformation>
-                    <tradeItemMarking/>
-                    <tradeItemMeasurements>
-                        <depth>
-                            <measurementValue unitOfMeasure="IN">
-<value>5.75</value>
-                            </measurementValue>
-                        </depth>
-                        <grossWeight>
-                            <measurementValue unitOfMeasure="OZ">
-<value>25.84</value>
-                            </measurementValue>
-                        </grossWeight>
-                        <height>
-                            <measurementValue unitOfMeasure="IN">
-<value>2.5</value>
-                            </measurementValue>
-                        </height>
-                        <width>
-                            <measurementValue unitOfMeasure="IN">
-<value>11</value>
-                            </measurementValue>
-                        </width>
-                        <netContent>
-                            <measurementValue unitOfMeasure="OZ">
-<value>19</value>
-                            </measurementValue>
-                        </netContent>
-                        <netWeight>
-                            <measurementValue unitOfMeasure="OZ">
-<value>19</value>
-                            </measurementValue>
-                        </netWeight>
-                    </tradeItemMeasurements>
-                    <tradeItemOrderInformation>
-                        <orderQuantityMinimum>6</orderQuantityMinimum>
-                    </tradeItemOrderInformation>
-                </tradingPartnerNeutralTradeItemInformation>
-            </tradeItemInformation>
-            <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
-        </tradeItem>
-        <dataRecipient>0074865000000</dataRecipient>
-        <sourceDataPool>0838016003001</sourceDataPool>
-        <catalogueItemChildItemLink quantity="12">
-            <catalogueItem>
-                <catalogueItemState state="REGISTERED"/>
-                <tradeItem>
-                    <tradeItemUnitDescriptor>BASE_UNIT_OR_EACH</tradeItemUnitDescriptor>
-                    <tradeItemIdentification>
-                        <gtin>00018627350125</gtin>
-                    </tradeItemIdentification>
-                    <tradeItemInformation>
-                        <informationProviderOfTradeItem>
-                            <informationProvider>
-<gln>0038000000010</gln>
-                            </informationProvider>
-                            <nameOfInformationProvider>Kellogg Company US</nameOfInformationProvider>
-                        </informationProviderOfTradeItem>
-                        <targetMarketInformation>
-                            <targetMarketCountryCode>
-<countryISOCode>840</countryISOCode>
-                            </targetMarketCountryCode>
-                            <targetMarketDescription>
-<language>
-    <languageISOCode>en</languageISOCode>
-</language>
-<shortText>United States Of America</shortText>
-                            </targetMarketDescription>
-                        </targetMarketInformation>
-                        <classificationCategoryCode>
-                            <classificationCategoryCode>10000287</classificationCategoryCode>
-                            <classificationCategoryDefinition>Cereal/Muesli Bars</classificationCategoryDefinition>
-                            <classificationCategoryName>Cereal/Muesli Bars</classificationCategoryName>
-                            <additionalClassification>
-<additionalClassificationAgencyName>1</additionalClassificationAgencyName>
-<additionalClassificationCategoryCode>02.0013.0053</additionalClassificationCategoryCode>
-<additionalClassificationCategoryDescription>BAKERY GOODS OTHER (SHELF STABLE): BAKERY GOODS OTHER (SHELF STABLE)</additionalClassificationCategoryDescription>
-                            </additionalClassification>
-                        </classificationCategoryCode>
-                        <tradeItemDescriptionInformation>
-                            <brandName>KASHI</brandName>
-                            <descriptionShort>
-<description>
-    <language>
-        <languageISOCode>en</languageISOCode>
-    </language>
-    <shortText>GOLEAN BARS</shortText>
-</description>
-                            </descriptionShort>
-                            <functionalName>
-<description>
-    <language>
-        <languageISOCode>en</languageISOCode>
-    </language>
-    <shortText>GoLean Bar Crunchy Choc Pretzel</shortText>
-</description>
-                            </functionalName>
-                            <tradeItemDescription>
-<language>
-    <languageISOCode>en</languageISOCode>
-</language>
-<text>GoLean Bar Crunchy Choc Pretzel</text>
-                            </tradeItemDescription>
-                        </tradeItemDescriptionInformation>
-                        <tradingPartnerNeutralTradeItemInformation>
-                            <tradeItemUnitIndicator>
-<isTradeItemABaseUnit>true</isTradeItemABaseUnit>
-<isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
-<isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
-<isTradeItemAnInvoiceUnit>false</isTradeItemAnInvoiceUnit>
-<isTradeItemAnOrderableUnit>false</isTradeItemAnOrderableUnit>
-<isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
-                            </tradeItemUnitIndicator>
-                            <brandOwnerOfTradeItem>
-<brandOwner>
-    <gln>0038000000010</gln>
-</brandOwner>
-<nameOfBrandOwner>Kellogg Company US</nameOfBrandOwner>
-                            </brandOwnerOfTradeItem>
-                            <manufacturerOfTradeItem>
-<manufacturer>
-    <gln>0038000000010</gln>
-</manufacturer>
-<nameOfManufacturer>Kellogg Company US</nameOfManufacturer>
-                            </manufacturerOfTradeItem>
-                            <packagingMarking>
-<isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
-                            </packagingMarking>
-                            <privateInformation>
-<partyReceivingPrivateData>
-    <gln>0074865000000</gln>
-</partyReceivingPrivateData>
-                            </privateInformation>
-                            <tradeItemDateInformation>
-<effectiveDate>2012-08-09</effectiveDate>
-<lastChangeDateTime>2012-08-08T17:05:54</lastChangeDateTime>
-<publicationDate>2012-08-14</publicationDate>
-<startAvailabilityDateTime>2007-03-30T00:00:00</startAvailabilityDateTime>
-                            </tradeItemDateInformation>
-                            <tradeItemMarking/>
-                            <tradeItemMeasurements>
-<depth>
-    <measurementValue unitOfMeasure="IN">
-        <value>1.125</value>
-    </measurementValue>
-</depth>
-<grossWeight>
-    <measurementValue unitOfMeasure="OZ">
-        <value>2.153</value>
-    </measurementValue>
-</grossWeight>
-<height>
-    <measurementValue unitOfMeasure="IN">
-        <value>5.5</value>
-    </measurementValue>
-</height>
-<width>
-    <measurementValue unitOfMeasure="IN">
-        <value>1.75</value>
-    </measurementValue>
-</width>
-<netContent>
-    <measurementValue unitOfMeasure="OZ">
-        <value>1.583</value>
-    </measurementValue>
-</netContent>
-<netWeight>
-    <measurementValue unitOfMeasure="OZ">
-        <value>1.583</value>
-    </measurementValue>
-</netWeight>
-                            </tradeItemMeasurements>
-                            <tradeItemOrderInformation>
-<orderQuantityMinimum>72</orderQuantityMinimum>
-                            </tradeItemOrderInformation>
-                        </tradingPartnerNeutralTradeItemInformation>
-                    </tradeItemInformation>
-                    <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
-                </tradeItem>
-                <dataRecipient>0074865000000</dataRecipient>
-                <sourceDataPool>0838016003001</sourceDataPool>
-            </catalogueItem>
-        </catalogueItemChildItemLink>
-    </catalogueItem>
-</catalogueItemChildItemLink>
+                                <catalogueItemState state="IN_PROGRESS"/>
+                                <tradeItem>
+                                    <tradeItemUnitDescriptor>CASE</tradeItemUnitDescriptor>
+                                    <tradeItemIdentification>
+                                        <gtin>19999999780018</gtin>
+                                    </tradeItemIdentification>
+                                    <tradeItemInformation>
+                                        <informationProviderOfTradeItem>
+                                            <informationProvider>
+                                                <gln>1100001011292</gln>
+                                            </informationProvider>
+                                            <nameOfInformationProvider>Test Manufacturer #1 - new </nameOfInformationProvider>
+                                        </informationProviderOfTradeItem>
+                                        <targetMarketInformation>
+                                            <targetMarketCountryCode>
+                                                <countryISOCode>166</countryISOCode>
+                                            </targetMarketCountryCode>
+                                        </targetMarketInformation>
+                                        <classificationCategoryCode>
+                                            <classificationCategoryCode>10000165</classificationCategoryCode>
+                                        </classificationCategoryCode>
+                                        <tradeItemDescriptionInformation>
+                                            <brandName>Basic Sliced Brown Bread</brandName>
+                                            <functionalName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>Basic Sliced Brown Bread</shortText>
+                                                </description>
+                                            </functionalName>
+                                        </tradeItemDescriptionInformation>
+                                        <tradingPartnerNeutralTradeItemInformation>
+                                            <tradeItemUnitIndicator>
+                                                <isTradeItemABaseUnit>true</isTradeItemABaseUnit>
+                                                <isTradeItemAConsumerUnit>false</isTradeItemAConsumerUnit>
+                                                <isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
+                                                <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
+                                                <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+                                                <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+                                            </tradeItemUnitIndicator>
+                                            <packagingMarking>
+                                                <isPackagingMarkedReturnable>true</isPackagingMarkedReturnable>
+                                            </packagingMarking>
+                                            <tradeItemMeasurements>
+                                                <depth>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>200</value>
+                                                    </measurementValue>
+                                                </depth>
+                                                <grossWeight>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>3</value>
+                                                    </measurementValue>
+                                                    <measurementValue unitOfMeasure="LB">
+                                                        <value>4</value>
+                                                    </measurementValue>
+                                                </grossWeight>
+                                                <height>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>20</value>
+                                                    </measurementValue>
+                                                </height>
+                                                <width>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>20</value>
+                                                    </measurementValue>
+                                                </width>
+                                            </tradeItemMeasurements>
+                                        </tradingPartnerNeutralTradeItemInformation>
+                                    </tradeItemInformation>
+                                </tradeItem>
+                                <dataRecipient>1100001011285</dataRecipient>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-<uniqueCreatorIdentification>CIN_IN_174077_r1_TXN1_CMD1_DOC1</uniqueCreatorIdentification>
-<contentOwner>
-    <gln>1100001011285</gln>
-</contentOwner>
+                                <uniqueCreatorIdentification>cin_msg_12345_TXN-1_CMD-1_DOC-1</uniqueCreatorIdentification>
+                                <contentOwner>
+                                    <gln>0077589000004</gln>
+                                </contentOwner>
                             </catalogueItemNotificationIdentification>
-                        </ns3:catalogueItemNotification>
+                        </gdsn:catalogueItemNotification>
                     </documentCommandOperand>
                 </eanucc:documentCommand>
             </command>

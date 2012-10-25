@@ -1,6 +1,6 @@
 {
     "name": "gdsn",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "GDSN EIP library for Node.js",
     "engines": { "node": "0.8.6" },
     "author": "Theoxylo - http://https://githumb.com/theoxylo",

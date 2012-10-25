@@ -1,3 +1,5 @@
+[![build status](https://secure.travis-ci.org/theoxylo/node-gdsn.png)](http://travis-ci.org/theoxylo/node-gdsn)
+
 ## node-gdsn
 
 A GDSN EIP component library for Node.js
@@ -5,7 +7,7 @@ A GDSN EIP component library for Node.js
 
 ## Installation
 
-Get the latest published release from [npm] (http://github.com/isaacs/npm) [v002_20121015]
+Get the latest published release from [npm] (http://github.com/isaacs/npm) [v003_20121025]
 
     npm install gdsn
 
@@ -32,7 +34,7 @@ Or add to package.json and
     gdsn.readXmlFile(
         file,
         function (err, xml) {
-            if (err) throw err;
+            if (err)  throw err;
             var oldId = gdsn.getInstanceId(xml);
             var modXml = gdsn.updateInstanceId(xml, oldId + '_MOD');
             gdsn.writeXmlFile(file + '-MOD', modXml);

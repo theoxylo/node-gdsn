@@ -32,7 +32,7 @@ Or add to package.json and
     gdsn.readXmlFile(
         file,
         function (err, xml) {
-            if (err)  throw err;
+            if (err) throw err;
             var oldId = gdsn.getInstanceId(xml);
             var modXml = gdsn.updateInstanceId(xml, oldId + '_MOD');
             gdsn.writeXmlFile(file + '-MOD', modXml);

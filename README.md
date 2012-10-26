@@ -21,25 +21,22 @@ Or add to package.json and
     var gdsn = require('gdsn');
     var file = 'path/cin.xml';
 
-    // read id from file:
-    gdsn.getInstanceIdFromFile(
-        file,
-        function(err, id) {
-            if (err) console.log(err);
-            console.log('cin doc instance id: ' + id);
+    gdsn.readXmlFile(file, function(err, xml) {
+        if (err) {
+            log('Error: ' + err);
+            return;
         }
-    );
-    
-    // update id and save to new file:
-    gdsn.readXmlFile(
-        file,
-        function (err, xml) {
-            if (err)  throw err;
-            var oldId = gdsn.getInstanceId(xml);
-            var modXml = gdsn.updateInstanceId(xml, oldId + '_MOD');
-            gdsn.writeXmlFile(file + '-MOD', modXml);
-        }
-    );
+        var modXml = gdsn.processCinFromOtherDP(xml); // sync, throws err
+        var outputFile = 'cin_to_local_party_' + new Date().getTime() + '.xml';
+        gdsn.writeXmlFile(outputFile, modXml, function(err, result) {
+            if (err) {
+                log('Error writing CIN file: ' + err);
+            }
+            else {
+                log('Success! Created new CIN file ' + outputFile);
+            }
+        });
+    });
 
 
 ## Development

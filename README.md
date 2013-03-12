@@ -18,28 +18,28 @@ Or add to package.json and
 
 ## Usage
 
-    var Gdsn = require('gdsn')
-    var gdsn = new Gdsn({ homeDataPoolGln: '1100001011285' })
-    var file = 'path/cin.xml'
+  ```javascript
+  var Gdsn = require('gdsn')
+  var gdsn = new Gdsn({ homeDataPoolGln: '1100001011285' })
+  var file = 'path/cin.xml'
 
-    ```javascript
-    gdsn.readXmlFile(file, function(err, xml) {
-        if (err) {
-            log('Error: ' + err)
-            return
-        }
-        var modXml = gdsn.processCinFromOtherDP(xml) // sync, throws err
-        var outputFile = 'cin_to_local_party_' + new Date().getTime() + '.xml'
-        gdsn.writeXmlFile(outputFile, modXml, function(err, result) {
-            if (err) {
-                log('Error writing CIN file: ' + err)
-            }
-            else {
-                log('Success! Created new CIN file ' + outputFile)
-            }
-        })
-    })
-    ```
+  gdsn.readXmlFile(file, function(err, xml) {
+      if (err) {
+          log('Error: ' + err)
+          return
+      }
+      var modXml = gdsn.processCinFromOtherDP(xml) // sync, throws err
+      var outputFile = 'cin_to_local_party_' + new Date().getTime() + '.xml'
+      gdsn.writeXmlFile(outputFile, modXml, function(err, result) {
+          if (err) {
+              log('Error writing CIN file: ' + err)
+          }
+          else {
+              log('Success! Created new CIN file ' + outputFile)
+          }
+      })
+  })
+  ```
 
 
 ## Development

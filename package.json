@@ -1,27 +1,27 @@
 {
-    "name": "gdsn",
-    "version": "0.0.4",
-    "description": "GDSN service library for Node.js",
-    "engines": { "node": "0.8.6" },
-    "author": "Theoxylo - https://github.com/theoxylo",
-    "dependencies": {
-        "xpath.js": "0.0.1",       
-        "xmldom": "0.1.11"
-    },
-     "devDependencies": {
-    },
-    "repository" : { 
-        "type":"git", 
-        "url":"https://github.com/theoxylo/node-gdsn.git"
-    },
-    "main": "index",
-    "directories": { },
-    "keywords": ["gdsn", "node", "eip", "xpath", "xml"],
-    "licenses": [{ 
-        "type" :  "MIT License",
-        "url" :   "http://www.opensource.org/licenses/mit-license.php" 
-    }],
-    "scripts": {
-      "test": "node test"
-    }
+  "name": "gdsn",
+  "version": "0.0.4",
+  "description": "GDSN service library for Node.js",
+  "engines": { "node": "0.8.6" },
+  "author": "Theoxylo - https://github.com/theoxylo",
+  "dependencies": {
+      "xpath.js": "0.0.1",
+      "xmldom": "0.1.11"
+  },
+   "devDependencies": {
+  },
+  "repository" : {
+      "type":"git",
+      "url":"https://github.com/theoxylo/node-gdsn.git"
+  },
+  "main": "index",
+  "directories": { },
+  "keywords": ["gdsn", "node", "eip", "xpath", "xml"],
+  "licenses": [{
+      "type" :  "MIT License",
+      "url" :   "http://www.opensource.org/licenses/mit-license.php"
+  }],
+  "scripts": {
+    "test": "node test"
+  }
 }

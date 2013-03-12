@@ -2,7 +2,7 @@
 
 ## node-gdsn
 
-A GDSN EIP component library for Node.js
+A GDSN EIP service library for Node.js
 
 
 ## Installation
@@ -18,25 +18,28 @@ Or add to package.json and
 
 ## Usage
 
-    var gdsn = require('gdsn');
-    var file = 'path/cin.xml';
+    var Gdsn = require('gdsn')
+    var gdsn = new Gdsn({ homeDataPoolGln: '1100001011285' })
+    var file = 'path/cin.xml'
 
+    ```javascript
     gdsn.readXmlFile(file, function(err, xml) {
         if (err) {
-            log('Error: ' + err);
-            return;
+            log('Error: ' + err)
+            return
         }
-        var modXml = gdsn.processCinFromOtherDP(xml); // sync, throws err
-        var outputFile = 'cin_to_local_party_' + new Date().getTime() + '.xml';
+        var modXml = gdsn.processCinFromOtherDP(xml) // sync, throws err
+        var outputFile = 'cin_to_local_party_' + new Date().getTime() + '.xml'
         gdsn.writeXmlFile(outputFile, modXml, function(err, result) {
             if (err) {
-                log('Error writing CIN file: ' + err);
+                log('Error writing CIN file: ' + err)
             }
             else {
-                log('Success! Created new CIN file ' + outputFile);
+                log('Success! Created new CIN file ' + outputFile)
             }
-        });
-    });
+        })
+    })
+    ```
 
 
 ## Development

@@ -7,7 +7,7 @@ A GDSN EIP service library for Node.js
 
 ## Installation
 
-Get the latest published release from [npm] (http://github.com/isaacs/npm) [v003_20121025]
+Get the latest published release from [npm] (http://github.com/isaacs/npm) [v004_20130310]
 
     npm install gdsn
 

@@ -9,7 +9,7 @@
   console.log(gdsn.getVersion())
 
   if (process.argv.length < 3) {
-    console.log("usage: node script file")
+    console.log("usage: node cin_respond.js file1 file2 ...")
     process.exit(1)
   }
 

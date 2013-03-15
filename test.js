@@ -1,49 +1,39 @@
 (function () {
   
   var Gdsn = require('./index.js')
+  
   var gdsn = new Gdsn({
     homeDataPoolGln: '1100001011285'
   })
-  var log = console.log
-  log(gdsn.getVersion())
   
-  var file = process.argv.length == 3 ? process.argv.pop() : __dirname + '/test/cin_from_other_dp.xml'
-  log('__dirname: ' + __dirname)
-  log('file arg: ' + file)
+  console.log(gdsn.getVersion())
   
-  
-  gdsn.readXmlFile(file, function(err, xml) {
+  gdsn.readXmlFile('test/cin_from_other_dp.xml', function(err, xml) {
     if (err) {
-      log('Error: ' + err)
+      console.log('Error: ' + err)
       process.exit(1)
     }
-    gdsn.createCinResponse(xml, function(err, responseXml) {
-      if (err) {
-        log('Error: ' + err)
-        process.exit(1)
-      }
-      log("Response: " + responseXml)
+    var doc = gdsn.getDocForXml(xml)
+    gdsn.createCinResponse(doc, function(err, responseXml) {
+      var outputFile = 'test/outbox/test_cin_response_' + new Date().getTime() + '.xml'
+      gdsn.writeXmlFile(outputFile, responseXml, function(err, result) {
+        if (err) {
+          console.log('Error: ' + err)
+          process.exit(1)
+        }
+        console.log('Created new CIN response file: ' + outputFile)
+      })
+      gdsn.forwardCinFromOtherDP(doc, function(err, cinOut) {
+        var outputFile = 'test/outbox/test_cin_to_local_party_' + new Date().getTime() + '.xml'
+        gdsn.writeXmlFile(outputFile, cinOut, function(err, result) {
+          if (err) {
+            console.log('Error: ' + err)
+            process.exit(1)
+          }
+          console.log('Created new CIN out file: ' + outputFile)
+        })
+      })
     })
   })
-  
-//  (function () { 
-//    log("Transforming CIN from other data pool for local trading party recipient...")
-//    gdsn.readXmlFile(file, function(err, xml) {
-//      if (err) {
-//        log('Error: ' + err)
-//        process.exit(1)
-//      }
-//      gdsn.processCinFromOtherDP(xml, function(modXml) {
-//        var outputFile = 'test/test_cin_to_local_party_' + new Date().getTime() + '.xml'
-//        gdsn.writeXmlFile(outputFile, modXml, function(err, result) {
-//          if (err) {
-//            log('Error: ' + err)
-//            process.exit(1)
-//          }
-//          log('Success! Created new CIN file ' + outputFile)
-//        })
-//      })
-//    })
-//  }()) // immediate execution
   
 }())

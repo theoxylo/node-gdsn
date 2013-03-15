@@ -2,8 +2,6 @@ var select = require('xpath.js')
 var xmldom = require('xmldom')
 var fs = require('fs')
 
-// settings to be moved to config file later
-
 module.exports = function Gdsn(opts) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(opts)
@@ -12,7 +10,7 @@ module.exports = function Gdsn(opts) {
 
   var homeDataPoolGln = opts.homeDataPoolGln
 
-  var version = "0.0.4"
+  var version = "0.0.5"
 
   this.getVersion = function() {
     return {
@@ -22,13 +20,16 @@ module.exports = function Gdsn(opts) {
     }
   }
 
+  this.getDocForXml = function(xml) {
+    return new xmldom.DOMParser().parseFromString(xml)
+  }
+  
   this.readXmlFile = function(file, cb) {
     var log = function(msg) {
       console.log('gdsn.readXmlFile: ' + msg)
     };
     fs.readFile(
     file, 'utf-8',
-
     function(err, xml) { // cb
       if (err) {
         cb(err)
@@ -41,236 +42,132 @@ module.exports = function Gdsn(opts) {
   this.writeXmlFile = function(file, xml, cb) {
     var log = function(msg) {
       console.log('gdsn.writeXmlFile: ' + msg)
-    };
+    }
     fs.writeFile(
-    file,
-    xml, 'utf-8',
-
-    function(err, xml) { // cb
-      if (err) {
-        if (!cb) throw err
-        cb(err)
-        return
+      file,
+      xml, 'utf-8',
+      function(err, xml) { // cb
+        if (err) {
+          if (!cb) throw err
+          cb(err)
+          return
+        }
+        if (cb) cb(null, 'File saved: ' + file)
+        else log('File saved: ' + file)
       }
-      if (cb) cb(null, 'File saved: ' + file)
-      else log('File saved: ' + file)
-    });
+    )
   }
-
-  this.createCinResponse = function(xml, cb) {
+  
+  this.getMessageInfo = function(doc) {
+    var info = {}
+    info.id        =  select(doc, "//*[local-name()='InstanceIdentifier']")[0].firstChild.data
+    info.sender    =  select(doc, "//*[local-name()='Sender']/*[local-name() = 'Identifier']")[0].firstChild.data
+    info.receiver  =  select(doc, "//*[local-name()='Receiver']/*[local-name() = 'Identifier']")[0].firstChild.data
+    info.type      =  select(doc, "//*[local-name()='DocumentIdentification']/*[local-name() = 'Type']")[0].firstChild.data
+    info.ts =  select(doc, "//*[local-name()='DocumentIdentification']/*[local-name() = 'CreationDateAndTime']")[0].firstChild.data
+    return info
+  }
+  
+  this.populateResponseTemplate = function(doc, info) {
+    select(doc, "//*[local-name() = 'Sender']/*[local-name() = 'Identifier']")[0].firstChild.data = info.receiver
+    select(doc, "//*[local-name() = 'Receiver']/*[local-name() = 'Identifier']")[0].firstChild.data = info.sender
+    var instanceId = "ITN_RESP_" + new Date().getTime()
+    select(doc, "//*[local-name() = 'InstanceIdentifier']")[0].firstChild.data = instanceId
+    select(doc, "//*[local-name() = 'CreationDateAndTime']")[0].firstChild.data = info.ts
+    select(doc, "//*[local-name() = 'InstanceIdentifier']")[1].firstChild.data = instanceId
+    select(doc, "//*[local-name() = 'RequestingDocumentCreationDateTime']")[0].firstChild.data = info.ts
+    select(doc, "//*[local-name() = 'RequestingDocumentInstanceIdentifier']")[0].firstChild.data = info.id
+    select(doc, "//*[local-name() = 'uniqueCreatorIdentification']")[0].firstChild.data = instanceId
+    select(doc, "//*[local-name() = 'gln']")[0].firstChild.data = info.receiver
+  }
+  
+  this.createCinResponse = function(doc, cb) {
     var log = function(msg) {
       console.log('gdsn.getInstanceId: ' + msg)
     };
-    var doc = new xmldom.DOMParser().parseFromString(xml)
-    var senderGln = select(doc, "//*[local-name() = 'Sender']/*[local-name() = 'Identifier']")[0].firstChild
-    log("sender gln: " + senderGln)
+    
+    var self = this
+    var msgIn = this.getMessageInfo(doc)
     
     this.readXmlFile("./templates/GDSNResponse_template.xml", function (err, responseTemplate) {
       
       var res = new xmldom.DOMParser().parseFromString(responseTemplate)
-      
-      var recId = select(res, "//*[local-name() = 'Receiver']/*[local-name() = 'Identifier']")[0]
-      log("recId: " + recId.firstChild.nodeValue)
-      recId.firstChild.nodeValue = senderGln
-      console.log("recId: " + recId.firstChild.nodeValue)
-      
-      select(res, "//*[local-name() = 'InstanceIdentifier']")[0].data = "CIN_RESP_" // + new Date().getTime()
+      self.populateResponseTemplate(res, msgIn)
       
       var message = res.getElementsByTagName("eanucc:message")[0]
       
       var eANUCCResponse = res.createElement("gdsn:eANUCCResponse")
       eANUCCResponse.setAttribute("responseStatus", "ACCEPTED")
       var sender = res.createElement("sender")
-      sender.appendChild(res.createTextNode(senderGln))
+      sender.appendChild(res.createTextNode(msgIn.sender))
       eANUCCResponse.appendChild(sender)
       var receiver = res.createElement("receiver")
-      receiver.appendChild(res.createTextNode(homeDataPoolGln))
+      receiver.appendChild(res.createTextNode(msgIn.receiver))
       eANUCCResponse.appendChild(receiver)
 
       var nodes = select(doc, "//*[local-name() = 'transaction']/entityIdentification")
       
-      for (var i = 0; i < nodes.length; i++) {
-        var response = eANUCCResponse.cloneNode(true)
-        var documentReceived = res.createElement("documentReceived")
-        
-        for (var j = 0; j < nodes[i].childNodes.length; j++) {
+      var i, j, responseNode, documentReceived
+      for (i = 0; i < nodes.length; i++) {
+        responseNode = eANUCCResponse.cloneNode(true)
+        documentReceived = res.createElement("documentReceived")
+        for (j = 0; j < nodes[i].childNodes.length; j++) {
           if (nodes[i].childNodes[j].nodeType === 1) {
-            //log(nodes[i].childNodes[j])
-            documentReceived.appendChild(nodes[i].childNodes[j])
+            documentReceived.appendChild(nodes[i].childNodes[j].cloneNode(true))
           }
         }
-        
-        response.appendChild(documentReceived)
-        message.appendChild(response)
+        responseNode.appendChild(documentReceived)
+        message.appendChild(responseNode)
       }
       
-      var modXml = new xmldom.XMLSerializer().serializeToString(res)
-      //log("response xml: " + modXml)
+      var resXml = new xmldom.XMLSerializer().serializeToString(res)
+      log("Response xml length: " + resXml.length)
       
-      if (cb) cb(null, modXml)
-      else return modXml
+      if (cb) cb(null, resXml)
+      else return resXml
     })
   }
 
-  this.getInstanceId = function(xml, cb) {
-    var log = function(msg) {
-      console.log('gdsn.getInstanceId: ' + msg)
-    };
-    var doc = new xmldom.DOMParser().parseFromString(xml)
-    //var nodes = select(doc, "//ns2:DocumentIdentification/ns2:InstanceIdentifier")
-    var nodes = select(doc, "//*[local-name() = 'InstanceIdentifier']")
-
-    if (!nodes || !nodes[0]) {
-      throw {
-        name: 'getInstanceId',
-        message: 'InstanceIdentifier node not found'
-      }
-    }
-
-    log(nodes[0].localName + ": " + nodes[0].firstChild.data)
-    log(nodes[0].localName + ": " + nodes[0].firstChild)
-    log("nodes[0]: " + nodes[0].toString())
-    log("nodes[0]: ")
-    console.log(nodes[0].constructor)
-
-    var instanceId = nodes[0].firstChild.data
-    if (cb) cb(null, instanceId)
-    else return instanceId
-  }
-
-  this.getInstanceIdFromFile = function(file, cb) {
-    var log = function(msg) {
-      console.log('gdsn.getInstanceIdFromFile: ' + msg)
-    };
-    var self = this
-    this.readXmlFile(file, function(err, xml) { // cb
-      if (err) {
-        cb(err);
-      }
-      log('xml length: ' + Buffer.byteLength(xml))
-      var instanceId = self.getInstanceId(xml)
-      log('found instanceId ' + instanceId)
-      cb(null, instanceId)
-    });
-  }
-
-  this.updateInstanceId = function(xml, newId) {
-    var log = function(msg) {
-      console.log('gdsn.updateInstanceId: ' + msg)
-    };
-    var doc = new xmldom.DOMParser().parseFromString(xml)
-    var nodes = select(doc, "//*[local-name() = 'InstanceIdentifier']")
-    if (!nodes || !nodes[0]) {
-      throw {
-        name: 'updateInstanceId',
-        message: 'InstanceIdentifier node not found'
-      }
-    }
-    nodes[0].firstChild.data = newId
-    log(nodes[0].localName + " new id: " + nodes[0].firstChild.data)
-    var modXml = new xmldom.XMLSerializer().serializeToString(doc)
-    return modXml
-  }
-
-  this.processCinFromOtherDP = function(xml, cb) {
+  this.forwardCinFromOtherDP = function(doc, cb) {
     var log = function(msg) {
       console.log('gdsn.processCinFromOtherDP: ' + msg)
     };
-    var doc = new xmldom.DOMParser().parseFromString(xml)
+
+    var info = this.getMessageInfo(doc)
 
     // check that receiver is the home data pool:
-    var receiverNodes = select(doc, "//*[local-name() = 'Receiver']/*[local-name() = 'Identifier']")
-    if (!receiverNodes || !receiverNodes[0]) {
-      throw {
-        name: 'processCinFromOtherDP',
-        message: 'Receiver.Identifier not found'
-      }
-    }
-    var receiver = receiverNodes[0].firstChild.data;
-    log("Original Receiver.Identifier GLN: " + receiver)
-    if (receiver !== homeDataPoolGln) {
+    if (info.receiver !== homeDataPoolGln) {
       throw {
         name: 'processCinFromOtherDP',
         message: 'message must be addressed to home data pool GLN ' + homeDataPoolGln
       }
     }
-
-    // get data recipient and set new receiver gln:
-    var dataRecipientNodes = select(doc, "//catalogueItem/dataRecipient")
-    if (!dataRecipientNodes || !dataRecipientNodes[0]) {
-      throw {
-        name: 'processCinFromOtherDP',
-        message: 'Receiver.Identifier not found'
-      }
-    }
-    var dataRecipient = dataRecipientNodes[0].firstChild.data
-    log("CatalogueItem.dataRecipient GLN: " + dataRecipient)
-    receiverNodes[0].firstChild.data = dataRecipient
-
     // set sender to home data pool
-    var senderNodes = select(doc, "//*[local-name() = 'Sender']/*[local-name() = 'Identifier']")
-    if (!senderNodes || !senderNodes[0]) {
+    select(doc, "//*[local-name() = 'Sender']/*[local-name() = 'Identifier']")[0].firstChild.data = info.receiver
+
+    // get data recipient (same for all transactions) and set new receiver gln
+    var dataRecipient = select(doc, "//catalogueItem/dataRecipient")[0].firstChild.data
+    log("CatalogueItem.dataRecipient GLN: " + dataRecipient)
+    if (dataRecipient === homeDataPoolGln) {
       throw {
         name: 'processCinFromOtherDP',
-        message: 'Sender.Identifier not found'
+        message: 'dataRecipient must be a local party, not the data pool'
       }
     }
-    senderNodes[0].firstChild.data = homeDataPoolGln;
+    select(doc, "//*[local-name() = 'Receiver']/*[local-name() = 'Identifier']")[0].firstChild.data = dataRecipient
 
-    // set message owner to home data pool
-    var ownerNodes = select(doc, "//*[local-name() = 'message']/entityIdentification/contentOwner/gln");
-    if (!ownerNodes || !ownerNodes[0]) {
-      throw {
-        name: 'processCinFromOtherDP',
-        message: 'message owner not found'
-      }
-    }
-    ownerNodes[0].firstChild.data = homeDataPoolGln
-
-    // update InstanceIdentifier and message uniqueCreatorIdentification to new id
+    // update InstanceIdentifier and message uniqueCreatorIdentification/gln
     var newId = 'cin_' + Date.now() + '_' + dataRecipient
-    var idNodes = select(doc, "//*[local-name() = 'InstanceIdentifier']")
-    if (!idNodes || !idNodes[0]) {
-      throw {
-        name: 'processCinFromOtherDP',
-        message: 'InstanceIdentifier not found'
-      }
-    }
-    idNodes[0].firstChild.data = newId
-    idNodes = select(doc, "//*[local-name() = 'message']/entityIdentification/uniqueCreatorIdentification")
-    if (!idNodes || !idNodes[0]) {
-      var error = {
-        name: 'processCinFromOtherDP',
-        message: 'message uniqueCreatorIdentification not found'
-      }
-      if (cb) cb(error, null)
-      else throw error
-    }
-//    if (!idNodes[0].firstChild) {
-//      idNodes[0].appendChild(newChild)
-//    }
-
-    idNodes[0].firstChild.data = newId
+    select(doc, "//*[local-name() = 'InstanceIdentifier']")[0].firstChild.data = newId
+    select(doc, "//*[local-name() = 'message']/entityIdentification/uniqueCreatorIdentification")[0].firstChild.data = newId
+    select(doc, "//*[local-name() = 'message']/entityIdentification/contentOwner/gln")[0].firstChild.data = homeDataPoolGln
 
     // generate new CIN xml
     var modXml = new xmldom.XMLSerializer().serializeToString(doc)
     //return modXml
     
-    if (!cb) return modXml // for sync usage
-    else cb(null, modXml)       // for async
+    if (cb) cb(null, modXml) // for async
+    else return modXml       // for sync usage
   }
 
-  this.debug = function() {
-    this.logProps(xmldom)
-    this.logProps(new xmldom.DOMParser())
-    this.logProps(new xmldom.XMLSerializer())
-  }
-
-  this.logProps = function(obj) {
-    console.log('logProps(' + obj + '):')
-    var prop
-    for (prop in obj) {
-      console.log('obj[' + prop + ']: ' + obj[prop])
-    }
-  }
 }

@@ -2,7 +2,7 @@
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
-            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+            <sh:Identifier Authority="EAN.UCC">TOKEN</sh:Identifier>
         </sh:Sender>
         <sh:Receiver>
             <sh:Identifier Authority="EAN.UCC">TOKEN</sh:Identifier>
@@ -12,24 +12,24 @@
             <sh:TypeVersion>2.8</sh:TypeVersion>
             <sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
             <sh:Type>GDSNResponse</sh:Type>
-            <sh:CreationDateAndTime>2013-03-14T10:35:29.032-07:00</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>TOKEN</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
         <sh:BusinessScope>
             <sh:Scope>
                 <sh:Type>GDSN</sh:Type>
                 <sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
                 <sh:CorrelationInformation>
-                    <sh:RequestingDocumentCreationDateTime>2013-03-14T12:55:01.000-05:00</sh:RequestingDocumentCreationDateTime>
-                    <sh:RequestingDocumentInstanceIdentifier>CIN2.2-114561</sh:RequestingDocumentInstanceIdentifier>
+                    <sh:RequestingDocumentCreationDateTime>TOKEN</sh:RequestingDocumentCreationDateTime>
+                    <sh:RequestingDocumentInstanceIdentifier>TOKEN</sh:RequestingDocumentInstanceIdentifier>
                 </sh:CorrelationInformation>
             </sh:Scope>
         </sh:BusinessScope>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>RESP_370877</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>TOKEN</uniqueCreatorIdentification>
             <contentOwner>
-                <gln>1100001011285</gln>
+                <gln>TOKEN</gln>
             </contentOwner>
         </entityIdentification>
     </eanucc:message>

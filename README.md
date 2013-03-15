@@ -9,7 +9,7 @@ Provides useful utilities for data pools and trading parties.
 
 ## Installation
 
-Get the latest published release from npm [v005_20130315]
+Get the latest published release from npm [v006_20130315]
 
     npm install gdsn
 

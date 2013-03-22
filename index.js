@@ -6,7 +6,7 @@ module.exports = function Gdsn(opts) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(opts)
 
-  this.opts = opts || {} // e.g. { homeDataPoolGln: '1100001011285' }
+  this.opts = opts || {} // e.g. { homeDataPoolGln: '1100001011285', templatePath: './node_modules/gdsn/templates/' }
 
   var homeDataPoolGln = opts.homeDataPoolGln
 
@@ -73,14 +73,18 @@ module.exports = function Gdsn(opts) {
   
   this.createCinResponse = function(doc, cb) {
     var log = function(msg) {
-      console.log('gdsn.getInstanceId: ' + msg)
+      console.log('gdsn.createCinResponse: ' + msg)
     };
     
-    var self = this
-    var msgIn = this.getMessageInfo(doc)
+    var self = this;
+    var msgIn = this.getMessageInfo(doc);
+    log("inbound msg info: ");
+    console.log(msgIn);
     
-    this.readXmlFile("./templates/GDSNResponse_template.xml", function (err, responseTemplate) {
-      
+    this.readXmlFile(this.opts.templatePath + "GDSNResponse_template.xml", function (err, responseTemplate) {
+      if (err) {
+        throw err;
+      }
       var res = new xmldom.DOMParser().parseFromString(responseTemplate)
       self.populateResponseTemplate(res, msgIn)
       
@@ -120,7 +124,7 @@ module.exports = function Gdsn(opts) {
 
   this.forwardCinFromOtherDP = function(doc, cb) {
     var log = function(msg) {
-      console.log('gdsn.processCinFromOtherDP: ' + msg)
+      console.log('gdsn.forwardCinFromOtherDP: ' + msg)
     };
 
     var info = this.getMessageInfo(doc)

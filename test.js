@@ -6,8 +6,6 @@
     homeDataPoolGln: '1100001011285'
   })
   
-  console.log(gdsn.getVersion())
-  
   gdsn.readXmlFile('test/cin_from_other_dp.xml', function(err, xml) {
     if (err) {
       console.log('Error: ' + err)

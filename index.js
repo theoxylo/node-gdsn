@@ -10,16 +10,6 @@ module.exports = function Gdsn(opts) {
 
   var homeDataPoolGln = opts.homeDataPoolGln
 
-  var version = "0.0.5"
-
-  this.getVersion = function() {
-    return {
-      module: 'gdsn',
-      version: version,
-      build_status: 'dev'
-    }
-  }
-
   this.getDocForXml = function(xml) {
     return new xmldom.DOMParser().parseFromString(xml)
   }

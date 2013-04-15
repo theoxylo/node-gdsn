@@ -1,27 +1,44 @@
 {
   "name": "gdsn",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "GDSN service library for Node.js",
-  "engines": { "node": "0.8.6" },
-  "author": "Theoxylo - https://github.com/theoxylo",
+  "engines": {
+    "node": "0.8.6"
+  },
+  "author": {
+    "name": "Theoxylo - https://github.com/theoxylo"
+  },
   "dependencies": {
-      "xpath.js": "0.0.3",
-      "xmldom": "0.1.13"
+    "xpath.js": "0.0.3",
+    "xmldom": "0.1.13"
   },
-  "devDependencies": {
-  },
-  "repository" : {
-      "type":"git",
-      "url":"https://github.com/theoxylo/node-gdsn.git"
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theoxylo/node-gdsn.git"
   },
   "main": "index",
-  "directories": { },
-  "keywords": ["gdsn", "node", "eip", "xpath", "xml"],
-  "licenses": [{
-      "type" :  "MIT License",
-      "url" :   "http://www.opensource.org/licenses/mit-license.php"
-  }],
+  "directories": {},
+  "keywords": [
+    "gdsn",
+    "node",
+    "eip",
+    "xpath",
+    "xml"
+  ],
+  "licenses": [
+    {
+      "type": "MIT License",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "scripts": {
     "test": "node test"
-  }
+  },
+  "readme": "## node-gdsn\n\nA GDSN EIP service library for Node.js. \n\nProvides useful utilities for data pools and trading parties.\n\n\n## Installation\n\nGet the latest published release from npm\n\n    npm install gdsn\n\nOr add to package.json and \n\n    npm install\n    \nTo run a quick test\n\n    npm test\n\n\n## Usage\n\nTo handle a CIN from another data pool, we must create 2 new messages:\n  1. a GDSNResponse back to the source DP\n  2. a new CIN to the dataRecipient trading party\n\n  ```javascript\n  var Gdsn = require('gdsn');\n  var gdsn = new Gdsn({ \n    homeDataPoolGln: '1100001011285',  \n    templatePath: './node_modules/gdsn/templates' } \n  });\n\n  gdsn.readXmlFile('test/cin_from_other_dp.xml', function(err, xml) {\n    if (err) {\n      console.log('Error: ' + err)\n      process.exit(1)\n    }\n    var doc = gdsn.getDocForXml(xml)\n    gdsn.createCinResponse(doc, function(err, responseXml) {\n      var outputFile = 'test/outbox/test_cin_response_' + new Date().getTime() + '.xml'\n      gdsn.writeXmlFile(outputFile, responseXml, function(err, result) {\n        if (err) {\n          console.log('Error: ' + err)\n          process.exit(1)\n        }\n        console.log('Created new CIN response file: ' + outputFile)\n      })\n      gdsn.forwardCinFromOtherDP(doc, function(err, cinOut) {\n        var outputFile = 'test/outbox/test_cin_to_local_party_' + new Date().getTime() + '.xml'\n        gdsn.writeXmlFile(outputFile, cinOut, function(err, result) {\n          if (err) {\n            console.log('Error: ' + err)\n            process.exit(1)\n          }\n          console.log('Created new CIN out file: ' + outputFile)\n        })\n      })\n    })\n  })\n  ```\nThe new XML output files will be placed in the 'test/outbox' directory\n\n",
+  "_id": "gdsn@0.0.8",
+  "dist": {
+    "shasum": "04f6cdd00954ee384dd0c936b9f420c1a57af98b"
+  },
+  "_from": "gdsn@0.0.8"
 }

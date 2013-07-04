@@ -13,6 +13,8 @@ function Gdsn(opts) {
   opts = opts || {} 
   if (!opts.templatePath) opts.templatePath = __dirname + '/templates/'
   if (!opts.homeDataPoolGln) opts.homeDataPoolGln = '1100001011285'
+  console.log('GDSN options:')
+  console.log(opts)
 
   this.getXmlDom = function(xml, cb) {
     var doc = this.xmldom_parser.parseFromString(xml, "text/xml")
@@ -61,16 +63,17 @@ function Gdsn(opts) {
   }
   
   this.populateResponseTemplate = function(doc, info) {
-    select(doc, "//*[local-name() = 'Sender']/*[local-name() = 'Identifier']")[0].firstChild.data = info.receiver
-    select(doc, "//*[local-name() = 'Receiver']/*[local-name() = 'Identifier']")[0].firstChild.data = info.sender
-    var instanceId = "ITN_RESP_" + new Date().getTime()
-    select(doc, "//*[local-name() = 'InstanceIdentifier']")[0].firstChild.data = instanceId
-    select(doc, "//*[local-name() = 'CreationDateAndTime']")[0].firstChild.data = info.ts
-    select(doc, "//*[local-name() = 'InstanceIdentifier']")[1].firstChild.data = instanceId
-    select(doc, "//*[local-name() = 'RequestingDocumentCreationDateTime']")[0].firstChild.data = info.ts
-    select(doc, "//*[local-name() = 'RequestingDocumentInstanceIdentifier']")[0].firstChild.data = info.id
-    select(doc, "//*[local-name() = 'uniqueCreatorIdentification']")[0].firstChild.data = instanceId
-    select(doc, "//*[local-name() = 'gln']")[0].firstChild.data = info.receiver
+    var resId = "cin_resp_" + new Date().getTime()
+
+    select(doc, "//*[local-name()='Sender']/*[local-name()='Identifier']")[0].firstChild.data = info.receiver
+    select(doc, "//*[local-name()='Receiver']/*[local-name()='Identifier']")[0].firstChild.data = info.sender
+    select(doc, "//*[local-name()='DocumentIdentification']/*[local-name()='InstanceIdentifier']")[0].firstChild.data = resId
+    select(doc, "//*[local-name()='CreationDateAndTime']")[0].firstChild.data = info.ts
+    select(doc, "//*[local-name()='Scope']/*[local-name()='InstanceIdentifier']")[0].firstChild.data = resId
+    select(doc, "//*[local-name()='RequestingDocumentCreationDateTime']")[0].firstChild.data = info.ts
+    select(doc, "//*[local-name()='RequestingDocumentInstanceIdentifier']")[0].firstChild.data = info.id
+    select(doc, "//*[local-name()='uniqueCreatorIdentification']")[0].firstChild.data = resId
+    select(doc, "//*[local-name()='gln']")[0].firstChild.data = info.receiver
   }
   
   this.createCinResponse = function(doc, cb) {

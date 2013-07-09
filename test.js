@@ -10,7 +10,9 @@
     gdsn.readXmlFile('test/cin_from_other_dp.xml', function(err, xml) {
       handleError(err)
       gdsn.getXmlDom(xml, function (err, doc) {
+        handleError(err)
         gdsn.createCinResponse(doc, function(err, responseXml) {
+          handleError(err)
           var outputFile = 'test/outbox/cin_response_' + new Date().getTime() + '.xml'
           gdsn.writeXmlFile(outputFile, responseXml, function(err, result) {
             handleError(err)
@@ -18,6 +20,7 @@
           })
         })
         gdsn.forwardCinFromOtherDP(doc, function(err, cinOut) {
+          handleError(err)
           var outputFile = 'test/outbox/cin_to_local_party_' + new Date().getTime() + '.xml'
           gdsn.writeXmlFile(outputFile, cinOut, function(err, result) {
             handleError(err)

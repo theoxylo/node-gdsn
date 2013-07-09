@@ -18,7 +18,8 @@ function Gdsn(opts) {
 
   this.getXmlDom = function(xml, cb) {
     var doc = this.xmldom_parser.parseFromString(xml, "text/xml")
-    cb(null, doc)
+    if (cb) cb(null, doc)
+    else return doc
   }
 
   this.handleErr = function(err, cb) {
@@ -53,6 +54,7 @@ function Gdsn(opts) {
   }
   
   this.getMessageInfo = function(doc) {
+    if (doc.constructor === String) doc = this.getXmlDom(doc)
     var info = {}
     info.id        =  select(doc, "//*[local-name()='InstanceIdentifier']")[0].firstChild.data
     info.sender    =  select(doc, "//*[local-name()='Sender']/*[local-name() = 'Identifier']")[0].firstChild.data

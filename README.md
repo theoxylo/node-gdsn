@@ -19,8 +19,8 @@ To run a quick test:
 ## Usage
 
 To handle a CIN from another data pool, we must create 2 new messages:
-  1) a GDSNResponse back to the source DP
-  2) a new CIN to the dataRecipient trading party
+  * a GDSNResponse back to the source DP
+  * a new CIN to the dataRecipient trading party
 
   ```js
   var Gdsn = require('gdsn');
@@ -52,5 +52,4 @@ To handle a CIN from another data pool, we must create 2 new messages:
     })
   })
   ```
-The new XML output files will be placed in the 'test/outbox' directory
 

@@ -1,42 +1,43 @@
 (function () {
   
-  var Gdsn = require('./index.js')
-  
-  var gdsn = new Gdsn({
-    homeDataPoolGln: '1100001011285'
-  })
-  
-  console.log(gdsn.getVersion())
-
-  if (process.argv.length < 3) {
-    console.log("usage: node cin_respond.js file1 file2 ...")
+  if (process.argv.length < 4) {
+    console.log("usage: node cin_respond.js dataPoolGln file1 file2 ...")
     process.exit(1)
   }
 
-  var processFile = function(file) {
+  var dpGln = process.argv[2]
+  if (!dpGln.length || dpGln.length !== 13) {
+    console.log("Error: invalid home data pool GLN: " + dpGln)
+    process.exit(1)
+  }
 
-    console.log('file arg: ' + file)
-    
-    gdsn.readXmlFile(file, function(err, xml) {
+  var gdsn = new require('./index.js')({
+    homeDataPoolGln: dpGln
+  })
+  
+  var processFile = function(filename) {
+    console.log('Processing CIN file: ' + filename)
+    gdsn.getXmlDomForFile(filename, function(err, $cin) {
       if (err) {
-        console.log('Error: ' + err)
+        console.log("Error: " + err.message)
         process.exit(1)
       }
-      var doc = gdsn.getDocForXml(xml)
-      gdsn.createCinResponse(doc, function(err, responseXml) {
-        var outputFile = file + '_response'
-        gdsn.writeXmlFile(outputFile, responseXml, function(err, result) {
+      gdsn.createCinResponse($cin, function(err, responseXml) {
+        if (err) {
+          console.log("Error: " + err.message)
+          process.exit(1)
+        }
+        gdsn.writeFile(filename + "_response", responseXml, function(err) {
           if (err) {
-            console.log('Error: ' + err)
+            console.log("Error: " + err.message)
             process.exit(1)
           }
-          console.log('Created new CIN response file: ' + outputFile)
         })
       })
     })
   }
 
-  while (process.argv.length > 2) {
+  while (process.argv.length > 3) {
     processFile(process.argv.pop())
   }
   

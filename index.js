@@ -16,6 +16,11 @@ function Gdsn(opts) {
   console.log("GDSN options:")
   console.log(opts)
 
+  if (!opts.homeDataPoolGln.length || opts.homeDataPoolGln.length !== 13) {
+    console.log("Error: invalid home data pool GLN: " + opts.homeDataPoolGln)
+    process.exit(1)
+  }
+
   this.handleErr = function(err, cb) {
     if (err) {
       if (cb) cb(err)
@@ -84,6 +89,15 @@ function Gdsn(opts) {
     var cinInfo = this.getMessageInfo($cin);
     console.log("gdsn.createCinResponse: cin msg info: ");
     console.log(cinInfo);
+
+    // check that receiver is the home data pool:
+    if (cinInfo.receiver !== opts.homeDataPoolGln) {
+      cb({
+        name: 'createCinResponse',
+        message: 'message must be addressed to home data pool GLN ' + opts.homeDataPoolGln
+      })
+      return
+    }
     
     var respTemplateFilename = opts.templatePath + "GDSNResponse_template.xml"
     var self = this;
@@ -127,12 +141,12 @@ function Gdsn(opts) {
   }
 
   this.forwardCinFromOtherDP = function($cin, cb) {
-    var info = this.getMessageInfo($cin)
+    var cinInfo = this.getMessageInfo($cin)
 
     // check that receiver is the home data pool:
-    if (info.receiver !== opts.homeDataPoolGln) {
+    if (cinInfo.receiver !== opts.homeDataPoolGln) {
       cb({
-        name: 'processCinFromOtherDP',
+        name: 'forwardCinFromOtherDP',
         message: 'message must be addressed to home data pool GLN ' + opts.homeDataPoolGln
       })
       return
@@ -145,7 +159,7 @@ function Gdsn(opts) {
     console.log("gdsn.forwardCinFromOtherDP: dataRecipient GLN: " + dataRecipient)
     if (dataRecipient === opts.homeDataPoolGln) {
       cb({
-        name: 'processCinFromOtherDP',
+        name: 'forwardCinFromOtherDP',
         message: 'dataRecipient must be a local party, not the data pool'
       })
       return

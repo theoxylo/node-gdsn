@@ -145,7 +145,7 @@
                                             </packagingType>
                                             <privateInformation>
                                                 <partyReceivingPrivateData>
-                                                    <gln>0768769000005</gln>
+                                                    <gln>1100001011292</gln>
                                                 </partyReceivingPrivateData>
                                             </privateInformation>
                                             <tradeItemCountryOfOrigin>
@@ -262,7 +262,7 @@
                                     </extension>
                                     <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
                                 </tradeItem>
-                                <dataRecipient>0768769000005</dataRecipient>
+                                <dataRecipient>1100001011292</dataRecipient>
                                 <sourceDataPool>0838016003001</sourceDataPool>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
@@ -407,7 +407,7 @@
                                             </packagingType>
                                             <privateInformation>
                                                 <partyReceivingPrivateData>
-                                                    <gln>0768769000005</gln>
+                                                    <gln>1100001011292</gln>
                                                 </partyReceivingPrivateData>
                                             </privateInformation>
                                             <tradeItemCountryOfOrigin>
@@ -504,7 +504,7 @@
                                     </extension>
                                     <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
                                 </tradeItem>
-                                <dataRecipient>0768769000005</dataRecipient>
+                                <dataRecipient>1100001011292</dataRecipient>
                                 <sourceDataPool>0838016003001</sourceDataPool>
                                 <catalogueItemChildItemLink quantity="6">
                                     <catalogueItem>
@@ -603,7 +603,7 @@
                                                     </packagingType>
                                                     <privateInformation>
                                                         <partyReceivingPrivateData>
-                                                            <gln>0768769000005</gln>
+                                                            <gln>1100001011292</gln>
                                                         </partyReceivingPrivateData>
                                                     </privateInformation>
                                                     <tradeItemCountryOfOrigin>
@@ -694,7 +694,7 @@
                                             </extension>
                                             <isTradeItemADisplayUnit>UNSPECIFIED</isTradeItemADisplayUnit>
                                         </tradeItem>
-                                        <dataRecipient>0768769000005</dataRecipient>
+                                        <dataRecipient>1100001011292</dataRecipient>
                                         <sourceDataPool>0838016003001</sourceDataPool>
                                     </catalogueItem>
                                 </catalogueItemChildItemLink>

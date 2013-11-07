@@ -3,7 +3,7 @@
   "version": "0.0.9",
   "description": "GDSN service library for Node.js",
   "engines": {
-    "node": "0.8.6"
+    "node": ">=0.8.6"
   },
   "author": {
     "name": "Theoxylo - https://github.com/theoxylo"

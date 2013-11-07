@@ -11,12 +11,12 @@
     process.exit(1)
   }
 
-  var gdsn = new require('./index.js')({
+  var gdsn = new require(__dirname + '/../index.js')({
     homeDataPoolGln: dpGln
   })
   
   var processFile = function(filename) {
-    console.log('Processing CIN file: ' + filename)
+    console.log('Processing inbound CIN file: ' + filename)
     gdsn.getXmlDomForFile(filename, function(err, $cin) {
       if (err) {
         console.log("Error: " + err.message)

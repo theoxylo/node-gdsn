@@ -9,5 +9,5 @@ log('file arg: ' + file);
 
 log("Attempting to process bad xml (not a CIN)...");
 var modXml = gdsn.processCinFromOtherDP('<some-xml/>');
-var outputFile = file + '_' + new Date().getTime() + '-to_local_party.xml';
+var outputFile = file + '_' + Date.now() + '-to_local_party.xml';
 gdsn.writeXmlFile(outputFile, modXml);

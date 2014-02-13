@@ -100,7 +100,7 @@ module.exports = function Gdsn(opts) {
         self.getXmlDomForFile(respTemplateFilename, function (err, $response) {
           if (self.handleErr(err, cb)) return
 
-          cinInfo.resId = "cin_resp_" + new Date().getTime()
+          cinInfo.resId = "cin_resp_" + Date.now()
           self.populateResponseTemplate($response, cinInfo)
 
           var $eANUCCResponse = $response.createElement("gdsn:eANUCCResponse")
@@ -187,6 +187,13 @@ module.exports = function Gdsn(opts) {
   ///////////////// synchronous functions: //////////////////
   ///////////////// synchronous functions: //////////////////
 
+  this.getMessageInfoFromString = function (msg) {
+    var info = {}
+    var matches = msg.match(/InstanceIdentifier>([^<\/].*)<\//)
+    info.id = matches && matches[1]
+    return info
+  }
+
   this.getMessageInfo = function ($msg) {
     var info = {}
     info.sender   = select($msg, "//*[local-name()='Sender']/*[local-name()='Identifier']")[0].firstChild.data
@@ -194,6 +201,15 @@ module.exports = function Gdsn(opts) {
     info.id       = select($msg, "//*[local-name()='DocumentIdentification']/*[local-name()='InstanceIdentifier']")[0].firstChild.data
     info.type     = select($msg, "//*[local-name()='DocumentIdentification']/*[local-name()='Type']")[0].firstChild.data
     info.ts       = select($msg, "//*[local-name()='DocumentIdentification']/*[local-name()='CreationDateAndTime']")[0].firstChild.data
+
+    var providerNodeList = select($msg, "//*[local-name()='informationProvider']/*[local-name()='gln']")
+    if (providerNodeList && providerNodeList[0]) {
+      info.cin_provider = providerNodeList[0].firstChild.data
+    }
+    var recipientNodeList = select($msg, "//*[local-name()='dataRecipient']")
+    if (recipientNodeList && recipientNodeList[0]) {
+      info.cin_recipient = recipientNodeList[0].firstChild.data
+    }
     return info
   }
   
@@ -222,6 +238,28 @@ module.exports = function Gdsn(opts) {
     select(dom, "//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentInstanceIdentifier")[0].firstChild.data = args.id
     select(dom, "//eanucc:message/entityIdentification/uniqueCreatorIdentification")[0].firstChild.data = args.resId
     select(dom, "//eanucc:message/entityIdentification/contentOwner/gln")[0].firstChild.data = args.receiver
+  }
+
+  this.validateGln = function (gln) {
+    if (!gln || gln.length != 13) return false
+
+    var digits = gln.split('')
+    var numbers = new Array(13)
+    var idx = 0
+    for (idx = 0; idx < 13; idx++) {
+      numbers[idx] = Number(digits[idx])
+    }
+
+    var sum1 = numbers[0] + numbers[2] + numbers[4] + numbers[6] + numbers[8] + numbers[10]
+    var sum2 = numbers[1] + numbers[3] + numbers[5] + numbers[7] + numbers[9] + numbers[11]
+
+    var checkDigit = ((sum2 * 3) + sum1) % 10
+
+    if (checkDigit) {
+        checkDigit = 10 - checkDigit
+    }
+
+    return checkDigit == numbers[12]
   }
 
   this.messageTypes = [

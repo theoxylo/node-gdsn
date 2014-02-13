@@ -8,7 +8,7 @@
   
   console.log('dirname: ' + __dirname);
 
-  var ts = new Date().getTime()
+  var ts = Date.now()
   var responseOutFile = __dirname + '/outbox/cin_response_to_other_dp_'   + ts + '.xml'
   var forwardOutFile  = __dirname + '/outbox/cin_forward_to_local_party_' + ts + '.xml'
 

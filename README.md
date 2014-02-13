@@ -29,7 +29,7 @@ To handle a CIN from another data pool, we must create 2 new messages:
     templatePath: './node_modules/gdsn/templates' } 
   });
 
-  var ts = new Date().getTime()
+  var ts = Date.now()
   var cinInboundFile  = 'test/cin_from_other_dp.xml'
   var responseOutFile = 'test/outbox/cin_response_to_other_db_'   + ts + '.xml'
   var forwardOutFile  = 'test/outbox/cin_forward_to_local_party_' + ts + '.xml'

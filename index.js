@@ -7,7 +7,7 @@ var _ = require('underscore')
 module.exports = function Gdsn(opts) {
 
   //if (!(this instanceof Gdsn)) return new Gdsn(opts)
-  if (this.console) {
+  if (this.constructor.name != 'Gdsn') {
     console.log('Warning: constructor function was called without keyword "new"')
     return new Gdsn(opts) // constructor was called without 'new' keyword
   }
@@ -223,15 +223,19 @@ module.exports = function Gdsn(opts) {
   }
 
   this.getTradeItemsFromStream = function (is, cb) {
-    console.log('getTradeItems param type: ' + is.constructor.name)
+    var tradeItems = []
+    this.getEachTradeItemFromStream(is, function (err, item) {
+      if (err) return cb(err)
+      if (!item) return cb(null, tradeItems)
+      tradeItems.push(item)
+    })
+  }
 
-    var timestamp = ''
-    var recipient = ''
-
+  this.getEachTradeItemFromStream = function (is, cb) {
+    console.log('getEachTradeItems param type: ' + is.constructor.name)
+    var timestamp = '' // get timestamp from message header
+    var recipient = '' // get dataRecipient only once (should be same throughout message)
     is.setEncoding('utf8')
-
-    // get timestamp from message header
-    // get dataRecipient only once (should be same value throughout message for each tradeItem)
     var chunks = ['', ''] // required data could be split across 2 chunks
     is.on('data', function (chunk) {
       console.log('chunk length: ' + chunk.length)
@@ -248,9 +252,7 @@ module.exports = function Gdsn(opts) {
         if (recipient) console.log('data recipient: ' + recipient)
       }
     })
-
     var self = this
-    var tradeItems = []
     var nodeSplitter = xmlNodes('tradeItem')
     nodeSplitter.setEncoding('utf8')
     nodeSplitter.on('data', function (xml) {
@@ -258,10 +260,10 @@ module.exports = function Gdsn(opts) {
       console.log('gtin: ' + info.gtin)
       info.ts = timestamp
       info.recipient = recipient
-      tradeItems.push(info)
+      cb(null, info)
     })
     nodeSplitter.on('end', function () {
-      cb(null, tradeItems)
+      cb(null, null) // all done
     })
     is.pipe(nodeSplitter)
   }

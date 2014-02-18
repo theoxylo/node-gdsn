@@ -1,7 +1,7 @@
 {
   "name": "gdsn",
-  "version": "0.1.1",
-  "description": "GDSN service library for Node.js",
+  "version": "0.1.0",
+  "description": "GDSN utility library for Node.js",
   "engines": {
     "node": ">=0.8.6"
   },
@@ -23,8 +23,6 @@
   "directories": {},
   "keywords": [
     "gdsn",
-    "node",
-    "eip",
     "xpath",
     "xml"
   ],

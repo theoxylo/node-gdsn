@@ -23,33 +23,33 @@ To handle a CIN from another data pool, we must create 2 new messages:
   * a new CIN to the dataRecipient trading party
 
   ```js
-  var Gdsn = require('gdsn');
-  var gdsn = new Gdsn({ 
-    homeDataPoolGln: '1100001011285',  
-    templatePath: './node_modules/gdsn/templates' } 
-  });
-
-  var ts = Date.now()
-  var cinInboundFile  = 'test/cin_from_other_dp.xml'
-  var responseOutFile = 'test/outbox/cin_response_to_other_db_'   + ts + '.xml'
-  var forwardOutFile  = 'test/outbox/cin_forward_to_local_party_' + ts + '.xml'
-
-  gdsn.getXmlDomForFile(cinInboundFile, function(err, $cin) {
-    if (err) throw err
-
-    gdsn.createCinResponse($cin, function(err, responseXml) {
-      if (err) throw err
-      gdsn.writeFile(responseOutFile, responseXml, function(err) {
-        if (err) throw err
-      })
+    var Gdsn = require('gdsn');
+    var gdsn = new Gdsn({ 
+      homeDataPoolGln: '1100001011285',  
+      templatePath: './node_modules/gdsn/templates/'
     })
 
-    gdsn.forwardCinFromOtherDP($cin, function(err, cinOut) {
+    var ts = new Date().getTime()
+    var cinInboundFile  = 'test/cin_from_other_dp.xml'
+    var responseOutFile = 'test/out_cin_response_to_other_db_'   + ts + '.xml'
+    var forwardOutFile  = 'test/out_cin_forward_to_local_party_' + ts + '.xml'
+
+    gdsn.getXmlDomForFile(cinInboundFile, function(err, $cin) {
       if (err) throw err
-      gdsn.writeFile(forwardOutFile, cinOut, function(err) {
+
+      gdsn.createCinResponse($cin, function(err, responseXml) {
         if (err) throw err
+        gdsn.writeFile(responseOutFile, responseXml, function(err) {
+          if (err) throw err
+        })
+      })
+
+      gdsn.forwardCinFromOtherDP($cin, function(err, cinOut) {
+        if (err) throw err
+        gdsn.writeFile(forwardOutFile, cinOut, function(err) {
+          if (err) throw err
+        })
       })
     })
-  })
   ```
 

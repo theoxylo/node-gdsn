@@ -121,11 +121,11 @@ module.exports = function Gdsn(opts) {
 
           var $message = $response.getElementsByTagName('eanucc:message')[0]
 
-          var i, j, $responseNode, $documentReceived
-          for (i = 0; i < cinTrxNodes.length; i++) {
+          var $responseNode, $documentReceived
+          for (var i = 0; i < cinTrxNodes.length; i++) {
             $responseNode = $eANUCCResponse.cloneNode(true)
             $documentReceived = $response.createElement('documentReceived')
-            for (j = 0; j < cinTrxNodes[i].childNodes.length; j++) {
+            for (var j = 0; j < cinTrxNodes[i].childNodes.length; j++) {
               if (cinTrxNodes[i].childNodes[j].nodeType === 1) {
                 $documentReceived.appendChild(cinTrxNodes[i].childNodes[j].cloneNode(true))
               }
@@ -199,11 +199,11 @@ module.exports = function Gdsn(opts) {
 
   this.getMessageInfo = function ($msg) {
     var info = {}
-    info.sender   = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
-    info.receiver = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
-    info.id       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data
-    info.type     = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')[0].firstChild.data
-    info.ts       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+    info.sender     = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
+    info.receiver   = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
+    info.id         = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data
+    info.type       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')[0].firstChild.data
+    info.created_ts = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
 
     var providerNodeList = select($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
     if (providerNodeList && providerNodeList[0]) {
@@ -244,7 +244,8 @@ module.exports = function Gdsn(opts) {
       if (!timestamp) {
         var m1 = chunks.join('').match(/CreationDateAndTime>([.0-9T:-]*)</)
         timestamp = m1  && m1.length == 2 && m1[1]
-        if (timestamp) console.log('timestamp: ' + timestamp)
+        timestamp = (new Date(timestamp)).getTime()
+        if (timestamp) console.log('create timestamp: ' + timestamp)
       }
       if (!recipient) {
         var m2 = chunks.join('').match(/dataRecipient>(\d{13})</)
@@ -258,7 +259,7 @@ module.exports = function Gdsn(opts) {
     nodeSplitter.on('data', function (xml) {
       var info = self.getTradeItemInfo(xml)
       console.log('gtin: ' + info.gtin)
-      info.ts = timestamp
+      info.created_ts = timestamp
       info.recipient = recipient
       cb(null, info)
     })
@@ -269,35 +270,62 @@ module.exports = function Gdsn(opts) {
   }
 
   this.getTradeItemInfo = function (xml) {
-    var $newDoc   = this._xmldom_parser.parseFromString(xml, 'text/xml')
+
+    var clean_xml = xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
+    clean_xml = clean_xml.replace(/<[-_a-z0-9]+[^:]:/g, '<')    // remove open tag ns prefix <abc:tag>
+    clean_xml = clean_xml.replace(/<\/[-_a-z0-9]+[^:]:/g, '</') // remove close tag ns prefix </abc:tag>
+    clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '') // remove xmlns:abc="123" ns attributes
+    clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
+
+    var $newDoc   = this._xmldom_parser.parseFromString(clean_xml, 'text/xml')
+    $newDoc.normalize()
+
     var gtin      = select($newDoc, '/tradeItem/tradeItemIdentification/gtin')[0].firstChild.data
     var provider  = select($newDoc, '/tradeItem/tradeItemInformation/informationProviderOfTradeItem/informationProvider/gln')[0].firstChild.data
     var tm        = select($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketCountryCode/countryISOCode')[0].firstChild.data
     var unit      = select($newDoc, '/tradeItem/tradeItemUnitDescriptor')[0].firstChild.data
+    var gpc       = select($newDoc, '/tradeItem/tradeItemInformation/classificationCategoryCode/classificationCategoryCode')[0].firstChild.data
+    var brand     = select($newDoc, '/tradeItem/tradeItemInformation/tradeItemDescriptionInformation/brandName')[0].firstChild.data
+
     var tmSubList = select($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketSubdivisionCode/countrySubDivisionISOCode')
-    var tmSub     = tmSubList.length ? tmSubList[0].firstChild.data : ''
+    var tmSub     = tmSubList[0] ? tmSubList[0].firstChild.data : ''
+
+    var childCountList = select($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/quantityOfChildren')
+    var childCount     = childCountList[0] ? childCountList[0].firstChild.data : ''
+
+    var childGtinList = select($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/childTradeItem/tradeItemIdentification/gtin')
+    var childGtins    = _.map(childGtinList, function (item) {
+      return item.firstChild.data
+    })
 
     return {
-        gtin: gtin
-      , provider: provider
-      , tm: tm
-      , tm_sub: tmSub
-      , unit_descriptor: unit
-      , xml: xml
+        gtin         : gtin
+      , provider     : provider
+      , tm           : tm
+      , tm_sub       : tmSub
+      , unit_type    : unit
+      , child_count  : childCount
+      , child_gtins  : childGtins
+      , gpc          : gpc
+      , brand        : brand
+      , xml          : clean_xml
+      , raw_xml      : xml
     }
   }
 
   this.getTradeItemsForDom = function ($msg) {
-    console.log('getTradeItems param type: ' + $msg.constructor.name)
     var timestamp   = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+    timestamp = (new Date(timestamp)).getTime()
+
     var recipient   = select($msg, '//dataRecipient')[0].firstChild.data
+
     var $tradeItems = select($msg, '//*[local-name()="tradeItem"]')
     var tradeItems = []
-    for (idx in $tradeItems) {
+    for (var idx = 0; idx < $tradeItems.length; idx++) {
       var $tradeItem = $tradeItems[idx]
       var xml = this._xmldom_serializer.serializeToString($tradeItem)
       var info = this.getTradeItemInfo(xml)
-      info.ts = timestamp
+      info.created_ts = timestamp
       info.recipient = recipient
       tradeItems.push(info)
     }
@@ -309,9 +337,9 @@ module.exports = function Gdsn(opts) {
     select(dom, '//sh:Sender/sh:Identifier')[0].firstChild.data = args.receiver
     select(dom, '//sh:Receiver/sh:Identifier')[0].firstChild.data = args.sender
     select(dom, '//sh:DocumentIdentification/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-    select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = args.ts
+    select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = args.created_ts
     select(dom, '//sh:Scope/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-    select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = args.ts
+    select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = args.created_ts
     select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentInstanceIdentifier')[0].firstChild.data = args.id
     select(dom, '//eanucc:message/entityIdentification/uniqueCreatorIdentification')[0].firstChild.data = args.resId
     select(dom, '//eanucc:message/entityIdentification/contentOwner/gln')[0].firstChild.data = args.receiver
@@ -322,8 +350,7 @@ module.exports = function Gdsn(opts) {
 
     var digits = gln.split('')
     var numbers = new Array(13)
-    var idx = 0
-    for (idx = 0; idx < 13; idx++) {
+    for (var idx = 0; idx < 13; idx++) {
       numbers[idx] = Number(digits[idx])
     }
 
@@ -335,7 +362,6 @@ module.exports = function Gdsn(opts) {
     if (checkDigit) {
         checkDigit = 10 - checkDigit
     }
-
     return checkDigit == numbers[12]
   }
 

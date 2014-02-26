@@ -19,9 +19,9 @@ To run a quick test:
 ## Usage
 
 ### To handle a CIN from another data pool:
-  * create a specific data pool instance to handle the message
-  * must create a GDSNResponse back to the source DP
-  * must create a new CIN to the dataRecipient trading party
+  * must instantiate a specific data pool instance to handle the message
+  * will create a GDSNResponse back to the source DP
+  * will create a new CIN to the dataRecipient trading party
 
 ```js
 var Gdsn = require('gdsn')
@@ -74,9 +74,9 @@ Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
 })
 ```
 
-### To extract trade items from a CIN stream:
+### To extract all trade items from a CIN stream:
   * large CIN files may be 10+ MB and contain hundreds of items
-  * this approach uses a callback to deliver the complete array of items
+  * this approach uses a callback to pass the complete array of items after the stream has endedh
 
 ```js
 var Gdsn = require('gdsn')
@@ -91,8 +91,8 @@ Gdsn.getTradeItemsFromFile(cinFile, function(err, items) {
 ```
 
 ### To extract trade items from a CIN stream one at a time:
-  * this approach lets your callback work with each trade item
-  * the first trade item will not be deliverd until the dataRecipient has been read from the stream
+  * this approach lets your callback work with each trade item as it is read
+  * the first trade item will not be passed until the dataRecipient has been read from the stream
 
 ```js
 var fs   = require('fs')

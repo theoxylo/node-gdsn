@@ -7,7 +7,7 @@ Provides useful utilities for data pools and trading parties.
 
 ## Installation
 
-Get the latest published release from npm:
+Get the latest published release from npm (0.1.0):
 
     npm install gdsn
 
@@ -76,7 +76,7 @@ Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
 
 ### To extract all trade items from a CIN stream:
   * large CIN files may be 10+ MB and contain hundreds of items
-  * this approach uses a callback to pass the complete array of items after the stream has endedh
+  * this approach uses a callback to pass the complete array of items after the stream has ended
 
 ```js
 var Gdsn = require('gdsn')

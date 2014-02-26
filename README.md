@@ -18,7 +18,7 @@ To run a quick test:
 
 ## Usage
 
-To handle a CIN from another data pool, we must create 2 new messages:
+### To handle a CIN from another data pool, we must create 2 new messages:
   * a GDSNResponse back to the source DP
   * a new CIN to the dataRecipient trading party
 
@@ -32,7 +32,7 @@ var gdsn = new Gdsn({ // create a specific data pool instance
 gdsn.processCinFromOtherDp(cinInboundFile)
 ```
 
-To validate a GLN:
+### To validate a GLN:
   * should be 13 digits
   * may contain leading zeroes (it's a string, not a number)
   * the last digit is a check digit
@@ -44,7 +44,7 @@ var isValid = Gdsn.validateGln(gln) // return [true|false]
 console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```
 
-To validate a GTIN:
+### To validate a GTIN:
   * should be 14 digits
   * may contain leading zeroes (it's a string, not a number)
   * the last digit is a check digit
@@ -56,7 +56,7 @@ var isValid = Gdsn.validateGtin(gtin) // return [true|false]
 console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```
 
-To extract trade items from a small CIN message (using in-memory DOM):
+### To extract trade items from a small CIN message (using in-memory DOM):
   * not good for large CIN messages, see streaming approach below
 
 ```js
@@ -72,7 +72,7 @@ Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
 })
 ```
 
-To extract trade items from a potentially large CIN message (using streams):
+### To extract trade items from a potentially large CIN message (using streams):
   * large CIN files may be 10+ MB and contain hundreds of items
 
 ```js
@@ -87,7 +87,7 @@ Gdsn.getTradeItemsFromFile(cinFile, function(err, items) {
 })
 ```
 
-To extract trade items one at a time from a potentially large CIN message (using streams):
+### To extract trade items one at a time from a potentially large CIN message (using streams):
   * large CIN files may be 10+ MB and contain hundreds of items
   * this approach lets you work with each trade item using a callback
 

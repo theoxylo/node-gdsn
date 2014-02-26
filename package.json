@@ -1,9 +1,9 @@
 {
   "name": "gdsn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "GDSN utility library for Node.js",
   "engines": {
-    "node": ">=0.8.6"
+    "node": "0.10.26"
   },
   "author": {
     "name": "Theoxylo - https://github.com/theoxylo"
@@ -24,7 +24,10 @@
   "keywords": [
     "gdsn",
     "xpath",
-    "xml"
+    "xml",
+    "stream",
+    "gtin",
+    "gln"
   ],
   "licenses": [
     {

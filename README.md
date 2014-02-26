@@ -22,34 +22,90 @@ To handle a CIN from another data pool, we must create 2 new messages:
   * a GDSNResponse back to the source DP
   * a new CIN to the dataRecipient trading party
 
-  ```js
-    var Gdsn = require('gdsn');
-    var gdsn = new Gdsn({ 
-      homeDataPoolGln: '1100001011285',  
-      templatePath: './node_modules/gdsn/templates/'
-    })
+```js
+var Gdsn = require('gdsn')
+var gdsn = new Gdsn({ // create a specific data pool instance
+  homeDataPoolGln: '1100001011285',  
+  templatePath: './node_modules/gdsn/templates/'
+  out_dir: './test'
+})
+gdsn.processCinFromOtherDp(cinInboundFile)
+```
 
-    var ts = new Date().getTime()
-    var cinInboundFile  = 'test/cin_from_other_dp.xml'
-    var responseOutFile = 'test/out_cin_response_to_other_db_'   + ts + '.xml'
-    var forwardOutFile  = 'test/out_cin_forward_to_local_party_' + ts + '.xml'
+To validate a GLN:
+  * should be 13 digits
+  * may contain leading zeroes (it's a string, not a number)
+  * the last digit is a check digit
 
-    gdsn.getXmlDomForFile(cinInboundFile, function(err, $cin) {
-      if (err) throw err
+```js
+var Gdsn = require('gdsn')
+var gln = '1100001011292'
+var isValid = Gdsn.validateGln(gln) // return [true|false]
+console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
+```
 
-      gdsn.createCinResponse($cin, function(err, responseXml) {
-        if (err) throw err
-        gdsn.writeFile(responseOutFile, responseXml, function(err) {
-          if (err) throw err
-        })
-      })
+To validate a GTIN:
+  * should be 14 digits
+  * may contain leading zeroes (it's a string, not a number)
+  * the last digit is a check digit
 
-      gdsn.forwardCinFromOtherDP($cin, function(err, cinOut) {
-        if (err) throw err
-        gdsn.writeFile(forwardOutFile, cinOut, function(err) {
-          if (err) throw err
-        })
-      })
-    })
-  ```
+```js
+var Gdsn = require('gdsn')
+var gtin = '00749384988152'
+var isValid = Gdsn.validateGtin(gtin) // return [true|false]
+console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
+```
+
+To extract trade items from a small CIN message (using in-memory DOM):
+  * not good for large CIN messages, see streaming approach below
+
+```js
+var Gdsn = require('gdsn')
+Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
+  if (err) throw err
+  var items = Gdsn.getTradeItemsForDom($cin)
+  for (i in items) {
+    var item = items[i]
+    console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
+  }
+  console.log('item count: ' + items.length)
+})
+```
+
+To extract trade items from a potentially large CIN message (using streams):
+  * large CIN files may be 10+ MB and contain hundreds of items
+
+```js
+var Gdsn = require('gdsn')
+Gdsn.getTradeItemsFromFile(cinFile, function(err, items) {
+  if (err) throw err
+  for (i in items) {
+    var item = items[i]
+    console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
+  }
+  console.log('item count: ' + items.length)
+})
+```
+
+To extract trade items one at a time from a potentially large CIN message (using streams):
+  * large CIN files may be 10+ MB and contain hundreds of items
+  * this approach lets you work with each trade item using a callback
+
+```js
+var fs   = require('fs')
+var Gdsn = require('gdsn')
+var readable = fs.createReadStream(cinFile, {encoding: 'utf8'})
+var items = []
+Gdsn.getEachTradeItemFromStream(readable, function (err, item) {
+  if (err) throw err
+  if (item) {
+    console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
+    items.push(item)
+  }
+  else {
+    // all done
+    console.log('item count: ' + items.length)
+  }
+})
+```
 

@@ -1,29 +1,19 @@
 (function () {
 
-  if (process.argv.length < 4) {
+  if (process.argv.length < 3) {
     console.log("usage: node extract_trade_items.js homeDpGln cinFile1 cinFile2 ...")
     process.exit(1)
   }
 
-  var dpGln = process.argv[2]
-  if (!dpGln.length || dpGln.length !== 13) {
-    console.log("Error: invalid home data pool GLN: " + dpGln)
-    process.exit(1)
-  }
-
   var Gdsn = require(__dirname + '/../index.js')
-  var gdsn = new Gdsn({
-    homeDataPoolGln: dpGln
-    , templatePath: __dirname + '/../templates/'
-  })
   
   var processFile = function (filename) {
     console.log('Processing CIN file: ' + filename)
-    gdsn.getXmlDomForFile(__dirname + '/' + filename, function(err, $cin) {
+    Gdsn.getXmlDomForFile(process.cwd() + '/' + filename, function(err, $cin) {
 
       if (err) throw err
 
-      var items = gdsn.getTradeItemsForDom($cin)
+      var items = Gdsn.getTradeItemsForDom($cin)
 
       for (i in items) {
         console.log('Found item with GTIN ' + items[i].gtin)
@@ -33,7 +23,7 @@
     })
   }
 
-  while (process.argv.length > 3) {
+  while (process.argv.length > 2) {
     processFile(process.argv.pop())
   }
 

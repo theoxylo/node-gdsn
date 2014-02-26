@@ -11,13 +11,14 @@
     process.exit(1)
   }
 
-  var gdsn = new require(__dirname + '/../index.js')({
+  var Gdsn = require(__dirname + '/../index.js')
+  var gdsn = new Gdsn({
     homeDataPoolGln: dpGln
   })
   
   var processFile = function(filename) {
     console.log('Processing inbound CIN file: ' + filename)
-    gdsn.getXmlDomForFile(filename, function(err, $cin) {
+    Gdsn.getXmlDomForFile(filename, function(err, $cin) {
       if (err) {
         console.log("Error: " + err.message)
         process.exit(1)
@@ -27,7 +28,7 @@
           console.log("Error: " + err.message)
           process.exit(1)
         }
-        gdsn.writeFile(filename + "_forward", forwardXml, function(err) {
+        Gdsn.writeFile(filename + "_forward", forwardXml, function(err) {
           if (err) {
             console.log("Error: " + err.message)
             process.exit(1)

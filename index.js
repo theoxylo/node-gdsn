@@ -23,7 +23,7 @@ function Gdsn(opts) {
   console.log('GDSN options:')
   console.log(opts)
 
-  if (!Gdsn.validateGln(opts.homeDataPoolGln)) {
+  if (!this.validateGln(opts.homeDataPoolGln)) {
     console.log('Error: invalid home data pool GLN: ' + opts.homeDataPoolGln)
     process.exit(1)
   }
@@ -39,19 +39,19 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile) {
 
   var self = this
 
-  Gdsn.getXmlDomForFile(cinInboundFile, function(err, $cin) {
+  self.getXmlDomForFile(cinInboundFile, function(err, $cin) {
     if (err) throw err
 
     self.createCinResponse($cin, function(err, responseXml) {
       if (err) throw err
-      Gdsn.writeFile(responseOutFile, responseXml, function(err) {
+      self.writeFile(responseOutFile, responseXml, function(err) {
         if (err) throw err
       })
     })
 
     self.forwardCinFromOtherDP($cin, function(err, cinOut) {
       if (err) throw err
-      Gdsn.writeFile(forwardOutFile, cinOut, function(err) {
+      self.writeFile(forwardOutFile, cinOut, function(err) {
         if (err) throw err
       })
     })
@@ -63,25 +63,25 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
   var self = this;
   process.nextTick(function () {
     try {
-      var cinInfo = Gdsn.getMessageInfo($cin);
+      var cinInfo = self.getMessageInfo($cin);
       console.log('Gdsn().createCinResponse: cin msg info: ');
       console.log(cinInfo);
 
       if (cinInfo.type !== 'catalogueItemNotification') {
-        Gdsn.handleErr(new Error('createCinResponse: message must be of type "catalogueItemNotification" and not: ' + cinInfo.type), cb)
+        self.handleErr(new Error('createCinResponse: message must be of type "catalogueItemNotification" and not: ' + cinInfo.type), cb)
         return
       }
 
       // check that receiver is the home data pool:
       if (cinInfo.receiver !== self.opts.homeDataPoolGln) {
-        Gdsn.handleErr(new Error('createCinResponse: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
+        self.handleErr(new Error('createCinResponse: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
         return
       }
       
       var respTemplateFilename = self.opts.templatePath + 'GDSNResponse_template.xml'
 
-      Gdsn.getXmlDomForFile(respTemplateFilename, function (err, $response) {
-        if (Gdsn.handleErr(err, cb)) return
+      self.getXmlDomForFile(respTemplateFilename, function (err, $response) {
+        if (self.handleErr(err, cb)) return
 
         cinInfo.resId = 'cin_resp_' + Date.now()
         self.populateResponseTemplate($response, cinInfo)
@@ -114,11 +114,11 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
           $message.appendChild($responseNode)
         }
 
-        Gdsn.getXmlStringForDom($response, cb)
+        self.getXmlStringForDom($response, cb)
       })
     }
     catch (err) {
-      Gdsn.handleErr(err, cb)
+      self.handleErr(err, cb)
     }
   })
 }
@@ -140,11 +140,11 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
   var self = this
   process.nextTick(function () {
     try {
-      var cinInfo = Gdsn.getMessageInfo($cin)
+      var cinInfo = self.getMessageInfo($cin)
 
       // check that receiver is the home data pool:
       if (cinInfo.receiver !== self.opts.homeDataPoolGln) {
-        Gdsn.handleErr(new Error('forwardCinFromOtherDP: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
+        self.handleErr(new Error('forwardCinFromOtherDP: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
         return
       }
       // set sender to home data pool
@@ -155,7 +155,7 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
       console.log('Gdsn().forwardCinFromOtherDP: dataRecipient GLN: ' + dataRecipient)
 
       if (dataRecipient === self.opts.homeDataPoolGln) {
-        Gdsn.handleErr(new Error('forwardCinFromOtherDP: dataRecipient must be a local party, not the data pool'), cb)
+        self.handleErr(new Error('forwardCinFromOtherDP: dataRecipient must be a local party, not the data pool'), cb)
         return
       }
 
@@ -171,20 +171,15 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
 
       console.log('forwardCinFromOtherDP: newId: ' + newId)
 
-      Gdsn.getXmlStringForDom($cin, cb)
+      self.getXmlStringForDom($cin, cb)
     }
     catch (err) {
-      Gdsn.handleErr(err, cb)
+      self.handleErr(err, cb)
     }
   })
 }
-////////////////////// end prototype methods ////////////////////////////
 
-////////////////////// static utility methods //////////////////////////
-////////////////////// static utility methods //////////////////////////
-////////////////////// static utility methods //////////////////////////
-    
-Gdsn.getXmlDomForString = function (xml, cb) {
+Gdsn.prototype.getXmlDomForString = function (xml, cb) {
   var self = this
   process.nextTick(function () {
     try {
@@ -192,29 +187,29 @@ Gdsn.getXmlDomForString = function (xml, cb) {
       cb(null, $dom)
     }
     catch (err) {
-      Gdsn.handleErr(err, cb)
+      self.handleErr(err, cb)
     }
   })
 }
 
-Gdsn.getXmlDomForFile = function (filename, cb) {
+Gdsn.prototype.getXmlDomForFile = function (filename, cb) {
   var self = this
   fs.readFile(filename, 'utf8', function (err, content) {
-    if (Gdsn.handleErr(err, cb)) return
+    if (self.handleErr(err, cb)) return
     console.log('Gdsn.getXmlDomForFile : read ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
-    Gdsn.getXmlDomForString(content, cb)
+    self.getXmlDomForString(content, cb)
   })
 }
 
-Gdsn.writeFile = function (filename, content, cb) {
+Gdsn.prototype.writeFile = function (filename, content, cb) {
   var self = this
   fs.writeFile(filename, content, function (err) {
-    if (Gdsn.handleErr(err, cb)) return
+    if (self.handleErr(err, cb)) return
     console.log('Gdsn.writeFile: ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
   })
 }
 
-Gdsn.handleErr = function (err, cb) {
+Gdsn.prototype.handleErr = function (err, cb) {
   if (err) {
     process.nextTick(function () {
       cb(err)
@@ -224,7 +219,7 @@ Gdsn.handleErr = function (err, cb) {
   return false
 }
 
-Gdsn.getXmlStringForDom = function ($dom, cb) {
+Gdsn.prototype.getXmlStringForDom = function ($dom, cb) {
   var self = this
   process.nextTick(function () {
     try {
@@ -232,35 +227,32 @@ Gdsn.getXmlStringForDom = function ($dom, cb) {
       cb(null, xml)
     }
     catch (err) {
-      Gdsn.handleErr(err, cb)
+      self.handleErr(err, cb)
     }
   })
 }
 
-///////////////////////// static stream methods /////////////////////////////////
-///////////////////////// static stream methods /////////////////////////////////
-///////////////////////// static stream methods /////////////////////////////////
-
-Gdsn.getTradeItemsFromFile = function (filename, cb) {
+Gdsn.prototype.getTradeItemsFromFile = function (filename, cb) {
   console.log('Reading stream ' + filename)
   var is = fs.createReadStream(filename, {encoding: 'utf8'})
-  Gdsn.getTradeItemsFromStream(is, cb)
+  this.getTradeItemsFromStream(is, cb)
 }
 
-Gdsn.getTradeItemsFromStream = function (is, cb) {
+Gdsn.prototype.getTradeItemsFromStream = function (is, cb) {
   var tradeItems = []
-  Gdsn.getEachTradeItemFromStream(is, function (err, item) {
+  this.getEachTradeItemFromStream(is, function (err, item) {
     if (err) return cb(err)
     if (!item) return cb(null, tradeItems)
     tradeItems.push(item)
   })
 }
 
-Gdsn.getEachTradeItemFromStream = function (is, cb) {
+Gdsn.prototype.getEachTradeItemFromStream = function (is, cb) {
+  var self = this
   var msg_info = {} // will be populated by MsgInfo stream
 
   var MsgInfo = require('./MsgInfo')
-  var msgInfo = new MsgInfo(Gdsn.getMessageInfoFromString, msg_info, function (err, msg_info) {
+  var msgInfo = new MsgInfo(this.getMessageInfoFromString, msg_info, function (err, msg_info) {
     if (err) return cb(err)
     console.log('found msg info: ' + JSON.stringify(msg_info))
   })
@@ -268,7 +260,7 @@ Gdsn.getEachTradeItemFromStream = function (is, cb) {
   var nodeSplitter = xmlNodes('tradeItem')
   nodeSplitter.setEncoding('utf8')
   nodeSplitter.on('data', function (xml) {
-    var info = Gdsn.getTradeItemInfo(xml, msg_info.created_ts, msg_info.recipient, msg_info.msg_id)
+    var info = self.getTradeItemInfo(xml, msg_info.created_ts, msg_info.recipient, msg_info.msg_id)
     console.log('gtin: ' + info.gtin)
     cb(null, info)
   })
@@ -280,11 +272,7 @@ Gdsn.getEachTradeItemFromStream = function (is, cb) {
   is.pipe(msgInfo).pipe(nodeSplitter)
 }
 
-/////////// static and synchronous methods on Gdsn constructor ////////////
-/////////// static and synchronous methods on Gdsn constructor ////////////
-/////////// static and synchronous methods on Gdsn constructor ////////////
-
-Gdsn.getMessageInfo = function ($msg) {
+Gdsn.prototype.getMessageInfo = function ($msg) {
   var info = {}
   info.sender     = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
   info.receiver   = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
@@ -303,9 +291,9 @@ Gdsn.getMessageInfo = function ($msg) {
   return info
 }
 
-Gdsn.getTradeItemsForDom = function ($msg) {
+Gdsn.prototype.getTradeItemsForDom = function ($msg) {
 
-  var msg_info = Gdsn.getMessageInfo($msg)
+  var msg_info = this.getMessageInfo($msg)
   var timestamp = (new Date(msg_info.created_ts)).getTime()
   var $tradeItems = select($msg, '//*[local-name()="tradeItem"]')
 
@@ -313,13 +301,13 @@ Gdsn.getTradeItemsForDom = function ($msg) {
   for (var idx = 0; idx < $tradeItems.length; idx++) {
     var $tradeItem = $tradeItems[idx]
     var xml = _xmldom_serializer.serializeToString($tradeItem)
-    var info = Gdsn.getTradeItemInfo(xml, timestamp, msg_info.recipient, msg_info.msg_id)
+    var info = this.getTradeItemInfo(xml, timestamp, msg_info.recipient, msg_info.msg_id)
     tradeItems.push(info)
   }
   return tradeItems
 }
 
-Gdsn.getMessageInfoFromString = function (xml, info) {
+Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   if (!info.msg_id) {
     var match = xml.match(/InstanceIdentifier>([^<\/]*)<\//)
     info.msg_id = match && match.length == 2 && match[1]
@@ -339,7 +327,7 @@ Gdsn.getMessageInfoFromString = function (xml, info) {
   return (info.msg_id && info.created_ts && info.recipient)
 }
 
-Gdsn.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_id) {
+Gdsn.prototype.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_id) {
 
   //console.log('getTradeItemInfo called with created_ts ' + created_ts + ', recipient ' + recipient + ', msg_id ' + msg_id)
 
@@ -349,11 +337,7 @@ Gdsn.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_id) {
   info.recipient = recipient
   info.msg_id = msg_id
 
-  var clean_xml = raw_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
-  clean_xml = clean_xml.replace(/<[-_a-z0-9]+[^:]:/g, '<')    // remove open tag ns prefix <abc:tag>
-  clean_xml = clean_xml.replace(/<\/[-_a-z0-9]+[^:]:/g, '</') // remove close tag ns prefix </abc:tag>
-  clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '') // remove xmlns:abc="123" ns attributes
-  clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
+  var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml
 
   var $newDoc   = _xmldom_parser.parseFromString(clean_xml, 'text/xml')
@@ -381,7 +365,19 @@ Gdsn.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_id) {
   return info
 }
 
-Gdsn.validateGln = function (gln) {
+Gdsn.prototype.clean_xml = function (raw_xml) {
+  var match = raw_xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
+  if (!match && !match[0]) return ''
+  var clean_xml = match[0]
+  clean_xml = clean_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
+  clean_xml = clean_xml.replace(/<[-_a-z0-9]+[^:]:/g, '<')    // remove open tag ns prefix <abc:tag>
+  clean_xml = clean_xml.replace(/<\/[-_a-z0-9]+[^:]:/g, '</') // remove close tag ns prefix </abc:tag>
+  clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '') // remove xmlns:abc="123" ns attributes
+  clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
+  return clean_xml
+}
+
+Gdsn.prototype.validateGln = function (gln) {
   if (!gln || gln.length != 13) return false
 
   var digits = gln.split('')
@@ -401,7 +397,7 @@ Gdsn.validateGln = function (gln) {
   return checkDigit == numbers[12]
 }
 
-Gdsn.validateGtin = function (gtin) {
+Gdsn.prototype.validateGtin = function (gtin) {
   if (!gtin || gtin.length != 14) return false
 
   var digits = gtin.split('')
@@ -423,7 +419,7 @@ Gdsn.validateGtin = function (gtin) {
 
 //////////////////////////////////// not yet used for anything: /////////////////////////
 
-Gdsn.messageTypes = [
+Gdsn.prototype.messageTypes = [
     {
         name: 'cin_from_local_tp',
         direction: 'inbound',

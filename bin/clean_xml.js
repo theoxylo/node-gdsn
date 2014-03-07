@@ -6,9 +6,9 @@
   }
 
   var fs = require('fs')
-  var GdsnX = require(__dirname + '/../index.js')
+  var Gdsn = require(__dirname + '/../index.js')
 
-  var gdsn = new GdsnX({
+  var gdsn = new Gdsn({
     homeDataPoolGln: '1100001011285'
     , out_dir        : __dirname
     , templatePath   : __dirname + '/../templates/'

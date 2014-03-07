@@ -5,11 +5,12 @@
     process.exit(1)
   }
 
-  var XXX = require(__dirname + '/../index.js')
+  var Gdsn = require(__dirname + '/../index.js')
+  var gdsn = new Gdsn()
   
   var processFile = function (filename) {
     console.log('Processing CIN file: ' + filename)
-    XXX.getTradeItemsFromFile(process.cwd() + '/' + filename, function(err, items) {
+    gdsn.getTradeItemsFromFile(process.cwd() + '/' + filename, function(err, items) {
       if (err) throw err
       for (i in items) {
         var item = items[i]

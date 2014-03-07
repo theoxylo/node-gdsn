@@ -1,38 +1,23 @@
-(function () {
+var GdsnConstructor = require('gdsn')
+var test            = require('tap').test
 
-  var GdsnX = require(__dirname + '/../index.js')
-
-  //////////////////////////////////////////////////////////////////
-
-  var data_pool = new GdsnX({
-    homeDataPoolGln: '1100001011285'
-    , out_dir        : __dirname
-    , templatePath   : __dirname + '/../templates/'
-  })
-  data_pool.processCinFromOtherDp(__dirname + '/cin_from_other_dp.xml')
-
-  //////////////////////////////////////////////////////////////////
-
+test('validateGln', function (t) {
+  t.plan(1)
+  var gdsn = new GdsnConstructor()
   var gln = '1100001011292'
-  var isValid = GdsnX.validateGln(gln) // return [true|false]
+  var isValid = gdsn.validateGln(gln) // return [true|false]
+  t.ok(isValid, 'Tap: GLN ' + gln + ' is valid')
   console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
+  t.end()
+})
 
-  //////////////////////////////////////////////////////////////////
-
+test('validateGtin', function (t) {
+  t.plan(1)
+  var gdsn = new GdsnConstructor()
   var gtin = '00749384988152'
-  var isValid = GdsnX.validateGtin(gtin) // return [true|false]
+  var isValid = gdsn.validateGtin(gtin) // return [true|false]
+  t.ok(isValid, 'Tap: GTIN ' + gtin + ' is valid')
   console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
+  t.end()
+})
 
-  //////////////////////////////////////////////////////////////////
-
-  GdsnX.getTradeItemsFromFile(__dirname + '/cin_from_other_dp.xml', function(err, items) {
-    if (err) throw err
-    for (i in items) {
-      var item = items[i]
-      console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
-    }
-    console.log('item count: ' + items.length)
-  })
-
-
-}())

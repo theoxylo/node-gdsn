@@ -18,7 +18,7 @@
   
   var processFile = function(filename) {
     console.log('Processing inbound CIN file: ' + filename)
-    Gdsn.getXmlDomForFile(filename, function(err, $cin) {
+    gdsn.getXmlDomForFile(filename, function(err, $cin) {
       if (err) {
         console.log("Error: " + err.message)
         process.exit(1)
@@ -28,7 +28,7 @@
           console.log("Error: " + err.message)
           process.exit(1)
         }
-        Gdsn.writeFile(filename + "_forward", forwardXml, function(err) {
+        gdsn.writeFile(filename + "_forward", forwardXml, function(err) {
           if (err) {
             console.log("Error: " + err.message)
             process.exit(1)

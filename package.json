@@ -3,18 +3,17 @@
   "version": "0.1.1",
   "description": "GDSN utility library for Node.js",
   "engines": {
-    "node": "0.10.26"
+    "node": ">=0.10.26"
   },
-  "author": {
-    "name": "Theoxylo - https://github.com/theoxylo"
-  },
+  "author": "Theoxylo - https://github.com/theoxylo",
   "dependencies": {
-     "xpath.js": "0.0.3"
-    ,"xmldom": "0.1.19"
-    ,"xml-nodes": "0.1.0"
+     "xpath.js":   "0.0.3"
+    ,"xmldom":     "0.1.19"
     ,"underscore": "1.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tap": "0.4.4"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/theoxylo/node-gdsn.git"
@@ -29,13 +28,11 @@
     "gtin",
     "gln"
   ],
-  "licenses": [
-    {
-      "type": "MIT License",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "license": {
+    "type": "MIT License",
+    "url": "http://www.opensource.org/licenses/mit-license"
+  },
   "scripts": {
-    "test": "node ./test"
+    "test": "tap ./test/*.js"
   }
 }

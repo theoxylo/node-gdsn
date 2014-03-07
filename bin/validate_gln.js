@@ -6,8 +6,9 @@
   }
   var gln = process.argv[2]
 
-  var GDSN = require('../index.js')
+  var Gdsn = require('../index.js')
+  var gdsn = new Gdsn()
   
-  console.log('gln ' + gln + ' is valid: ' + GDSN.validateGln(gln))
+  console.log('gln ' + gln + ' is valid: ' + gdsn.validateGln(gln))
 
 })()

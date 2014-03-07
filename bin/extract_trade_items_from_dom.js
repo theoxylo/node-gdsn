@@ -6,14 +6,15 @@
   }
 
   var Gdsn = require(__dirname + '/../index.js')
+  var gdsn = new Gdsn()
   
   var processFile = function (filename) {
     console.log('Processing CIN file: ' + filename)
-    Gdsn.getXmlDomForFile(process.cwd() + '/' + filename, function(err, $cin) {
+    gdsn.getXmlDomForFile(process.cwd() + '/' + filename, function(err, $cin) {
 
       if (err) throw err
 
-      var items = Gdsn.getTradeItemsForDom($cin)
+      var items = gdsn.getTradeItemsForDom($cin)
 
       for (i in items) {
         console.log('Found item with GTIN ' + items[i].gtin)

@@ -1,8 +1,10 @@
 var fs       = require('fs')
 var select   = require('xpath.js')
-var xmlNodes = require('xml-nodes')
 var _        = require('underscore')
 var xmldom   = require('xmldom')
+
+var InfoStream    = require('./lib/InfoStream')
+var ElementStream = require('./lib/ElementStream')
 
 var _xmldom_parser = new xmldom.DOMParser()
 var _xmldom_serializer = new xmldom.XMLSerializer()
@@ -13,12 +15,12 @@ function Gdsn(opts) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(opts)
 
+  console.log('Creating new instance of Gdsn service')
+
   opts = opts || {}
-  if (!opts.templatePath) opts.templatePath = __dirname + '/templates/'
-
+  if (!opts.templatePath)    opts.templatePath = __dirname + '/templates'
   if (!opts.homeDataPoolGln) opts.homeDataPoolGln = '0000000000000'
-
-  if (!opts.out_dir) opts.out_dir = 'test'
+  if (!opts.outbox_dir)      opts.outbox_dir = opts.out_dir || __dirname + '/outbox'
 
   console.log('GDSN options:')
   console.log(opts)
@@ -31,11 +33,11 @@ function Gdsn(opts) {
   this.opts = opts
 }
 
-Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile) {
+Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile, cb) {
 
   var ts = new Date().getTime()
-  var responseOutFile = this.opts.out_dir + '/out_cin_response_to_other_db_'   + ts + '.xml'
-  var forwardOutFile  = this.opts.out_dir + '/out_cin_forward_to_local_party_' + ts + '.xml'
+  var responseOutFile = this.opts.outbox_dir + '/out_cin_response_to_other_dp_'   + ts + '.xml'
+  var forwardOutFile  = this.opts.outbox_dir + '/out_cin_forward_to_local_party_' + ts + '.xml'
 
   var self = this
 
@@ -44,15 +46,19 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile) {
 
     self.createCinResponse($cin, function(err, responseXml) {
       if (err) throw err
+
       self.writeFile(responseOutFile, responseXml, function(err) {
         if (err) throw err
-      })
-    })
 
-    self.forwardCinFromOtherDP($cin, function(err, cinOut) {
-      if (err) throw err
-      self.writeFile(forwardOutFile, cinOut, function(err) {
-        if (err) throw err
+        self.forwardCinFromOtherDP($cin, function(err, cinOut) {
+          if (err) throw err
+
+          self.writeFile(forwardOutFile, cinOut, function(err) {
+            if (err) throw err
+            if (cb) cb(null, 'cb: wrote files ' + responseOutFile + ' and ' + forwardOutFile)
+          })
+        })
+
       })
     })
 
@@ -63,7 +69,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
   var self = this;
   process.nextTick(function () {
     try {
-      var cinInfo = self.getMessageInfo($cin);
+      var cinInfo = self.getMessageInfoForDom($cin);
       console.log('Gdsn().createCinResponse: cin msg info: ');
       console.log(cinInfo);
 
@@ -78,7 +84,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
         return
       }
       
-      var respTemplateFilename = self.opts.templatePath + 'GDSNResponse_template.xml'
+      var respTemplateFilename = self.opts.templatePath + '/GDSNResponse_template.xml'
 
       self.getXmlDomForFile(respTemplateFilename, function (err, $response) {
         if (self.handleErr(err, cb)) return
@@ -128,9 +134,9 @@ Gdsn.prototype.populateResponseTemplate = function (dom, args) {
   select(dom, '//sh:Sender/sh:Identifier')[0].firstChild.data = args.receiver
   select(dom, '//sh:Receiver/sh:Identifier')[0].firstChild.data = args.sender
   select(dom, '//sh:DocumentIdentification/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = args.created_ts
+  select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = args.created_date_time
   select(dom, '//sh:Scope/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = args.created_ts
+  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = args.created_date_time
   select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentInstanceIdentifier')[0].firstChild.data = args.msg_id
   select(dom, '//eanucc:message/entityIdentification/uniqueCreatorIdentification')[0].firstChild.data = args.resId
   select(dom, '//eanucc:message/entityIdentification/contentOwner/gln')[0].firstChild.data = args.receiver
@@ -140,7 +146,7 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
   var self = this
   process.nextTick(function () {
     try {
-      var cinInfo = self.getMessageInfo($cin)
+      var cinInfo = self.getMessageInfoForDom($cin)
 
       // check that receiver is the home data pool:
       if (cinInfo.receiver !== self.opts.homeDataPoolGln) {
@@ -248,37 +254,43 @@ Gdsn.prototype.getTradeItemsFromStream = function (is, cb) {
 }
 
 Gdsn.prototype.getEachTradeItemFromStream = function (is, cb) {
+
   var self = this
-  var msg_info = {} // will be populated by MsgInfo stream
 
-  var MsgInfo = require('./MsgInfo')
-  var msgInfo = new MsgInfo(this.getMessageInfoFromString, msg_info, function (err, msg_info) {
+  var elements = new ElementStream('tradeItem')
+
+  var msgInfo = new InfoStream(this.getMessageInfoFromString)
+
+  msgInfo.on('info', function (err, msg_info) {
     if (err) return cb(err)
-    console.log('found msg info: ' + JSON.stringify(msg_info))
+    console.log('%%% found msg info: ' + JSON.stringify(msg_info))
+
+    // once we have the msg_info, we can start our node stream
+    elements.on('element', function (xml) {
+      console.log('tradeItem element xml length: ' + xml.length)
+      var item_info = self.getTradeItemInfo(xml, msg_info)
+      console.log('gtin: ' + item_info.gtin)
+      cb(null, item_info)
+    })
+    elements.on('end', function () {
+      cb(null, null) // all done
+    })
+    elements.on('error', function (err) {
+      cb(err)
+    })
   })
 
-  var nodeSplitter = xmlNodes('tradeItem')
-  nodeSplitter.setEncoding('utf8')
-  nodeSplitter.on('data', function (xml) {
-    var info = self.getTradeItemInfo(xml, msg_info.created_ts, msg_info.recipient, msg_info.msg_id)
-    console.log('gtin: ' + info.gtin)
-    cb(null, info)
-  })
-  nodeSplitter.on('end', function () {
-    cb(null, null) // all done
-  })
-
-  is.setEncoding('utf8')
-  is.pipe(msgInfo).pipe(nodeSplitter)
+  is.pipe(msgInfo).pipe(elements).resume()
 }
 
-Gdsn.prototype.getMessageInfo = function ($msg) {
+Gdsn.prototype.getMessageInfoForDom = function ($msg) {
   var info = {}
   info.sender     = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
   info.receiver   = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
   info.msg_id     = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data
   info.type       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')[0].firstChild.data
-  info.created_ts = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+  info.created_date_time = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+  info.created_ts = (new Date(info.created_date_time)).getTime()
 
   var providerNodeList = select($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
   if (providerNodeList && providerNodeList[0]) {
@@ -293,15 +305,15 @@ Gdsn.prototype.getMessageInfo = function ($msg) {
 
 Gdsn.prototype.getTradeItemsForDom = function ($msg) {
 
-  var msg_info = this.getMessageInfo($msg)
-  var timestamp = (new Date(msg_info.created_ts)).getTime()
+  var msg_info = this.getMessageInfoForDom($msg)
+
   var $tradeItems = select($msg, '//*[local-name()="tradeItem"]')
 
   var tradeItems = []
   for (var idx = 0; idx < $tradeItems.length; idx++) {
     var $tradeItem = $tradeItems[idx]
     var xml = _xmldom_serializer.serializeToString($tradeItem)
-    var info = this.getTradeItemInfo(xml, timestamp, msg_info.recipient, msg_info.msg_id)
+    var info = this.getTradeItemInfo(xml, msg_info)
     tradeItems.push(info)
   }
   return tradeItems
@@ -315,9 +327,12 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   }
   if (!info.created_ts) {
     var match = xml.match(/CreationDateAndTime>([.0-9T:-]*)</)
-    var created_ts = match && match.length == 2 && match[1]
-    info.created_ts = (new Date(created_ts)).getTime()
-    if (info.created_ts) console.log('create timestamp: ' + info.created_ts)
+    if (match && match[1]) {
+      info.created_date_time = match[1]
+      console.log('create date time: ' + info.created_date_time)
+      info.created_ts = (new Date(info.created_date_time)).getTime()
+      if (info.created_ts) console.log('create timestamp: ' + info.created_ts)
+    }
   }
   if (!info.recipient) {
     var match = xml.match(/dataRecipient>(\d{13})</)
@@ -327,15 +342,15 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   return (info.msg_id && info.created_ts && info.recipient)
 }
 
-Gdsn.prototype.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_id) {
+Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
 
   //console.log('getTradeItemInfo called with created_ts ' + created_ts + ', recipient ' + recipient + ', msg_id ' + msg_id)
 
   var info = {}
-  info.raw_xml = raw_xml
-  info.created_ts = created_ts
-  info.recipient = recipient
-  info.msg_id = msg_id
+  info.raw_xml    = raw_xml
+  info.created_ts = msg_info.created_ts
+  info.recipient  = msg_info.recipient
+  info.msg_id     = msg_info.msg_id
 
   var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml
@@ -343,31 +358,36 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, created_ts, recipient, msg_
   var $newDoc   = _xmldom_parser.parseFromString(clean_xml, 'text/xml')
   $newDoc.normalize()
 
-  info.gtin      = select($newDoc, '/tradeItem/tradeItemIdentification/gtin')[0].firstChild.data
-  info.provider  = select($newDoc, '/tradeItem/tradeItemInformation/informationProviderOfTradeItem/informationProvider/gln')[0].firstChild.data
-  info.tm        = select($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketCountryCode/countryISOCode')[0].firstChild.data
-  info.unit_type = select($newDoc, '/tradeItem/tradeItemUnitDescriptor')[0].firstChild.data
-  info.gpc       = select($newDoc, '/tradeItem/tradeItemInformation/classificationCategoryCode/classificationCategoryCode')[0].firstChild.data
-  info.brand     = select($newDoc, '/tradeItem/tradeItemInformation/tradeItemDescriptionInformation/brandName')[0].firstChild.data
+  info.gtin      = this.getNodeData($newDoc, '/tradeItem/tradeItemIdentification/gtin')
+  info.provider  = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/informationProviderOfTradeItem/informationProvider/gln')
+  info.tm        = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketCountryCode/countryISOCode')
+  info.unit_type = this.getNodeData($newDoc, '/tradeItem/tradeItemUnitDescriptor')
+  info.gpc       = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/classificationCategoryCode/classificationCategoryCode')
+  info.brand     = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/tradeItemDescriptionInformation/brandName')
+  info.tm_sub    = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketSubdivisionCode/countrySubDivisionISOCode')
+  info.child_count = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/quantityOfChildren')
+  info.child_gtins = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/childTradeItem/tradeItemIdentification/gtin', true)
 
-  var tmSubList  = select($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketSubdivisionCode/countrySubDivisionISOCode')
-  info.tm_sub    = tmSubList[0] ? tmSubList[0].firstChild.data : ''
-
-  var childCountList = select($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/quantityOfChildren')
-  info.child_count   = childCountList[0] ? childCountList[0].firstChild.data : ''
-
-  var childGtinList = select($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/childTradeItem/tradeItemIdentification/gtin')
-  info.child_gtins  = _.map(childGtinList, function (item) {
-    if (!item) return
-    return item.firstChild.data
-  })
+  if (info.child_count != info.child_gtins.length) {
+    console.log('WARNING: child count ' + info.child_count + ' does not match child gtins found: ' + info.child_gtins.join(', '))
+  }
 
   return info
 }
 
+Gdsn.prototype.getNodeData = function ($doc, xpath, asArray) {
+  var nodes = select($doc, xpath)
+  var values = _.map(nodes, function (node) {
+    if (!node) return
+    return node.firstChild && node.firstChild.data
+  })
+  if (asArray) return values || []
+  return (values && values[0]) || ''
+}
+
 Gdsn.prototype.clean_xml = function (raw_xml) {
   var match = raw_xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
-  if (!match && !match[0]) return ''
+  if (!match || !match[0]) return ''
   var clean_xml = match[0]
   clean_xml = clean_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
   clean_xml = clean_xml.replace(/<[-_a-z0-9]+[^:]:/g, '<')    // remove open tag ns prefix <abc:tag>

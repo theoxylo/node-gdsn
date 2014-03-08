@@ -33,6 +33,6 @@
     "url": "http://www.opensource.org/licenses/mit-license"
   },
   "scripts": {
-    "test": "tap ./test/*.js"
+    "test": "tap ./test/test_*.js"
   }
 }

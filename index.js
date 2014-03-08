@@ -1,4 +1,3 @@
-var fs       = require('fs')
 var select   = require('xpath.js')
 var _        = require('underscore')
 var xmldom   = require('xmldom')
@@ -66,12 +65,12 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile, cb) {
 }
 
 Gdsn.prototype.createCinResponse = function ($cin, cb) {
-  var self = this;
+  var self = this
   process.nextTick(function () {
     try {
-      var cinInfo = self.getMessageInfoForDom($cin);
-      console.log('Gdsn().createCinResponse: cin msg info: ');
-      console.log(cinInfo);
+      var cinInfo = self.getMessageInfoForDom($cin)
+      console.log('Gdsn().createCinResponse: cin msg info: ')
+      console.log(cinInfo)
 
       if (cinInfo.type !== 'catalogueItemNotification') {
         self.handleErr(new Error('createCinResponse: message must be of type "catalogueItemNotification" and not: ' + cinInfo.type), cb)
@@ -83,7 +82,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
         self.handleErr(new Error('createCinResponse: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
         return
       }
-      
+
       var respTemplateFilename = self.opts.templatePath + '/GDSNResponse_template.xml'
 
       self.getXmlDomForFile(respTemplateFilename, function (err, $response) {

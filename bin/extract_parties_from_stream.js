@@ -11,20 +11,20 @@
   var gdsn = new Gdsn()
   
   var processFile = function (filename) {
-    console.log('Processing CIN file: ' + filename)
+    console.log('Processing RPDD file: ' + filename)
     var is = fs.createReadStream(process.cwd() + '/' + filename, {encoding: 'utf8'})
 
     var count = 0
 
-    gdsn.items.getEachTradeItemFromStream(is, function(err, item) {
+    gdsn.parties.getEachPartyFromStream(is, function(err, party) {
       if (err) throw err
-
-      if (item) {
+      if (party) {
         count++
-        console.log('Found item with GTIN ' + item.gtin + ', msg_id ' + item.msg_id)
+        console.log('party name: ' + party.name)
       }
-      console.log('found ' + count + ' trade items')
     })
+
+    console.log('found ' + count + ' parties')
   }
 
   while (process.argv.length > 2) {

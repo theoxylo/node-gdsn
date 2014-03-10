@@ -1,11 +1,12 @@
-var GdsnConstructor = require('gdsn')
-var test            = require('tap').test
-
-var gdsn = new GdsnConstructor()
+var Gdsn        = require('gdsn')
+var test        = require('tap').test
 
 test('getTradeItemsFromFile', function (t) {
   t.plan(1)
-  gdsn.getTradeItemsFromFile(__dirname + '/cin_from_other_dp.xml', function(err, items) {
+
+  var gdsn   = new Gdsn()
+
+  gdsn.items.getTradeItemsFromFile(__dirname + '/cin_from_other_dp.xml', function(err, items) {
     if (err) throw err
     for (i in items) {
       var item = items[i]

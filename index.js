@@ -2,9 +2,8 @@ var fs       = require('fs')
 var select   = require('xpath.js')
 var _        = require('underscore')
 var xmldom   = require('xmldom')
-
-var InfoStream    = require('./lib/InfoStream')
-var ElementStream = require('./lib/ElementStream')
+var ItemStream = require('./lib/ItemStream')
+var PartyStream = require('./lib/PartyStream')
 
 var _xmldom_parser = new xmldom.DOMParser()
 var _xmldom_serializer = new xmldom.XMLSerializer()
@@ -18,9 +17,9 @@ function Gdsn(opts) {
   console.log('Creating new instance of Gdsn service')
 
   opts = opts || {}
-  if (!opts.templatePath)    opts.templatePath = __dirname + '/templates'
+  if (!opts.templatePath)    opts.templatePath    = __dirname + '/templates'
   if (!opts.homeDataPoolGln) opts.homeDataPoolGln = '0000000000000'
-  if (!opts.outbox_dir)      opts.outbox_dir = opts.out_dir || __dirname + '/outbox'
+  if (!opts.outbox_dir)      opts.outbox_dir      = opts.out_dir || __dirname + '/outbox'
 
   console.log('GDSN options:')
   console.log(opts)
@@ -31,6 +30,8 @@ function Gdsn(opts) {
   }
 
   this.opts = opts
+  this.items = new ItemStream(this)
+  this.parties = new PartyStream(this)
 }
 
 Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile, cb) {
@@ -238,51 +239,6 @@ Gdsn.prototype.getXmlStringForDom = function ($dom, cb) {
   })
 }
 
-Gdsn.prototype.getTradeItemsFromFile = function (filename, cb) {
-  console.log('Reading stream ' + filename)
-  var is = fs.createReadStream(filename, {encoding: 'utf8'})
-  this.getTradeItemsFromStream(is, cb)
-}
-
-Gdsn.prototype.getTradeItemsFromStream = function (is, cb) {
-  var tradeItems = []
-  this.getEachTradeItemFromStream(is, function (err, item) {
-    if (err) return cb(err)
-    if (!item) return cb(null, tradeItems)
-    tradeItems.push(item)
-  })
-}
-
-Gdsn.prototype.getEachTradeItemFromStream = function (is, cb) {
-
-  var self = this
-
-  var elements = new ElementStream('tradeItem')
-
-  var msgInfo = new InfoStream(this.getMessageInfoFromString)
-
-  msgInfo.on('info', function (err, msg_info) {
-    if (err) return cb(err)
-    console.log('%%% found msg info: ' + JSON.stringify(msg_info))
-
-    // once we have the msg_info, we can start our node stream
-    elements.on('element', function (xml) {
-      console.log('tradeItem element xml length: ' + xml.length)
-      var item_info = self.getTradeItemInfo(xml, msg_info)
-      console.log('gtin: ' + item_info.gtin)
-      cb(null, item_info)
-    })
-    elements.on('end', function () {
-      cb(null, null) // all done
-    })
-    elements.on('error', function (err) {
-      cb(err)
-    })
-  })
-
-  is.pipe(msgInfo).pipe(elements).resume()
-}
-
 Gdsn.prototype.getMessageInfoForDom = function ($msg) {
   var info = {}
   info.sender     = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
@@ -319,6 +275,15 @@ Gdsn.prototype.getTradeItemsForDom = function ($msg) {
   return tradeItems
 }
 
+Gdsn.prototype.getDataRecipientFromString = function (xml, info) {
+  if (!info.recipient) {
+    var match = xml.match(/dataRecipient>(\d{13})</)
+    info.recipient = match && match.length == 2 && match[1]
+    if (info.recipient) console.log('data recipient: ' + info.recipient)
+  }
+  return (info.recipient)
+}
+
 Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   if (!info.msg_id) {
     var match = xml.match(/InstanceIdentifier>([^<\/]*)<\//)
@@ -334,17 +299,15 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
       if (info.created_ts) console.log('create timestamp: ' + info.created_ts)
     }
   }
-  if (!info.recipient) {
-    var match = xml.match(/dataRecipient>(\d{13})</)
-    info.recipient = match && match.length == 2 && match[1]
-    if (info.recipient) console.log('data recipient: ' + info.recipient)
+  if (!info.msg_type) {
+    var match = xml.match(/Type>([a-zA-Z]{20,})</)
+    info.msg_type = match && match.length == 2 && match[1]
+    if (info.msg_type) console.log('msg_type: ' + info.msg_type)
   }
-  return (info.msg_id && info.created_ts && info.recipient)
+  return (info.msg_id && info.created_ts && info.msg_type)
 }
 
 Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
-
-  //console.log('getTradeItemInfo called with created_ts ' + created_ts + ', recipient ' + recipient + ', msg_id ' + msg_id)
 
   var info = {}
   info.raw_xml    = raw_xml
@@ -371,6 +334,30 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   if (info.child_count != info.child_gtins.length) {
     console.log('WARNING: child count ' + info.child_count + ' does not match child gtins found: ' + info.child_gtins.join(', '))
   }
+
+  return info
+}
+
+Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
+
+  var info = {}
+  info.raw_xml    = raw_xml
+  //info.created_ts = msg_info.created_ts
+  //info.recipient  = msg_info.recipient
+  //info.msg_id     = msg_info.msg_id
+
+  var clean_xml = this.clean_xml(raw_xml)
+  info.xml = clean_xml
+
+  var $doc   = _xmldom_parser.parseFromString(clean_xml, 'text/xml')
+  $doc.normalize()
+
+  info.gln           = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryParty/informationProviderOfParty/gln')
+  info.name          = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryParty/registryPartyInformation/partyRoleInformation/partyOrDepartmentName')
+  info.country       = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryParty/registryPartyInformation/registryPartyNameAndAddress/countryCode/countryISOCode')
+  info.data_pool_gln = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryPartyDates/registeringParty')
+  info.created_date_time = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryPartyDates/registrationDateTime')
+  info.created_ts    = (new Date(info.created_date_time)).getTime()
 
   return info
 }

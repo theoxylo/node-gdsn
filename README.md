@@ -40,8 +40,9 @@ gdsn.processCinFromOtherDp(cinInboundFile)
 
 ```js
 var Gdsn = require('gdsn')
+var gdsn = new Gdsn()
 var gln = '1100001011292'
-var isValid = Gdsn.validateGln(gln) // return [true|false]
+var isValid = gdsn.validateGln(gln) // return [true|false]
 console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```
 
@@ -52,8 +53,9 @@ console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
 
 ```js
 var Gdsn = require('gdsn')
+var gdsn = new Gdsn()
 var gtin = '00749384988152'
-var isValid = Gdsn.validateGtin(gtin) // return [true|false]
+var isValid = gdsn.validateGtin(gtin) // return [true|false]
 console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```
 
@@ -63,9 +65,10 @@ console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
 
 ```js
 var Gdsn = require('gdsn')
-Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
+var gdsn = new Gdsn()
+gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
   if (err) throw err
-  var items = Gdsn.getTradeItemsForDom($cin)
+  var items = gdsn.getTradeItemsForDom($cin)
   for (i in items) {
     var item = items[i]
     console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
@@ -80,7 +83,8 @@ Gdsn.getXmlDomForFile(cinFile, function(err, $cin) {
 
 ```js
 var Gdsn = require('gdsn')
-Gdsn.getTradeItemsFromFile(cinFile, function(err, items) {
+var gdsn = new Gdsn()
+gdsn.items.getTradeItemsFromFile(cinFile, function(err, items) {
   if (err) throw err
   for (i in items) {
     var item = items[i]
@@ -97,9 +101,10 @@ Gdsn.getTradeItemsFromFile(cinFile, function(err, items) {
 ```js
 var fs   = require('fs')
 var Gdsn = require('gdsn')
+var gdsn = new Gdsn()
 var readable = fs.createReadStream(cinFile, {encoding: 'utf8'})
 var items = []
-Gdsn.getEachTradeItemFromStream(readable, function (err, item) {
+gdsn.items.getEachTradeItemFromStream(readable, function (err, item) {
   if (err) throw err
   if (item) {
     console.log('Found item with GTIN ' + item.gtin + ', extracted from message ' + item.msg_id)
@@ -112,3 +117,25 @@ Gdsn.getEachTradeItemFromStream(readable, function (err, item) {
 })
 ```
 
+### To extract trading parties from an RPDD stream one at a time:
+  * this approach lets your callback work with each party as it is read
+  * the first party will not be passed until the message id has been read from the stream
+
+```js
+var fs   = require('fs')
+var Gdsn = require('gdsn')
+var gdsn = new Gdsn()
+var readable = fs.createReadStream(rpddFile, {encoding: 'utf8'})
+var parties = []
+gdsn.parties.getEachPartyFromStream(readable, function (err, party) {
+  if (err) throw err
+  if (party) {
+    console.log('Found party with GLN ' + party.gln + ', extracted from message ' + party.msg_id)
+    parties.push(party)
+  }
+  else {
+    // all done
+    console.log('party count: ' + parties.length)
+  }
+})
+```

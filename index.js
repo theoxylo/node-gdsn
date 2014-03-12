@@ -131,13 +131,15 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
 }
 
 Gdsn.prototype.populateResponseTemplate = function (dom, args) {
+  var iso_date_time_created = new Date(args.created_ts).toISOString()
+
   // since it is our template, we know the literal namespace prefixes
   select(dom, '//sh:Sender/sh:Identifier')[0].firstChild.data = args.receiver
   select(dom, '//sh:Receiver/sh:Identifier')[0].firstChild.data = args.sender
   select(dom, '//sh:DocumentIdentification/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = args.created_date_time
+  select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = iso_date_time_created
   select(dom, '//sh:Scope/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = args.created_date_time
+  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = iso_date_time_created
   select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentInstanceIdentifier')[0].firstChild.data = args.msg_id
   select(dom, '//eanucc:message/entityIdentification/uniqueCreatorIdentification')[0].firstChild.data = args.resId
   select(dom, '//eanucc:message/entityIdentification/contentOwner/gln')[0].firstChild.data = args.receiver
@@ -245,8 +247,8 @@ Gdsn.prototype.getMessageInfoForDom = function ($msg) {
   info.receiver   = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
   info.msg_id     = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data
   info.type       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')[0].firstChild.data
-  info.created_date_time = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
-  info.created_ts = (new Date(info.created_date_time)).getTime()
+  var created_date_time = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+  info.created_ts = (new Date(created_date_time)).getTime()
 
   var providerNodeList = select($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
   if (providerNodeList && providerNodeList[0]) {
@@ -293,9 +295,9 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   if (!info.created_ts) {
     var match = xml.match(/CreationDateAndTime>([.0-9T:-]*)</)
     if (match && match[1]) {
-      info.created_date_time = match[1]
-      console.log('create date time: ' + info.created_date_time)
-      info.created_ts = (new Date(info.created_date_time)).getTime()
+      var created_date_time = match[1]
+      console.log('create date time: ' + created_date_time)
+      info.created_ts = (new Date(created_date_time)).getTime()
       if (info.created_ts) console.log('create timestamp: ' + info.created_ts)
     }
   }
@@ -342,9 +344,7 @@ Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
 
   var info = {}
   info.raw_xml    = raw_xml
-  //info.created_ts = msg_info.created_ts
-  //info.recipient  = msg_info.recipient
-  //info.msg_id     = msg_info.msg_id
+  info.msg_id     = msg_info.msg_id
 
   var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml
@@ -356,8 +356,8 @@ Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
   info.name          = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryParty/registryPartyInformation/partyRoleInformation/partyOrDepartmentName')
   info.country       = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryParty/registryPartyInformation/registryPartyNameAndAddress/countryCode/countryISOCode')
   info.data_pool_gln = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryPartyDates/registeringParty')
-  info.created_date_time = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryPartyDates/registrationDateTime')
-  info.created_ts    = (new Date(info.created_date_time)).getTime()
+  var created_date_time = this.getNodeData($doc, '/registryPartyDataDumpDetail/registryPartyDates/registrationDateTime')
+  info.created_ts    = (new Date(created_date_time)).getTime()
 
   return info
 }

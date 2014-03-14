@@ -14,7 +14,7 @@ test('getPartiesFromFile', function (t) {
       console.log('Found party with GLN ' + party.gln + ', extracted from message ' + party.msg_id)
     }
     console.log('party count: ' + parties.length)
-    t.ok(parties.length === 86, 'found ' + parties.length + ' parties as expected')
+    t.ok(parties.length === 11, 'found ' + parties.length + ' parties as expected')
     t.end()
   })
 })

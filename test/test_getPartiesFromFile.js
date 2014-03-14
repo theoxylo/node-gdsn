@@ -1,5 +1,6 @@
-var Gdsn         = require('gdsn')
-var test         = require('tap').test
+var Gdsn = require('gdsn')
+var fs   = require('fs')
+var test = require('tap').test
 
 test('getPartiesFromFile', function (t) {
   t.plan(1)

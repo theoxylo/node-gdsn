@@ -5,7 +5,6 @@
     process.exit(1)
   }
 
-  var fs = require('fs')
   var Gdsn = require(__dirname + '/../index.js')
 
   var gdsn = new Gdsn({
@@ -16,13 +15,13 @@
 
   var processFile = function (filename) {
     console.log('Processing file: ' + filename)
-    fs.readFile(filename, 'utf8', function (err, content) {
+    gdsn.readFile(filename, function (err, content) {
       if (err) throw err
       console.log('read raw file: ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
       var clean_xml = gdsn.clean_xml(content)
       if (clean_xml) {
         filename += '_clean.xml'
-        fs.writeFile(filename, clean_xml, function (err) {
+        gdsn.writeFile(filename, clean_xml, function (err) {
           if (err) throw err
           console.log('wrote clean file: ' + filename + ' (' + Buffer.byteLength(clean_xml) + ' bytes)')
         })

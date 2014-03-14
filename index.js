@@ -1,11 +1,13 @@
-var select   = require('xpath.js')
-var _        = require('underscore')
-var xmldom   = require('xmldom')
-var ItemStream = require('./lib/ItemStream')
+var fs          = require('fs')
+var select      = require('xpath.js')
+var _           = require('underscore')
+var xmldom      = require('xmldom')
+var ItemStream  = require('./lib/ItemStream')
 var PartyStream = require('./lib/PartyStream')
 
 var _xmldom_parser = new xmldom.DOMParser()
 var _xmldom_serializer = new xmldom.XMLSerializer()
+var log = console.log || function (msg) {}
 
 module.exports = Gdsn
 
@@ -13,18 +15,18 @@ function Gdsn(opts) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(opts)
 
-  console.log('Creating new instance of Gdsn service')
-
   opts = opts || {}
   if (!opts.templatePath)    opts.templatePath    = __dirname + '/templates'
   if (!opts.homeDataPoolGln) opts.homeDataPoolGln = '0000000000000'
   if (!opts.outbox_dir)      opts.outbox_dir      = opts.out_dir || __dirname + '/outbox'
 
-  console.log('GDSN options:')
-  console.log(opts)
+  log = opts.log || log
+
+  log('GDSN options:')
+  log(opts)
 
   if (!this.validateGln(opts.homeDataPoolGln)) {
-    console.log('Error: invalid home data pool GLN: ' + opts.homeDataPoolGln)
+    log('Error: invalid home data pool GLN: ' + opts.homeDataPoolGln)
     process.exit(1)
   }
 
@@ -33,7 +35,9 @@ function Gdsn(opts) {
   this.parties = new PartyStream(this)
 }
 
-Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile, cb) {
+Gdsn.prototype.processCinFromOtherDp = function (cinInFile, cb) {
+
+  log('processCinFromOtherDP for file ' + cinInFile)
 
   var ts = new Date().getTime()
   var responseOutFile = this.opts.outbox_dir + '/out_cin_response_to_other_dp_'   + ts + '.xml'
@@ -41,24 +45,27 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInboundFile, cb) {
 
   var self = this
 
-  self.getXmlDomForFile(cinInboundFile, function(err, $cin) {
-    if (err) throw err
+  self.getXmlDomForFile(cinInFile, function(err, $cin) {
+    if (err) return cb(err)
+
+    var responseComplete = false
+    var forwardComplete = false
 
     self.createCinResponse($cin, function(err, responseXml) {
-      if (err) throw err
+      if (err) return cb(err)
+      self.writeFile(responseOutFile, responseXml, function(err, size) {
+        if (err) return cb(err)
+        responseComplete = true
+        if (forwardComplete) return cb(null, 'cin process finished')
+      })
+    })
 
-      self.writeFile(responseOutFile, responseXml, function(err) {
-        if (err) throw err
-
-        self.forwardCinFromOtherDP($cin, function(err, cinOut) {
-          if (err) throw err
-
-          self.writeFile(forwardOutFile, cinOut, function(err) {
-            if (err) throw err
-            if (cb) cb(null, 'cb: wrote files ' + responseOutFile + ' and ' + forwardOutFile)
-          })
-        })
-
+    self.forwardCinFromOtherDP($cin, function(err, cinOut) {
+      if (err) return cb(err)
+      self.writeFile(forwardOutFile, cinOut, function(err) {
+        if (err) return cb(err)
+        forwardComplete = true
+        if (responseComplete) return cb(null, 'cin process finished')
       })
     })
 
@@ -70,24 +77,22 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
   process.nextTick(function () {
     try {
       var cinInfo = self.getMessageInfoForDom($cin)
-      console.log('Gdsn().createCinResponse: cin msg info: ')
-      console.log(cinInfo)
+      log('Gdsn().createCinResponse: cin msg info: ')
+      log(cinInfo)
 
       if (cinInfo.type !== 'catalogueItemNotification') {
-        self.handleErr(new Error('createCinResponse: message must be of type "catalogueItemNotification" and not: ' + cinInfo.type), cb)
-        return
+        return cb(new Error('createCinResponse: message must be of type "catalogueItemNotification" and not: ' + cinInfo.type))
       }
 
       // check that receiver is the home data pool:
       if (cinInfo.receiver !== self.opts.homeDataPoolGln) {
-        self.handleErr(new Error('createCinResponse: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
-        return
+        return cb(new Error('createCinResponse: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln))
       }
 
       var respTemplateFilename = self.opts.templatePath + '/GDSNResponse_template.xml'
 
       self.getXmlDomForFile(respTemplateFilename, function (err, $response) {
-        if (self.handleErr(err, cb)) return
+        if (err) return db(err)
 
         cinInfo.resId = 'cin_resp_' + Date.now()
         self.populateResponseTemplate($response, cinInfo)
@@ -124,7 +129,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
       })
     }
     catch (err) {
-      self.handleErr(err, cb)
+      return db(err)
     }
   })
 }
@@ -152,19 +157,17 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
 
       // check that receiver is the home data pool:
       if (cinInfo.receiver !== self.opts.homeDataPoolGln) {
-        self.handleErr(new Error('forwardCinFromOtherDP: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln), cb)
-        return
+        return cb(new Error('forwardCinFromOtherDP: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln))
       }
       // set sender to home data pool
       select($cin, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data = self.opts.homeDataPoolGln
 
       // get data recipient (same for all transactions) and set new receiver gln
       var dataRecipient = select($cin, '//catalogueItem/dataRecipient')[0].firstChild.data
-      console.log('Gdsn().forwardCinFromOtherDP: dataRecipient GLN: ' + dataRecipient)
+      log('Gdsn().forwardCinFromOtherDP: dataRecipient GLN: ' + dataRecipient)
 
       if (dataRecipient === self.opts.homeDataPoolGln) {
-        self.handleErr(new Error('forwardCinFromOtherDP: dataRecipient must be a local party, not the data pool'), cb)
-        return
+        return cb(new Error('forwardCinFromOtherDP: dataRecipient must be a local party, not the data pool'))
       }
 
       select($cin, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data = dataRecipient
@@ -177,12 +180,12 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
 
       // generate new CIN xml
 
-      console.log('forwardCinFromOtherDP: newId: ' + newId)
+      log('forwardCinFromOtherDP: newId: ' + newId)
 
       self.getXmlStringForDom($cin, cb)
     }
     catch (err) {
-      self.handleErr(err, cb)
+      return cb(err)
     }
   })
 }
@@ -192,70 +195,64 @@ Gdsn.prototype.getXmlDomForString = function (xml, cb) {
   process.nextTick(function () {
     try {
       var $dom = _xmldom_parser.parseFromString(xml, 'text/xml')
-      cb(null, $dom)
+      return cb(null, $dom)
     }
     catch (err) {
-      self.handleErr(err, cb)
+      return cb(err)
     }
   })
 }
 
 Gdsn.prototype.getXmlDomForFile = function (filename, cb) {
   var self = this
-  fs.readFile(filename, 'utf8', function (err, content) {
-    if (self.handleErr(err, cb)) return
-    console.log('Gdsn.getXmlDomForFile : read ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
+  self.readFile(filename, function (err, content) {
+    if (err) return cb(err)
+    log('Gdsn.getXmlDomForFile : read ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
     self.getXmlDomForString(content, cb)
   })
 }
 
-Gdsn.prototype.writeFile = function (filename, content, cb) {
-  var self = this
-  fs.writeFile(filename, content, function (err) {
-    if (self.handleErr(err, cb)) return
-    console.log('Gdsn.writeFile: ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
+Gdsn.prototype.readFile = function (filename, cb) {
+  fs.readFile(filename, 'utf8', function (err, content) {
+    if (err) return cb(err)
+    return cb(null, content)
   })
 }
 
-Gdsn.prototype.handleErr = function (err, cb) {
-  if (err) {
-    process.nextTick(function () {
-      cb(err)
-    })
-    return true
-  }
-  return false
+Gdsn.prototype.writeFile = function (filename, content, cb) {
+  fs.writeFile(filename, content, function (err) {
+    if (err) return cb(err)
+    var size = Buffer.byteLength(content)
+    log('Gdsn.writeFile: ' + filename + ' (' + size + ' bytes)')
+    return cb(null, size)
+  })
 }
 
 Gdsn.prototype.getXmlStringForDom = function ($dom, cb) {
-  var self = this
   process.nextTick(function () {
     try {
       var xml = _xmldom_serializer.serializeToString($dom)
-      cb(null, xml)
+      return cb(null, xml)
     }
     catch (err) {
-      self.handleErr(err, cb)
+      return cb(err)
     }
   })
 }
 
 Gdsn.prototype.getMessageInfoForDom = function ($msg) {
   var info = {}
-  info.sender     = select($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data
-  info.receiver   = select($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data
-  info.msg_id     = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data
-  info.type       = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')[0].firstChild.data
-  var created_date_time = select($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')[0].firstChild.data
+  info.sender     = this.getNodeData($msg, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')
+  info.receiver   = this.getNodeData($msg, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')
+  info.msg_id     = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')
+  info.type       = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
+  var created_date_time = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]')
   info.created_ts = (new Date(created_date_time)).getTime()
 
-  var providerNodeList = select($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
-  if (providerNodeList && providerNodeList[0]) {
-    info.provider = providerNodeList[0].firstChild.data
-  }
-  var recipientNodeList = select($msg, '//*[local-name()="dataRecipient"]')
-  if (recipientNodeList && recipientNodeList[0]) {
-    info.recipient = recipientNodeList[0].firstChild.data
+  if (info.type == 'catalogueItemNotification') {
+    info.provider = this.getNodeData($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
+    info.recipient = this.getNodeData($msg, '//*[local-name()="dataRecipient"]')
+    info.urls = this.getNodeData($msg, '//*[local-name()="uniformResourceIdentifier"]', true)
   }
   return info
 }
@@ -267,6 +264,7 @@ Gdsn.prototype.getTradeItemsForDom = function ($msg) {
   var $tradeItems = select($msg, '//*[local-name()="tradeItem"]')
 
   var tradeItems = []
+
   for (var idx = 0; idx < $tradeItems.length; idx++) {
     var $tradeItem = $tradeItems[idx]
     var xml = _xmldom_serializer.serializeToString($tradeItem)
@@ -280,7 +278,7 @@ Gdsn.prototype.getDataRecipientFromString = function (xml, info) {
   if (!info.recipient) {
     var match = xml.match(/dataRecipient>(\d{13})</)
     info.recipient = match && match.length == 2 && match[1]
-    if (info.recipient) console.log('data recipient: ' + info.recipient)
+    if (info.recipient) log('data recipient: ' + info.recipient)
   }
   return (info.recipient)
 }
@@ -289,21 +287,21 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   if (!info.msg_id) {
     var match = xml.match(/InstanceIdentifier>([^<\/]*)<\//)
     info.msg_id = match && match.length == 2 && match[1]
-    if (info.msg_id) console.log('msg id: ' + info.msg_id)
+    if (info.msg_id) log('msg id: ' + info.msg_id)
   }
   if (!info.created_ts) {
     var match = xml.match(/CreationDateAndTime>([.0-9T:-]*)</)
     if (match && match[1]) {
       var created_date_time = match[1]
-      console.log('create date time: ' + created_date_time)
+      log('create date time: ' + created_date_time)
       info.created_ts = (new Date(created_date_time)).getTime()
-      if (info.created_ts) console.log('create timestamp: ' + info.created_ts)
+      if (info.created_ts) log('create timestamp: ' + info.created_ts)
     }
   }
   if (!info.msg_type) {
     var match = xml.match(/Type>([a-zA-Z]{20,})</)
     info.msg_type = match && match.length == 2 && match[1]
-    if (info.msg_type) console.log('msg_type: ' + info.msg_type)
+    if (info.msg_type) log('msg_type: ' + info.msg_type)
   }
   return (info.msg_id && info.created_ts && info.msg_type)
 }
@@ -333,7 +331,7 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.child_gtins = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/childTradeItem/tradeItemIdentification/gtin', true)
 
   if (info.child_count != info.child_gtins.length) {
-    console.log('WARNING: child count ' + info.child_count + ' does not match child gtins found: ' + info.child_gtins.join(', '))
+    log('WARNING: child count ' + info.child_count + ' does not match child gtins found: ' + info.child_gtins.join(', '))
   }
 
   return info

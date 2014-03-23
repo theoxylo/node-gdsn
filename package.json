@@ -18,8 +18,6 @@
     "type": "git",
     "url": "https://github.com/theoxylo/node-gdsn.git"
   },
-  "main": "index",
-  "directories": {},
   "keywords": [
     "gdsn",
     "xpath",

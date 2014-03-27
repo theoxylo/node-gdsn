@@ -39,7 +39,7 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInFile, cb) {
 
   log('processCinFromOtherDP for file ' + cinInFile)
 
-  var ts = new Date().getTime()
+  var ts = Date.now()
   var responseOutFile = this.opts.outbox_dir + '/out_cin_response_to_other_dp_'   + ts + '.xml'
   var forwardOutFile  = this.opts.outbox_dir + '/out_cin_forward_to_local_party_' + ts + '.xml'
 
@@ -306,6 +306,26 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   return (info.msg_id && info.created_ts && info.msg_type)
 }
 
+Gdsn.prototype.getCustomTradeItemInfo = function (xml, mappings, info) {
+  //log('getCustomTradeItemInfo  called')
+
+  var $doc = _xmldom_parser.parseFromString(xml, 'text/xml')
+  $doc.normalize()
+
+  var item = info || {}
+  //item.xml = xml // for debug
+
+  var mapping
+  for (mapping in mappings) {
+    //log('found mapping name: ' + mapping)
+    if (mappings.hasOwnProperty(mapping)) {
+      var xp = mappings[mapping]
+      if (xp) item[mapping] = this.getNodeData($doc, xp)
+    }
+  }
+  return item
+}
+
 Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
 
   var info = {}
@@ -327,9 +347,10 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.gpc       = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/classificationCategoryCode/classificationCategoryCode')
   info.brand     = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/tradeItemDescriptionInformation/brandName')
   info.tm_sub    = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketSubdivisionCode/countrySubDivisionISOCode')
+
+  // child items
   info.child_count = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/quantityOfChildren')
   info.child_gtins = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/childTradeItem/tradeItemIdentification/gtin', true)
-
   if (info.child_count != info.child_gtins.length) {
     log('WARNING: child count ' + info.child_count + ' does not match child gtins found: ' + info.child_gtins.join(', '))
   }
@@ -360,10 +381,12 @@ Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
 }
 
 Gdsn.prototype.getNodeData = function ($doc, xpath, asArray) {
+  //log('getNodeData xpath: ' + xpath)
   var nodes = select($doc, xpath)
   var values = _.map(nodes, function (node) {
     if (!node) return
-    return node.firstChild && node.firstChild.data
+    var value = node.firstChild && node.firstChild.data
+    return value || node.value // for attributes
   })
   if (asArray) return values || []
   return (values && values[0]) || ''

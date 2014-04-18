@@ -1,6 +1,5 @@
 var fs          = require('fs')
 var select      = require('xpath.js')
-var _           = require('underscore')
 var xmldom      = require('xmldom')
 var ItemStream  = require('./lib/ItemStream')
 var PartyStream = require('./lib/PartyStream')
@@ -306,24 +305,22 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   return (info.msg_id && info.created_ts && info.msg_type)
 }
 
-Gdsn.prototype.getCustomTradeItemInfo = function (xml, mappings, info) {
-  //log('getCustomTradeItemInfo  called')
+Gdsn.prototype.getCustomTradeItemInfo = function (xml, mappings) {
+
+  var result = {}
 
   var $doc = _xmldom_parser.parseFromString(xml, 'text/xml')
   $doc.normalize()
-
-  var item = info || {}
-  //item.xml = xml // for debug
 
   var mapping
   for (mapping in mappings) {
     //log('found mapping name: ' + mapping)
     if (mappings.hasOwnProperty(mapping)) {
       var xp = mappings[mapping]
-      if (xp) item[mapping] = this.getNodeData($doc, xp)
+      if (xp) result[mapping] = this.getNodeData($doc, xp)
     }
   }
-  return item
+  return result
 }
 
 Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
@@ -347,6 +344,7 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.gpc       = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/classificationCategoryCode/classificationCategoryCode')
   info.brand     = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/tradeItemDescriptionInformation/brandName')
   info.tm_sub    = this.getNodeData($newDoc, '/tradeItem/tradeItemInformation/targetMarketInformation/targetMarketSubdivisionCode/countrySubDivisionISOCode')
+  if (!info.tm_sub) info.tm_sub = 'na'
 
   // child items
   info.child_count = this.getNodeData($newDoc, '/tradeItem/nextLowerLevelTradeItemInformation/quantityOfChildren')
@@ -383,7 +381,7 @@ Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
 Gdsn.prototype.getNodeData = function ($doc, xpath, asArray) {
   //log('getNodeData xpath: ' + xpath)
   var nodes = select($doc, xpath)
-  var values = _.map(nodes, function (node) {
+  var values = nodes.map(function (node) {
     if (!node) return
     var value = node.firstChild && node.firstChild.data
     return value || node.value // for attributes

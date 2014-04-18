@@ -9,7 +9,6 @@
   "dependencies": {
      "xpath.js":   "0.0.3"
     ,"xmldom":     "0.1.19"
-    ,"underscore": "1.6.0"
   },
   "devDependencies": {
     "tap": "0.4.4"

@@ -273,15 +273,6 @@ Gdsn.prototype.getTradeItemsForDom = function ($msg) {
   return tradeItems
 }
 
-Gdsn.prototype.getDataRecipientFromString = function (xml, info) {
-  if (!info.recipient) {
-    var match = xml.match(/dataRecipient>(\d{13})</)
-    info.recipient = match && match.length == 2 && match[1]
-    if (info.recipient) log('data recipient: ' + info.recipient)
-  }
-  return (info.recipient)
-}
-
 Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
   if (!info.msg_id) {
     var match = xml.match(/InstanceIdentifier>([^<\/]*)<\//)
@@ -302,7 +293,24 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
     info.msg_type = match && match.length == 2 && match[1]
     if (info.msg_type) log('msg_type: ' + info.msg_type)
   }
-  return (info.msg_id && info.created_ts && info.msg_type)
+
+  if (info.msg_type == 'catalogueItemNotification') {
+    if (!info.recipient) {
+      var match = xml.match(/dataRecipient>(\d{13})</)
+      info.recipient = match && match.length == 2 && match[1]
+      if (info.recipient) log('data recipient: ' + info.recipient)
+    }
+    if (!info.source_dp) {
+      var match = xml.match(/sourceDataPool>(\d{13})</)
+      info.source_dp = match && match.length == 2 && match[1]
+      if (info.source_dp) log('source_dp: ' + info.source_dp)
+    }
+  }
+
+  var complete = (info.msg_id && info.created_ts && info.msg_type)
+    && (info.msg_type != 'catalogueItemNotification' || (info.recipient && info.source_dp))
+
+  return complete
 }
 
 Gdsn.prototype.getCustomTradeItemInfo = function (xml, mappings) {

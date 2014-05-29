@@ -4,7 +4,23 @@ var xmldom      = require('xmldom')
 var ItemStream  = require('./lib/ItemStream')
 var PartyStream = require('./lib/PartyStream')
 
-var _xmldom_parser = new xmldom.DOMParser()
+var _xmldom_parser = new xmldom.DOMParser({
+  locator: {},
+  /**
+   * you can override the errorHandler for xml parser
+   * @link http://www.saxproject.org/apidoc/org/xml/sax/ErrorHandler.html
+  errorHandler :{
+    warning: function(msg) { console.warn(msg) },
+    error:   function(msg) { console.warn(msg) },
+    fatalError: function(msg) { console.warn(msg) }
+  }
+   */
+  //only callback model
+  errorHandler:function(level,msg){console.log(level,"gdsn: " + msg)}
+})
+
+//var _xmldom_parser = new xmldom.DOMParser()
+
 var _xmldom_serializer = new xmldom.XMLSerializer()
 var log = console.log || function (msg) {}
 
@@ -251,6 +267,7 @@ Gdsn.prototype.getMessageInfoForDom = function ($msg) {
   if (info.type == 'catalogueItemNotification') {
     info.provider = this.getNodeData($msg, '//*[local-name()="informationProvider"]/*[local-name()="gln"]')
     info.recipient = this.getNodeData($msg, '//*[local-name()="dataRecipient"]')
+    info.source_dp = this.getNodeData($msg, '//*[local-name()="sourceDataPool"]')
     info.urls = this.getNodeData($msg, '//*[local-name()="uniformResourceIdentifier"]', true)
   }
   return info
@@ -339,6 +356,22 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.recipient  = msg_info.recipient
   info.msg_id     = msg_info.msg_id
 
+/*
+  console.log('======================================')
+  console.log('======================================')
+  console.log('raw xml: ' + raw_xml)
+  console.log('======================================')
+  console.log('======================================')
+  var clean_xml = this.clean_xml(raw_xml)
+  console.log('clean xml: ' + clean_xml)
+      this.writeFile('test_clean_xml.xml', clean_xml, function(err, size) {
+        if (err) throw err
+        console.log('wrote clean xml to file of size: ' + size)
+      })
+  console.log('======================================')
+  console.log('======================================')
+  //var clean_xml = raw_xml
+*/
   var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml
 
@@ -403,9 +436,9 @@ Gdsn.prototype.clean_xml = function (raw_xml) {
   if (!match || !match[0]) return ''
   var clean_xml = match[0]
   clean_xml = clean_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
-  clean_xml = clean_xml.replace(/<[-_a-z0-9]+[^:]:/g, '<')    // remove open tag ns prefix <abc:tag>
-  clean_xml = clean_xml.replace(/<\/[-_a-z0-9]+[^:]:/g, '</') // remove close tag ns prefix </abc:tag>
-  clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '') // remove xmlns:abc="123" ns attributes
+  clean_xml = clean_xml.replace(/<[^\/>][-_a-z0-9]+[^:>]:/g, '<')                      // remove open tag ns prefix <abc:tag>
+  clean_xml = clean_xml.replace(/<\/[^>][-_a-z0-9]+[^:>]:/g, '<\/')                    // remove close tag ns prefix </abc:tag>
+  clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
   clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
   return clean_xml
 }
@@ -463,7 +496,7 @@ Gdsn.prototype.messageTypes = [
         receiver: 'gln of home data pool',
         dataRecipient: 'gln of home data pool',
         infoProvider: 'gln of DSTP (local party)',
-        sourceDataPool: 'not present',
+        source_dp: 'gln of home data pool',
         root_gtins: 'array of gtins for each hierarchy root trade item',
         gtins: 'array of gtins for all trade items'
     },
@@ -477,7 +510,7 @@ Gdsn.prototype.messageTypes = [
         receiver: 'gln of home data pool',
         dataRecipient: 'gln of DRTP (local subscribing party), assume only 1 per message',
         infoProvider: 'gln of DSTP (remote publishing party), assume only 1 per message',
-        sourceDataPool: 'gln of other data pool',
+        source_dp: 'gln of other data pool',
         root_gtins: 'array of gtins for each hierarchy root trade item',
         gtins: 'array of gtins for all trade items'
     },
@@ -491,7 +524,7 @@ Gdsn.prototype.messageTypes = [
         receiver: 'gln of local party',
         dataRecipient: 'gln of DRTP (local subscribing party), assume only 1 per message',
         infoProvider: 'gln of DSTP (remote publishing party), assume only 1 per message',
-        sourceDataPool: 'gln of other data pool',
+        source_dp: 'gln of other data pool',
         root_gtins: 'array of gtins for each hierarchy root trade item',
         gtins: 'array of gtins for all trade items'
     },
@@ -505,7 +538,7 @@ Gdsn.prototype.messageTypes = [
         receiver: 'gln of local party',
         dataRecipient: 'gln of DRTP (local subscribing party), assume only 1 per message',
         infoProvider: 'gln of DSTP (local publishing party), assume only 1 per message',
-        sourceDataPool: 'gln of home data pool',
+        source_dp: 'gln of home data pool',
         root_gtins: 'array of gtins for each hierarchy root trade item',
         gtins: 'array of gtins for all trade items'
     }

@@ -1,5 +1,5 @@
 var fs          = require('fs')
-var select      = require('xpath.js')
+var select      = require('xpath').select
 var xmldom      = require('xmldom')
 var ItemStream  = require('./lib/ItemStream')
 var PartyStream = require('./lib/PartyStream')
@@ -16,10 +16,8 @@ var _xmldom_parser = new xmldom.DOMParser({
   }
    */
   //only callback model
-  errorHandler:function(level,msg){console.log(level,"gdsn: " + msg)}
+  errorHandler: function (level,msg) { console.log(level, "gdsn: " + msg) }
 })
-
-//var _xmldom_parser = new xmldom.DOMParser()
 
 var _xmldom_serializer = new xmldom.XMLSerializer()
 var log = console.log || function (msg) {}
@@ -107,7 +105,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
       var respTemplateFilename = self.opts.templatePath + '/GDSNResponse_template.xml'
 
       self.getXmlDomForFile(respTemplateFilename, function (err, $response) {
-        if (err) return db(err)
+        if (err) return cb(err)
 
         cinInfo.resId = 'cin_resp_' + Date.now()
         self.populateResponseTemplate($response, cinInfo)
@@ -123,7 +121,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
         $receiver.appendChild($response.createTextNode(cinInfo.receiver))
         $eANUCCResponse.appendChild($receiver)
 
-        var cinTrxNodes = select($cin, '//*[local-name()="transaction"]/entityIdentification')
+        var cinTrxNodes = select('//*[local-name()="transaction"]/entityIdentification', $cin)
 
         var $message = $response.getElementsByTagName('eanucc:message')[0]
 
@@ -144,7 +142,7 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
       })
     }
     catch (err) {
-      return db(err)
+      return cb(err)
     }
   })
 }
@@ -152,16 +150,15 @@ Gdsn.prototype.createCinResponse = function ($cin, cb) {
 Gdsn.prototype.populateResponseTemplate = function (dom, args) {
   var iso_date_time_created = new Date(args.created_ts).toISOString()
 
-  // since it is our template, we know the literal namespace prefixes
-  select(dom, '//sh:Sender/sh:Identifier')[0].firstChild.data = args.receiver
-  select(dom, '//sh:Receiver/sh:Identifier')[0].firstChild.data = args.sender
-  select(dom, '//sh:DocumentIdentification/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:DocumentIdentification/sh:CreationDateAndTime')[0].firstChild.data = iso_date_time_created
-  select(dom, '//sh:Scope/sh:InstanceIdentifier')[0].firstChild.data = args.resId
-  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentCreationDateTime')[0].firstChild.data = iso_date_time_created
-  select(dom, '//sh:Scope/sh:CorrelationInformation/sh:RequestingDocumentInstanceIdentifier')[0].firstChild.data = args.msg_id
-  select(dom, '//eanucc:message/entityIdentification/uniqueCreatorIdentification')[0].firstChild.data = args.resId
-  select(dom, '//eanucc:message/entityIdentification/contentOwner/gln')[0].firstChild.data = args.receiver
+  this.setNodeData(dom, '//*[local-name()="Sender"]/*[local-name()="Identifier"]', args.receiver)
+  this.setNodeData(dom, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]', args.sender)
+  this.setNodeData(dom, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]', args.resId)
+  this.setNodeData(dom, '//*[local-name()="DocumentIdentification"]/*[local-name()="CreationDateAndTime"]', iso_date_time_created)
+  this.setNodeData(dom, '//*[local-name()="Scope"]/*[local-name()="InstanceIdentifier"]', args.resId)
+  this.setNodeData(dom, '//*[local-name()="Scope"]/*[local-name()="CorrelationInformation"]/*[local-name()="RequestingDocumentCreationDateTime"]', iso_date_time_created)
+  this.setNodeData(dom, '//*[local-name()="Scope"]/*[local-name()="CorrelationInformation"]/*[local-name()="RequestingDocumentInstanceIdentifier"]', args.msg_id)
+  this.setNodeData(dom, '//*[local-name()="message"]/entityIdentification/uniqueCreatorIdentification', args.resId)
+  this.setNodeData(dom, '//*[local-name()="message"]/entityIdentification/contentOwner/gln', args.receiver)
 }
 
 Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
@@ -175,23 +172,23 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
         return cb(new Error('forwardCinFromOtherDP: message must be addressed to home data pool GLN ' + self.opts.homeDataPoolGln))
       }
       // set sender to home data pool
-      select($cin, '//*[local-name()="Sender"]/*[local-name()="Identifier"]')[0].firstChild.data = self.opts.homeDataPoolGln
+      self.setNodeData($cin, '//*[local-name()="Sender"]/*[local-name()="Identifier"]', self.opts.homeDataPoolGln)
 
       // get data recipient (same for all transactions) and set new receiver gln
-      var dataRecipient = select($cin, '//catalogueItem/dataRecipient')[0].firstChild.data
+      var dataRecipient = self.getNodeData($cin, '//catalogueItem/dataRecipient')
       log('Gdsn().forwardCinFromOtherDP: dataRecipient GLN: ' + dataRecipient)
 
       if (dataRecipient === self.opts.homeDataPoolGln) {
         return cb(new Error('forwardCinFromOtherDP: dataRecipient must be a local party, not the data pool'))
       }
 
-      select($cin, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]')[0].firstChild.data = dataRecipient
+      self.setNodeData($cin, '//*[local-name()="Receiver"]/*[local-name()="Identifier"]', dataRecipient)
 
       // update InstanceIdentifier and message uniqueCreatorIdentification/gln
       var newId = 'cin_' + Date.now() + '_' + dataRecipient
-      select($cin, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]')[0].firstChild.data = newId
-      select($cin, '//*[local-name()="message"]/entityIdentification/uniqueCreatorIdentification')[0].firstChild.data = newId
-      select($cin, '//*[local-name()="message"]/entityIdentification/contentOwner/gln')[0].firstChild.data = self.opts.homeDataPoolGln
+      self.setNodeData($cin, '//*[local-name()="DocumentIdentification"]/*[local-name()="InstanceIdentifier"]', newId)
+      self.setNodeData($cin, '//*[local-name()="message"]/entityIdentification/uniqueCreatorIdentification', newId)
+      self.setNodeData($cin, '//*[local-name()="message"]/entityIdentification/contentOwner/gln', self.opts.homeDataPoolGln)
 
       // generate new CIN xml
 
@@ -277,7 +274,7 @@ Gdsn.prototype.getTradeItemsForDom = function ($msg) {
 
   var msg_info = this.getMessageInfoForDom($msg)
 
-  var $tradeItems = select($msg, '//*[local-name()="tradeItem"]')
+  var $tradeItems = select('//*[local-name()="tradeItem"]', $msg)
 
   var tradeItems = []
 
@@ -356,22 +353,6 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.recipient  = msg_info.recipient
   info.msg_id     = msg_info.msg_id
 
-/*
-  console.log('======================================')
-  console.log('======================================')
-  console.log('raw xml: ' + raw_xml)
-  console.log('======================================')
-  console.log('======================================')
-  var clean_xml = this.clean_xml(raw_xml)
-  console.log('clean xml: ' + clean_xml)
-      this.writeFile('test_clean_xml.xml', clean_xml, function(err, size) {
-        if (err) throw err
-        console.log('wrote clean xml to file of size: ' + size)
-      })
-  console.log('======================================')
-  console.log('======================================')
-  //var clean_xml = raw_xml
-*/
   var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml
 
@@ -419,9 +400,8 @@ Gdsn.prototype.getPartyInfo = function (raw_xml, msg_info) {
   return info
 }
 
-Gdsn.prototype.getNodeData = function ($doc, xpath, asArray) {
-  //log('getNodeData xpath: ' + xpath)
-  var nodes = select($doc, xpath)
+Gdsn.prototype.getNodeData = function ($doc, path, asArray) {
+  var nodes = select(path, $doc)
   var values = nodes.map(function (node) {
     if (!node) return
     var value = node.firstChild && node.firstChild.data
@@ -429,6 +409,13 @@ Gdsn.prototype.getNodeData = function ($doc, xpath, asArray) {
   })
   if (asArray) return values || []
   return (values && values[0]) || ''
+}
+
+Gdsn.prototype.setNodeData = function ($doc, path, value) {
+  var nodes = select(path, $doc)
+  if (nodes && nodes[0]) {
+    nodes[0].firstChild.data = value
+  }
 }
 
 Gdsn.prototype.clean_xml = function (raw_xml) {

@@ -303,7 +303,7 @@ Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
     }
   }
   if (!info.msg_type) {
-    var match = xml.match(/Type>([a-zA-Z]{20,})</)
+    var match = xml.match(/Type>([a-zA-Z]{1,})</)
     info.msg_type = match && match.length == 2 && match[1]
     if (info.msg_type) log('msg_type: ' + info.msg_type)
   }
@@ -352,6 +352,7 @@ Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
   info.created_ts = msg_info.created_ts
   info.recipient  = msg_info.recipient
   info.msg_id     = msg_info.msg_id
+  info.source_dp  = msg_info.source_dp
 
   var clean_xml = this.clean_xml(raw_xml)
   info.xml = clean_xml

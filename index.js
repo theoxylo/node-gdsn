@@ -4,6 +4,8 @@ var xmldom      = require('xmldom')
 var ItemStream  = require('./lib/ItemStream')
 var PartyStream = require('./lib/PartyStream')
 
+var cheerio     = require('cheerio')
+
 var _xmldom_parser = new xmldom.DOMParser({
   locator: {},
   /**
@@ -35,8 +37,8 @@ function Gdsn(opts) {
 
   log = opts.log || log
 
-  log('GDSN options:')
-  log(opts)
+  //log('GDSN options:')
+  //log(opts)
 
   if (!this.validateGln(opts.homeDataPoolGln)) {
     log('Error: invalid home data pool GLN: ' + opts.homeDataPoolGln)
@@ -69,16 +71,16 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInFile, cb) {
       self.writeFile(responseOutFile, responseXml, function(err, size) {
         if (err) return cb(err)
         responseComplete = true
-        if (forwardComplete) return cb(null, 'cin process finished')
+        if (forwardComplete) return cb(null, 'cin process finished ' + size)
       })
     })
 
     self.forwardCinFromOtherDP($cin, function(err, cinOut) {
       if (err) return cb(err)
-      self.writeFile(forwardOutFile, cinOut, function(err) {
+      self.writeFile(forwardOutFile, cinOut, function(err, size) {
         if (err) return cb(err)
         forwardComplete = true
-        if (responseComplete) return cb(null, 'cin process finished')
+        if (responseComplete) return cb(null, 'cin process finished ' + size)
       })
     })
 
@@ -87,7 +89,7 @@ Gdsn.prototype.processCinFromOtherDp = function (cinInFile, cb) {
 
 Gdsn.prototype.createCinResponse = function ($cin, cb) {
   var self = this
-  process.nextTick(function () {
+  setImmediate(function () {
     try {
       var cinInfo = self.getMessageInfoForDom($cin)
       log('Gdsn().createCinResponse: cin msg info: ')
@@ -163,7 +165,7 @@ Gdsn.prototype.populateResponseTemplate = function (dom, args) {
 
 Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
   var self = this
-  process.nextTick(function () {
+  setImmediate(function () {
     try {
       var cinInfo = self.getMessageInfoForDom($cin)
 
@@ -204,7 +206,7 @@ Gdsn.prototype.forwardCinFromOtherDP = function ($cin, cb) {
 
 Gdsn.prototype.getXmlDomForString = function (xml, cb) {
   var self = this
-  process.nextTick(function () {
+  setImmediate(function () {
     try {
       var $dom = _xmldom_parser.parseFromString(xml, 'text/xml')
       return cb(null, $dom)
@@ -241,7 +243,7 @@ Gdsn.prototype.writeFile = function (filename, content, cb) {
 }
 
 Gdsn.prototype.getXmlStringForDom = function ($dom, cb) {
-  process.nextTick(function () {
+  setImmediate(function () {
     try {
       var xml = _xmldom_serializer.serializeToString($dom)
       return cb(null, xml)
@@ -471,8 +473,109 @@ Gdsn.prototype.validateGtin = function (gtin) {
   return checkDigit == numbers[13]
 }
 
-//////////////////////////////////// not yet used for anything: /////////////////////////
 
+//// new cheerio dom approach, like jquery ////
+
+Gdsn.prototype.cheerioFromFile = function (filename, cb) {
+  var self = this
+  self.readFile(filename, function (err, xml) {
+    if (err) return cb(err)
+    log('Gdsn.cheerioFromFile  : read ' + filename + ' (' + Buffer.byteLength(xml) + ' bytes)')
+    self.cheerioFromString(xml, cb)
+  })
+}
+
+Gdsn.prototype.cheerioFromString = function (xml, cb) {
+  var self = this
+  setImmediate(function () {
+    try {
+      var $dom = cheerio.load(xml, { 
+        _:0
+        , normalizeWhitespace: true
+        , xmlMode: true
+      })
+      cb(null, $dom)
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+Gdsn.prototype.cheerioToFile = function (filename, $, cb) {
+  var self = this
+  var xml = $.html()
+  this.writeFile(filename, xml, function (err, size) {
+    if (err) return cb(err)
+    return cb(null, 'cin cheerio info finished ' + size)
+  })
+}
+
+Gdsn.prototype.cheerioCinInfoFromFile = function (cinInFile, cb) {
+
+  log('cheerioCinInfoFromFile for file ' + cinInFile)
+
+  var self = this
+  this.cheerioFromFile(cinInFile, function (err, $) {
+
+    console.log('cheerio: ' + $)
+
+    try {
+      var info = {}
+      info.ts = Date.now()
+
+      info.responseOutFile = self.opts.outbox_dir + '/out_cin_response_to_other_dp_'   + info.ts + '.xml'
+      info.forwardOutFile  = self.opts.outbox_dir + '/out_cin_forward_to_local_party_' + info.ts + '.xml'
+
+      info.item_count = 0
+      info.items = []
+      
+      console.log('recipient: ' + $('dataRecipient').first().text())
+      console.log('version: ' + $('sh\\:HeaderVersion').text())
+
+      $('tradeItem').each(function () {
+
+        $('tradeItemIdentification', this).each(function () {
+          info.item_count++
+          console.log('trade item: ', info.item_count)
+
+          // to get the gtin value:
+          var gtin = $('gtin', this).text()
+          console.log('raw gtin ' + gtin)
+
+          while (gtin && gtin.length < 14) gtin += '0' + gtin
+          console.log('normalized gtin-14 ' + gtin)
+
+          // to set the gtin value:
+          console.log('gtin: ' + $('gtin', this).text(gtin))
+
+          $('tradeItemIdentification additionalTradeItemIdentification', this).each(function () {
+            var el = $(this)
+            console.log('item addl id: %s (type: %s)'
+              , el.find('additionalTradeItemIdentificationValue').text()
+              , el.find('additionalTradeItemIdentificationType').text()
+            )
+          })
+        })
+
+        var en_name = $('functionalName description', this).filter(function () {
+          return $('language languageISOCode', this).text() === 'en'
+        }).find('shortText').text()
+        console.log('english functional name: ' + en_name)
+
+        console.log('tiXml: <tradeItem>' + $(this).html() + '</tradeItem>')
+        console.log('========================================')
+      })
+
+      cb(null, info)
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+//// documentation, not yet used for anything ////
 Gdsn.prototype.messageTypes = [
     {
         name: 'cin_from_local_tp',
@@ -531,3 +634,4 @@ Gdsn.prototype.messageTypes = [
         gtins: 'array of gtins for all trade items'
     }
 ]
+

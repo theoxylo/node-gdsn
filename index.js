@@ -26,7 +26,7 @@ function Gdsn(opts) {
 
   this.opts = opts
 
-  require('./lib/xpath_dom.js')(this)
+  require('./lib/xpath_dom.js')(this) // adds this.dom
 }
 
 Gdsn.prototype.getTradeItemInfo = function (raw_xml, msg_info) {
@@ -94,8 +94,8 @@ Gdsn.prototype.clean_xml = function (raw_xml) {
   if (!match || !match[0]) return ''
   var clean_xml = match[0]
   clean_xml = clean_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
-  clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]?[^:>]:/g, '<')                      // remove open tag ns prefix <abc:tag>
-  clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]?[^:>]:/g, '<\/')                    // remove close tag ns prefix </abc:tag>
+  clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]+[^:>]:/g, '<')                      // remove open tag ns prefix <abc:tag>
+  clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]+[^:>]:/g, '<\/')                    // remove close tag ns prefix </abc:tag>
   clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
   clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
   return clean_xml
@@ -161,7 +161,7 @@ Gdsn.prototype.cheerio_from_file = function (filename, cb) {
 Gdsn.prototype.cheerio_from_string = function (xml, cb) {
   setImmediate(function () {
     try {
-      log('cheerio_from_string input xml: ' + xml)
+      log('cheerio_from_string input xml length: ' + (xml && xml.length) || 0)
       var $dom = cheerio.load(xml, { 
         _:0
         , normalizeWhitespace: true
@@ -264,6 +264,7 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
         , receiver    : receiver
       }
 
+      /*
       $('tradeItem').each(function () {
         item_count++
 
@@ -292,13 +293,10 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
         // child items
         item.child_count = $('tradeItem nextLowerLevelTradeItemInformation quantityOfChildren').first().text()
         item.child_gtins = $('tradeItem nextLowerLevelTradeItemInformation childTradeItem tradeItemIdentification gtin')
-        /*
         if (item.child_count != item.child_gtins.length) {
           log('WARNING: child count ' + item.child_count + ' does not match child gtins found: ' + item.child_gtins.join(', '))
         }
-        */
 
-        /*
         var en_name = $('functionalName description', this).filter(function () {
           return $('language languageISOCode', this).text() === 'en'
         }).find('shortText').text()
@@ -311,7 +309,6 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
             , el.find('additionalTradeItemIdentificationType').text()
           )
         })
-        */
 
         trade_items.push(item)
       })
@@ -319,6 +316,7 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
       msg_info.item_count = item_count
       msg_info.gtins = gtins
       msg_info.trade_items = trade_items
+      */
 
       cb(null, msg_info)
     }

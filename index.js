@@ -5,26 +5,26 @@ var log = console.log || function (msg) {}
 
 module.exports = Gdsn
 
-function Gdsn(opts) {
+function Gdsn(config) {
 
-  if (!(this instanceof Gdsn)) return new Gdsn(opts)
+  if (!(this instanceof Gdsn)) return new Gdsn(config)
 
-  opts = opts || {}
-  if (!opts.templatePath)    opts.templatePath    = __dirname + '/templates'
-  if (!opts.homeDataPoolGln) opts.homeDataPoolGln = '0000000000000'
-  if (!opts.outbox_dir)      opts.outbox_dir      = opts.out_dir || __dirname + '/outbox'
+  config = config || {clean_newline: true}
+  if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
+  if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
+  if (!config.outbox_dir)      config.outbox_dir      = config.out_dir || __dirname + '/outbox'
 
-  log = opts.log || log
+  log = config.log || log
 
   //log('GDSN options:')
-  //log(opts)
+  //log(config)
 
-  if (!this.validateGln(opts.homeDataPoolGln)) {
-    log('Error: invalid home data pool GLN: ' + opts.homeDataPoolGln)
+  if (!this.validateGln(config.homeDataPoolGln)) {
+    log('Error: invalid home data pool GLN: ' + config.homeDataPoolGln)
     process.exit(1)
   }
 
-  this.opts = opts
+  this.config = config
 
   require('./lib/xpath_dom.js')(this) // adds this.dom
 }
@@ -93,9 +93,10 @@ Gdsn.prototype.clean_xml = function (raw_xml) {
   var match = raw_xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
   if (!match || !match[0]) return ''
   var clean_xml = match[0]
-  clean_xml = clean_xml.replace(/>\s+</g, '><') // remove extra whitespace between tags
-  clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]+[^:>]:/g, '<')                      // remove open tag ns prefix <abc:tag>
-  clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]+[^:>]:/g, '<\/')                    // remove close tag ns prefix </abc:tag>
+  clean_xml = clean_xml.replace(/>\s*</g, '><') // remove extra whitespace between tags
+  clean_xml = clean_xml.replace(/></g, '>\n<') // add line return between tags
+  clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]*[^:>]:/g, '<')                      // remove open tag ns prefix <abc:tag>
+  clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]*[^:>]:/g, '<\/')                    // remove close tag ns prefix </abc:tag>
   clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
   clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
   return clean_xml

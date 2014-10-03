@@ -1,5 +1,6 @@
 var fs          = require('fs')
 var cheerio     = require('cheerio')
+var MessageInfo = require('./lib/MessageInfo')
 
 var log = console.log || function (msg) {}
 
@@ -47,46 +48,6 @@ Gdsn.prototype.writeFile = function (filename, content, cb) {
     log('Gdsn.writeFile: ' + filename + ' (' + size + ' bytes)')
     return cb(null, size)
   })
-}
-
-Gdsn.prototype.getMessageInfoFromString = function (xml, info) {
-  if (!info.msg_id) {
-    var match = xml.match(/InstanceIdentifier>([^<\/]*)<\//)
-    info.msg_id = match && match.length == 2 && match[1]
-    if (info.msg_id) log('msg id: ' + info.msg_id)
-  }
-  if (!info.created_ts) {
-    var match = xml.match(/CreationDateAndTime>([.0-9T:-]*)</)
-    if (match && match[1]) {
-      var created_date_time = match[1]
-      log('create date time: ' + created_date_time)
-      info.created_ts = (new Date(created_date_time)).getTime()
-      if (info.created_ts) log('create timestamp: ' + info.created_ts)
-    }
-  }
-  if (!info.msg_type) {
-    var match = xml.match(/Type>([a-zA-Z]{1,})</)
-    info.msg_type = match && match.length == 2 && match[1]
-    if (info.msg_type) log('msg_type: ' + info.msg_type)
-  }
-
-  if (info.msg_type == 'catalogueItemNotification') {
-    if (!info.recipient) {
-      var match = xml.match(/dataRecipient>(\d{13})</)
-      info.recipient = match && match.length == 2 && match[1]
-      if (info.recipient) log('data recipient: ' + info.recipient)
-    }
-    if (!info.source_dp) {
-      var match = xml.match(/sourceDataPool>(\d{13})</)
-      info.source_dp = match && match.length == 2 && match[1]
-      if (info.source_dp) log('source_dp: ' + info.source_dp)
-    }
-  }
-
-  var complete = (info.msg_id && info.created_ts && info.msg_type)
-    && (info.msg_type != 'catalogueItemNotification' || (info.recipient && info.source_dp))
-
-  return complete
 }
 
 Gdsn.prototype.clean_xml = function (raw_xml) {
@@ -203,13 +164,14 @@ Gdsn.prototype.cheerio_to_file = function (filename, $, cb) {
 Gdsn.prototype.msg_string_to_msg_info = function(raw_xml, cb) {
   log('gdsn msg_string_to_msg_info called with xml length ' + raw_xml.length)
   var clean_xml = this.clean_xml(raw_xml)
+  //log('gdsn msg_string_to_msg_info cleaned xml: ' + clean_xml)
   var self = this
   this.cheerio_from_string(clean_xml, function (err, $) {
-    self.cheerio_to_msg_info($, function (err, info) {
+    self.cheerio_to_msg_info($, function (err, msg_info) {
       if (err) return cb(err)
-      info.xml     = clean_xml
-      info.raw_xml = raw_xml
-      cb(null, info)
+      msg_info.xml     = clean_xml
+      msg_info.raw_xml = raw_xml
+      cb(null, msg_info)
     })
   })
 }
@@ -226,99 +188,112 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
   var self = this
   setImmediate(function () {
     try {
-      var msg_type = $('DocumentIdentification Type').text()
-      log('msg_type: ' + msg_type)
+      var msg_info = new MessageInfo()
 
-      var msg_id = $('DocumentIdentification InstanceIdentifier').text()
-      log('msg_id: ' + msg_id)
+      msg_info.msg_type = $('DocumentIdentification Type').text()
+      log('msg_type: ' + msg_info.msg_type)
 
-      var sender = $('StandardBusinessDocumentHeader Sender Identifier').text()
-      log('sender gln: ' + sender)
+      msg_info.msg_id = $('DocumentIdentification InstanceIdentifier').text()
+      log('msg_id: ' + msg_info.msg_id)
 
-      var receiver = $('StandardBusinessDocumentHeader Receiver Identifier').text()
-      log('receiver gln: ' + receiver)
+      msg_info.sender = $('StandardBusinessDocumentHeader Sender Identifier').text()
+      log('sender gln: ' + msg_info.sender)
 
-      var recipient = $('dataRecipient').first().text()
-      log('data recipient gln: ' + recipient)
+      msg_info.receiver = $('StandardBusinessDocumentHeader Receiver Identifier').text()
+      log('receiver gln: ' + msg_info.receiver)
 
-      var source_dp = $('sourceDataPool').first().text()
-      log('source dp gln: ' + source_dp)
+      msg_info.source_dp = $('sourceDataPool').first().text()
+      log('source dp gln: ' + msg_info.source_dp)
 
       var created_date_time = $('DocumentIdentification CreationDateAndTime').text()
-      var ts = (new Date(created_date_time)).getTime()
-      log('created_ts: ' + ts)
+      msg_info.created_ts = (new Date(created_date_time)).getTime()
+      log('created_ts: ' + msg_info.created_ts)
 
-      var item_count = 0
-      var gtins = []
-      var trade_items = []
+      msg_info.version = $('HeaderVersion').text()
 
-      log('version: ' + $('HeaderVersion').text())
+      if (msg_info.msg_type == 'GDSNResponse') {
+        msg_info.request_msg_id = $('RequestingDocumentInstanceIdentifier').text()
+        log('request_msg_id: ' + msg_info.request_msg_id)
 
-      var msg_info = {
-          created_ts  : ts || 'na'
-        , modified_ts : Date.now()
-        , instance_id : msg_id || 'na'
-        , type        : msg_type || 'na'
-        , source_dp   : source_dp
-        , recipient   : recipient
-        , sender      : sender
-        , receiver    : receiver
+        var exception = $('gDSNException')
+        if (exception) msg_info.exception = exception.text()
+
+        msg_info.item_count = 0
+        msg_info.gtins = []
       }
 
-      /*
-      $('tradeItem').each(function () {
-        item_count++
+      // cin:
+      else if (msg_info.msg_type == 'catalogueItemNotification') {
 
-        var item = {}
-        item.raw_xml    = $(this).html()
-        item.created_ts = msg_info.created_ts
-        item.recipient  = msg_info.recipient
-        item.msg_id     = msg_info.instance_id
-        item.source_dp  = msg_info.source_dp
+        msg_info.provider = $('informationProviderOfTradeItem informationProvider gln').first().text()
+        log('data provider gln: ' + msg_info.provider)
 
-        var clean_xml = self.clean_xml(item.raw_xml)
-        item.xml = clean_xml
+        msg_info.recipient = $('dataRecipient').first().text()
+        log('data recipient gln: ' + msg_info.recipient)
 
-        item.gtin      = $('tradeItem tradeItemIdentification gtin', this).first().text()
-        gtins.push(item.gtin)
+        var item_count = 0
+        var gtins = []
 
-        item.provider  = $('tradeItem tradeItemInformation informationProviderOfTradeItem informationProvider gln').first().text()
-        item.tm        = $('tradeItem tradeItemInformation targetMarketInformation targetMarketCountryCode countryISOCode').first().text()
-        item.unit_type = $('tradeItem tradeItemUnitDescriptor').first().text()
-        item.gpc       = $('tradeItem tradeItemInformation classificationCategoryCode classificationCategoryCode').first().text()
-        item.brand     = $('tradeItem tradeItemInformation tradeItemDescriptionInformation brandName').first().text()
-        item.tm_sub    = $('tradeItem tradeItemInformation targetMarketInformation targetMarketSubdivisionCode countrySubDivisionISOCode').first().text()
-        if (!item.tm_sub) item.tm_sub = 'na'
-                            
+        $('tradeItem').each(function () {
+          item_count++
+          var clean_xml = self.clean_xml($(this).html())
+          var gtin = $('tradeItem tradeItemIdentification gtin', this).first().text()
+          log('found gtin ' + gtin)
+          gtins.push(gtin)
 
-        // child items
-        item.child_count = $('tradeItem nextLowerLevelTradeItemInformation quantityOfChildren').first().text()
-        item.child_gtins = $('tradeItem nextLowerLevelTradeItemInformation childTradeItem tradeItemIdentification gtin')
-        if (item.child_count != item.child_gtins.length) {
-          log('WARNING: child count ' + item.child_count + ' does not match child gtins found: ' + item.child_gtins.join(', '))
-        }
+          /*
+          var item = {}
+          item.raw_xml    = $(this).html()
+          item.created_ts = msg_info.created_ts
+          item.provider  = msg_info.recipient
+          item.recipient  = msg_info.recipient
+          item.msg_id     = msg_info.msg_id
+          item.source_dp  = msg_info.source_dp
 
-        var en_name = $('functionalName description', this).filter(function () {
-          return $('language languageISOCode', this).text() === 'en'
-        }).find('shortText').text()
-        log('english functional name: ' + en_name)
+          var clean_xml = self.clean_xml(item.raw_xml)
+          item.xml = clean_xml
 
-        $('tradeItemIdentification additionalTradeItemIdentification', this).each(function () {
-          var el = $(this)
-          log('item addl id: %s (type: %s)'
-            , el.find('additionalTradeItemIdentificationValue').text()
-            , el.find('additionalTradeItemIdentificationType').text()
-          )
+          item.gtin      = $('tradeItem tradeItemIdentification gtin', this).first().text()
+          gtins.push(item.gtin)
+
+          item.provider  = $('tradeItem tradeItemInformation informationProviderOfTradeItem informationProvider gln').first().text()
+          item.tm        = $('tradeItem tradeItemInformation targetMarketInformation targetMarketCountryCode countryISOCode').first().text()
+          item.unit_type = $('tradeItem tradeItemUnitDescriptor').first().text()
+          item.gpc       = $('tradeItem tradeItemInformation classificationCategoryCode classificationCategoryCode').first().text()
+          item.brand     = $('tradeItem tradeItemInformation tradeItemDescriptionInformation brandName').first().text()
+          item.tm_sub    = $('tradeItem tradeItemInformation targetMarketInformation targetMarketSubdivisionCode countrySubDivisionISOCode').first().text()
+          if (!item.tm_sub) item.tm_sub = 'na'
+                              
+
+          // child items
+          item.child_count = $('tradeItem nextLowerLevelTradeItemInformation quantityOfChildren').first().text()
+          item.child_gtins = $('tradeItem nextLowerLevelTradeItemInformation childTradeItem tradeItemIdentification gtin')
+          if (item.child_count != item.child_gtins.length) {
+            log('WARNING: child count ' + item.child_count + ' does not match child gtins found: ' + item.child_gtins.join(', '))
+          }
+
+          var en_name = $('functionalName description', this).filter(function () {
+            return $('language languageISOCode', this).text() === 'en'
+          }).find('shortText').text()
+          log('english functional name: ' + en_name)
+
+          $('tradeItemIdentification additionalTradeItemIdentification', this).each(function () {
+            var el = $(this)
+            log('item addl id: %s (type: %s)'
+              , el.find('additionalTradeItemIdentificationValue').text()
+              , el.find('additionalTradeItemIdentificationType').text()
+            )
+          })
+
+          trade_items.push(item)
+          */
         })
+        log('msg_string_to_msg_info found gtins: ' + gtins.join(' '))
 
-        trade_items.push(item)
-      })
-
-      msg_info.item_count = item_count
-      msg_info.gtins = gtins
-      msg_info.trade_items = trade_items
-      */
-
+        msg_info.item_count = item_count
+        msg_info.gtins = gtins
+        //msg_info.trade_items = trade_items
+      }
       cb(null, msg_info)
     }
     catch (err) {

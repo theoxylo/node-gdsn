@@ -189,40 +189,43 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
   setImmediate(function () {
     try {
       var msg_info = new MessageInfo()
-
       msg_info.msg_type = $('DocumentIdentification Type').text()
-      log('msg_type: ' + msg_info.msg_type)
-
       msg_info.msg_id = $('DocumentIdentification InstanceIdentifier').text()
-      log('msg_id: ' + msg_info.msg_id)
-
       msg_info.sender = $('StandardBusinessDocumentHeader Sender Identifier').text()
-      log('sender gln: ' + msg_info.sender)
-
       msg_info.receiver = $('StandardBusinessDocumentHeader Receiver Identifier').text()
-      log('receiver gln: ' + msg_info.receiver)
-
       msg_info.source_dp = $('sourceDataPool').first().text()
-      log('source dp gln: ' + msg_info.source_dp)
 
       var created_date_time = $('DocumentIdentification CreationDateAndTime').text()
       msg_info.created_ts = (new Date(created_date_time)).getTime()
-      log('created_ts: ' + msg_info.created_ts)
+      msg_info.version = $('DocumentIdentification TypeVersion').text()
 
-      msg_info.version = $('HeaderVersion').text()
-
+      // gdsn response/exception messages
       if (msg_info.msg_type == 'GDSNResponse') {
+
         msg_info.request_msg_id = $('RequestingDocumentInstanceIdentifier').text()
         log('request_msg_id: ' + msg_info.request_msg_id)
-
-        var exception = $('gDSNException')
-        if (exception) msg_info.exception = exception.text()
-
-        msg_info.item_count = 0
-        msg_info.gtins = []
+        // either it is an exception or a status reponse:
+        var exception = $('gDSNException').text() // just capture all text for xsd:complexType
+        if (exception) {
+          msg_info.status = 'ERROR'
+          msg_info.exception = exception
+        }
+        else {
+          if (!msg_info.status) msg_info.status = $('eANUCCResponse').first().attr('responseStatus')
+          if (!msg_info.status) msg_info.status = $('partyRegistrationResponse').first().attr('responseStatus')
+          if (!msg_info.status) msg_info.status = $('catalogueItemRegistrationResponse').first().attr('responseStatus')
+        }
       }
+      else if (msg_info.msg_type == 'catalogueItemConfirmation') {
 
-      // cin:
+        msg_info.status = $('catalogueItemConfirmationState').first().attr('state')
+        log('cic state: ' + msg_info.status)
+        if (msg_info.status == 'REVIEW') {
+          msg_info.exception = $('catalogueItemConfirmationStatus').text() || 'na'
+          log('review message: ' + msg_info.exception)
+        }
+        msg_info.recipient = $('catalogueItemConfirmationState recipientGLN').text()
+      }
       else if (msg_info.msg_type == 'catalogueItemNotification') {
 
         msg_info.provider = $('informationProviderOfTradeItem informationProvider gln').first().text()
@@ -231,69 +234,33 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
         msg_info.recipient = $('dataRecipient').first().text()
         log('data recipient gln: ' + msg_info.recipient)
 
-        var item_count = 0
         var gtins = []
-
         $('tradeItem').each(function () {
-          item_count++
-          var clean_xml = self.clean_xml($(this).html())
           var gtin = $('tradeItem tradeItemIdentification gtin', this).first().text()
-          log('found gtin ' + gtin)
           gtins.push(gtin)
-
-          /*
-          var item = {}
-          item.raw_xml    = $(this).html()
-          item.created_ts = msg_info.created_ts
-          item.provider  = msg_info.recipient
-          item.recipient  = msg_info.recipient
-          item.msg_id     = msg_info.msg_id
-          item.source_dp  = msg_info.source_dp
-
-          var clean_xml = self.clean_xml(item.raw_xml)
-          item.xml = clean_xml
-
-          item.gtin      = $('tradeItem tradeItemIdentification gtin', this).first().text()
-          gtins.push(item.gtin)
-
-          item.provider  = $('tradeItem tradeItemInformation informationProviderOfTradeItem informationProvider gln').first().text()
-          item.tm        = $('tradeItem tradeItemInformation targetMarketInformation targetMarketCountryCode countryISOCode').first().text()
-          item.unit_type = $('tradeItem tradeItemUnitDescriptor').first().text()
-          item.gpc       = $('tradeItem tradeItemInformation classificationCategoryCode classificationCategoryCode').first().text()
-          item.brand     = $('tradeItem tradeItemInformation tradeItemDescriptionInformation brandName').first().text()
-          item.tm_sub    = $('tradeItem tradeItemInformation targetMarketInformation targetMarketSubdivisionCode countrySubDivisionISOCode').first().text()
-          if (!item.tm_sub) item.tm_sub = 'na'
-                              
-
-          // child items
-          item.child_count = $('tradeItem nextLowerLevelTradeItemInformation quantityOfChildren').first().text()
-          item.child_gtins = $('tradeItem nextLowerLevelTradeItemInformation childTradeItem tradeItemIdentification gtin')
-          if (item.child_count != item.child_gtins.length) {
-            log('WARNING: child count ' + item.child_count + ' does not match child gtins found: ' + item.child_gtins.join(', '))
-          }
-
-          var en_name = $('functionalName description', this).filter(function () {
-            return $('language languageISOCode', this).text() === 'en'
-          }).find('shortText').text()
-          log('english functional name: ' + en_name)
-
-          $('tradeItemIdentification additionalTradeItemIdentification', this).each(function () {
-            var el = $(this)
-            log('item addl id: %s (type: %s)'
-              , el.find('additionalTradeItemIdentificationValue').text()
-              , el.find('additionalTradeItemIdentificationType').text()
-            )
-          })
-
-          trade_items.push(item)
-          */
         })
-        log('msg_string_to_msg_info found gtins: ' + gtins.join(' '))
-
-        msg_info.item_count = item_count
         msg_info.gtins = gtins
-        //msg_info.trade_items = trade_items
       }
+      else if (msg_info.msg_type == 'catalogueItemPublication') {
+      }
+      else if (msg_info.msg_type == 'catalogueItemSubscription') {
+      }
+
+      // for most messages, use the command type as the status
+      if (!msg_info.status) msg_info.status = $('documentCommandHeader').first().attr('type') || 'na'
+
+      // item ref is used by CIC, CIP, CIS
+      var catalog_item_ref = $('catalogueItemReference')
+      if (catalog_item_ref.length) {
+        msg_info.gtin     = $('gtin', catalog_item_ref).first().text()
+        msg_info.provider = $('dataSource', catalog_item_ref).first().text()
+        msg_info.tm       = $('countryISOCode', catalog_item_ref).first().text()
+        msg_info.tm_sub   = $('countrySubDivisionISOCode', catalog_item_ref).first().text() || 'na'
+      }
+
+      msg_info.item_count = (msg_info.gtins && msg_info.gtins.length) || (msg_info.gtin && 1)
+
+      log('final msg_info data: ' + JSON.stringify(msg_info))
       cb(null, msg_info)
     }
     catch (err) {

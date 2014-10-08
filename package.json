@@ -39,5 +39,8 @@
   "bugs": {
     "url": "https://github.com/theoxylo/node-gdsn/issues"
   },
-  "homepage": "https://github.com/theoxylo/node-gdsn"
+  "homepage": "https://github.com/theoxylo/node-gdsn",
+  "_id": "gdsn@0.1.2",
+  "_resolved": "git://github.com/theoxylo/node-gdsn#5bb6b122ab0e7168e012b05ecf7b59cd61d856dd",
+  "_from": "gdsn@git://github.com/theoxylo/node-gdsn"
 }

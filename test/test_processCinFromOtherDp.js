@@ -7,7 +7,7 @@ test('processCinFromOtherDp', function (t) {
     homeDataPoolGln: "1100001011285"
     , outbox_dir: __dirname + '/outbox'
   })
-  gdsn.processCinFromOtherDp(__dirname + '/cin_from_other_dp.xml', function(err, result) {
+  gdsn.dom.processCinFromOtherDp(__dirname + '/cin_from_other_dp.xml', function(err, result) {
     if (err) throw err
     console.log('result: ' + result)
     t.ok(true, result)

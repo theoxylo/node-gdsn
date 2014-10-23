@@ -98,6 +98,17 @@ module.exports = messageTypes = [
     , command:
 },
 
+{ name: 'cin'
+    , msg_type: 'catalogueItemNotification'
+    , direction: 'both'
+    , gtin:
+    , provider:
+    , tm:
+    , tm_sub:
+    , command:
+    , recipient
+},
+
 { name: 'cic'
     , msg_type: 'catalogueItemConfirmation'
     , direction: 'both'

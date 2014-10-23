@@ -110,84 +110,17 @@ Gdsn.prototype.validateGtin = function (gtin) {
 // xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
 // however, the cheerio version must not have namespace prefixes! so we use the clean_xml util first
 
-Gdsn.prototype.cheerio_from_file = function (filename, cb) {
+Gdsn.prototype.msg_string_to_msg_info = function(raw_xml, cb) {
+  log('gdsn msg_string_to_msg_info called with raw xml length ' + raw_xml.length)
   var self = this
-  this.readFile(filename, function (err, xml) {
-    if (err) return cb(err)
-    log('Gdsn.cheerio_from_file  : read ' + filename + ' (' + Buffer.byteLength(xml) + ' bytes)')
-    var clean_xml = self.clean_xml(xml)
-    self.cheerio_from_string(clean_xml, cb)
-  })
-}
-
-Gdsn.prototype.cheerio_from_string = function (xml, cb) {
   setImmediate(function () {
     try {
-      log('cheerio_from_string input xml length: ' + (xml && xml.length) || 0)
-      var $dom = cheerio.load(xml, { 
+      var clean_xml = self.clean_xml(raw_xml)
+      var $ = cheerio.load(clean_xml, { 
         _:0
         , normalizeWhitespace: true
         , xmlMode: true
       })
-      cb(null, $dom)
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
-}
-
-Gdsn.prototype.cheerio_to_string = function ($, cb) {
-  setImmediate(function () {
-    try {
-      var xml = $.html()
-      cb(null, xml)
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
-}
-
-Gdsn.prototype.cheerio_to_file = function (filename, $, cb) {
-  var xml = $.html()
-  var self = this
-  this.cheerio_to_string($, function (err, xml) {
-    if (err) return cb(err)
-    self.writeFile(filename, xml, function(err, size) {
-      if (err) return cb(err)
-      cb(null, 'cheerio_to_file wrote ' + size + ' bytes')
-    })
-  })
-}
-
-Gdsn.prototype.msg_string_to_msg_info = function(raw_xml, cb) {
-  log('gdsn msg_string_to_msg_info called with xml length ' + raw_xml.length)
-  var clean_xml = this.clean_xml(raw_xml)
-  //log('gdsn msg_string_to_msg_info cleaned xml: ' + clean_xml)
-  var self = this
-  this.cheerio_from_string(clean_xml, function (err, $) {
-    self.cheerio_to_msg_info($, function (err, msg_info) {
-      if (err) return cb(err)
-      msg_info.xml     = clean_xml
-      msg_info.raw_xml = raw_xml
-      cb(null, msg_info)
-    })
-  })
-}
-
-Gdsn.prototype.cheerioCinInfoFromFile = function (cinInFile, cb) {
-  log('cheerioCinInfoFromFile for file ' + cinInFile)
-  var self = this
-  this.cheerio_from_file(cinInFile, function (err, $) {
-    self.cheerio_to_msg_info($, cb)
-  })
-}
-
-Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
-  var self = this
-  setImmediate(function () {
-    try {
       var msg_info = new MessageInfo()
       msg_info.msg_type = $('DocumentIdentification Type').text()
       msg_info.msg_id = $('DocumentIdentification InstanceIdentifier').text()
@@ -260,7 +193,10 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
 
       msg_info.item_count = (msg_info.gtins && msg_info.gtins.length) || (msg_info.gtin && 1)
 
-      log('final msg_info data: ' + JSON.stringify(msg_info))
+      msg_info.xml     = clean_xml
+      msg_info.raw_xml = raw_xml
+
+      //log('final msg_info data: ' + JSON.stringify(msg_info))
       cb(null, msg_info)
     }
     catch (err) {
@@ -268,4 +204,23 @@ Gdsn.prototype.cheerio_to_msg_info = function($, cb) {
     }
   })
 }
+
+/*
+Gdsn.prototype.cheerio_to_file = function (filename, $, cb) {
+  setImmediate(function () {
+    try {
+      var xml = $.html()
+      fs.writeFile(filename, xml, function (err) {
+        if (err) return cb(err)
+        var size = Buffer.byteLength(xml)
+        log('Gdsn writeFile: ' + filename + ' (' + size + ' bytes)')
+        cb(null, 'cheerio_to_file wrote ' + size + ' bytes')
+      })
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+*/
 

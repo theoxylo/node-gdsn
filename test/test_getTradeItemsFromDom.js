@@ -7,10 +7,10 @@ test('getTradeItemsFromDom', function (t) {
 
   var gdsn   = new Gdsn()
 
-  gdsn.getXmlDomForFile(__dirname + '/cin_from_other_dp.xml', function(err, $cin) {
+  gdsn.dom.getXmlDomForFile(__dirname + '/cin_from_other_dp.xml', function(err, $cin) {
     if (err) throw err
 
-    var items = gdsn.getTradeItemsForDom($cin)
+    var items = gdsn.dom.getTradeItemsForDom($cin)
 
     for (i in items) {
       var item = items[i]

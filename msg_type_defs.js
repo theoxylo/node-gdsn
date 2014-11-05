@@ -16,9 +16,10 @@
 //  5. catalogueItemNotification
 //  6. catalogueItemConfirmation
 //  7. requestForCatalogueItemNotification
-//  8. GDSNResponse
+//  8. registryPartyDataDump
+//  9. GDSNResponse
 //
-// The first 7 types are straightforward: the message may contain several transaction/command/documentCommand structures,
+// The first 8 types are straightforward: the message may contain several transaction/command/documentCommand structures,
 // each containing:
 //
 //  1. documentCommandHeader@type (e.g. ADD, CHANGE_BY_REFRESH, CORRECT, DELETE)
@@ -59,84 +60,88 @@
 //      *. transactionException.*.gDSNError (same as above, only nested for command/document/attribute hierarchy)
 //
 
-module.exports = messageTypes = [
+module.exports = messageTypes = {
+   bpr     : _.find(templates, function () { arguments[0]['name'] == 'bpr'})
+  ,cir     : _.find(templates, function () { arguments[0]['name'] == 'cir'})
+  ,cip     : _.find(templates, function () { arguments[0]['name'] == 'cip'})
+  ,cis     : _.find(templates, function () { arguments[0]['name'] == 'cis'})
+  ,cin     : _.find(templates, function () { arguments[0]['name'] == 'cin'})
+  ,cic     : _.find(templates, function () { arguments[0]['name'] == 'cic'})
+  ,rfcin   : _.find(templates, function () { arguments[0]['name'] == 'rfcin'})
+  ,rpdd    : _.find(templates, function () { arguments[0]['name'] == 'rpdd'})
+  ,error   : _.find(templates, function () { arguments[0]['name'] == 'error'})
+  ,accepted: _.find(templates, function () { arguments[0]['name'] == 'accepted'})
+}
+
+
+var templates = [
 { name: 'bpr'
     , msg_type: 'basicPartyRegistration'
-    , party_gln: 'gln of party being added or updated'
-    , direction: 'both'
+    , status  : ['ADD', 'CORRECT', 'CHANGE_BY_REFRESH', 'DELETE']
 },
 
 { name: 'cir'
     , msg_type: 'catalogueItemRegistration'
-    , direction: 'outbound'
     , gtin:
     , provider:
     , tm:
     , tm_sub:
-    , command:
+    , status  : ['ADD', 'CORRECT']
 },
 
 { name: 'cip'
     , msg_type: 'catalogueItemPublication'
-    , direction: 'inbound'
     , gtin:
     , provider:
     , tm:
     , tm_sub:
     , recipient:
-    , command:
+    , initial_load:
+    , status  : ['ADD', 'DELETE']
 },
 
 { name: 'cis'
     , msg_type: 'catalogueItemSubscription'
-    , direction: 'both'
     , gtin:
     , provider:
     , tm:
     , gpc:
     , recipient:
-    , command:
+    , status  : ['ADD', 'DELETE']
 },
 
 { name: 'cin'
-    , msg_type: 'catalogueItemNotification'
-    , direction: 'both'
     , gtin:
     , provider:
     , tm:
     , tm_sub:
-    , command:
     , recipient
+    , status  : ['ADD', 'CORRECT', 'CHANGE_BY_REFRESH', 'DELETE']
 },
 
 { name: 'cic'
     , msg_type: 'catalogueItemConfirmation'
-    , direction: 'both'
+    , status: ['ACCEPTED', 'REJECTED', 'REVIEW', 'SYNCHRONISED']
 },
 
 { name: 'rfcin'
     , msg_type: 'requestForCatalogueItemNotification'
-    , direction: 'both'
+    , status  : ['ADD']
 },
 
-{ name: 'bprr'
-    , msg_type: 'GDSNResponse'
-    , direction: 'inbound'
-},
-
-{ name: 'cirr'
-    , msg_type: 'GDSNResponse'
-    , direction: 'inbound'
+{ name: 'rpdd'
+    , msg_type: 'registryPartyDataDump'
+    , status  : ['ADD']
 },
 
 { name: 'accepted'
     , msg_type: 'GDSNResponse'
-    , direction: 'both'
+    , status: ['ACCEPTED']
 },
 
 { name: 'error'
     , msg_type: 'GDSNResponse'
-    , direction: 'both'
+    , status: ['ERROR']
 },
 
 { name: 'cin_from_local_tp',

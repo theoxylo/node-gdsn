@@ -1,12 +1,9 @@
-var fs          = require('fs')
 var cheerio     = require('cheerio')
 var MessageInfo = require('./lib/MessageInfo')
 
 var log = console.log
 
 module.exports = Gdsn = function (config) {
-
-  MessageInfo = MessageInfo(config) // init constructor
 
   if (!(this instanceof Gdsn)) return new Gdsn(config)
 
@@ -21,6 +18,9 @@ module.exports = Gdsn = function (config) {
   }
 
   this.config = config
+  config.gdsn = this
+
+  this.MessageInfo = MessageInfo(config) // configure constructor
 
   require('./lib/xpath_dom.js')(this) // adds this.dom
 }
@@ -29,33 +29,24 @@ Gdsn.prototype.getTradeItemInfo = function (xml, msg_header_info) {
   return this.dom.getTradeItemInfo(xml, msg_header_info)
 }
 
-Gdsn.prototype.readFile = function (filename, cb) {
-  fs.readFile(filename, 'utf8', function (err, content) {
-    if (err) return cb(err)
-    return cb(null, content)
-  })
-}
-
-Gdsn.prototype.writeFile = function (filename, content, cb) {
-  fs.writeFile(filename, content, function (err) {
-    if (err) return cb(err)
-    var size = Buffer.byteLength(content)
-    log('Gdsn.writeFile: ' + filename + ' (' + size + ' bytes)')
-    return cb(null, size)
-  })
-}
-
+// removes extra whitespace between tags, but adds a new line for easy diff
 Gdsn.prototype.trim_xml = function (xml) {
   var match = xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
-  if (!match || !match[0] || !match[0].length) return ''
-  return match[0].replace(/>\s*</g, '><') // remove extra whitespace between tags
+  if (!match || !match[0] || !match[0].length) {
+    log('WARNING could not parse string as xml: ' + xml)
+    return ''
+  }
+  var result = match[0]
+  result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
+  result = result.replace(/></g, '>\n<')  // add line return between tags
+  return result
 }
 
 Gdsn.prototype.clean_xml = function (xml, skip_trim) {
   if (!xml || !xml.length) return ''
   var clean_xml = ''
   if (!skip_trim) clean_xml = this.trim_xml(xml)
-  clean_xml = clean_xml.replace(/></g, '>\n<')                                         // add line return between tags
+  else clean_xml = xml
   clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]*[^:>]:/g, '<')                   // remove open tag ns prefix <abc:tag>
   clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]*[^:>]:/g, '<\/')                 // remove close tag ns prefix </abc:tag>
   clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
@@ -110,11 +101,11 @@ Gdsn.prototype.validateGtin = function (gtin) {
 // xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
 // however, the cheerio version must not have namespace prefixes! so we use the clean_xml util first
 
-Gdsn.prototype.msg_string_to_msg_info = function(config, xml, cb) {
+Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
   log('gdsn msg_string_to_msg_info called with raw xml length ' + xml.length)
   setImmediate(function () {
     try {
-      var msg_info = new MessageInfo().populate(xml)
+      var msg_info = new MessageInfo(xml)
       cb(null, msg_info)
     }
     catch (err) {
@@ -122,23 +113,3 @@ Gdsn.prototype.msg_string_to_msg_info = function(config, xml, cb) {
     }
   })
 }
-
-/*
-Gdsn.prototype.cheerio_to_file = function (filename, $, cb) {
-  setImmediate(function () {
-    try {
-      var xml = $.html()
-      fs.writeFile(filename, xml, function (err) {
-        if (err) return cb(err)
-        var size = Buffer.byteLength(xml)
-        log('Gdsn writeFile: ' + filename + ' (' + size + ' bytes)')
-        cb(null, 'cheerio_to_file wrote ' + size + ' bytes')
-      })
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
-}
-*/
-

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 (function () {
 
   if (process.argv.length < 3) {
@@ -6,6 +7,7 @@
   }
 
   var Gdsn = require(__dirname + '/../index.js')
+  var fs = require('fs')
 
   var gdsn = new Gdsn({
     homeDataPoolGln: '1100001011285'
@@ -15,13 +17,13 @@
 
   var processFile = function (filename) {
     console.log('Processing file: ' + filename)
-    gdsn.readFile(filename, function (err, content) {
+    fs.readFile(filename, 'utf8', function (err, content) {
       if (err) throw err
       console.log('read raw file: ' + filename + ' (' + Buffer.byteLength(content) + ' bytes)')
       var clean_xml = gdsn.clean_xml(content)
       if (clean_xml) {
         filename += '_clean.xml'
-        gdsn.writeFile(filename, clean_xml, function (err) {
+        fs.writeFile(filename, clean_xml, function (err) {
           if (err) throw err
           console.log('wrote clean file: ' + filename + ' (' + Buffer.byteLength(clean_xml) + ' bytes)')
         })

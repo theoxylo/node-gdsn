@@ -1,5 +1,7 @@
 (function () {
   
+  var fs = require('fs')
+
   if (process.argv.length < 4) {
     console.log("usage: node cin_respond.js dataPoolGln file1 file2 ...")
     process.exit(1)
@@ -18,17 +20,17 @@
   
   var processFile = function(filename) {
     console.log('Processing inbound CIN file: ' + filename)
-    gdsn.getXmlDomForFile(filename, function(err, $cin) {
+    gdsn.dom.getXmlDomForFile(filename, function(err, $cin) {
       if (err) {
         console.log("Error: " + err.message)
         process.exit(1)
       }
-      gdsn.forwardCinFromOtherDP($cin, function(err, forwardXml) {
+      gdsn.dom.forwardCinFromOtherDP($cin, function(err, forwardXml) {
         if (err) {
           console.log("Error: " + err.message)
           process.exit(1)
         }
-        gdsn.writeFile(filename + "_forward", forwardXml, function(err) {
+        fs.writeFile(filename + "_forward", forwardXml, function(err) {
           if (err) {
             console.log("Error: " + err.message)
             process.exit(1)
@@ -42,4 +44,4 @@
     processFile(process.argv.pop())
   }
   
-}())
+})()

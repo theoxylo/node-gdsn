@@ -1,5 +1,4 @@
 var cheerio     = require('cheerio')
-var MessageInfo = require('./lib/MessageInfo')
 
 var log = console.log
 
@@ -20,7 +19,8 @@ module.exports = Gdsn = function (config) {
   this.config = config
   config.gdsn = this
 
-  this.MessageInfo = MessageInfo(config) // configure constructor
+  this.ItemInfo    = require('./lib/ItemInfo')(config)
+  this.MessageInfo = require('./lib/MessageInfo')(config)
 
   require('./lib/xpath_dom.js')(this) // adds this.dom
 }
@@ -103,10 +103,27 @@ Gdsn.prototype.validateGtin = function (gtin) {
 
 Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
   log('gdsn msg_string_to_msg_info called with raw xml length ' + xml.length)
+  var self = this
   setImmediate(function () {
     try {
-      var msg_info = new MessageInfo(xml)
+      var msg_info = new self.MessageInfo(xml)
+      log('new msg_info msg_id: ' + msg_info.msg_id)
       cb(null, msg_info)
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
+  log('gdsn item_string_to_item_info called with raw xml length ' + xml.length)
+  var self = this
+  setImmediate(function () {
+    try {
+      var item_info = new self.ItemInfo(xml)
+      log('new item_info msg_id: ' + item_info.msg_id)
+      cb(null, item_info)
     }
     catch (err) {
       cb(err)

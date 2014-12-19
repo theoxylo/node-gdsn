@@ -21,6 +21,7 @@ module.exports = Gdsn = function (config) {
 
   this.ItemInfo    = require('./lib/ItemInfo')(config)
   this.MessageInfo = require('./lib/MessageInfo')(config)
+  this.MessageInfo3 = require('./lib/MessageInfo3')(config)
 
   require('./lib/xpath_dom.js')(this) // adds this.dom
 }
@@ -107,6 +108,21 @@ Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
   setImmediate(function () {
     try {
       var msg_info = new self.MessageInfo(xml)
+      log('new msg_info msg_id: ' + msg_info.msg_id)
+      cb(null, msg_info)
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+Gdsn.prototype.msg_string_to_msg_info3 = function(xml, cb) {
+  log('gdsn msg_string_to_msg_info called with raw xml length ' + xml.length)
+  var self = this
+  setImmediate(function () {
+    try {
+      var msg_info = new self.MessageInfo3(xml)
       log('new msg_info msg_id: ' + msg_info.msg_id)
       cb(null, msg_info)
     }

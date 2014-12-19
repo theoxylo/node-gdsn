@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<party_registration_response:partyRegistrationResponseMessage xmlns:party_registration_response="urn:gs1:gdsn:party_registration_response:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:party_registration_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PartyRegistrationResponse.xsd">
+    <sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1">0614141810017</sh:Identifier>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.1</sh:TypeVersion>
+			<sh:InstanceIdentifier>gr_prr_rand123abc</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2014-12-15T12:00:10.000-05:00</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+	</sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>gr_prr_rand123abc_t1</entityIdentification>
+            <contentOwner>
+                <gln>0614141810017</gln>
+            </contentOwner>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>gr_prr_rand123abc_t1_c1</entityIdentification>
+                    <contentOwner>
+                        <gln>0614141810017</gln>
+                    </contentOwner>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <party_registration_response:partyRegistrationResponse>
+                <creationDateTime>2014-12-15T12:00:10.000-05:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <partyRegistrationResponseIdentification>
+                    <entityIdentification>bpr_add_1100001011292_t1_c1_d1</entityIdentification>
+                    <contentOwner>
+                        <gln>1100001011285</gln>
+                    </contentOwner>
+                </partyRegistrationResponseIdentification>
+                <partyReference>1100001011292</partyReference>
+                <responseStatusCode>ACCEPTED</responseStatusCode>
+                <partyRegistrationInformation>
+                    <lastChangeDate>2014-12-15T12:00:10.000-05:00</lastChangeDate>
+                    <registrationDate>2014-12-15T12:00:10.000-05:00</registrationDate>
+                </partyRegistrationInformation>
+            </party_registration_response:partyRegistrationResponse>
+        </documentCommand>
+    </transaction>
+</party_registration_response:partyRegistrationResponseMessage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gs1_response:gS1ResponseMessage xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:gs1_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/GS1Response.xsd">
+	<sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1">1100001011292</sh:Identifier>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.1</sh:TypeVersion>
+			<sh:InstanceIdentifier>sample_generic_response</sh:InstanceIdentifier>
+			<sh:Type/>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>2001-12-17T09:30:47Z</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+		<sh:BusinessScope>
+			<sh:Scope>
+				<sh:Type>String</sh:Type>
+				<sh:InstanceIdentifier>String</sh:InstanceIdentifier>
+                <sh:CorrelationInformation>
+                    <sh:RequestingDocumentInstanceIdentifier>MSG_OUT_42267</sh:RequestingDocumentInstanceIdentifier>
+                </sh:CorrelationInformation>
+			</sh:Scope>
+		</sh:BusinessScope>
+	</sh:StandardBusinessDocumentHeader>
+	<gS1Response>
+		<originatingMessageIdentifier>
+			<entityIdentification>a</entityIdentification>
+			<contentOwner>
+				<gln>1100001011285</gln>
+				<additionalPartyIdentification additionalPartyIdentificationTypeCode="a" codeListVersion="a">a</additionalPartyIdentification>
+				<additionalPartyIdentification additionalPartyIdentificationTypeCode="a" codeListVersion="a">a</additionalPartyIdentification>
+			</contentOwner>
+		</originatingMessageIdentifier>
+		<receiver>0000000000000</receiver>
+		<sender>1100001011285</sender>
+		<transactionResponse>
+			<transactionIdentifier>
+				<entityIdentification>msg_id_t1</entityIdentification>
+				<contentOwner>
+					<gln>1100001011285</gln>
+				</contentOwner>
+			</transactionIdentifier>
+			<responseStatusCode>ACCEPTED</responseStatusCode>
+		</transactionResponse>
+	</gS1Response>
+</gs1_response:gS1ResponseMessage>

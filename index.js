@@ -1,4 +1,7 @@
 var cheerio     = require('cheerio')
+var xml_utils   = require('./lib/xml_utils')
+var ItemStream  = require('./lib/ItemStream')
+var PartyStream = require('./lib/PartyStream')
 
 var log = console.log
 
@@ -19,40 +22,26 @@ module.exports = Gdsn = function (config) {
   this.config = config
   config.gdsn = this
 
-  this.ItemInfo    = require('./lib/ItemInfo')(config)
-  this.MessageInfo = require('./lib/MessageInfo')(config)
-  this.MessageInfo3 = require('./lib/MessageInfo3')(config)
+  this.dom = require('./lib/xpath_dom.js')
 
-  require('./lib/xpath_dom.js')(this) // adds this.dom
+  this.itemStream = new ItemStream(this)
+  this.partyStream = new PartyStream(this)
 }
 
-Gdsn.prototype.getTradeItemInfo = function (xml, msg_header_info) {
-  return this.dom.getTradeItemInfo(xml, msg_header_info)
+Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
+  return this.dom.getTradeItemInfo(xml, msg_info)
 }
 
-// removes extra whitespace between tags, but adds a new line for easy diff
-Gdsn.prototype.trim_xml = function (xml) {
-  var match = xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
-  if (!match || !match[0] || !match[0].length) {
-    log('WARNING could not parse string as xml: ' + xml)
-    return ''
-  }
-  var result = match[0]
-  result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
-  result = result.replace(/></g, '>\n<')  // add line return between tags
-  return result
+Gdsn.prototype.getEachTradeItemFromStream = function (req, cb) {
+  this.itemStream.getEachTradeItem(req, cb)
 }
 
-Gdsn.prototype.clean_xml = function (xml, skip_trim) {
-  if (!xml || !xml.length) return ''
-  var clean_xml = ''
-  if (!skip_trim) clean_xml = this.trim_xml(xml)
-  else clean_xml = xml
-  clean_xml = clean_xml.replace(/<[^\/>][-_a-zA-Z0-9]*[^:>]:/g, '<')                   // remove open tag ns prefix <abc:tag>
-  clean_xml = clean_xml.replace(/<\/[^>][-_a-zA-Z0-9]*[^:>]:/g, '<\/')                 // remove close tag ns prefix </abc:tag>
-  clean_xml = clean_xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
-  clean_xml = clean_xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
-  return clean_xml
+Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
+  return this.dom.getPartyInfo(xml, msg_info)
+}
+
+Gdsn.prototype.getEachPartyFromStream = function (req, cb) {
+  this.partyStream.getEachParty(req, cb)
 }
 
 Gdsn.prototype.validateGln = function (gln) {
@@ -103,27 +92,55 @@ Gdsn.prototype.validateGtin = function (gtin) {
 // however, the cheerio version must not have namespace prefixes! so we use the clean_xml util first
 
 Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
-  log('gdsn msg_string_to_msg_info called with raw xml length ' + xml.length)
+  log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
   var self = this
   setImmediate(function () {
     try {
-      var msg_info = new self.MessageInfo(xml)
-      log('new msg_info msg_id: ' + msg_info.msg_id)
-      cb(null, msg_info)
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
-}
+      var msg_info = xml_utils.get_message_info(xml, this.config)
+      log('msg_info msg_id   : ' + msg_info.msg_id)
+      log('msg_info version  : ' + msg_info.version)
+      log('msg_info type     : ' + msg_info.msg_type)
+      log('msg_info status   : ' + msg_info.status)
+      log('msg_info sender   : ' + msg_info.sender)
+      log('msg_info receiver : ' + msg_info.receiver)
+      log('msg_info provider : ' + msg_info.provider)
+      log('msg_info recipient: ' + msg_info.recipient)
+      log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
+      log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+      log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
 
-Gdsn.prototype.msg_string_to_msg_info3 = function(xml, cb) {
-  log('gdsn msg_string_to_msg_info called with raw xml length ' + xml.length)
-  var self = this
-  setImmediate(function () {
-    try {
-      var msg_info = new self.MessageInfo3(xml)
-      log('new msg_info msg_id: ' + msg_info.msg_id)
+
+/*
+      if (msg_info.msg_type == 'catalogueItemNotification') {
+
+        if (!msg_info.source_dp) msg_info.source_dp = this.config.homeDataPoolGln
+
+        // there are 4 subtypes of CIN, 2 _from_ homde DP...
+        if (msg_info.sender == this.config.homeDataPoolGln) { // from home DP
+          if (msg_info.receiver == msg_info.recipient) {
+            console.log('>>> subscribed item forwarded from home DP to local TP')
+          }
+          else {
+            console.log('>>> subscribed item forwarded from home DP to other DP for remote TP')
+          }
+        }
+        // ...and 2 more _to_ home DP, these are repostable to DP
+        else if (msg_info.receiver == this.config.homeDataPoolGln) { // to home DP
+          if (msg_info.sender == msg_info.provider) { // from local TP
+            if (msg_info.provider == msg_info.recipient) { // 3. from TP (private draft item)
+              console.log('>>> private draft item from local TP')
+            }
+            else if (this.config.homeDataPoolGln == msg_info.recipient) {
+              console.log('>>> item registration/update attempt from local TP')
+            }
+          }
+          else { // from other dp
+            console.log('>>> subscribed item received from other DP for local TP')
+          }
+        }
+      } // end CIN inspection
+      */
+
       cb(null, msg_info)
     }
     catch (err) {
@@ -137,8 +154,37 @@ Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
   var self = this
   setImmediate(function () {
     try {
-      var item_info = new self.ItemInfo(xml)
+      var item_info = xml_utils.get_item_info(xml)
+
       log('new item_info msg_id: ' + item_info.msg_id)
+
+      /*
+      var home_dp = self.config.homeDataPoolGln
+
+      if (item_info.sender == home_dp) { // from home DP
+        if (item_info.receiver == item_info.recipient) {
+          log('>>> subscribed item forwarded from home DP to local TP')
+        }
+        else {
+          log('>>> subscribed item forwarded from home DP to other DP for remote TP')
+        }
+      }
+      // ...and 2 more _to_ home DP, these are repostable to DP
+      else if (item_info.receiver == home_dp) { // to home DP
+        if (item_info.sender == item_info.provider) { // from local TP
+          if (item_info.provider == item_info.recipient) { // 3. from TP (private draft item)
+            log('>>> private draft item from local TP')
+          }
+          else if (home_dp == item_info.recipient) {
+            log('>>> item registration/update attempt from local TP')
+          }
+        }
+        else { // from other dp
+          log('>>> subscribed item received from other DP for local TP')
+        }
+      }
+      */
+
       cb(null, item_info)
     }
     catch (err) {
@@ -146,3 +192,14 @@ Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
     }
   })
 }
+
+Gdsn.prototype.party_string_to_party_info = function(xml, msg_info) {
+  log('party_string_to_party_info called with xml length ' + xml.length)
+  var trimmed_xml   = xml_utils.trim(xml)
+  var clean_xml     = xml_utils.clean(trimmed_xml)
+  var party_info    = new PartyInfo(clean_xml, this.config)
+  party_info.xml    = trimmed_xml
+  party_info.msg_id = msg_info.msg_id
+  return party_info
+}
+

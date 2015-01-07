@@ -28,6 +28,8 @@ module.exports = Gdsn = function (config) {
   this.partyStream = new PartyStream(this)
 }
 
+// legacy dom approach:
+
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
   return this.dom.getTradeItemInfo(xml, msg_info)
 }
@@ -43,6 +45,9 @@ Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
 Gdsn.prototype.getEachPartyFromStream = function (req, cb) {
   this.partyStream.getEachParty(req, cb)
 }
+
+/////////////////////////
+
 
 Gdsn.prototype.validateGln = function (gln) {
   if (!gln || gln.length != 13) return false
@@ -91,56 +96,67 @@ Gdsn.prototype.validateGtin = function (gtin) {
 // xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
 // however, the cheerio version must not have namespace prefixes! so we use the clean_xml util first
 
+Gdsn.prototype.log_msg_info = function (msg_info) {
+  log('msg_info msg_id   : ' + msg_info.msg_id)
+  log('msg_info version  : ' + msg_info.version)
+  log('msg_info type     : ' + msg_info.msg_type)
+  log('msg_info status   : ' + msg_info.status)
+  log('msg_info sender   : ' + msg_info.sender)
+  log('msg_info receiver : ' + msg_info.receiver)
+  log('msg_info provider : ' + msg_info.provider)
+  log('msg_info recipient: ' + msg_info.recipient)
+  log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
+  log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+  log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
+}
+
+/*
+Gdsn.prototype.get_cin_action(msg_info) {
+
+  if (msg_info.msg_type == 'catalogueItemNotification') {
+
+    var source_dp = msg_info.source_dp
+    var recipient = msg_info.recipient
+
+    if (!source_dp) { 
+      source_dp = '0000000000000'
+      console.log('source_dp not found, using placeholder value ' + source_dp)
+    }
+
+    // there are 4 subtypes of CIN, 2 _from_ homde DP...
+    if (msg_info.sender == this.config.homeDataPoolGln) { // from home DP
+      if (msg_info.receiver == msg_info.recipient) {
+        console.log('>>> subscribed item forwarded from home DP to local TP')
+      }
+      else {
+        console.log('>>> subscribed item forwarded from home DP to other DP for remote TP')
+      }
+    }
+    // ...and 2 more _to_ home DP, these are repostable to DP
+    else if (msg_info.receiver == this.config.homeDataPoolGln) { // to home DP
+      if (msg_info.sender == msg_info.provider) { // from local TP
+        if (msg_info.provider == msg_info.recipient) { // 3. from TP (private draft item)
+          console.log('>>> private draft item from local TP')
+        }
+        else if (this.config.homeDataPoolGln == msg_info.recipient) {
+          console.log('>>> item registration/update attempt from local TP')
+        }
+      }
+      else { // from other dp
+        console.log('>>> subscribed item received from other DP for local TP')
+      }
+    }
+  } // end CIN inspection
+}
+*/
+
 Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
   log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
   var self = this
   setImmediate(function () {
     try {
       var msg_info = xml_utils.get_message_info(xml, this.config)
-      log('msg_info msg_id   : ' + msg_info.msg_id)
-      log('msg_info version  : ' + msg_info.version)
-      log('msg_info type     : ' + msg_info.msg_type)
-      log('msg_info status   : ' + msg_info.status)
-      log('msg_info sender   : ' + msg_info.sender)
-      log('msg_info receiver : ' + msg_info.receiver)
-      log('msg_info provider : ' + msg_info.provider)
-      log('msg_info recipient: ' + msg_info.recipient)
-      log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
-      log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
-      log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
-
-
-/*
-      if (msg_info.msg_type == 'catalogueItemNotification') {
-
-        if (!msg_info.source_dp) msg_info.source_dp = this.config.homeDataPoolGln
-
-        // there are 4 subtypes of CIN, 2 _from_ homde DP...
-        if (msg_info.sender == this.config.homeDataPoolGln) { // from home DP
-          if (msg_info.receiver == msg_info.recipient) {
-            console.log('>>> subscribed item forwarded from home DP to local TP')
-          }
-          else {
-            console.log('>>> subscribed item forwarded from home DP to other DP for remote TP')
-          }
-        }
-        // ...and 2 more _to_ home DP, these are repostable to DP
-        else if (msg_info.receiver == this.config.homeDataPoolGln) { // to home DP
-          if (msg_info.sender == msg_info.provider) { // from local TP
-            if (msg_info.provider == msg_info.recipient) { // 3. from TP (private draft item)
-              console.log('>>> private draft item from local TP')
-            }
-            else if (this.config.homeDataPoolGln == msg_info.recipient) {
-              console.log('>>> item registration/update attempt from local TP')
-            }
-          }
-          else { // from other dp
-            console.log('>>> subscribed item received from other DP for local TP')
-          }
-        }
-      } // end CIN inspection
-      */
-
+      self.log_msg_info(msg_info)
       cb(null, msg_info)
     }
     catch (err) {
@@ -191,6 +207,10 @@ Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
       cb(err)
     }
   })
+}
+
+Gdsn.prototype.trim_xml = function(xml) {
+  return xml_utils.trim(xml)
 }
 
 Gdsn.prototype.party_string_to_party_info = function(xml, msg_info) {

@@ -16,7 +16,7 @@
 
     var count = 0
 
-    gdsn.items.getEachTradeItemFromStream(is, function(err, item) {
+    gdsn.getEachTradeItemFromStream(is, function(err, item) {
       if (err) throw err
 
       if (item) {

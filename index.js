@@ -28,22 +28,24 @@ module.exports = Gdsn = function (config) {
   this.partyStream = new PartyStream(this)
 }
 
-// legacy dom approach:
-
-Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
-  return this.dom.getTradeItemInfo(xml, msg_info)
-}
+// stream extract methods
 
 Gdsn.prototype.getEachTradeItemFromStream = function (req, cb) {
   this.itemStream.getEachTradeItem(req, cb)
 }
 
-Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
-  return this.dom.getPartyInfo(xml, msg_info)
-}
-
 Gdsn.prototype.getEachPartyFromStream = function (req, cb) {
   this.partyStream.getEachParty(req, cb)
+}
+
+// legacy dom approach for extracting item and party info:
+
+Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
+  return this.dom.getTradeItemInfo(xml, msg_info)
+}
+
+Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
+  return this.dom.getPartyInfo(xml, msg_info)
 }
 
 /////////////////////////

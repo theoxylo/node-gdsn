@@ -7,14 +7,19 @@ test('getPartiesFromFile', function (t) {
 
   var gdsn   = new Gdsn()
 
-  gdsn.parties.getPartiesFromFile(__dirname + '/RPDD_small.xml', function(err, parties) {
-    if (err) throw err
-    for (i in parties) {
-      var party = parties[i]
+  var filename = __dirname + '/rpdd_28_small.xml'
+  var is = fs.createReadStream(filename, {encoding: 'utf8'})
+  var parties = []
+
+  gdsn.getEachPartyFromStream(is, function(err, party) {
+    if (err) return t.fail(err)
+    if (party) {
       console.log('Found party with GLN ' + party.gln + ', extracted from message ' + party.msg_id)
+      parties.push(party)
     }
-    console.log('party count: ' + parties.length)
-    t.ok(parties.length === 11, 'found ' + parties.length + ' parties as expected')
-    t.end()
+    else { // null party is passed when no more parties are available
+      t.ok(parties.length === 11, 'found ' + parties.length + ' parties as expected')
+      t.end()
+    }
   })
 })

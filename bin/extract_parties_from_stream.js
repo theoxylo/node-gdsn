@@ -16,7 +16,7 @@
 
     var count = 0
 
-    gdsn.parties.getEachPartyFromStream(is, function(err, party) {
+    gdsn.getEachPartyFromStream(is, function(err, party) {
       if (err) throw err
       if (party) {
         count++

@@ -1,3 +1,4 @@
+var fs          = require('fs')
 var cheerio     = require('cheerio')
 var xml_utils   = require('./lib/xml_utils')
 var ItemStream  = require('./lib/ItemStream')
@@ -152,7 +153,7 @@ Gdsn.prototype.get_cin_action(msg_info) {
 }
 */
 
-Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
+Gdsn.prototype.msg_string_to_msg_info = function (xml, cb) {
   log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
   var self = this
   setImmediate(function () {
@@ -167,7 +168,7 @@ Gdsn.prototype.msg_string_to_msg_info = function(xml, cb) {
   })
 }
 
-Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
+Gdsn.prototype.item_string_to_item_info = function (xml, cb) {
   log('gdsn item_string_to_item_info called with raw xml length ' + xml.length)
   var self = this
   setImmediate(function () {
@@ -211,11 +212,11 @@ Gdsn.prototype.item_string_to_item_info = function(xml, cb) {
   })
 }
 
-Gdsn.prototype.trim_xml = function(xml) {
+Gdsn.prototype.trim_xml = function (xml) {
   return xml_utils.trim(xml)
 }
 
-Gdsn.prototype.party_string_to_party_info = function(xml, msg_info) {
+Gdsn.prototype.party_string_to_party_info = function (xml, msg_info) {
   log('party_string_to_party_info called with xml length ' + xml.length)
   var trimmed_xml   = xml_utils.trim(xml)
   var clean_xml     = xml_utils.clean(trimmed_xml)
@@ -225,3 +226,88 @@ Gdsn.prototype.party_string_to_party_info = function(xml, msg_info) {
   return party_info
 }
 
+Gdsn.prototype.populateResponseTemplate = function (config, msg_info, cb) {
+  fs.readFile(config.templatePath + '/gdsn31/GS1ResponseACCEPTED.xml', function (err, xml) {
+    if (err) return cb(err)
+    try {
+      var $ = require('cheerio').load(xml, { 
+        _:0
+        , normalizeWhitespace: true
+        , xmlMode: true
+      })
+      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
+      $('sh\\:Receiver sh\\:Identifier').text(msg_info.sender)
+      //$('sh\\:InstanceIdentifier').text('RESP_' + Date.now() + '_' + msg_info.msg_id)
+      var msg_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
+      $('sh\\:InstanceIdentifier').text(msg_id)
+      $('sh\\:CreationDateAndTime').text(new Date(msg_info.created_ts).toISOString())
+      $('sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
+      $('originatingMessageIdentifier entityIdentification').text(msg_info.msg_id)
+      $('originatingMessageIdentifier contentOwner gln').text(msg_info.sender)
+      $('gS1Response receiver').text(msg_info.sender)
+      $('gS1Response sender').text(config.homeDataPoolGln)
+      $('transactionIdentifier entityIdentification').text('TRX_' + Date.now())
+      $('transactionIdentifier contentOwner gln').text(config.homeDataPoolGln)
+      cb(null, $.html())
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+Gdsn.prototype.populateCisToGrTemplate = function (config, msg_info, cb) {
+  fs.readFile(config.templatePath + '/gdsn31/CIS_template_single_doc.xml', function (err, xml) {
+    if (err) return cb(err)
+    try {
+      var $ = require('cheerio').load(xml, { 
+        _:0
+        , normalizeWhitespace: true
+        , xmlMode: true
+      })
+
+      // new values for this message
+      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
+      $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+      $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
+
+
+      // original values from tp: trx/cmd/doc id and owner glns, created ts
+      // assume naming convention based on original msg_id and only support single doc
+      $('transactionIdentification contentOwner gln').text(msg_info.recipient)
+      $('transactionIdentification entityIdentification').text(msg_info.msg_id + '_trx1')
+
+      $('documentCommandIdentification  contentOwner gln').text(msg_info.recipient)
+      $('documentCommandIdentification entityIdentification').text(msg_info.msg_id + '_trx1_cmd1')
+
+      $('documentCommand documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+
+      // should be for each subscription document! up to 100 per CIS message
+      //$('catalogueItemSubscriptionIdentification entityIdentification').text(msg_info.doc_ids[0])
+
+      // SINGLE doc support:
+      $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+      $('catalogueItemSubscriptionIdentification contentOwner gln').text(msg_info.recipient) // subscriber
+      $('catalogueItemSubscriptionIdentification entityIdentification').text(msg_info.msg_id + '_trx1_cmd1_doc1')
+      $('dataRecipient').text(msg_info.recipient)
+
+      //optional subscription criteria:
+      if (msg_info.provider) $('dataSource').text(msg_info.provider)
+      else $('dataSource').remove()
+
+      if (msg_info.gpc) $('gpcCategoryCode').text(msg_info.gpc)
+      else $('gpcCategoryCode').remove()
+
+      if (msg_info.gtin) $('gtin').text(msg_info.provider)
+      else $('gtin').remove()
+
+      $('targetMarket').remove() // subscription to TM is NOT supported :)
+
+      cb(null, $.html())
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}

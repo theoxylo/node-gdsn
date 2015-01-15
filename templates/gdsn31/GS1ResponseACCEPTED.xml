@@ -12,7 +12,7 @@
 			<sh:Standard>GS1</sh:Standard>
 			<sh:TypeVersion>3.1</sh:TypeVersion>
 			<sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
-			<sh:Type/>
+			<sh:Type>gS1Response</sh:Type>
 			<sh:MultipleType>false</sh:MultipleType>
 			<sh:CreationDateAndTime>TOKEN</sh:CreationDateAndTime>
 		</sh:DocumentIdentification>

@@ -103,14 +103,20 @@ Gdsn.prototype.log_msg_info = function (msg_info) {
   log('msg_info msg_id   : ' + msg_info.msg_id)
   log('msg_info version  : ' + msg_info.version)
   log('msg_info type     : ' + msg_info.msg_type)
+  log('msg_info note     : ' + msg_info.note)
   log('msg_info status   : ' + msg_info.status)
   log('msg_info sender   : ' + msg_info.sender)
   log('msg_info receiver : ' + msg_info.receiver)
   log('msg_info provider : ' + msg_info.provider)
   log('msg_info recipient: ' + msg_info.recipient)
   log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
+  log('msg_info party    : ' + msg_info.party)
   log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+  log('msg_info gtin     : ' + msg_info.gtin)
   log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
+  log('msg_info doc_count: ' + msg_info.doc_count)
+  log('msg_info doc_ids  : ' + (msg_info.doc_ids && msg_info.doc_ids .join(' ')))
+
 }
 
 /*

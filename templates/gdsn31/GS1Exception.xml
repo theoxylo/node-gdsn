@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gs1_response:gS1ResponseMessage xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:gs1_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/GS1Response.xsd">
+	<sh:StandardBusinessDocumentHeader>
+		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+		<sh:Sender>
+			<sh:Identifier Authority="GS1">TOKEN</sh:Identifier>
+		</sh:Sender>
+		<sh:Receiver>
+			<sh:Identifier Authority="GS1">TOKEN</sh:Identifier>
+		</sh:Receiver>
+		<sh:DocumentIdentification>
+			<sh:Standard>GS1</sh:Standard>
+			<sh:TypeVersion>3.1</sh:TypeVersion>
+			<sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
+			<sh:Type>gS1Response</sh:type>
+			<sh:MultipleType>false</sh:MultipleType>
+			<sh:CreationDateAndTime>TOKEN</sh:CreationDateAndTime>
+		</sh:DocumentIdentification>
+		<sh:BusinessScope>
+			<sh:Scope>
+				<sh:Type>GDSN</sh:Type>
+				<sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
+                <sh:CorrelationInformation>
+                    <sh:RequestingDocumentInstanceIdentifier>TOKEN</sh:RequestingDocumentInstanceIdentifier>
+                </sh:CorrelationInformation>
+			</sh:Scope>
+		</sh:BusinessScope>
+	</sh:StandardBusinessDocumentHeader>
+	<gS1Response>
+		<originatingMessageIdentifier>
+			<entityIdentification>TOKEN</entityIdentification>
+			<contentOwner>
+				<gln>TOKEN</gln>
+			</contentOwner>
+		</originatingMessageIdentifier>
+		<receiver>TOKEN</receiver>
+		<sender>TOKEN</sender>
+		<gS1Exception>
+			<messageException>
+				<gS1Error>
+					<errorCode>TOKEN</errorCode>
+					<errorDateTime>TOKEN</errorDateTime>
+					<errorDescription>TOKEN</errorDescription>
+				</gS1Error>
+			</messageException>
+		</gS1Exception>
+	</gS1Response>
+</gs1_response:gS1ResponseMessage>

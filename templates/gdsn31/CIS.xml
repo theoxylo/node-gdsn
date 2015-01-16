@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalogue_item_subscription:catalogueItemSubscriptionMessage xmlns:catalogue_item_subscription="urn:gs1:gdsn:catalogue_item_subscription:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_subscription:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemSubscription.xsd">
+<catalogue_item_subscription:catalogueItemSubscriptionMessage xmlns:catalogue_item_subscription="urn:gs1:gdsn:catalogue_item_subscription:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:catalogue_item_subscription:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemSubscription.xsd">
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
@@ -47,7 +47,7 @@
                 <gpcCategoryCode>TOKEN</gpcCategoryCode>
                 <gtin>TOKEN</gtin>
                 <targetMarket>
-                    <targetMarketCountryCode>NOT_SUPPORTED</targetMarketCountryCode>
+                    <targetMarketCountryCode>TOKEN</targetMarketCountryCode>
                 </targetMarket>
             </catalogue_item_subscription:catalogueItemSubscription>
         </documentCommand>

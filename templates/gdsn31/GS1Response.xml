@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gs1_response:gS1ResponseMessage xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:gs1_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/GS1Response.xsd">
+<gs1_response:gS1ResponseMessage xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:gs1_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/GS1Response.xsd">
 	<sh:StandardBusinessDocumentHeader>
 		<sh:HeaderVersion>1.0</sh:HeaderVersion>
 		<sh:Sender>
 			<sh:Identifier Authority="GS1">TOKEN</sh:Identifier>
 		</sh:Sender>
-		<sh:Receiver>
+		<sh:Receiver>http://www.gdsregistry.org/3.1/schemas
 			<sh:Identifier Authority="GS1">TOKEN</sh:Identifier>
 		</sh:Receiver>
 		<sh:DocumentIdentification>

@@ -1,4 +1,4 @@
-// Introduction to GDSN 2.8 Messaging
+// Introduction to GDSN Messaging
 //
 // In each GDSN xml message file, there is a single "message" element (namespace eanucc="urn:ean.ucc:2")
 // which contains a mandatory "entityIdentification" element and some number of "any" elements.
@@ -69,8 +69,13 @@ module.exports = messageTypes = {
   ,cic     : _.find(templates, function () { arguments[0]['name'] == 'cic'})
   ,rfcin   : _.find(templates, function () { arguments[0]['name'] == 'rfcin'})
   ,rpdd    : _.find(templates, function () { arguments[0]['name'] == 'rpdd'})
+  ,hier    : _.find(templates, function () { arguments[0]['name'] == 'hier'})
   ,error   : _.find(templates, function () { arguments[0]['name'] == 'error'})
   ,accepted: _.find(templates, function () { arguments[0]['name'] == 'accepted'})
+}
+
+messageTypes.msg_info = function (msg_type_code) {
+    return this[msg_type_code]
 }
 
 
@@ -130,6 +135,11 @@ var templates = [
 },
 
 { name: 'rpdd'
+    , msg_type: 'registryPartyDataDump'
+    , status  : ['ADD']
+},
+
+{ name: 'hier'
     , msg_type: 'registryPartyDataDump'
     , status  : ['ADD']
 },

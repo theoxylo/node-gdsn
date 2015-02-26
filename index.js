@@ -1,16 +1,18 @@
 var fs          = require('fs')
 var cheerio     = require('cheerio')
-var xml_utils   = require('./lib/xml_utils')
-var ItemStream  = require('./lib/ItemStream')
-var PartyStream = require('./lib/PartyStream')
-
-var log = console.log
+var ItemStream  = require('./lib/ItemStream.js')
+var PartyStream = require('./lib/PartyStream.js')
+var ItemInfo    = require('./lib/ItemInfo.js')
+var MessageInfo = require('./lib/MessageInfo.js')
+var PartyInfo   = require('./lib/PartyInfo.js')
+var log         = console.log
 
 module.exports = Gdsn = function (config) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(config)
 
   config = config || {clean_newline: true}
+  log = config.log || log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
   if (!config.outbox_dir)      config.outbox_dir      = config.out_dir || __dirname + '/outbox'
@@ -31,12 +33,12 @@ module.exports = Gdsn = function (config) {
 
 // stream extract methods
 
-Gdsn.prototype.getEachTradeItemFromStream = function (req, cb) {
-  this.itemStream.getEachTradeItem(req, cb)
+Gdsn.prototype.getEachTradeItemFromStream = function (is, cb) {
+  this.itemStream.getEachTradeItem(is, cb)
 }
 
-Gdsn.prototype.getEachPartyFromStream = function (req, cb) {
-  this.partyStream.getEachParty(req, cb)
+Gdsn.prototype.getEachPartyFromStream = function (is, cb) {
+  this.partyStream.getEachParty(is, cb)
 }
 
 // legacy dom approach for extracting item and party info:
@@ -97,7 +99,7 @@ Gdsn.prototype.validateGtin = function (gtin) {
 // compare: 
 // cheerio: var type = $('DocumentIdentification Type').text()
 // xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
-// however, the cheerio version must not have namespace prefixes! so we use the clean_xml util first
+// however, the cheerio version must not have namespace prefixes! so we clean the xml first
 
 Gdsn.prototype.log_msg_info = function (msg_info) {
   log('msg_info msg_id   : ' + msg_info.msg_id)
@@ -116,7 +118,6 @@ Gdsn.prototype.log_msg_info = function (msg_info) {
   log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
   log('msg_info doc_count: ' + msg_info.doc_count)
   log('msg_info doc_ids  : ' + (msg_info.doc_ids && msg_info.doc_ids .join(' ')))
-
 }
 
 /*
@@ -159,12 +160,27 @@ Gdsn.prototype.get_cin_action(msg_info) {
 }
 */
 
+// works with XML for complete message, could be many documents (item hierarchies)
 Gdsn.prototype.msg_string_to_msg_info = function (xml, cb) {
   log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
   var self = this
   setImmediate(function () {
     try {
-      var msg_info = xml_utils.get_message_info(xml, this.config)
+      var trimmed_xml = self.trim_xml(xml)
+      var msg_info = new MessageInfo(trimmed_xml, self.config) // parse 2.8 or 3.1 message for essential properties
+      /*
+      if (msg_info.msg_type == 'StandardBusinessDocument') { // and fallback to 2.8 if detected
+        var cleaned_xml = self.clean_xml(trimmed_xml)
+        msg_info = new MessageInfo(cleaned_xml, self.config)
+      }
+      */
+      /*
+      var trimmed_xml = self.trim_xml(xml)
+      var cleaned_xml = self.clean_xml(trimmed_xml)
+      var msg_info = self.get_message_info(cleaned_xml)
+      */
+      msg_info.xml = trimmed_xml
+      msg_info.xml_length = trimmed_xml.length
       self.log_msg_info(msg_info)
       cb(null, msg_info)
     }
@@ -174,43 +190,19 @@ Gdsn.prototype.msg_string_to_msg_info = function (xml, cb) {
   })
 }
 
-Gdsn.prototype.item_string_to_item_info = function (xml, cb) {
+Gdsn.prototype.item_string_to_item_info = function (xml, msg_info, cb) {
   log('gdsn item_string_to_item_info called with raw xml length ' + xml.length)
   var self = this
   setImmediate(function () {
     try {
-      var item_info = xml_utils.get_item_info(xml)
+      var trimmed_xml   = self.trim_xml(xml)
+      var item_info = new ItemInfo(trimmed_xml)
+      item_info.xml = trimmed_xml
 
       log('new item_info msg_id: ' + item_info.msg_id)
 
-      /*
-      var home_dp = self.config.homeDataPoolGln
-
-      if (item_info.sender == home_dp) { // from home DP
-        if (item_info.receiver == item_info.recipient) {
-          log('>>> subscribed item forwarded from home DP to local TP')
-        }
-        else {
-          log('>>> subscribed item forwarded from home DP to other DP for remote TP')
-        }
-      }
-      // ...and 2 more _to_ home DP, these are repostable to DP
-      else if (item_info.receiver == home_dp) { // to home DP
-        if (item_info.sender == item_info.provider) { // from local TP
-          if (item_info.provider == item_info.recipient) { // 3. from TP (private draft item)
-            log('>>> private draft item from local TP')
-          }
-          else if (home_dp == item_info.recipient) {
-            log('>>> item registration/update attempt from local TP')
-          }
-        }
-        else { // from other dp
-          log('>>> subscribed item received from other DP for local TP')
-        }
-      }
-      */
-
-      cb(null, item_info)
+      if (item_info) cb(null, item_info)
+      else cb(Error('could not derive item_info from xml: ' + xml))
     }
     catch (err) {
       cb(err)
@@ -218,22 +210,18 @@ Gdsn.prototype.item_string_to_item_info = function (xml, cb) {
   })
 }
 
-Gdsn.prototype.trim_xml = function (xml) {
-  return xml_utils.trim(xml)
-}
-
 Gdsn.prototype.party_string_to_party_info = function (xml, msg_info) {
-  log('party_string_to_party_info called with xml length ' + xml.length)
-  var trimmed_xml   = xml_utils.trim(xml)
-  var clean_xml     = xml_utils.clean(trimmed_xml)
+  //log('party_string_to_party_info called with xml length ' + xml.length)
+  var trimmed_xml   = this.trim_xml(xml)
+  var clean_xml     = this.clean_xml(trimmed_xml)
   var party_info    = new PartyInfo(clean_xml, this.config)
-  party_info.xml    = trimmed_xml
+  party_info.xml    = trimmed_xml // replace saved clean xml with trimmed xml
   party_info.msg_id = msg_info.msg_id
   return party_info
 }
 
 Gdsn.prototype.populateResponseTemplate = function (config, msg_info, cb) {
-  fs.readFile(config.templatePath + '/gdsn31/GS1ResponseACCEPTED.xml', function (err, xml) {
+  fs.readFile(config.templatePath + '/gdsn3/GS1Response.xml', function (err, xml) {
     if (err) return cb(err)
     try {
       var $ = require('cheerio').load(xml, { 
@@ -241,12 +229,15 @@ Gdsn.prototype.populateResponseTemplate = function (config, msg_info, cb) {
         , normalizeWhitespace: true
         , xmlMode: true
       })
+      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+      //$('sh\\:CreationDateAndTime').text(new Date(msg_info.created_ts).toISOString())
       $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
       $('sh\\:Receiver sh\\:Identifier').text(msg_info.sender)
+
       //$('sh\\:InstanceIdentifier').text('RESP_' + Date.now() + '_' + msg_info.msg_id)
       var msg_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
       $('sh\\:InstanceIdentifier').text(msg_id)
-      $('sh\\:CreationDateAndTime').text(new Date(msg_info.created_ts).toISOString())
+
       $('sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
       $('originatingMessageIdentifier entityIdentification').text(msg_info.msg_id)
       $('originatingMessageIdentifier contentOwner gln').text(msg_info.sender)
@@ -262,8 +253,17 @@ Gdsn.prototype.populateResponseTemplate = function (config, msg_info, cb) {
   })
 }
 
+Gdsn.prototype.populateBprToGrTemplate = function (config, msg_info, cb) {
+  cb(Error('not yet implemented'))
+}
+
+Gdsn.prototype.populateCicTemplate = function (config, msg_info, cb) {
+  cb(Error('not yet implemented'))
+}
+
 Gdsn.prototype.populateCisToGrTemplate = function (config, msg_info, cb) {
-  fs.readFile(config.templatePath + '/gdsn31/CIS_template_single_doc.xml', function (err, xml) {
+  fs.readFile(config.templatePath + '/gdsn3/CIS.xml', function (err, xml) {
+    log('populateCisToGrTemplate ')
     if (err) return cb(err)
     try {
       var $ = require('cheerio').load(xml, { 
@@ -276,6 +276,7 @@ Gdsn.prototype.populateCisToGrTemplate = function (config, msg_info, cb) {
       $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
       $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
       $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+
       $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
 
 
@@ -316,4 +317,145 @@ Gdsn.prototype.populateCisToGrTemplate = function (config, msg_info, cb) {
       cb(err)
     }
   })
+}
+
+Gdsn.prototype.populateRciToGrTemplate = function (config, msg_info, cb) {
+  fs.readFile(config.templatePath + '/gdsn3/RCI.xml', function (err, xml) {
+    log('populateRciToGrTemplate ')
+    if (err) return cb(err)
+    try {
+      var $ = require('cheerio').load(xml, { 
+        _:0
+        , normalizeWhitespace: true
+        , xmlMode: true
+      })
+
+      // new values for this message
+      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
+      $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+
+      var msg_id = 'RCI_to_GR_' + Date.now() + '_' + msg_info.provider
+      $('sh\\:InstanceIdentifier').text(msg_id)
+
+
+      // new message values for dp: trx/cmd/doc id and owner glns, created ts
+      // assume naming convention based oon original msg_id and only support single doc
+      $('transactionIdentification contentOwner gln').text(config.homeDataPoolGln)
+      $('transactionIdentification entityIdentification').text(msg_id + '_trx1')
+
+      $('documentCommandIdentification  contentOwner gln').text(config.homeDataPoolGln)
+      $('documentCommandIdentification entityIdentification').text(msg_id + '_trx1_cmd1')
+
+      $('documentCommand documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+
+      // SINGLE doc support:
+      $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+      $('registryCatalogueItemIdentification contentOwner gln').text(config.homeDataPoolGln)
+      $('registryCatalogueItemIdentification entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
+
+      $('gpcCatagoryCode').text(msg_info.gpc)
+      $('sourceDataPool').text(config.homeDataPoolGln)
+
+      $('catalogueItemReference dataSource').text(msg_info.provider)
+      $('catalogueItemReference gtin').text(msg_info.gtin)
+      $('catalogueItemReference targetMarketCountryCode').text(msg_info.tm)
+
+      $('catalogueItemDates lastChangedDateTime').text(new Date().toISOString())
+      $('catalogueItemDates registrationDateTime').text(new Date().toISOString())
+
+      cb(null, $.html())
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+
+// removes extra whitespace between tags, but adds a new line for easy diff later
+Gdsn.prototype.trim_xml = function (xml) {
+  var match = xml.match(/<[^]*>/) // match bulk xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
+  if (!match || !match[0] || !match[0].length) {
+    console.log('WARNING could not parse string as xml: ' + xml)
+    return ''
+  }
+  var result = match[0]
+  result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
+  result = result.replace(/></g, '>\n<')  // add line return between tags
+  return result
+}
+
+// removes all namespace information
+Gdsn.prototype.clean_xml = function (xml, do_trim) {
+  if (!xml || !xml.length) return ''
+  xml = xml.replace(/<[^\/>][-_a-zA-Z0-9]*[^:>]:/g, '<')                   // remove open tag ns prefix <abc:tag>
+  xml = xml.replace(/<\/[^>][-_a-zA-Z0-9]*[^:>]:/g, '<\/')                 // remove close tag ns prefix </abc:tag>
+  xml = xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
+  xml = xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
+  return xml
+}
+
+Gdsn.prototype.get_trade_items_info = function (xml) {
+  var msg_info = {
+    tradeItems: []
+    , gtins   : []
+  }
+  if (!xml || !xml.length) return msg_info
+
+  var $ = cheerio.load(xml, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+  var $root = $(':root')
+  if (!$root) return msg_info
+
+  msg_info.msg_id   = $('DocumentIdentification > InstanceIdentifier').text()
+  msg_info.version  = $('DocumentIdentification > TypeVersion').text()
+  msg_info.msg_type = $('DocumentIdentification > Type').text()
+  msg_info.status   = $('documentCommandHeader').attr('type')
+  msg_info.sender   = $('Sender > Identifier').text()
+  msg_info.receiver = $('Receiver > Identifier').text()
+  msg_info.provider = $('informationProviderOfTradeItem > gln').first().text()
+  msg_info.recipient = $('dataRecipient').first().text()
+
+  log('msg_info msg_id   : ' + msg_info.msg_id)
+  log('msg_info version  : ' + msg_info.version)
+  log('msg_info type     : ' + msg_info.msg_type)
+  log('msg_info status   : ' + msg_info.status)
+  log('msg_info sender   : ' + msg_info.sender)
+  log('msg_info receiver : ' + msg_info.receiver)
+  log('msg_info provider : ' + msg_info.provider)
+  log('msg_info recipient: ' + msg_info.recipient)
+
+  $('catalogueItem > tradeItem').each(function () {
+
+    var $ti = $(this)
+    console.log('transaction: ' + $ti.closest('transaction').text())
+
+    var $ud = $('tradeItemUnitDescriptorCode', this)          // 3.1
+    if (!$ud.length) $ud = $('tradeItemUnitDescriptor', this) // 2.8
+    console.log('unit descriptor: ' + $ud.text())
+
+    var $gtin = $('tradeItem > gtin', this).first()                              // 3.1
+    if (!$gtin.length) $gtin = $('tradeItemIdentification > gtin', this).first() // 2.8
+    var gtin = $gtin.text()
+    console.log('gtin: ' + $gtin.text())
+
+    var $gtin = $('gtin', this).each(function () {
+      console.log('gtin element type: ' + this.parent.name)
+    })
+
+    if (gtin) msg_info.gtins.push(gtin)
+  })
+
+  log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
+  log('msg_info party    : ' + msg_info.party)
+  log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+  log('msg_info gtin     : ' + msg_info.gtin)
+  log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
+  log('msg_info doc_count: ' + msg_info.doc_count)
+  log('msg_info doc_ids  : ' + (msg_info.doc_ids && msg_info.doc_ids .join(' ')))
+
+  return msg_info
 }

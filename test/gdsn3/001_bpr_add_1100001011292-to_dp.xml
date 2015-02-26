@@ -13,7 +13,7 @@ urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schem
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
             <sh:InstanceIdentifier>bpr_add_1100001011292</sh:InstanceIdentifier>
-            <sh:Type/>
+            <sh:Type>basicPartyRegistration</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
             <sh:CreationDateAndTime>2014-12-15T12:00:01.000-05:00</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
@@ -21,6 +21,75 @@ urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schem
     <transaction>
         <transactionIdentification>
             <entityIdentification>bpr_add_1100001011292_t1</entityIdentification>
+            <contentOwner>
+                <gln>1100001011292</gln>
+            </contentOwner>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>bpr_add_1100001011292_t1_c1</entityIdentification>
+                    <contentOwner>
+                        <gln>1100001011292</gln>
+                    </contentOwner>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <basic_party_registration:basicPartyRegistration>
+                <creationDateTime>2014-12-15T11:00:00.000-05:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <basicPartyRegistrationIdentification>
+                    <entityIdentification>bpr_add_1100001011292_t1_c1_d1</entityIdentification>
+                    <contentOwner>
+                        <gln>1100001011292</gln>
+                    </contentOwner>
+                </basicPartyRegistrationIdentification>
+                <partyDataPool>1100001011285</partyDataPool>
+                <transmittingDataPool>1100001011285</transmittingDataPool>
+                <party>
+                    <isPartyActive>true</isPartyActive>
+                    <lastUpdateDateTime>2014-12-15T12:00:01.000-05:00</lastUpdateDateTime>
+                    <registeringParty>1100001011285</registeringParty>
+                    <informationProviderOfParty>
+                        <gln>1100001011292</gln>
+                    </informationProviderOfParty>
+                    <organisationHighestLevelParty>
+                        <gln>1100001011292</gln>
+                    </organisationHighestLevelParty>
+                    <partyAddress>
+                        <city>Pleasanton</city>
+                        <countryCode>840</countryCode>
+                        <languageOfThePartyCode>en</languageOfThePartyCode>
+                        <name>ITN® Test Party Addr</name>
+                        <postalCode>94588</postalCode>
+                        <state>CA</state>
+                        <streetAddressOne>4155 Hopyward Rd.</streetAddressOne>
+                        <streetAddressTwo>Suite 100</streetAddressTwo>
+                    </partyAddress>
+                    <partyContact>
+                        <contactTypeCode>AP</contactTypeCode>
+                        <personName>Ted One</personName>
+                        <communicationChannel>
+                            <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                            <communicationValue>9256601392</communicationValue>
+                        </communicationChannel>
+                    </partyContact>
+                    <partyCapability>
+                        <processCapability>
+                            <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+                            <processCapabilityEffectiveStartDateTime>2014-12-15T11:00:00.000-05:00</processCapabilityEffectiveStartDateTime>
+                        </processCapability>
+                    </partyCapability>
+                    <partyInRole>
+                        <partyName>ITN® Test Party Name</partyName>
+                        <partyRoleCode>DISTRIBUTOR</partyRoleCode>
+                    </partyInRole>
+                </party>
+            </basic_party_registration:basicPartyRegistration>
+        </documentCommand>
+    </transaction>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>bpr_add_1100001011292_t2</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>

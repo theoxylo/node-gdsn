@@ -5,9 +5,10 @@ var PartyStream = require('./lib/PartyStream.js')
 var ItemInfo    = require('./lib/ItemInfo.js')
 var MessageInfo = require('./lib/MessageInfo.js')
 var PartyInfo   = require('./lib/PartyInfo.js')
+var xpath_dom   = require('./lib/xpath_dom.js')
 var log         = console.log
 
-module.exports = Gdsn = function (config) {
+var Gdsn = module.exports = function (config) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(config)
 
@@ -17,15 +18,18 @@ module.exports = Gdsn = function (config) {
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
   if (!config.outbox_dir)      config.outbox_dir      = config.out_dir || __dirname + '/outbox'
 
-  if (!this.validateGln(config.homeDataPoolGln)) {
+  if (!Gdsn.validateGln(config.homeDataPoolGln)) {
     log('Error: invalid home data pool GLN: ' + config.homeDataPoolGln)
     process.exit(1)
   }
 
+  // pre-load xml message templates
+  this.loadTemplatesSync(config.templatePath)
+
   this.config = config
   config.gdsn = this
 
-  this.dom = require('./lib/xpath_dom.js')
+  this.dom = xpath_dom
 
   this.itemStream = new ItemStream(this)
   this.partyStream = new PartyStream(this)
@@ -51,10 +55,9 @@ Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
   return this.dom.getPartyInfo(xml, msg_info)
 }
 
-/////////////////////////
+///////////////////////// utilities:
 
-
-Gdsn.prototype.validateGln = function (gln) {
+Gdsn.validateGln = function (gln) {
   if (!gln || gln.length != 13) return false
 
   var digits = gln.split('')
@@ -74,7 +77,7 @@ Gdsn.prototype.validateGln = function (gln) {
   return checkDigit == numbers[12]
 }
 
-Gdsn.prototype.validateGtin = function (gtin) {
+Gdsn.validateGtin = function (gtin) {
   if (!gtin || gtin.length != 14) return false
 
   var digits = gtin.split('')
@@ -111,13 +114,12 @@ Gdsn.prototype.log_msg_info = function (msg_info) {
   log('msg_info receiver : ' + msg_info.receiver)
   log('msg_info provider : ' + msg_info.provider)
   log('msg_info recipient: ' + msg_info.recipient)
-  log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
-  log('msg_info party    : ' + msg_info.party)
-  log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+  log('msg_info xml size : ' + msg_info.xml.length)
+  log('msg_info pty count: ' + msg_info.party.length)
+  log('msg_info parties  : ' + msg_info.party.join(' '))
   log('msg_info gtin     : ' + msg_info.gtin)
-  log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
+  log('msg_info gtins    : ' + msg_info.gtins.join(' '))
   log('msg_info doc_count: ' + msg_info.doc_count)
-  log('msg_info doc_ids  : ' + (msg_info.doc_ids && msg_info.doc_ids .join(' ')))
 }
 
 /*
@@ -167,21 +169,7 @@ Gdsn.prototype.msg_string_to_msg_info = function (xml, cb) {
   setImmediate(function () {
     try {
       var trimmed_xml = self.trim_xml(xml)
-      var msg_info = new MessageInfo(trimmed_xml, self.config) // parse 2.8 or 3.1 message for essential properties
-      /*
-      if (msg_info.msg_type == 'StandardBusinessDocument') { // and fallback to 2.8 if detected
-        var cleaned_xml = self.clean_xml(trimmed_xml)
-        msg_info = new MessageInfo(cleaned_xml, self.config)
-      }
-      */
-      /*
-      var trimmed_xml = self.trim_xml(xml)
-      var cleaned_xml = self.clean_xml(trimmed_xml)
-      var msg_info = self.get_message_info(cleaned_xml)
-      */
-      msg_info.xml = trimmed_xml
-      msg_info.xml_length = trimmed_xml.length
-      self.log_msg_info(msg_info)
+      var msg_info = new MessageInfo(trimmed_xml, self.config) // parse 2.8 or 3.1 message for essential properties, really it's synchronous!
       cb(null, msg_info)
     }
     catch (err) {
@@ -190,186 +178,211 @@ Gdsn.prototype.msg_string_to_msg_info = function (xml, cb) {
   })
 }
 
-Gdsn.prototype.item_string_to_item_info = function (xml, msg_info, cb) {
-  log('gdsn item_string_to_item_info called with raw xml length ' + xml.length)
-  var self = this
-  setImmediate(function () {
-    try {
-      var trimmed_xml   = self.trim_xml(xml)
-      var item_info = new ItemInfo(trimmed_xml)
-      item_info.xml = trimmed_xml
-
-      log('new item_info msg_id: ' + item_info.msg_id)
-
-      if (item_info) cb(null, item_info)
-      else cb(Error('could not derive item_info from xml: ' + xml))
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
+Gdsn.prototype.get_msg_info = function (xml) {
+  log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
+  var trimmed_xml = this.trim_xml(xml)
+  return new MessageInfo(trimmed_xml, this.config) // parse 2.8 or 3.1 message for essential properties, really it's synchronous!
 }
 
-Gdsn.prototype.party_string_to_party_info = function (xml, msg_info) {
-  //log('party_string_to_party_info called with xml length ' + xml.length)
+Gdsn.prototype.raw_party_string_to_party_info = function (xml, msg_info) {
+  //log('raw_party_string_to_party_info called with xml length ' + xml.length)
   var trimmed_xml   = this.trim_xml(xml)
   var clean_xml     = this.clean_xml(trimmed_xml)
-  var party_info    = new PartyInfo(clean_xml, this.config)
+  //var trx_id = 
+  //var doc_id =
+  var party_info    = new PartyInfo(clean_xml, msg_info)
   party_info.xml    = trimmed_xml // replace saved clean xml with trimmed xml
   party_info.msg_id = msg_info.msg_id
   return party_info
 }
 
-Gdsn.prototype.populateResponseTemplate = function (config, msg_info, cb) {
-  fs.readFile(config.templatePath + '/gdsn3/GS1Response.xml', function (err, xml) {
-    if (err) return cb(err)
-    try {
-      var $ = require('cheerio').load(xml, { 
-        _:0
-        , normalizeWhitespace: true
-        , xmlMode: true
-      })
-      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
-      //$('sh\\:CreationDateAndTime').text(new Date(msg_info.created_ts).toISOString())
-      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
-      $('sh\\:Receiver sh\\:Identifier').text(msg_info.sender)
-
-      //$('sh\\:InstanceIdentifier').text('RESP_' + Date.now() + '_' + msg_info.msg_id)
-      var msg_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
-      $('sh\\:InstanceIdentifier').text(msg_id)
-
-      $('sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
-      $('originatingMessageIdentifier entityIdentification').text(msg_info.msg_id)
-      $('originatingMessageIdentifier contentOwner gln').text(msg_info.sender)
-      $('gS1Response receiver').text(msg_info.sender)
-      $('gS1Response sender').text(config.homeDataPoolGln)
-      $('transactionIdentifier entityIdentification').text('TRX_' + Date.now())
-      $('transactionIdentifier contentOwner gln').text(config.homeDataPoolGln)
-      cb(null, $.html())
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
+Gdsn.prototype.loadTemplatesSync = function (path) {
+  this.templates = {}
+  this.templates.response  = fs.readFileSync(path + '/gdsn3/GS1Response.xml')
+  this.templates.bpr_to_gr = fs.readFileSync(path + '/gdsn3/BPR_to_GR.xml')
+  this.templates.cis_to_gr = fs.readFileSync(path + '/gdsn3/CIS.xml')
+  this.templates.rci_to_gr = fs.readFileSync(path + '/gdsn3/RCI.xml')
+  console.log('All gdsn templates read without errors')
 }
 
-Gdsn.prototype.populateBprToGrTemplate = function (config, msg_info, cb) {
+Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
+  var $ = cheerio.load(this.templates.response, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+  var resp_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
+
+  $('sh\\:Sender > sh\\:Identifier').text(msg_info.receiver)
+  $('sh\\:Receiver > sh\\:Identifier').text(msg_info.sender)
+  $('sh\\:DocumentIdentification > sh\\:InstanceIdentifier').text(resp_id)
+  $('sh\\:DocumentIdentification > sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+
+  $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
+
+
+  $('gS1Response > originatingMessageIdentifier > entityIdentification').text(msg_info.msg_id)
+  $('gS1Response > receiver').text(msg_info.sender)
+  $('gS1Response > sender').text(msg_info.receiver)
+
+  // remove trx response and start with exception message
+  var $trx_resp = $('gS1Response > transactionResponse').remove()
+
+  // populate exception response if needed
+  if (msg_info.status == 'ERROR') {
+    $('gS1Response > gS1Exception > messageException > gS1Error > errorDateTime').text(new Date().toISOString())
+    $('gS1Response > gS1Exception > messageException > gS1Error > errorDescription').text(msg_info.exception)
+  }
+  else if (msg_info.trx && msg_info.trx.length) {
+    // generate a list of transactionResponse elements
+    msg_info.trx.forEach(function (trx_id) {
+      var $trx = $trx_resp.clone()
+      $('transactionIdentifier > entityIdentification', $trx).text(trx_id)
+      $('gS1Response').append($trx)
+    })
+    $('gS1Response > gS1Exception').remove() // remove unused exception template
+  }
+
+  return $.html()
+}
+
+
+// the original BPR must be sent by the party to their own data pool, 
+// then a BPR to GR is created from clean template using key values
+Gdsn.prototype.populateBprToGr = function (config, msg_info) {
+  log('populateBprToGr from party bpr with msg_id: ' + msg_info.msg_id)
+  var $ = cheerio.load(this.templates.bpr_to_gr, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+  // instance ID something like 'BPR_to_GR_1425055673689_ADD_1100001011292'
+  var msg_id = 'BPR_to_GR_' + Date.now() + '_' + msg_info.status + '_' + msg_info.sender 
+
+  $('sh\\:Sender sh\\:Identifier').text(msg_info.receiver)
+  $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+  $('sh\\:InstanceIdentifier').text(msg_id)
+  $('sh\\:CreationDateAndTime, creationDateTime, lastUpdateDateTime, processCapabilityEffectiveStartDateTime')
+   .text(new Date().toISOString()) // when this message is created by DP (right now)
+
+  // all 3 entity ids will have the same owner, also used as data pool
+  $('partyDataPool, transmittingDataPool, registeringParty').text(msg_info.receiver) // the data pool
+  $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
+  $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
+  $('basicPartyRegistrationIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
+
+  if (msg_info.status != 'ADD') {
+    $('documentCommand > documentCommandHeader').attr('type', msg_info.status)
+  }
+
+  var party = msg_info.party
+  if (party) {
+    $('partyInRole > partyName')        .text(party.name)
+    $('partyInRole > partyRoleCode')    .text(party.role)
+
+    $('partyAddress > city')            .text(party.city)
+    $('partyAddress > countryCode')     .text(party.tm)
+    $('partyAddress > name')            .text(party.name)
+    $('partyAddress > postalCode')      .text(party.zip)
+    $('partyAddress > state')           .text(party.state)
+    $('partyAddress > streetAddressOne').text(party.address1)
+    $('partyAddress > streetAddressTwo').text(party.address2)
+  }
+
+  $('partyContact, partyCapability').remove() // TODO
+
+  return $.html()
+}
+
+Gdsn.prototype.populateCisToGr= function (config, msg_info) {
+    log('populateCisToGr')
+    var $ = cheerio.load(this.templates.cis_to_gr, { 
+      _:0
+      , normalizeWhitespace: true
+      , xmlMode: true
+    })
+
+    // new values for this message
+    $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+    $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
+    $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+
+    $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
+
+
+    // original values from tp: trx/cmd/doc id and owner glns, created ts
+    // assume naming convention based on original msg_id and only support single doc
+    $('transactionIdentification > entityIdentification').text(msg_info.msg_id + '_trx1')
+
+    $('documentCommandIdentification > entityIdentification').text(msg_info.msg_id + '_trx1_cmd1')
+
+    $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+
+    // SINGLE doc support:
+    $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+    $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_info.msg_id + '_trx1_cmd1_doc1')
+    $('dataRecipient').text(msg_info.recipient)
+
+    //optional subscription criteria:
+    if (msg_info.provider) $('dataSource').text(msg_info.provider)
+    else $('dataSource').remove()
+
+    if (msg_info.gpc) $('gpcCategoryCode').text(msg_info.gpc)
+    else $('gpcCategoryCode').remove()
+
+    if (msg_info.gtin) $('gtin').text(msg_info.provider)
+    else $('gtin').remove()
+
+    $('targetMarket').remove() // subscription to TM is NOT supported :)
+
+    return $.html()
+}
+
+Gdsn.prototype.populateRciToGr = function (config, msg_info) {
+  log('populateRciToGr')
+  var $ = cheerio.load(this.templates.rci_to_gr, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+  $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
+  $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+
+  var msg_id = 'RCI_to_GR_' + Date.now() + '_' + msg_info.provider
+  $('sh\\:InstanceIdentifier').text(msg_id)
+
+
+  // new message values for dp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based oon original msg_id and only support single doc
+  $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
+
+  $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
+
+  $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+
+  // SINGLE doc support:
+  $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+  $('registryCatalogueItemIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
+
+  $('gpcCatagoryCode').text(msg_info.gpc)
+  $('sourceDataPool').text(config.homeDataPoolGln)
+
+  $('catalogueItemReference > dataSource').text(msg_info.provider)
+  $('catalogueItemReference > gtin').text(msg_info.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(msg_info.tm)
+
+  $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
+  $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
+
+  return $.html()
+}
+
+Gdsn.prototype.populateCicToTp = function (config, msg_info, cb) {
   cb(Error('not yet implemented'))
-}
-
-Gdsn.prototype.populateCicTemplate = function (config, msg_info, cb) {
-  cb(Error('not yet implemented'))
-}
-
-Gdsn.prototype.populateCisToGrTemplate = function (config, msg_info, cb) {
-  fs.readFile(config.templatePath + '/gdsn3/CIS.xml', function (err, xml) {
-    log('populateCisToGrTemplate ')
-    if (err) return cb(err)
-    try {
-      var $ = require('cheerio').load(xml, { 
-        _:0
-        , normalizeWhitespace: true
-        , xmlMode: true
-      })
-
-      // new values for this message
-      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
-      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
-      $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
-
-      $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
-
-
-      // original values from tp: trx/cmd/doc id and owner glns, created ts
-      // assume naming convention based on original msg_id and only support single doc
-      $('transactionIdentification contentOwner gln').text(msg_info.recipient)
-      $('transactionIdentification entityIdentification').text(msg_info.msg_id + '_trx1')
-
-      $('documentCommandIdentification  contentOwner gln').text(msg_info.recipient)
-      $('documentCommandIdentification entityIdentification').text(msg_info.msg_id + '_trx1_cmd1')
-
-      $('documentCommand documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
-
-      // should be for each subscription document! up to 100 per CIS message
-      //$('catalogueItemSubscriptionIdentification entityIdentification').text(msg_info.doc_ids[0])
-
-      // SINGLE doc support:
-      $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
-      $('catalogueItemSubscriptionIdentification contentOwner gln').text(msg_info.recipient) // subscriber
-      $('catalogueItemSubscriptionIdentification entityIdentification').text(msg_info.msg_id + '_trx1_cmd1_doc1')
-      $('dataRecipient').text(msg_info.recipient)
-
-      //optional subscription criteria:
-      if (msg_info.provider) $('dataSource').text(msg_info.provider)
-      else $('dataSource').remove()
-
-      if (msg_info.gpc) $('gpcCategoryCode').text(msg_info.gpc)
-      else $('gpcCategoryCode').remove()
-
-      if (msg_info.gtin) $('gtin').text(msg_info.provider)
-      else $('gtin').remove()
-
-      $('targetMarket').remove() // subscription to TM is NOT supported :)
-
-      cb(null, $.html())
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
-}
-
-Gdsn.prototype.populateRciToGrTemplate = function (config, msg_info, cb) {
-  fs.readFile(config.templatePath + '/gdsn3/RCI.xml', function (err, xml) {
-    log('populateRciToGrTemplate ')
-    if (err) return cb(err)
-    try {
-      var $ = require('cheerio').load(xml, { 
-        _:0
-        , normalizeWhitespace: true
-        , xmlMode: true
-      })
-
-      // new values for this message
-      $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
-      $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
-      $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
-
-      var msg_id = 'RCI_to_GR_' + Date.now() + '_' + msg_info.provider
-      $('sh\\:InstanceIdentifier').text(msg_id)
-
-
-      // new message values for dp: trx/cmd/doc id and owner glns, created ts
-      // assume naming convention based oon original msg_id and only support single doc
-      $('transactionIdentification contentOwner gln').text(config.homeDataPoolGln)
-      $('transactionIdentification entityIdentification').text(msg_id + '_trx1')
-
-      $('documentCommandIdentification  contentOwner gln').text(config.homeDataPoolGln)
-      $('documentCommandIdentification entityIdentification').text(msg_id + '_trx1_cmd1')
-
-      $('documentCommand documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
-
-      // SINGLE doc support:
-      $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
-      $('registryCatalogueItemIdentification contentOwner gln').text(config.homeDataPoolGln)
-      $('registryCatalogueItemIdentification entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
-
-      $('gpcCatagoryCode').text(msg_info.gpc)
-      $('sourceDataPool').text(config.homeDataPoolGln)
-
-      $('catalogueItemReference dataSource').text(msg_info.provider)
-      $('catalogueItemReference gtin').text(msg_info.gtin)
-      $('catalogueItemReference targetMarketCountryCode').text(msg_info.tm)
-
-      $('catalogueItemDates lastChangedDateTime').text(new Date().toISOString())
-      $('catalogueItemDates registrationDateTime').text(new Date().toISOString())
-
-      cb(null, $.html())
-    }
-    catch (err) {
-      cb(err)
-    }
-  })
 }
 
 // removes extra whitespace between tags, but adds a new line for easy diff later
@@ -430,6 +443,8 @@ Gdsn.prototype.get_trade_items_info = function (xml) {
 
   $('catalogueItem > tradeItem').each(function () {
 
+    if (gtin) msg_info.gtins.push(gtin)
+    /*
     var $ti = $(this)
     console.log('transaction: ' + $ti.closest('transaction').text())
 
@@ -447,15 +462,46 @@ Gdsn.prototype.get_trade_items_info = function (xml) {
     })
 
     if (gtin) msg_info.gtins.push(gtin)
+    */
   })
 
-  log('msg_info xml size : ' + (msg_info.xml && msg_info.xml.length))
+  log('msg_info xml size : ' + msg_info.xml.length)
   log('msg_info party    : ' + msg_info.party)
-  log('msg_info parties  : ' + (msg_info.parties && msg_info.parties.join(' ')))
+  log('msg_info parties  : ' + _.pick(msg_info.party, 'gln').join(' '))
   log('msg_info gtin     : ' + msg_info.gtin)
-  log('msg_info gtins    : ' + (msg_info.gtins && msg_info.gtins.join(' ')))
+  log('msg_info gtins    : ' + msg_info.gtins.join(' '))
   log('msg_info doc_count: ' + msg_info.doc_count)
-  log('msg_info doc_ids  : ' + (msg_info.doc_ids && msg_info.doc_ids .join(' ')))
 
   return msg_info
 }
+
+Gdsn.prototype.raw_item_string_to_item_info = function (xml, msg_info) {
+  //log('raw_item_string_to_item_info called with xml length ' + xml.length)
+  var trimmed_xml   = this.trim_xml(xml)
+  var clean_xml     = this.clean_xml(trimmed_xml)
+  var item_info    = new ItemInfo(clean_xml, this.config)
+  item_info.xml    = trimmed_xml // replace saved clean xml with trimmed xml
+  item_info.msg_id = msg_info.msg_id
+  return item_info
+}
+
+Gdsn.prototype.item_string_to_item_info = function (xml, msg_info, cb) {
+  log('gdsn item_string_to_item_info called with raw xml length ' + xml.length)
+  var self = this
+  setImmediate(function () {
+    try {
+      var trimmed_xml   = self.trim_xml(xml)
+      var item_info = new ItemInfo(trimmed_xml)
+      item_info.xml = trimmed_xml
+
+      log('new item_info msg_id: ' + item_info.msg_id)
+
+      if (item_info) cb(null, item_info)
+      else cb(Error('could not derive item_info from xml: ' + xml))
+    }
+    catch (err) {
+      cb(err)
+    }
+  })
+}
+

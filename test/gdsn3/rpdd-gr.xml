@@ -18,17 +18,17 @@
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>trx1</entityIdentification>
+            <entityIdentification>rpdd_msg_123-trx1</entityIdentification>
             <contentOwner>
-                <gln>1100001011285</gln>
+                <gln>0614141810017</gln>
             </contentOwner>
         </transactionIdentification>
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>trx1-cmd1</entityIdentification>
+                    <entityIdentification>rpdd_msg_123-trx1-cmd1</entityIdentification>
                     <contentOwner>
-                        <gln>1100001011285</gln>
+                        <gln>0614141810017</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
@@ -36,12 +36,12 @@
                 <creationDateTime>2014-12-30T11:00:00.000-05:00</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <registryPartyDataDumpIdentification>
-                    <entityIdentification>trx1-cmd1-doc1</entityIdentification>
+                    <entityIdentification>gr-doc_456</entityIdentification>
                     <contentOwner>
-                        <gln>1100001011285</gln>
+                        <gln>0614141810017</gln>
                     </contentOwner>
                 </registryPartyDataDumpIdentification>
-                <informationProvider>1100001011285</informationProvider>
+                <informationProvider>0614141810017</informationProvider>
                 <informationRecipient>1100001011285</informationRecipient>
                 <party>
                     <isPartyActive>true</isPartyActive>
@@ -70,6 +70,10 @@
                             <communicationChannelCode>TELEPHONE</communicationChannelCode>
                             <communicationValue>9256601392</communicationValue>
                         </communicationChannel>
+                        <communicationChannel>
+                            <communicationChannelCode>EMAIL</communicationChannelCode>
+                            <communicationValue>test@itn.com</communicationValue>
+                        </communicationChannel>
                     </partyContact>
                     <partyCapability>
                         <processCapability>
@@ -91,12 +95,12 @@
                 <creationDateTime>2011-03-11T11:00:00.000-05:00</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <registryPartyDataDumpIdentification>
-                    <entityIdentification>trx1-cmd1-doc2</entityIdentification>
+                    <entityIdentification>rpdd_msg_123-trx1-cmd1-doc2</entityIdentification>
                     <contentOwner>
-                        <gln>1100001011285</gln>
+                        <gln>0614141810017</gln>
                     </contentOwner>
                 </registryPartyDataDumpIdentification>
-                <informationProvider>1100001011285</informationProvider>
+                <informationProvider>0614141810017</informationProvider>
                 <informationRecipient>1100001011285</informationRecipient>
                 <party>
                     <isPartyActive>true</isPartyActive>
@@ -121,6 +125,10 @@
                     <partyContact>
                         <contactTypeCode>AP</contactTypeCode>
                         <personName>Ted One</personName>
+                        <communicationChannel>
+                            <communicationChannelCode>EMAIL</communicationChannelCode>
+                            <communicationValue>test@itn.com</communicationValue>
+                        </communicationChannel>
                         <communicationChannel>
                             <communicationChannelCode>TELEPHONE</communicationChannelCode>
                             <communicationValue>9256601392</communicationValue>
@@ -169,7 +177,7 @@
                         <gln>0821620400007</gln>
                     </contentOwner>
                 </registryPartyDataDumpIdentification>
-                <informationProvider>0821620400007</informationProvider>
+                <informationProvider>0614141810017</informationProvider>
                 <informationRecipient>1100001011285</informationRecipient>
                 <party>
                     <isPartyActive>true</isPartyActive>
@@ -204,6 +212,65 @@
                     <partyInRole>
                         <partyName>ODP Test Dist</partyName>
                         <partyRoleCode>DISTRIBUTOR</partyRoleCode>
+                    </partyInRole>
+                </party>
+            </registry_party_data_dump:registryPartyDataDump>
+            <registry_party_data_dump:registryPartyDataDump>
+                <creationDateTime>2014-12-30T11:00:00.000-05:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <registryPartyDataDumpIdentification>
+                    <entityIdentification>gr-doc_456</entityIdentification>
+                    <contentOwner>
+                        <gln>0614141810017</gln>
+                    </contentOwner>
+                </registryPartyDataDumpIdentification>
+                <informationProvider>0614141810017</informationProvider>
+                <informationRecipient>1100001011285</informationRecipient>
+                <party>
+                    <isPartyActive>true</isPartyActive>
+                    <lastUpdateDateTime>2013-01-10T12:00:01.000-05:00</lastUpdateDateTime>
+                    <registeringParty>0838016003001</registeringParty>
+                    <informationProviderOfParty>
+                        <gln>0023700000019</gln>
+                    </informationProviderOfParty>
+                    <organisationHighestLevelParty>
+                        <gln>0023700000019</gln>
+                    </organisationHighestLevelParty>
+                    <partyAddress>
+                        <city>Oakland</city>
+                        <countryCode>840</countryCode>
+                        <languageOfThePartyCode>en</languageOfThePartyCode>
+                        <name>1WS® Test Party 0023700000019</name>
+                        <postalCode>94618</postalCode>
+                        <state>CA</state>
+                        <streetAddressOne>1005 63rd St.</streetAddressOne>
+                        <streetAddressTwo>Suite 9</streetAddressTwo>
+                    </partyAddress>
+                    <partyContact>
+                        <contactTypeCode>AP</contactTypeCode>
+                        <personName>Ted One</personName>
+                        <communicationChannel>
+                            <communicationChannelCode>EMAIL</communicationChannelCode>
+                            <communicationValue>test@1ws.com</communicationValue>
+                        </communicationChannel>
+                        <communicationChannel>
+                            <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                            <communicationValue>9256601392</communicationValue>
+                        </communicationChannel>
+                    </partyContact>
+                    <partyCapability>
+                        <processCapability>
+                            <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+                            <processCapabilityEffectiveStartDateTime>2014-12-15T12:00:01.000-05:00</processCapabilityEffectiveStartDateTime>
+                            <registeredContext>
+                                <contextIdentification>1</contextIdentification>
+                                <contextEffectiveStartDateTime>2014-12-15T12:00:00.001-05:00</contextEffectiveStartDateTime>
+                            </registeredContext>
+                        </processCapability>
+                    </partyCapability>
+                    <partyInRole>
+                        <partyName>1WS® Test Party 0023700000019</partyName>
+                        <partyRoleCode>SUPPLIER</partyRoleCode>
                     </partyInRole>
                 </party>
             </registry_party_data_dump:registryPartyDataDump>

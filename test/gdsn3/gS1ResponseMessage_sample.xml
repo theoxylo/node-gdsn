@@ -12,7 +12,7 @@
 			<sh:Standard>GS1</sh:Standard>
 			<sh:TypeVersion>3.1</sh:TypeVersion>
 			<sh:InstanceIdentifier>sample_generic_response</sh:InstanceIdentifier>
-			<sh:Type/>
+			<sh:Type>GS1Response</sh:Type>
 			<sh:MultipleType>false</sh:MultipleType>
 			<sh:CreationDateAndTime>2001-12-17T09:30:47Z</sh:CreationDateAndTime>
 		</sh:DocumentIdentification>
@@ -28,7 +28,7 @@
 	</sh:StandardBusinessDocumentHeader>
 	<gS1Response>
 		<originatingMessageIdentifier>
-			<entityIdentification>ACK_123</entityIdentification>
+			<entityIdentification>MSG_OUT_42267</entityIdentification>
 			<contentOwner>
 				<gln>1100001011285</gln>
 			</contentOwner>

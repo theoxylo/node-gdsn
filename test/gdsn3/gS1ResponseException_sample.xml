@@ -12,14 +12,14 @@
 			<sh:Standard>GS1</sh:Standard>
 			<sh:TypeVersion>3.1</sh:TypeVersion>
 			<sh:InstanceIdentifier>sample_generic_exception_response</sh:InstanceIdentifier>
-			<sh:Type/>
+			<sh:Type>gS1Response</sh:Type>
 			<sh:MultipleType>false</sh:MultipleType>
-			<sh:CreationDateAndTime>2014-12-30T09:30:47Z</sh:CreationDateAndTime>
+			<sh:CreationDateAndTime>2015-03-07T08:30:47Z</sh:CreationDateAndTime>
 		</sh:DocumentIdentification>
 		<sh:BusinessScope>
 			<sh:Scope>
 				<sh:Type>GDSN</sh:Type>
-				<sh:InstanceIdentifier>NACK_123</sh:InstanceIdentifier>
+				<sh:InstanceIdentifier>exception_response_123</sh:InstanceIdentifier>
                 <sh:CorrelationInformation>
                     <sh:RequestingDocumentInstanceIdentifier>MSG_OUT_42267</sh:RequestingDocumentInstanceIdentifier>
                 </sh:CorrelationInformation>
@@ -28,10 +28,7 @@
 	</sh:StandardBusinessDocumentHeader>
 	<gS1Response>
 		<originatingMessageIdentifier>
-			<entityIdentification>a</entityIdentification>
-			<contentOwner>
-				<gln>1100001011285</gln>
-			</contentOwner>
+			<entityIdentification>MSG_OUT_42267</entityIdentification>
 		</originatingMessageIdentifier>
 		<receiver>1100001011292</receiver>
 		<sender>1100001011285</sender>
@@ -39,8 +36,8 @@
 			<messageException>
 				<gS1Error>
 					<errorCode>999</errorCode>
-					<errorDateTime>2014-12-17T09:30:47Z</errorDateTime>
-					<errorDescription>some error</errorDescription>
+					<errorDateTime>2015-03-08T09:30:47Z</errorDateTime>
+					<errorDescription>some error occrred for requesting msg id MSG_OUT_42267</errorDescription>
 				</gS1Error>
 			</messageException>
 		</gS1Exception>

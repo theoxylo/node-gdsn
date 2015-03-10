@@ -29,7 +29,7 @@
                 <catalogueItemNotificationIdentification>
                     <entityIdentification>TOKEN</entityIdentification>
                 </catalogueItemNotificationIdentification>
-                <isReload>false</isReload>
+                <isReload>TOKEN</isReload>
                 <catalogueItem>
                     <dataRecipient>TOKEN</dataRecipient>
                     <sourceDataPool>TOKEN</sourceDataPool>
@@ -38,15 +38,15 @@
                     </catalogueItemState>
                     <tradeItem>
                         <gtin>TOKEN</gtin>
-                        <contextIdentification>1</contextIdentification>
                         <isTradeItemABaseUnit>true</isTradeItemABaseUnit>
                         <isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
                         <isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
                         <isTradeItemAnInvoiceUnit>false</isTradeItemAnInvoiceUnit>
                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                        <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
+                        <tradeItemUnitDescriptorCode>TOKEN</tradeItemUnitDescriptorCode>
                         <informationProviderOfTradeItem>
                             <gln>TOKEN</gln>
+                            <partyName>TOKEN</partyName>
                             <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                         </informationProviderOfTradeItem>
                         <gdsnTradeItemClassification>
@@ -54,15 +54,21 @@
                         </gdsnTradeItemClassification>
                         <targetMarket>
                             <targetMarketCountryCode>840</targetMarketCountryCode>
-                            <targetMarketSubdivisionCode>us-ca</targetMarketSubdivisionCode>                            
+                            <targetMarketSubdivisionCode>us-ca</targetMarketSubdivisionCode>
                         </targetMarket>
                         <tradeItemInformation>
                             <extension>
-                                <test-extension-123>hello</test-extension-123>
-                            </extension>
-                            <extension>
-                                <template>EXT_FBI.xml</template>
-                                <note>ingredient module</note>
+                              <food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
+                                <additiveInformation>
+                                  <additiveName>TOKEN</additiveName>
+                                  <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
+                                </additiveInformation>
+                                <foodAndBeverageIngredient>
+                                  <ingredientSequence>1</ingredientSequence>
+                                  <ingredientContentPercentage>TOKEN</ingredientContentPercentage>
+                                  <ingredientName languageCode="en">TOKEN</ingredientName>
+                                </foodAndBeverageIngredient>
+                              </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                             </extension>
                         </tradeItemInformation>
                         <tradeItemSynchronisationDates>

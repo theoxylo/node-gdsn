@@ -57,7 +57,7 @@ Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
 
 ///////////////////////// utilities:
 
-Gdsn.validateGln = function (gln) {
+Gdsn.validateGln = Gdsn.prototype.validateGln = function (gln) {
   if (!gln || gln.length != 13) return false
 
   var digits = gln.split('')
@@ -77,7 +77,7 @@ Gdsn.validateGln = function (gln) {
   return checkDigit == numbers[12]
 }
 
-Gdsn.validateGtin = function (gtin) {
+Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
   if (!gtin || gtin.length != 14) return false
 
   var digits = gtin.split('')
@@ -94,6 +94,7 @@ Gdsn.validateGtin = function (gtin) {
   if (checkDigit) {
       checkDigit = 10 - checkDigit
   }
+  console.log('gtin check-digit: ' + checkDigit)
   return checkDigit == numbers[13]
 }
 

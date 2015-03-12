@@ -11,7 +11,7 @@
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
             <sh:InstanceIdentifier>rpdd_msg_123</sh:InstanceIdentifier>
-            <sh:Type>registryPartyDataDump</sh:type>
+            <sh:Type>registryPartyDataDump</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
             <sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
         </sh:DocumentIdentification>

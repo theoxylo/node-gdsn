@@ -116,11 +116,14 @@ Gdsn.prototype.log_msg_info = function (msg_info) {
   log('msg_info provider : ' + msg_info.provider)
   log('msg_info recipient: ' + msg_info.recipient)
   log('msg_info xml size : ' + msg_info.xml.length)
-  log('msg_info pty count: ' + msg_info.party.length)
-  log('msg_info parties  : ' + msg_info.party.join(' '))
+  log('msg_info party cnt: ' + msg_info.party.length)
+  log('msg_info item cnt : ' + msg_info.item.length)
+  log('msg_info pub count: ' + msg_info.pub.length)
+  log('msg_info sub count: ' + msg_info.sub.length)
   log('msg_info gtin     : ' + msg_info.gtin)
   log('msg_info gtins    : ' + msg_info.gtins.join(' '))
   log('msg_info doc_count: ' + msg_info.doc_count)
+  log('msg_info trx      : ' + msg_info.trx.join(','))
 }
 
 Gdsn.prototype.get_msg_info = function (xml) {

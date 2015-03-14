@@ -21,6 +21,7 @@
                 <sh:Type>GDSN</sh:Type>
                 <sh:InstanceIdentifier>TOKEN</sh:InstanceIdentifier>
                 <sh:CorrelationInformation>
+                    <sh:RequestingDocumentCreationDateTime>TOKEN</sh:RequestingDocumentCreationDateTime>
                     <sh:RequestingDocumentInstanceIdentifier>TOKEN</sh:RequestingDocumentInstanceIdentifier>
                 </sh:CorrelationInformation>
             </sh:Scope>
@@ -42,6 +43,7 @@
         </transactionResponse>
 
         <gS1Exception>
+
             <messageException>
                 <gS1Error>
                     <errorCode>999</errorCode>
@@ -49,6 +51,62 @@
                     <errorDescription>TOKEN</errorDescription>
                 </gS1Error>
             </messageException>
+
+            <transactionException>
+              <entityIdentification><entityIdentification>trx_123</entityIdentification></entityIdentification>
+              <gS1Error>
+                <errorCode>1001</errorCode>
+                <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                <errorDescription>TOKEN</errorDescription>
+              </gS1Error>
+              <gS1Error>
+                <errorCode>1002</errorCode>
+                <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                <errorDescription>TOKEN</errorDescription>
+              </gS1Error>
+              <commandException>
+                <entityIdentification><entityIdentification>cmd_123</entityIdentification></entityIdentification>
+                <gS1Error>
+                  <errorCode>1003</errorCode>
+                  <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                  <errorDescription>TOKEN</errorDescription>
+                </gS1Error>
+                <gS1Error>
+                  <errorCode>1004</errorCode>
+                  <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                  <errorDescription>TOKEN</errorDescription>
+                </gS1Error>
+                <documentException>
+                  <entityIdentification><entityIdentification>doc_123</entityIdentification></entityIdentification>
+                  <gS1Error>
+                    <errorCode>1006</errorCode>
+                    <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                    <errorDescription>TOKEN</errorDescription>
+                  </gS1Error>
+                  <gS1Error>
+                    <errorCode>1007</errorCode>
+                    <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                    <errorDescription>TOKEN</errorDescription>
+                  </gS1Error>
+                  <attributeException>
+                    <attributeName>gtin</attributeName>
+                    <attributeValue>99999999999999</attributeValue>
+                    <xPath>tradeItem/gtin</xPath>
+                    <gS1Error>
+                      <errorCode>1008</errorCode>
+                      <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                      <errorDescription>TOKEN</errorDescription>
+                    </gS1Error>
+                    <gS1Error>
+                      <errorCode>1009</errorCode>
+                      <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                      <errorDescription>TOKEN</errorDescription>
+                    </gS1Error>
+                  </attributeException>
+                </documentException>
+              </commandException>
+            </transactionException>
+
         </gS1Exception>
         
     </gS1Response>

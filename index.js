@@ -1,12 +1,13 @@
-var fs          = require('fs')
-var cheerio     = require('cheerio')
-var ItemStream  = require('./lib/ItemStream.js')
-var PartyStream = require('./lib/PartyStream.js')
-var ItemInfo    = require('./lib/ItemInfo.js')
-var MessageInfo = require('./lib/MessageInfo.js')
-var PartyInfo   = require('./lib/PartyInfo.js')
-var xpath_dom   = require('./lib/xpath_dom.js')
-var log         = console.log
+var fs            = require('fs')
+var cheerio       = require('cheerio')
+var ItemStream    = require('./lib/ItemStream.js')
+var PartyStream   = require('./lib/PartyStream.js')
+var TradeItemInfo = require('./lib/TradeItemInfo.js')
+var MessageInfo   = require('./lib/MessageInfo.js')
+var PartyInfo     = require('./lib/PartyInfo.js')
+var xpath_dom     = require('./lib/xpath_dom.js')
+
+var log = console.log
 
 var Gdsn = module.exports = function (config) {
 
@@ -94,7 +95,7 @@ Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
   if (checkDigit) {
       checkDigit = 10 - checkDigit
   }
-  console.log('gtin check-digit: ' + checkDigit)
+  log('gtin check-digit: ' + checkDigit)
   return checkDigit == numbers[13]
 }
 
@@ -127,9 +128,9 @@ Gdsn.prototype.log_msg_info = function (msg_info) {
 }
 
 Gdsn.prototype.get_msg_info = function (xml) {
-  log('gdsn msg_string_to_msg_info called with xml length ' + xml.length)
-  var trimmed_xml = Gdsn.trim_xml(xml)
-  return new MessageInfo(trimmed_xml, this.config) // parse 2.8 or 3.1 message for essential properties, really it's synchronous!
+  log('gdsn get_msg_info called with xml length ' + xml.length)
+  // synchronous parse of gdsn 2.8 or 3.1 xml for priority data
+  return new MessageInfo(Gdsn.trim_xml(xml), this.config) 
 }
 
 Gdsn.prototype.raw_party_string_to_party_info = function (xml, msg_info) {
@@ -148,7 +149,8 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.bpr_to_gr = fs.readFileSync(path + '/gdsn3/BPR_to_GR.xml')
   this.templates.cis_to_gr = fs.readFileSync(path + '/gdsn3/CIS.xml')
   this.templates.rci_to_gr = fs.readFileSync(path + '/gdsn3/RCI.xml')
-  console.log('All gdsn templates read without errors')
+  this.templates.cin_out   = fs.readFileSync(path + '/gdsn3/CIN_hierarchy.xml')
+  log('All gdsn templates read without errors')
 }
 
 Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
@@ -165,6 +167,7 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
   $('sh\\:DocumentIdentification > sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
   $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text(new Date(msg_info.created_ts).toISOString())
   $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
 
 
@@ -172,22 +175,22 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
   $('gS1Response > receiver').text(msg_info.sender)
   $('gS1Response > sender').text(msg_info.receiver)
 
-  // remove trx response and start with exception message
+  // remove trx success/error and start with message exception
   var $trx_resp = $('gS1Response > transactionResponse').remove()
 
-  // populate exception response if needed
-  if (msg_info.status == 'ERROR') {
-    $('gS1Response > gS1Exception > messageException > gS1Error > errorDateTime').text(new Date().toISOString())
-    $('gS1Response > gS1Exception > messageException > gS1Error > errorDescription').text(msg_info.exception)
+  if (msg_info.status == 'ERROR') { // populate simple message exception response
+    $('messageException > gS1Error > errorDateTime').text(new Date().toISOString())
+    $('messageException > gS1Error > errorDescription').text(msg_info.exception)
+    $('transactionResponse, transactionException').remove() // remove unused transaction level response/exception template nodes
   }
   else if (msg_info.trx && msg_info.trx.length) {
-    // generate a list of transactionResponse elements
-    msg_info.trx.forEach(function (trx_id) {
+    $('gS1Response > gS1Exception').remove()                        // remove unused exception template
+    var $trx_resp = $('gS1Response > transactionResponse').remove() // remove desired template node, then clone and add back for each trx
+    msg_info.trx.forEach(function (trx_id) {                        // to generate list of transactionResponse elements
       var $trx = $trx_resp.clone()
       $('transactionIdentifier > entityIdentification', $trx).text(trx_id)
       $('gS1Response').append($trx)
     })
-    $('gS1Response > gS1Exception').remove() // remove unused exception template
   }
 
   return $.html()
@@ -327,8 +330,76 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateCicToTp = function (config, msg_info, cb) {
-  cb(Error('not yet implemented'))
+Gdsn.prototype.populateCicToTp = function (config, msg_info) {
+  return null
+}
+
+Gdsn.prototype.create_cin = function (trade_items) {
+
+  if (!trade_items || !trade_items.length) return ''
+
+  var root_item = trade_items[0]
+
+  var sender = this.config.homeDataPoolGln
+  var receiver = root_item.receiver
+  var provider = root_item.provider
+  var recipient = root_item.recipient
+  var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + root_item.gtin
+  var dateTime = new Date().toISOString()
+
+  log('create_cin')
+  var $ = cheerio.load(this.templates.cin_out, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  $('sh\\:Sender sh\\:Identifier').text(sender)
+  $('sh\\:Receiver sh\\:Identifier').text(receiver)
+
+  $('sh\\:InstanceIdentifier').text(msg_id)
+  $('sh\\:CreationDateAndTime').text(dateTime)
+
+
+  // new message values for dp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based oon original msg_id and only support single doc
+  $('transactionIdentification > entityIdentification').text(msg_id + '_t1')
+  $('documentCommand > documentCommandHeader').attr('type', 'ADD') // TODO dynamic
+  $('documentCommandIdentification > entityIdentification').text(msg_id + '_t1_c1')
+
+  $('creationDateTime').text(dateTime)
+  $('isReload').text('false') // TODO dynamic
+  
+  var $ci = $('catalogueItem')
+  var $position = $($ci[0].parent)
+  $('dataRecipient', $ci).text(recipient)
+  $('sourceDataPool', $ci).text(receiver) // TODO need data pool lookup by party
+  $ci.remove() // we are going to clone and append for each item
+
+  trade_items.forEach(function (item) {
+
+    var item_idx = item_idx || {} // for easy access to item by gtin
+    item_idx[item.gtin] = item    // add each item gtin as an index property
+
+    var $child = $('catalogueItemChildItemLink', $new_ci).remove()
+
+    var $new_ci = $ci.clone()
+    $new_ci.append(item.xml)
+
+    item.child_gtins.forEach(function() {
+      $new_ci.append($child.clone())
+    })
+
+    $position.append($new_ci)
+  })
+
+    // generate catalogueItem hierarchy:
+    // 1. catalogueItem element
+    // 2. add tradeItem using item.xml
+    // 3. add a catalogueItemChildItemLink for each child with empty catalogueItem, repeat!
+
+  return $.html()
 }
 
 // removes extra whitespace between tags, but adds a new line for easy diff later

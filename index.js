@@ -1,4 +1,5 @@
 var fs            = require('fs')
+var _             = require('underscore')
 var cheerio       = require('cheerio')
 var ItemStream    = require('./lib/ItemStream.js')
 var PartyStream   = require('./lib/PartyStream.js')
@@ -14,7 +15,7 @@ var Gdsn = module.exports = function (config) {
   if (!(this instanceof Gdsn)) return new Gdsn(config)
 
   config = config || {clean_newline: true}
-  log = config.log || log
+  log = config.log || log // config arg may have its own version of log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
   if (!config.outbox_dir)      config.outbox_dir      = config.out_dir || __dirname + '/outbox'
@@ -167,7 +168,8 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
   $('sh\\:DocumentIdentification > sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
   $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
-  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text(new Date(msg_info.created_ts).toISOString())
+  log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>> created_ts value: ' + msg_info.created_ts)
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(Number(msg_info.created_ts))).toISOString())
   $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
 
 
@@ -253,12 +255,10 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
     })
 
     // new values for this message
-    $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
-    $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
-    $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
-
+    $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
+    $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
     $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
-
+    $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
     // original values from tp: trx/cmd/doc id and owner glns, created ts
     // assume naming convention based on original msg_id and only support single doc
@@ -297,20 +297,17 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   })
 
   // new values for this message
-  $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
-  $('sh\\:Sender sh\\:Identifier').text(config.homeDataPoolGln)
-  $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
-
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
+  $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
   var msg_id = 'RCI_to_GR_' + Date.now() + '_' + msg_info.provider
   $('sh\\:InstanceIdentifier').text(msg_id)
+  $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
 
   // new message values for dp: trx/cmd/doc id and owner glns, created ts
   // assume naming convention based oon original msg_id and only support single doc
   $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
-
   $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
-
   $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
 
   // SINGLE doc support:
@@ -330,24 +327,60 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   return $.html()
 }
 
+// generate catalogueItem hierarchy:
+// 1. catalogueItem element
+// 2. add tradeItem using item.xml
+// 3. add a catalogueItemChildItemLink for each child with catalogueItem, repeat!
+/* 
+  $ci:
+    <catalogueItem> // for each trade item create a catalog item
+      <dataRecipient>recipient</dataRecipient> // subscriber, could be local or on some other dp
+      <sourceDataPool>sender</sourceDataPool>
+      <catalogueItemState> <catalogueItemStateCode>REGISTERED</catalogueItemStateCode> </catalogueItemState>
+      <!--tradeItem-->
+      <!--catalogueItemChildItemLink-->
+    </catalogueItem>
+    
+  $link:
+      <catalogueItemChildItemLink>
+          <quantity>TOKEN</quantity>
+          <!--catalogueItem-->
+      </catalogueItemChildItemLink>
+      
+  Now we must adjust the above structure based on each trade item child info:
+    <nextLowerLevelTradeItemInformation>
+        <quantityOfChildren>2</quantityOfChildren>
+        <totalQuantityOfNextLowerLevelTradeItem>22</totalQuantityOfNextLowerLevelTradeItem>
+        <childTradeItem>
+            <gtin>00018627703396</gtin>
+            <quantityOfNextLowerLevelTradeItem>8</quantityOfNextLowerLevelTradeItem>
+        </childTradeItem>
+        <childTradeItem>
+            <gtin>00018627703389</gtin>
+            <quantityOfNextLowerLevelTradeItem>14</quantityOfNextLowerLevelTradeItem>
+        </childTradeItem>
+    </nextLowerLevelTradeItemInformation>
+*/
 Gdsn.prototype.populateCicToTp = function (config, msg_info) {
   return null
 }
 
 Gdsn.prototype.create_cin = function (trade_items) {
-
+  
+  log('create_cin')
   if (!trade_items || !trade_items.length) return ''
-
-  var root_item = trade_items[0]
-
+  
+  var ti = trade_items[0]
+  
   var sender = this.config.homeDataPoolGln
-  var receiver = root_item.receiver
-  var provider = root_item.provider
-  var recipient = root_item.recipient
-  var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + root_item.gtin
+  var receiver = ti.receiver
+  var provider = ti.provider
+  
+  var recipient = ti.recipient
+  
+  var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + ti.gtin + '_' + ti.tm + '_' + ti.tm_sub || 'na'
   var dateTime = new Date().toISOString()
 
-  log('create_cin')
   var $ = cheerio.load(this.templates.cin_out, { 
     _:0
     , normalizeWhitespace: true
@@ -355,8 +388,8 @@ Gdsn.prototype.create_cin = function (trade_items) {
   })
 
   // new values for this message
-  $('sh\\:Sender sh\\:Identifier').text(sender)
-  $('sh\\:Receiver sh\\:Identifier').text(receiver)
+  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
 
   $('sh\\:InstanceIdentifier').text(msg_id)
   $('sh\\:CreationDateAndTime').text(dateTime)
@@ -367,38 +400,47 @@ Gdsn.prototype.create_cin = function (trade_items) {
   $('transactionIdentification > entityIdentification').text(msg_id + '_t1')
   $('documentCommand > documentCommandHeader').attr('type', 'ADD') // TODO dynamic
   $('documentCommandIdentification > entityIdentification').text(msg_id + '_t1_c1')
+  $('catalogueItemNotificationIdentification > entityIdentification').text(msg_id + '_t1_c1_d1')
 
   $('creationDateTime').text(dateTime)
   $('isReload').text('false') // TODO dynamic
   
-  var $ci = $('catalogueItem')
+  var $ci       = $('catalogueItem')
   var $position = $($ci[0].parent)
+  var $link     = $('catalogueItemChildItemLink', $ci).remove()
   $('dataRecipient', $ci).text(recipient)
-  $('sourceDataPool', $ci).text(receiver) // TODO need data pool lookup by party
-  $ci.remove() // we are going to clone and append for each item
-
+  $('sourceDataPool', $ci).text(sender)
+  //$ci.remove() // will clone and add back 
+  
+  var item_idx = {} // for easy access to items by gtin
   trade_items.forEach(function (item) {
-
-    var item_idx = item_idx || {} // for easy access to item by gtin
-    item_idx[item.gtin] = item    // add each item gtin as an index property
-
-    var $child = $('catalogueItemChildItemLink', $new_ci).remove()
-
-    var $new_ci = $ci.clone()
-    $new_ci.append(item.xml)
-
-    item.child_gtins.forEach(function() {
-      $new_ci.append($child.clone())
-    })
-
-    $position.append($new_ci)
+    item_idx[item.gtin] = item    // save each gtin as an index to this item
   })
-
-    // generate catalogueItem hierarchy:
-    // 1. catalogueItem element
-    // 2. add tradeItem using item.xml
-    // 3. add a catalogueItemChildItemLink for each child with empty catalogueItem, repeat!
-
+  log('item_idx')
+  console.dir(item_idx)
+  
+  function create_catalog_item(gtin) {
+    log('creating new catalog item with gtin: ' + gtin)
+    var $new_ci = $ci.clone()
+    var xml = item_idx[gtin].xml || ('<tradeItem><gtin>' + gtin + '</gtin></tradeItem>')
+    $new_ci.append(xml)
+    $('childTradeItem', $new_ci).each (function (idx, child) {
+      log('child each: ')
+      console.dir(child)
+      
+      var child_gtin = $('gtin', child).text()
+      log('found child gtin: ' + child_gtin)
+      var quantity = $('quantityOfNextLowerLevelTradeItem', child).text()
+      log('found child quantity: ' + quantity)
+      
+      var $new_link = $link.clone()
+      $('quantity', $new_link).text(quantity)
+      $new_link.append(create_catalog_item(child_gtin))
+      $new_ci.append($new_link)
+    })
+    return $new_ci.html()
+  }
+  $position.append(create_catalog_item(ti.gtin))
   return $.html()
 }
 

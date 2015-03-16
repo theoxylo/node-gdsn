@@ -169,7 +169,7 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
 
   $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
   log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>> created_ts value: ' + msg_info.created_ts)
-  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(Number(msg_info.created_ts))).toISOString())
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(msg_info.created_ts || 1)).toISOString())
   $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
 
 
@@ -185,9 +185,8 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
     $('messageException > gS1Error > errorDescription').text(msg_info.exception)
     $('transactionResponse, transactionException').remove() // remove unused transaction level response/exception template nodes
   }
-  else if (msg_info.trx && msg_info.trx.length) {
+  else { // if (msg_info.trx && msg_info.trx.length) {
     $('gS1Response > gS1Exception').remove()                        // remove unused exception template
-    var $trx_resp = $('gS1Response > transactionResponse').remove() // remove desired template node, then clone and add back for each trx
     msg_info.trx.forEach(function (trx_id) {                        // to generate list of transactionResponse elements
       var $trx = $trx_resp.clone()
       $('transactionIdentifier > entityIdentification', $trx).text(trx_id)
@@ -269,7 +268,7 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
     $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
 
     // SINGLE doc support:
-    $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+    $('creationDateTime').text(new Date(msg_info.created_ts || 1).toISOString())
     $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_info.msg_id + '_trx1_cmd1_doc1')
     $('dataRecipient').text(msg_info.recipient)
 
@@ -311,7 +310,7 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
 
   // SINGLE doc support:
-  $('creationDateTime').text(new Date(msg_info.created_ts).toISOString())
+  $('creationDateTime').text(new Date(msg_info.created_ts || 1).toISOString())
   $('registryCatalogueItemIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
 
   $('gpcCatagoryCode').text(msg_info.gpc)
@@ -374,7 +373,11 @@ Gdsn.prototype.create_cin = function (trade_items) {
   
   var recipient = ti.recipient
   
-  var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + ti.gtin + '_' + ti.tm + '_' + ti.tm_sub || 'na'
+  // more than 80 chars xsd: 
+  //var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + ti.gtin + '_' + ti.tm + '_' + ti.tm_sub || 'na'
+  // shorter, unique enough:
+  var msg_id = 'CIN_OUT_' + Date.now() + '_' + provider + '_' + recipient + '_' + ti.gtin
+
   var dateTime = new Date().toISOString()
 
   var $ = cheerio.load(this.templates.cin_out, { 
@@ -402,21 +405,22 @@ Gdsn.prototype.create_cin = function (trade_items) {
   $('isReload').text('false') // TODO dynamic
   
   var $ci       = $('catalogueItem')
-  var $position = $($ci[0].parent)
+  //var $position = $($ci[0].parent)
   var $link     = $('catalogueItemChildItemLink', $ci).remove()
   $('dataRecipient', $ci).text(recipient)
   $('sourceDataPool', $ci).text(sender)
-  $ci.remove() // will clone and add back 
   
-  var item_idx = {} // for easy access to items by gtin
+  // for easy access to items by gtin
+  // save each gtin as an index to its xml
+  var item_xmls = {} 
   trade_items.forEach(function (item) {
-    item_idx[item.gtin] = item    // save each gtin as an index to this item
+    item_xmls[item.gtin] = item.xml || ('<tradeItem><gtin>' + item.gtin + '</gtin></tradeItem>')
   })
+
   function create_catalog_item(gtin) {
     log('creating new catalog item with gtin: ' + gtin)
     var $new_ci = $ci.clone()
-    var xml = item_idx[gtin].xml || ('<tradeItem><gtin>' + gtin + '</gtin></tradeItem>')
-    $new_ci.append(xml)
+    $new_ci.append(item_xmls[gtin])
     $('childTradeItem', $new_ci).each (function (idx, child) {
       var child_gtin = $('gtin', child).text()
       log('found child gtin: ' + child_gtin)
@@ -429,7 +433,10 @@ Gdsn.prototype.create_cin = function (trade_items) {
     })
     return $new_ci.toString()
   }
-  $position.append(create_catalog_item(ti.gtin))
+  $ci.replaceWith(create_catalog_item(ti.gtin))
+  //$ci.remove() // will clone and add back 
+  //$position.append(create_catalog_item(ti.gtin))
+
   return $.html()
 }
 

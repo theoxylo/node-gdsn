@@ -361,10 +361,6 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
         </childTradeItem>
     </nextLowerLevelTradeItemInformation>
 */
-Gdsn.prototype.populateCicToTp = function (config, msg_info) {
-  return null
-}
-
 Gdsn.prototype.create_cin = function (trade_items) {
   
   log('create_cin')
@@ -410,38 +406,35 @@ Gdsn.prototype.create_cin = function (trade_items) {
   var $link     = $('catalogueItemChildItemLink', $ci).remove()
   $('dataRecipient', $ci).text(recipient)
   $('sourceDataPool', $ci).text(sender)
-  //$ci.remove() // will clone and add back 
+  $ci.remove() // will clone and add back 
   
   var item_idx = {} // for easy access to items by gtin
   trade_items.forEach(function (item) {
     item_idx[item.gtin] = item    // save each gtin as an index to this item
   })
-  log('item_idx')
-  console.dir(item_idx)
-  
   function create_catalog_item(gtin) {
     log('creating new catalog item with gtin: ' + gtin)
     var $new_ci = $ci.clone()
     var xml = item_idx[gtin].xml || ('<tradeItem><gtin>' + gtin + '</gtin></tradeItem>')
     $new_ci.append(xml)
     $('childTradeItem', $new_ci).each (function (idx, child) {
-      log('child each: ')
-      console.dir(child)
-      
       var child_gtin = $('gtin', child).text()
       log('found child gtin: ' + child_gtin)
       var quantity = $('quantityOfNextLowerLevelTradeItem', child).text()
       log('found child quantity: ' + quantity)
-      
       var $new_link = $link.clone()
       $('quantity', $new_link).text(quantity)
       $new_link.append(create_catalog_item(child_gtin))
       $new_ci.append($new_link)
     })
-    return $new_ci.html()
+    return $new_ci.toString()
   }
   $position.append(create_catalog_item(ti.gtin))
   return $.html()
+}
+
+Gdsn.prototype.populateCicToTp = function (config, msg_info) {
+  return null // TODO coming soon
 }
 
 // removes extra whitespace between tags, but adds a new line for easy diff later

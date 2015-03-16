@@ -30,26 +30,19 @@
                     <entityIdentification>TOKEN</entityIdentification>
                 </catalogueItemNotificationIdentification>
                 <isReload>TOKEN</isReload>
-
+                <!--catalogueItem-->
                 <catalogueItem>
-
                     <dataRecipient>TOKEN</dataRecipient>
                     <sourceDataPool>TOKEN</sourceDataPool>
                     <catalogueItemState>
                         <catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
                     </catalogueItemState>
-
-                    <!--<tradeItem/>-->
-
+                    <!--tradeItem-->
                     <catalogueItemChildItemLink>
                         <quantity>TOKEN</quantity>
-
-                        <!--<catalogueItem>-->
-
+                        <!--catalogueItem-->
                     </catalogueItemChildItemLink>
-
                 </catalogueItem>
-
             </catalogue_item_notification:catalogueItemNotification>
         </documentCommand>
     </transaction>

@@ -201,6 +201,7 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
 // the original BPR must be sent by the party to their own data pool, 
 // then a BPR to GR is created from clean template using key values
 Gdsn.prototype.populateBprToGr = function (config, msg_info) {
+
   log('populateBprToGr from party bpr with msg_id: ' + msg_info.msg_id)
   var $ = cheerio.load(this.templates.bpr_to_gr, { 
     _:0
@@ -210,8 +211,8 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
   // instance ID something like 'BPR_to_GR_1425055673689_ADD_1100001011292'
   var msg_id = 'BPR_to_GR_' + Date.now() + '_' + msg_info.status + '_' + msg_info.sender 
 
-  $('sh\\:Sender sh\\:Identifier').text(msg_info.receiver)
-  $('sh\\:Receiver sh\\:Identifier').text(config.gdsn_gr_gln)
+  $('sh\\:Sender > sh\\:Identifier').text(msg_info.receiver)
+  $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
   $('sh\\:InstanceIdentifier').text(msg_id)
   $('sh\\:CreationDateAndTime, creationDateTime, lastUpdateDateTime, processCapabilityEffectiveStartDateTime')
    .text(new Date().toISOString()) // when this message is created by DP (right now)
@@ -226,8 +227,10 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
     $('documentCommand > documentCommandHeader').attr('type', msg_info.status)
   }
 
-  var party = msg_info.party
+  var party = msg_info.party[0]
+
   if (party) {
+    $('party > informationProviderOfParty')     .text(party.gln)
     $('partyInRole > partyName')        .text(party.name)
     $('partyInRole > partyRoleCode')    .text(party.role)
 
@@ -238,6 +241,11 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
     $('partyAddress > state')           .text(party.state)
     $('partyAddress > streetAddressOne').text(party.address1)
     $('partyAddress > streetAddressTwo').text(party.address2)
+
+    /*
+    $('partyContact > personName').text(party.contact_name)
+    $('partyContact > communicationChannel > communicationValue').text(party.contact_email)
+    */
   }
 
   $('partyContact, partyCapability').remove() // TODO

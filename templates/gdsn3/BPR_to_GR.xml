@@ -42,9 +42,6 @@
                     <informationProviderOfParty>
                         <gln>TOKEN</gln>
                     </informationProviderOfParty>
-                    <organisationHighestLevelParty>
-                        <gln>TOKEN</gln>
-                    </organisationHighestLevelParty>
                     <partyAddress>
                         <city>TOKEN</city>
                         <countryCode>TOKEN</countryCode>

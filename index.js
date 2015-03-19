@@ -160,7 +160,8 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
     , normalizeWhitespace: true
     , xmlMode: true
   })
-  var resp_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
+  //var resp_id = 'RESP_' + Date.now() + '_' + msg_info.msg_id
+  var resp_id = 'RESP_' + msg_info.msg_id // only as unique as the original msg id to handle resubmits
 
   $('sh\\:Sender > sh\\:Identifier').text(msg_info.receiver)
   $('sh\\:Receiver > sh\\:Identifier').text(msg_info.sender)
@@ -229,6 +230,8 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
 
   var party = msg_info.party[0]
 
+console.dir(party)
+
   if (party) {
     $('party > informationProviderOfParty')     .text(party.gln)
     $('partyInRole > partyName')        .text(party.name)
@@ -242,13 +245,16 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
     $('partyAddress > streetAddressOne').text(party.address1)
     $('partyAddress > streetAddressTwo').text(party.address2)
 
-    /*
     $('partyContact > personName').text(party.contact_name)
-    $('partyContact > communicationChannel > communicationValue').text(party.contact_email)
-    */
+
+    if (party.contact_email) $('partyContact > communicationChannel > communicationChannelCode:contains(EMAIL)').next().text(party.contact_email)
+    else $('partyContact > communicationChannel > communicationChannelCode:contains(EMAIL)').parent().remove()
+
+    if (party.contact_phone) $('partyContact > communicationChannel > communicationChannelCode:contains(TELEPHONE)').next().text(party.contact_phone)
+    else $('partyContact > communicationChannel > communicationChannelCode:contains(TELEPHONE)').parent().remove()
   }
 
-  $('partyContact, partyCapability').remove() // TODO
+  $('partyCapability').remove() // TODO
 
   return $.html()
 }

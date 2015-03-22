@@ -47,7 +47,7 @@ urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schem
                         <city>Pleasanton</city>
                         <countryCode>840</countryCode>
                         <languageOfThePartyCode>en</languageOfThePartyCode>
-                        <name>3.1 ITN ® Test 0321</name>
+                        <name>ITN ® Test 0321</name>
                         <postalCode>94588</postalCode>
                         <state>CA</state>
                         <streetAddressOne>4155 Hopyward Rd.</streetAddressOne>
@@ -72,7 +72,7 @@ urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schem
                         </processCapability>
                     </partyCapability>
                     <partyInRole>
-                        <partyName>ITN ® Test 0321</partyName>
+                        <partyName>ITN ® Test 0322</partyName>
                         <partyRoleCode>SELLER</partyRoleCode>
                     </partyInRole>
                 </party>

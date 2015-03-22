@@ -11,7 +11,7 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>tp_cin_8000000000088_00018627703396_add</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>tp_cin_8000000000088_00018627703396_correct</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
             <sh:CreationDateAndTime>2014-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
@@ -22,7 +22,7 @@
             <entityIdentification>tp_cin_8000000000088_00018627703396_add_trx1</entityIdentification>
         </transactionIdentification>
         <documentCommand>
-            <documentCommandHeader type="ADD">
+            <documentCommandHeader type="CORRECT">
                 <documentCommandIdentification>
                     <entityIdentification>tp_cin_8000000000088_00018627703396_add_trx1_cmd1</entityIdentification>
                 </documentCommandIdentification>
@@ -54,13 +54,13 @@
                             <partyName>ITN Test Party 088 0321</partyName>
                         </informationProviderOfTradeItem>
                         <gdsnTradeItemClassification>
-                            <gpcCategoryCode>99999999</gpcCategoryCode>
+                            <gpcCategoryCode>10000002</gpcCategoryCode>
                         </gdsnTradeItemClassification>
                         <targetMarket>
                             <targetMarketCountryCode>840</targetMarketCountryCode>
                         </targetMarket>
                         <tradeItemSynchronisationDates>
-                            <lastChangeDateTime>2015-03-11T12:01:01</lastChangeDateTime>
+                            <lastChangeDateTime>2015-03-20T12:01:01</lastChangeDateTime>
                         </tradeItemSynchronisationDates>
                     </tradeItem>
                 </catalogueItem>

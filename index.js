@@ -300,8 +300,6 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
 Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   log('populateRciToGr')
 
-console.dir(msg_info)
-
   if (msg_info.msg_type != 'catalogueItemNotification'
     || msg_info.sender != msg_info.provider) 
       return 'rci can only be generated from local tp cin message, for now'
@@ -332,13 +330,11 @@ console.dir(msg_info)
   $('creationDateTime').text(new Date(msg_info.created_ts || 1).toISOString())
   $('registryCatalogueItemIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
 
-  //$('gpcCatagoryCode').text(msg_info.gpc)
   $('gpcCategoryCode').text(msg_info.gpc)
   $('sourceDataPool').text(config.homeDataPoolGln)
 
   $('catalogueItemReference > dataSource').text(msg_info.provider)
   $('catalogueItemReference > gtin').text(msg_info.gtin)
-  console.log('*************************************************************************8: ' + msg_info.tm)
   $('catalogueItemReference > targetMarketCountryCode').text(msg_info.tm)
 
   if (msg_info.tm_sub && msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(msg_info.tm_sub)

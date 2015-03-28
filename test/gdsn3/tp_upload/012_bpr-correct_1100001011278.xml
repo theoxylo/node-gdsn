@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<basic_party_registration:basicPartyRegistrationMessage xmlns:basic_party_registration="urn:gs1:gdsn:basic_party_registration:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd 
-urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/BasicPartyRegistration.xsd">
+<basic_party_registration:basicPartyRegistrationMessage xmlns:basic_party_registration="urn:gs1:gdsn:basic_party_registration:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/BasicPartyRegistration.xsd">
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
-            <sh:Identifier Authority="GS1">0038000000010</sh:Identifier>
+            <sh:Identifier Authority="GS1">1100001011278</sh:Identifier>
         </sh:Sender>
         <sh:Receiver>
             <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
@@ -12,67 +11,70 @@ urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schem
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>bpr_itn_277</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>bpr_correct_1100001011278</sh:InstanceIdentifier>
             <sh:Type>basicPartyRegistration</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2015-03-01T12:00:01.000-05:00</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2015-03-27T06:04:01.001-05:00</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>bpr_itn_277_t1</entityIdentification>
+            <entityIdentification>bpr_correct_1100001011278_t1</entityIdentification>
+            <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
         </transactionIdentification>
         <documentCommand>
-            <documentCommandHeader type="ADD">
+            <documentCommandHeader type="CORRECT">
                 <documentCommandIdentification>
-                    <entityIdentification>bpr_itn_277_t1_c1</entityIdentification>
+                    <entityIdentification>bpr_correct_1100001011278_t1_c1</entityIdentification>
+                    <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
                 </documentCommandIdentification>
             </documentCommandHeader>
             <basic_party_registration:basicPartyRegistration>
-                <creationDateTime>2014-12-15T11:00:00.000-05:00</creationDateTime>
+                <creationDateTime>2015-03-26T19:55:29.333-04:00</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <basicPartyRegistrationIdentification>
-                    <entityIdentification>bpr_itn_277_t1_c1_d1</entityIdentification>
+                    <entityIdentification>bpr_correct_1100001011278_t1_c1_d1</entityIdentification>
+                    <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
                 </basicPartyRegistrationIdentification>
-                <partyDataPool>1100001011285</partyDataPool>
+<partyDataPool>1100001011285</partyDataPool>
                 <transmittingDataPool>1100001011285</transmittingDataPool>
                 <party>
                     <isPartyActive>true</isPartyActive>
-                    <lastUpdateDateTime>2015-03-11T12:00:01.000-05:00</lastUpdateDateTime>
+                    <lastUpdateDateTime>2015-03-24T12:00:01.000-05:00</lastUpdateDateTime>
                     <registeringParty>1100001011285</registeringParty>
-                    <informationProviderOfParty>
-                        <gln>0038000000010</gln>
-                    </informationProviderOfParty>
+<informationProviderOfParty>
+    <gln>1100001011278</gln>
+</informationProviderOfParty>
                     <partyAddress>
                         <city>Pleasanton</city>
                         <countryCode>840</countryCode>
                         <languageOfThePartyCode>en</languageOfThePartyCode>
-                        <name>ITN® Test Party Addr bpr</name>
+                        <name>3.1 ITN ® Test Subscriber Addr</name>
                         <postalCode>94588</postalCode>
                         <state>CA</state>
                         <streetAddressOne>4155 Hopyward Rd.</streetAddressOne>
-                        <streetAddressTwo>Suite 103</streetAddressTwo>
+                        <streetAddressTwo>Suite 1</streetAddressTwo>
                     </partyAddress>
                     <partyContact>
                         <contactTypeCode>AP</contactTypeCode>
-                        <personName>Per Wadmark</personName>
+                        <personName>Per One</personName>
                         <communicationChannel>
                             <communicationChannelCode>TELEPHONE</communicationChannelCode>
-                            <communicationValue>9256600001</communicationValue>
+                            <communicationValue>9256601000</communicationValue>
                         </communicationChannel>
                         <communicationChannel>
                             <communicationChannelCode>EMAIL</communicationChannelCode>
-                            <communicationValue>email@headquarters.com</communicationValue>
+<communicationValue>pwadmark@itradenetwork.com</communicationValue>
                         </communicationChannel>
                     </partyContact>
                     <partyCapability>
                         <processCapability>
                             <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
-                            <processCapabilityEffectiveStartDateTime>2014-12-15T11:00:00.000-05:00</processCapabilityEffectiveStartDateTime>
+                            <processCapabilityEffectiveStartDateTime>2015-01-01T11:00:00.000-05:00</processCapabilityEffectiveStartDateTime>
                         </processCapability>
                     </partyCapability>
                     <partyInRole>
-                        <partyName>ITN® Test Buyer 277 bpr</partyName>
+                        <partyName>3.1 ITN ® Test Subscriber Role</partyName>
                         <partyRoleCode>BUYER</partyRoleCode>
                     </partyInRole>
                 </party>

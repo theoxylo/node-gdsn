@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<catalogue_item_subscription:catalogueItemSubscriptionMessage xmlns:catalogue_item_subscription="urn:gs1:gdsn:catalogue_item_subscription:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_subscription:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemSubscription.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011339</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>tp_cis_add_339_292</sh:InstanceIdentifier>
+            <sh:Type>catalogueItemSubscription</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2015-03-11T13:03:24.768+08:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>tp_cis_add_339_292_trx1</entityIdentification>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>tp_cis_add_339_292_trx1_cmd1</entityIdentification>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <catalogue_item_subscription:catalogueItemSubscription>
+                <creationDateTime>2014-11-05T12:55:00.000+08:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemSubscriptionIdentification>
+                    <entityIdentification>tp_cis_add_339_292_trx1_cmd1_doc1</entityIdentification>
+                </catalogueItemSubscriptionIdentification>
+                <dataRecipient>1100001011339</dataRecipient>
+                <dataSource>1100001011292</dataSource>
+            </catalogue_item_subscription:catalogueItemSubscription>
+        </documentCommand>
+    </transaction>
+</catalogue_item_subscription:catalogueItemSubscriptionMessage>

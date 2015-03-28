@@ -156,20 +156,19 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
   })
   var resp_id = 'RESP_' + msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
 
-  $('sh\\:Sender > sh\\:Identifier').text(msg_info.receiver)
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(msg_info.sender)
   $('sh\\:DocumentIdentification > sh\\:InstanceIdentifier').text(resp_id)
   $('sh\\:DocumentIdentification > sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
   $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
-  log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>> created_ts value: ' + msg_info.created_ts)
   $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(msg_info.created_ts || 1)).toISOString())
   $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
 
 
   $('gS1Response > originatingMessageIdentifier > entityIdentification').text(msg_info.msg_id)
-  $('gS1Response > receiver').text(msg_info.sender)
-  $('gS1Response > sender').text(msg_info.receiver)
+  $('gS1Response > receiver').text(msg_info.receiver) // original receiver, sender of this reponse, should aways be dp
+  $('gS1Response > sender')  .text(msg_info.sender)   // original sender, receiver of this response, should be local TP, GR, or other DP
 
   // remove trx success/error and start with message exception
   var $trx_resp = $('gS1Response > transactionResponse').remove()
@@ -187,6 +186,8 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
       $('gS1Response').append($trx)
     })
   }
+
+  $('contentOwner > gln').text(msg_info.receiver)
 
   return $.html()
 }
@@ -207,14 +208,14 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
   // so something like 'BPR_to_GR_1425055673689_1100001011292_ADD'
   var msg_id = 'BPR_' + Date.now() + '_' + msg_info.sender + '_' + msg_info.status
 
-  $('sh\\:Sender > sh\\:Identifier').text(msg_info.receiver)
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
   $('sh\\:InstanceIdentifier').text(msg_id)
   $('sh\\:CreationDateAndTime, creationDateTime, lastUpdateDateTime, processCapabilityEffectiveStartDateTime')
    .text(new Date().toISOString()) // when this message is created by DP (right now)
 
   // all 3 entity ids will have the same owner, also used as data pool
-  $('partyDataPool, transmittingDataPool, registeringParty').text(msg_info.receiver) // the data pool
+  $('partyDataPool, transmittingDataPool, registeringParty').text(config.homeDataPoolGln) // the data pool
   $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
   $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
   $('basicPartyRegistrationIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
@@ -250,7 +251,7 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
     else $('partyContact > personName').remove()
   }
 
-  $('partyCapability').remove() // TODO
+  $('contentOwner > gln').text(config.homeDataPoolGln) // works with current GR
 
   return $.html()
 }
@@ -263,36 +264,49 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
       , xmlMode: true
     })
 
+    // SINGLE doc support:
+    var sub_info = msg_info.sub && msg_info.sub[0]
+    if (!sub_info) return ''
+
     // new values for this message
+    var msg_id = 'CIS_to_GR_' + Date.now() + '_' + sub_info.recipient
+
+
     $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
     $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
-    $('sh\\:InstanceIdentifier').text('CIS_to_GR_' + Date.now() + '_' + msg_info.recipient)
+    $('sh\\:InstanceIdentifier').text(msg_id)
+
     $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
     // original values from tp: trx/cmd/doc id and owner glns, created ts
     // assume naming convention based on original msg_id and only support single doc
-    $('transactionIdentification > entityIdentification').text(msg_info.msg_id + '_trx1')
+    $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
 
-    $('documentCommandIdentification > entityIdentification').text(msg_info.msg_id + '_trx1_cmd1')
+    $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
 
     $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
 
-    // SINGLE doc support:
-    $('creationDateTime').text(new Date(msg_info.created_ts || 1).toISOString())
-    $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_info.msg_id + '_trx1_cmd1_doc1')
-    $('dataRecipient').text(msg_info.recipient)
+    $('creationDateTime').text(new Date(msg_info.created_ts || Date.now()).toISOString()) // use create date from original CIS from tp
+    $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
+    $('dataRecipient').text(sub_info.recipient)
 
     //optional subscription criteria:
-    if (msg_info.provider) $('dataSource').text(msg_info.provider)
+    if (sub_info.provider) $('dataSource').text(sub_info.provider)
     else $('dataSource').remove()
 
-    if (msg_info.gpc) $('gpcCategoryCode').text(msg_info.gpc)
+    if (sub_info.gpc) $('gpcCategoryCode').text(sub_info.gpc)
     else $('gpcCategoryCode').remove()
 
-    if (msg_info.gtin) $('gtin').text(msg_info.provider)
+    if (sub_info.gtin) $('gtin').text(sub_info.gtin)
     else $('gtin').remove()
 
-    $('targetMarket').remove() // subscription to TM is NOT supported :)
+    if (sub_info.tm) $('targetMarketCountryCode').text(sub_info.tm)
+    else $('targetMarket').remove()
+
+    if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
+    else $('recipientDataPool').remove()
+
+    $('contentOwner > gln').text(msg_info.recipient)
 
     return $.html()
 }
@@ -337,11 +351,13 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   $('catalogueItemReference > gtin').text(msg_info.gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(msg_info.tm)
 
-  if (msg_info.tm_sub && msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(msg_info.tm_sub)
-  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  if (msg_info.tm_sub && msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').text(msg_info.tm_sub)
+  else $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').remove()
 
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
+
+  $('contentOwner > gln').text(msg_info.provider)
 
   return $.html()
 }
@@ -387,13 +403,10 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
   
   var ti = trade_items[0]
   
-  var sender = this.config.homeDataPoolGln
-
-  var provider = ti.provider
+  var sender    = this.config.homeDataPoolGln
+  var provider  = ti.provider
   var recipient = ti.recipient
-  
   var new_msg_id = 'CIN_' + recipient + '_' + provider + '_' + ti.gtin + '_' + ti.tm + '_' + ti.tm_sub || 'na' // maxlength 80
-
   var dateTime = new Date().toISOString()
 
   var $ = cheerio.load(this.templates.cin_out, { 
@@ -451,8 +464,8 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
     return $new_ci.toString()
   }
   $ci.replaceWith(create_catalog_item(ti.gtin))
-  //$ci.remove() // will clone and add back 
-  //$position.append(create_catalog_item(ti.gtin))
+
+  $('contentOwner > gln').text(provider)
 
   return $.html()
 }

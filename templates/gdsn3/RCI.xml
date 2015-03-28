@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<registry_catalogue_item:registryCatalogueItemMessage xmlns:registry_catalogue_item="urn:gs1:gdsn:registry_catalogue_item:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:registry_catalogue_item:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RegistryCatalogueItem.xsd">
+<registry_catalogue_item:registryCatalogueItemMessage xmlns:registry_catalogue_item="urn:gs1:gdsn:registry_catalogue_item:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:registry_catalogue_item:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RegistryCatalogueItem.xsd">
 <sh:StandardBusinessDocumentHeader>
 <sh:HeaderVersion>1.0</sh:HeaderVersion>
 <sh:Sender><sh:Identifier Authority="GS1">TOKEN</sh:Identifier></sh:Sender>
@@ -16,11 +16,13 @@
 <transaction>
 <transactionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="TOKEN">
 <documentCommandIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <registry_catalogue_item:registryCatalogueItem>
@@ -28,6 +30,7 @@
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <registryCatalogueItemIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </registryCatalogueItemIdentification>
 <gpcCategoryCode>TOKEN</gpcCategoryCode>
 <sourceDataPool>TOKEN</sourceDataPool>

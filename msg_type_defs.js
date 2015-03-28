@@ -17,7 +17,7 @@
 //  6. catalogueItemConfirmation
 //  7. requestForCatalogueItemNotification
 //  8. registryPartyDataDump
-//  9. GDSNResponse
+//  9. gS1Response (includes partyRegistrationResponse and catalogueItemRegistrationResponse, transactionResponse (ACCEPTED), and gS1Exception)
 //
 // The first 8 types are straightforward: the message may contain several transaction/command/documentCommand structures,
 // each containing:
@@ -28,19 +28,20 @@
 //  2. documentCommandOperand containing some number of "document" instances of the msg type
 //     *. document subtype should be the same throughout the message if multiple instances present
 //
-// For the last type in the list (GDSNResponse), there are 4 subtypes (3 accepted and 1 exception), 
+// For the last type in the list (gS1Response), there are 4 subtypes (3 accepted and 1 exception), 
 // all are potentially multiple but should not be mixed in the same message:
 //
 //   1. partyRegistrationResponse (GR response to DP BPR)
-//      *. @responseStatus (always "ACCEPTED")
+//      *. msg_info.status == "ACCEPTED"
 //      *. responseIdentification.uniqueCreatorIdentification (DOC level from orig BPR)
 //      *. partyRegistrationInformation.lastChangedDate
 //      *. partyRegistrationInformation.registrationDate
 //      *. partyRegistrationInformation.removedDate (optional)
 //      *. partyReference (GLN of modified party)
+//      *. msg_info.sender = config.gln_gdsn_gr
 //
 //   2. catalogueItemRegistrationResponse (GR response to DP CIR)
-//      *. @responseStatus (always "ACCEPTED")
+//      *. msg_info.status == "ACCEPTED"
 //      *. responseIdentification.uniqueCreatorIdentification (DOC level from orig msg)
 //      *. catalogueItemRegistrationInformation @lastChangedDate @registrationDate
 //      *. catalogueItemReference
@@ -49,15 +50,17 @@
 //         .targetMarket.targetMarketCountryCode.countryISOCode (e.g. 840)
 //         .targetMarket.targetMarketSubdivisionCode.countrySubDivisionISOCode (e.g. US-CA)
 //
-//   3. eANUCCResponse (generic DP response to CIP, CIS, CIN, CIC, RFCIN, BPR)
-//      *. @responseStatus (always "ACCEPTED")
-//      *. documentReceived.uniqueCreatorIdentification (transaction level from orig msg?)
+//   3. gS1Response > transactionResponse (generic DP response to CIP, CIS, CIN, CIC, RFCIN, BPR)
+//      *. msg_info.status == "ACCEPTED"
+//      *. msg_info.transactions == $('transactionResponse > transactionIdentifier > entityIdentification', gS1Response)
 //
-//   4. gDSNException - one of the following, each containing some number of "gDSNError" and other elements:
-//      *. messageException.gDSNError.errorCode
-//      *. messageException.gDSNError.errorDescription
-//      *. messageException.gDSNError.errorDateTime
-//      *. transactionException.*.gDSNError (same as above, only nested for command/document/attribute hierarchy)
+//   4. gS1Response > gS1Exception: - some number of "gS1Error" and other elements:
+//      *. > messageException
+//      *. > transactionException > commandException > documentExcecption > attributeException
+//        each with optional gS1Error list:
+//        *. > gS1Error > errorCode
+//        *. > gS1Error > errorDateTime
+//        *. > gS1Error > errorDescription
 //
 
 module.exports = messageTypes = {
@@ -139,18 +142,18 @@ var templates = [
     , status  : ['ADD']
 },
 
-{ name: 'hier'
-    , msg_type: 'registryPartyDataDump'
-    , status  : ['ADD']
+{ name: 'cih'
+    , msg_type: 'catalogueItemHierarchyWithdrawal'
+    , status  : ['CORRECT']
 },
 
 { name: 'accepted'
-    , msg_type: 'GDSNResponse'
+    , msg_type: 'gS1Response'
     , status: ['ACCEPTED']
 },
 
 { name: 'error'
-    , msg_type: 'GDSNResponse'
+    , msg_type: 'gS1Response'
     , status: ['ERROR']
 },
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<basic_party_registration:basicPartyRegistrationMessage xmlns:basic_party_registration="urn:gs1:gdsn:basic_party_registration:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/BasicPartyRegistration.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011278</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>bpr_correct_1100001011278</sh:InstanceIdentifier>
+            <sh:Type>basicPartyRegistration</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2015-03-27T06:04:01.001-05:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>bpr_correct_1100001011278_t1</entityIdentification>
+            <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="CORRECT">
+                <documentCommandIdentification>
+                    <entityIdentification>bpr_correct_1100001011278_t1_c1</entityIdentification>
+                    <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <basic_party_registration:basicPartyRegistration>
+                <creationDateTime>2015-03-26T19:55:29.333-04:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <basicPartyRegistrationIdentification>
+                    <entityIdentification>bpr_correct_1100001011278_t1_c1_d1</entityIdentification>
+                    <!-- id will be timestamped/uniqued and contentOwner>gln will be added for messages to GR -->
+                </basicPartyRegistrationIdentification>
+<partyDataPool>1100001011285</partyDataPool>
+                <transmittingDataPool>1100001011285</transmittingDataPool>
+
+<!-- cut-and-pasted-and-edited from RPDD -->
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-26T19:08:28-04:00</lastUpdateDateTime>
+<lastUpdateParty>1100001011285</lastUpdateParty>
+<registeringParty>1100001011285</registeringParty>
+<registrationDateTime>2015-03-26T19:01:28-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>1100001011339</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Pleasanton</city>
+<countryCode>840</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>ITN ® 31 certification BUYER/Sub</name>
+<postalCode>94588</postalCode>
+<state>CA</state>
+<streetAddressOne>4155 Hopyward Rd.</streetAddressOne>
+<streetAddressTwo>Suite 103</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>AP</contactTypeCode>
+<personName>TaoH</personName>
+<communicationChannel>
+<communicationChannelCode>EMAIL</communicationChannelCode>
+<communicationValue>tho@itradenetwork.com</communicationValue>
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+<processCapabilityEffectiveStartDateTime>2015-03-26T23:05:19.885Z</processCapabilityEffectiveStartDateTime>
+</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>ITN ® 31 certification BUYER/Sub</partyName>
+<partyRoleCode>BUYER</partyRoleCode>
+</partyInRole>
+</party>
+
+            </basic_party_registration:basicPartyRegistration>
+        </documentCommand>
+    </transaction>
+</basic_party_registration:basicPartyRegistrationMessage>

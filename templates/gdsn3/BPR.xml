@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<basic_party_registration:basicPartyRegistrationMessage xmlns:basic_party_registration="urn:gs1:gdsn:basic_party_registration:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/BasicPartyRegistration.xsd">
+<basic_party_registration:basicPartyRegistrationMessage xmlns:basic_party_registration="urn:gs1:gdsn:basic_party_registration:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:basic_party_registration:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/BasicPartyRegistration.xsd">
 <sh:StandardBusinessDocumentHeader>
 <sh:HeaderVersion>1.0</sh:HeaderVersion>
 <sh:Sender>
@@ -20,11 +20,13 @@
 <transaction>
 <transactionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="ADD">
 <documentCommandIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <basic_party_registration:basicPartyRegistration>
@@ -32,6 +34,7 @@
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <basicPartyRegistrationIdentification>
 <entityIdentification>TOKEN</entityIdentification>
+<contentOwner><gln>source_dp</gln></contentOwner>
 </basicPartyRegistrationIdentification>
 <partyDataPool>TOKEN</partyDataPool>
 <transmittingDataPool>TOKEN</transmittingDataPool>
@@ -39,9 +42,7 @@
 <isPartyActive>true</isPartyActive>
 <lastUpdateDateTime>TOKEN</lastUpdateDateTime>
 <registeringParty>TOKEN</registeringParty>
-<informationProviderOfParty>
-<gln>TOKEN</gln>
-</informationProviderOfParty>
+<informationProviderOfParty><gln>the gln of the trading party</gln></informationProviderOfParty>
 <partyAddress>
 <city>TOKEN</city>
 <countryCode>TOKEN</countryCode>

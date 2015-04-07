@@ -304,7 +304,7 @@ Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
     if (sub_info.gtin) $('gtin').text(sub_info.gtin)
     else $('gtin').remove()
 
-    if (sub_info.tm) $('targetMarketCountryCode').text(sub_info.tm)
+    if (sub_info.tm) $('targetMarket > targetMarketCountryCode').text(sub_info.tm)
     else $('targetMarket').remove()
 
     if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
@@ -355,8 +355,8 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   $('catalogueItemReference > gtin').text(msg_info.gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(msg_info.tm)
 
-  if (msg_info.tm_sub && msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').text(msg_info.tm_sub)
-  else $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').remove()
+  if (msg_info.tm_sub && msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(msg_info.tm_sub)
+  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
 
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())

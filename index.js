@@ -50,11 +50,11 @@ Gdsn.prototype.getEachPartyFromStream = function (is, cb) {
 // legacy dom approach for extracting item and party info:
 
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
-  return this.dom.getTradeItemInfo(xml, msg_info)
+  return this.dom.getTradeItemInfo(xml, msg_info) // <tradeItem/>
 }
 
 Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
-  return this.dom.getPartyInfo(xml, msg_info)
+  return this.dom.getPartyInfo(xml, msg_info) // <party/>
 }
 
 ///////////////////////// utilities:
@@ -148,46 +148,50 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   log('All gdsn templates read without errors')
 }
 
-Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
+// note that the req_msg_info argument is for the message we are responding to!
+// after we generate the response XML, it can have its own req_msg_info instance
+Gdsn.prototype.populateResponseToSender = function (config, req_msg_info) {
   var $ = cheerio.load(this.templates.response, { 
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
   })
-  var resp_id = 'RESP_' + msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
+  var resp_id = 'RESP_' + req_msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
 
-  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
-  $('sh\\:Receiver > sh\\:Identifier').text(msg_info.sender)
+  if (config.homeDataPoolGln != req_msg_info.receiver) throw Error('********** WARN: responding to non-DP message: ' + req_msg_info)
+
+  $('sh\\:Sender   > sh\\:Identifier').text(req_msg_info.receiver)
+  $('sh\\:Receiver > sh\\:Identifier').text(req_msg_info.sender)
   $('sh\\:DocumentIdentification > sh\\:InstanceIdentifier').text(resp_id)
   $('sh\\:DocumentIdentification > sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
   $('sh\\:Scope > sh\\:InstanceIdentifier').text(resp_id)
-  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(msg_info.created_ts || 1)).toISOString())
-  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(msg_info.msg_id)
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentCreationDateTime').text((new Date(req_msg_info.created_ts || 1)).toISOString())
+  $('sh\\:Scope > sh\\:CorrelationInformation > sh\\:RequestingDocumentInstanceIdentifier').text(req_msg_info.msg_id)
 
 
-  $('gS1Response > originatingMessageIdentifier > entityIdentification').text(msg_info.msg_id)
-  $('gS1Response > receiver').text(msg_info.receiver) // original receiver, sender of this reponse, should aways be dp
-  $('gS1Response > sender')  .text(msg_info.sender)   // original sender, receiver of this response, should be local TP, GR, or other DP
+  $('gS1Response > originatingMessageIdentifier > entityIdentification').text(req_msg_info.msg_id)
+  $('gS1Response > receiver').text(req_msg_info.receiver) // original receiver, sender of this reponse, should aways be dp
+  $('gS1Response > sender')  .text(req_msg_info.sender)   // original sender, receiver of this response, should be local TP, GR, or other DP
 
   // remove trx success/error and start with message exception
   var $trx_resp = $('gS1Response > transactionResponse').remove()
 
-  if (msg_info.status == 'ERROR' || !msg_info.trx || !msg_info.trx.length) { // populate simple message exception response
+  if (req_msg_info.status == 'ERROR' || !req_msg_info.trx || !req_msg_info.trx.length) { // populate simple message exception response
     $('messageException > gS1Error > errorDateTime').text(new Date().toISOString())
-    $('messageException > gS1Error > errorDescription').text(msg_info.exception || 'generic exception')
+    $('messageException > gS1Error > errorDescription').text(req_msg_info.exception || 'generic exception')
     $('transactionResponse, transactionException').remove() // remove unused transaction level response/exception template nodes
   }
   else {
     $('gS1Response > gS1Exception').remove()                        // remove unused exception template
-    msg_info.trx.forEach(function (trx_id) {                        // to generate list of transactionResponse elements
+    req_msg_info.trx.forEach(function (trx_id) {                        // to generate list of transactionResponse elements
       var $trx = $trx_resp.clone()
       $('transactionIdentifier > entityIdentification', $trx).text(trx_id)
       $('gS1Response').append($trx)
     })
   }
 
-  $('contentOwner > gln').text(msg_info.receiver)
+  $('contentOwner > gln').text(req_msg_info.receiver) // the response is owned by the original msg receiver
 
   return $.html()
 }
@@ -195,9 +199,9 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
 
 // the original BPR must be sent by the trading party to their own data pool, 
 // then a BPR to GR is generated. Only one party per message is supported.
-Gdsn.prototype.populateBprToGr = function (config, msg_info) {
+Gdsn.prototype.populateBprToGr = function (config, tp_msg_info) {
 
-  log('populateBprToGr from party bpr with msg_id: ' + msg_info)
+  log('populateBprToGr from party bpr with msg_id: ' + tp_msg_info)
   var $ = cheerio.load(this.templates.bpr_to_gr, { 
     _:0
     , normalizeWhitespace: true
@@ -206,7 +210,7 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
 
   // instance ID, note that GR requires a unique message ID each time
   // so something like 'BPR_to_GR_1425055673689_1100001011292_ADD'
-  var msg_id = 'BPR_' + Date.now() + '_' + msg_info.sender + '_' + msg_info.status
+  var msg_id = 'BPR_' + Date.now() + '_' + tp_msg_info.sender + '_' + tp_msg_info.status
 
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
@@ -220,11 +224,11 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
   $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
   $('basicPartyRegistrationIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
 
-  if (msg_info.status != 'ADD') {
-    $('documentCommand > documentCommandHeader').attr('type', msg_info.status)
+  if (tp_msg_info.status != 'ADD') {
+    $('documentCommand > documentCommandHeader').attr('type', tp_msg_info.status)
   }
 
-  var party = msg_info.party[0]
+  var party = tp_msg_info.party[0]
 
   if (party) {
     $('informationProviderOfParty > gln').text(party.gln)
@@ -256,7 +260,7 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateCisToGr= function (config, msg_info) {
+Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
     log('populateCisToGr')
     var $ = cheerio.load(this.templates.cis_to_gr, { 
       _:0
@@ -265,7 +269,7 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
     })
 
     // SINGLE doc support:
-    var sub_info = msg_info.sub && msg_info.sub[0]
+    var sub_info = tp_msg_info.sub && tp_msg_info.sub[0]
     if (!sub_info) return ''
 
     // new values for this message
@@ -284,9 +288,9 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
 
     $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
 
-    $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+    $('documentCommand > documentCommandHeader').attr('type', tp_msg_info.status) // set // ADD, DELETE
 
-    $('creationDateTime').text(new Date(msg_info.created_ts || Date.now()).toISOString()) // use create date from original CIS from tp
+    $('creationDateTime').text(new Date(tp_msg_info.created_ts || Date.now()).toISOString()) // use create date from original CIS from tp
     $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
     $('dataRecipient').text(sub_info.recipient)
 
@@ -306,7 +310,7 @@ Gdsn.prototype.populateCisToGr= function (config, msg_info) {
     if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
     else $('recipientDataPool').remove()
 
-    $('contentOwner > gln').text(msg_info.recipient)
+    $('contentOwner > gln').text(tp_msg_info.recipient)
 
     return $.html()
 }

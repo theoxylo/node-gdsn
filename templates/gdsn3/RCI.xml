@@ -16,13 +16,13 @@
 <transaction>
 <transactionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="TOKEN">
 <documentCommandIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <registry_catalogue_item:registryCatalogueItem>
@@ -30,7 +30,7 @@
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <registryCatalogueItemIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </registryCatalogueItemIdentification>
 <gpcCategoryCode>TOKEN</gpcCategoryCode>
 <sourceDataPool>TOKEN</sourceDataPool>

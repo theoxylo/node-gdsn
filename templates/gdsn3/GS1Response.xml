@@ -31,7 +31,7 @@
 
 <originatingMessageIdentifier>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </originatingMessageIdentifier>
 <receiver>TOKEN</receiver>
 <sender>TOKEN</sender>
@@ -39,7 +39,7 @@
 <transactionResponse>
 <transactionIdentifier>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </transactionIdentifier>
 <responseStatusCode>ACCEPTED</responseStatusCode>
 </transactionResponse>
@@ -57,7 +57,7 @@
 <transactionException>
 <transactionIdentifier>
 <entityIdentification>trx_123</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </transactionIdentifier>
 <gS1Error>
 <errorCode>1001</errorCode>
@@ -72,7 +72,7 @@
 <commandException>
 <commandIdentifier>
 <entityIdentification>cmd_123</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </commandIdentifier>
 <gS1Error>
 <errorCode>1003</errorCode>
@@ -87,7 +87,7 @@
 <documentException>
 <documentIdentifier>
 <entityIdentifier>doc_123</entityIdentifier>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </documentIdentifier>
 <gS1Error>
 <errorCode>1006</errorCode>

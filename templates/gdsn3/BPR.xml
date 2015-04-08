@@ -20,13 +20,13 @@
 <transaction>
 <transactionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="ADD">
 <documentCommandIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <basic_party_registration:basicPartyRegistration>
@@ -34,7 +34,7 @@
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <basicPartyRegistrationIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </basicPartyRegistrationIdentification>
 <partyDataPool>TOKEN</partyDataPool>
 <transmittingDataPool>TOKEN</transmittingDataPool>

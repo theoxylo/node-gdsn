@@ -21,13 +21,13 @@
 <transaction>
 <transactionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="ADD">
 <documentCommandIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <request_for_catalogue_item_notification:requestForCatalogueItemNotification>
@@ -35,7 +35,7 @@
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <catalogueItemSubscriptionIdentification>
 <entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>source_dp</gln></contentOwner>
+<contentOwner><gln>TOKEN</gln></contentOwner>
 </catalogueItemSubscriptionIdentification>
 <dataRecipient>TOKEN</dataRecipient>
 <dataSource>TOKEN</dataSource>

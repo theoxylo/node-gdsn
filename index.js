@@ -187,7 +187,9 @@ Gdsn.prototype.populateResponseToSender = function (config, msg_info) {
     })
   }
 
-  $('contentOwner > gln').text(msg_info.receiver)
+  $('contentOwner > gln').each(function () {
+    $(this).text(msg_info.receiver)
+  })
 
   return $.html()
 }
@@ -251,64 +253,68 @@ Gdsn.prototype.populateBprToGr = function (config, msg_info) {
     else $('partyContact > personName').remove()
   }
 
-  $('contentOwner > gln').text(config.homeDataPoolGln) // works with current GR
+  $('contentOwner > gln').each(function () {
+    $(this).text(config.homeDataPoolGln)
+  })
 
   return $.html()
 }
 
 Gdsn.prototype.populateCisToGr= function (config, msg_info) {
-    log('populateCisToGr')
-    var $ = cheerio.load(this.templates.cis_to_gr, { 
-      _:0
-      , normalizeWhitespace: true
-      , xmlMode: true
-    })
+  log('populateCisToGr')
+  var $ = cheerio.load(this.templates.cis_to_gr, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
 
-    // SINGLE doc support:
-    var sub_info = msg_info.sub && msg_info.sub[0]
-    if (!sub_info) return ''
+  // SINGLE doc support:
+  var sub_info = msg_info.sub && msg_info.sub[0]
+  if (!sub_info) return ''
 
-    // new values for this message
-    var msg_id = 'CIS_to_GR_' + Date.now() + '_' + sub_info.recipient
+  // new values for this message
+  var msg_id = 'CIS_to_GR_' + Date.now() + '_' + sub_info.recipient
 
 
-    $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
-    $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
-    $('sh\\:InstanceIdentifier').text(msg_id)
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
+  $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
+  $('sh\\:InstanceIdentifier').text(msg_id)
 
-    $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+  $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
-    // original values from tp: trx/cmd/doc id and owner glns, created ts
-    // assume naming convention based on original msg_id and only support single doc
-    $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
+  // original values from tp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on original msg_id and only support single doc
+  $('transactionIdentification > entityIdentification').text(msg_id + '_trx1')
 
-    $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
+  $('documentCommandIdentification > entityIdentification').text(msg_id + '_trx1_cmd1')
 
-    $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
+  $('documentCommand > documentCommandHeader').attr('type', msg_info.status) // set // ADD, DELETE
 
-    $('creationDateTime').text(new Date(msg_info.created_ts || Date.now()).toISOString()) // use create date from original CIS from tp
-    $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
-    $('dataRecipient').text(sub_info.recipient)
+  $('creationDateTime').text(new Date(msg_info.created_ts || Date.now()).toISOString()) // use create date from original CIS from tp
+  $('catalogueItemSubscriptionIdentification > entityIdentification').text(msg_id + '_trx1_cmd1_doc1')
+  $('dataRecipient').text(sub_info.recipient)
 
-    //optional subscription criteria:
-    if (sub_info.provider) $('dataSource').text(sub_info.provider)
-    else $('dataSource').remove()
+  //optional subscription criteria:
+  if (sub_info.provider) $('dataSource').text(sub_info.provider)
+  else $('dataSource').remove()
 
-    if (sub_info.gpc) $('gpcCategoryCode').text(sub_info.gpc)
-    else $('gpcCategoryCode').remove()
+  if (sub_info.gpc) $('gpcCategoryCode').text(sub_info.gpc)
+  else $('gpcCategoryCode').remove()
 
-    if (sub_info.gtin) $('gtin').text(sub_info.gtin)
-    else $('gtin').remove()
+  if (sub_info.gtin) $('gtin').text(sub_info.gtin)
+  else $('gtin').remove()
 
-    if (sub_info.tm) $('targetMarket > targetMarketCountryCode').text(sub_info.tm)
-    else $('targetMarket').remove()
+  if (sub_info.tm) $('targetMarket > targetMarketCountryCode').text(sub_info.tm)
+  else $('targetMarket').remove()
 
-    if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
-    else $('recipientDataPool').remove()
+  if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
+  else $('recipientDataPool').remove()
 
-    $('contentOwner > gln').text(msg_info.recipient)
+  $('contentOwner > gln').each(function () {
+    $(this).text(msg_info.recipient)
+  })
 
-    return $.html()
+  return $.html()
 }
 
 Gdsn.prototype.populateRciToGr = function (config, msg_info) {
@@ -357,7 +363,9 @@ Gdsn.prototype.populateRciToGr = function (config, msg_info) {
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
 
-  $('contentOwner > gln').text(msg_info.provider)
+  $('contentOwner > gln').each(function () {
+    $(this).text(msg_info.provider)
+  })
 
   return $.html()
 }
@@ -465,7 +473,9 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
   }
   $ci.replaceWith(create_catalog_item(ti.gtin))
 
-  $('contentOwner > gln').text(provider)
+  $('contentOwner > gln').each(function () {
+    $(this).text(provider)
+  })
 
   return $.html()
 }

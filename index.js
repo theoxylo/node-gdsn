@@ -498,7 +498,7 @@ Gdsn.prototype.populateCic = function (config, cic_msg_info) {
     , xmlMode: true
   })
 
-  if (!cic_info) return ''
+  if (!cic_msg_info) return ''
 
   // new values for this message
   var new_msg_id = 'CIC_' + Date.now() + '_' + cic_msg_info.recipient + '_' + cic_msg_info.gtin
@@ -517,7 +517,7 @@ Gdsn.prototype.populateCic = function (config, cic_msg_info) {
 
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1')
 
-  $('documentCommand > documentCommandHeader').attr('type', tp_msg_info.status) // set // ADD, DELETE
+  $('documentCommand > documentCommandHeader').attr('type', cic_msg_info.status) // set // ADD, DELETE
 
   $('creationDateTime').text(now_iso)
   $('catalogueItemSubscriptionIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')

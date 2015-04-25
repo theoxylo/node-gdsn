@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage xmlns:request_for_catalogue_item_notification="urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RequestForCatalogueItemNotification.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011278</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>rfcin_278_292</sh:InstanceIdentifier>
+            <sh:Type>requestForCatalogueItemNotification</sh:Type>
+            <sh:CreationDateAndTime>2015-04-22T10:03:24.768+08:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>rfcin_278_292_t1</entityIdentification>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>rfcin_278_292_t1_c1</entityIdentification>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+                <creationDateTime>2015-04-22T10:55:00.000+08:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemSubscriptionIdentification>
+                    <entityIdentification>rfcin_278_292_t1_c1_d1</entityIdentification>
+                </catalogueItemSubscriptionIdentification>
+                <dataRecipient>1100001011278</dataRecipient>
+                <dataSource>1100001011292</dataSource>
+                <!--
+                <gpcCategoryCode>99999999</gpcCategoryCode>
+                <gtin>10036016500279</gtin>
+                <targetMarket><targetMarketCountryCode>840</targetMarketCountryCode></targetMarket>
+                -->
+                <recipientDataPool>1100001011285</recipientDataPool>
+                <isReload>true</isReload>
+            </request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+        </documentCommand>
+    </transaction>
+</request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage>

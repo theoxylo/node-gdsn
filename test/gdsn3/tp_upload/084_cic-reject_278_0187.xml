@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<catalogue_item_confirmation:catalogueItemConfirmationMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:catalogue_item_confirmation="urn:gs1:gdsn:catalogue_item_confirmation:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_confirmation:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemConfirmation.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011278</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>084_cic_1100001011278_00031100250187</sh:InstanceIdentifier>
+            <sh:Type>catalogueItemConfirmation</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2015-04-13T15:24:56.480+08:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>084_cic_1100001011278_00031100250187-t1</entityIdentification>
+            <contentOwner>
+                <gln>1100001011278</gln>
+            </contentOwner>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>084_cic_1100001011278_00031100250187-t1-c1</entityIdentification>
+                    <contentOwner>
+                        <gln>1100001011278</gln>
+                    </contentOwner>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <catalogue_item_confirmation:catalogueItemConfirmation>
+                <creationDateTime>2015-01-09T15:15:00.000+08:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemConfirmationIdentification>
+                    <entityIdentification>084_cic_1100001011278_00031100250187-t1-c1-d1</entityIdentification>
+                    <contentOwner>
+                        <gln>1100001011278</gln>
+                    </contentOwner>
+                </catalogueItemConfirmationIdentification>
+                <catalogueItemConfirmationState>
+                    <catalogueItemConfirmationStateCode>REJECTED</catalogueItemConfirmationStateCode>
+                    <recipientGLN>1100001011278</recipientGLN>
+                    <recipientDataPool>1100001011285</recipientDataPool>
+                </catalogueItemConfirmationState>
+                <catalogueItemReference>
+                    <dataSource>5210047000054</dataSource>
+                    <gtin>00031100250187</gtin>
+                    <targetMarketCountryCode>840</targetMarketCountryCode>
+                </catalogueItemReference>
+                <catalogueItemConfirmationStatusDetail>
+                    <confirmationStatusCatalogueItem>
+                        <dataSource>5210047000054</dataSource>
+                        <gtin>00031100250187</gtin>
+                        <targetMarketCountryCode>840</targetMarketCountryCode>
+                    </confirmationStatusCatalogueItem>
+                    <catalogueItemConfirmationStatus>
+                        <confirmationStatusCode>CIC100</confirmationStatusCode>
+                        <confirmationStatusCodeDescription languageCode="en">Attribute Analysis Requested</confirmationStatusCodeDescription>
+                        <additionalConfirmationStatusLongDescription languageCode="en">Additional Status Description</additionalConfirmationStatusLongDescription>
+                        <correctiveAction>
+                            <correctiveActionCode>ACTION_NEEDED</correctiveActionCode>
+                            <expectedCorrectiveInformation languageCode="en">Expected Corrective Information</expectedCorrectiveInformation>
+                        </correctiveAction>
+                    </catalogueItemConfirmationStatus>
+                </catalogueItemConfirmationStatusDetail>
+            </catalogue_item_confirmation:catalogueItemConfirmation>
+        </documentCommand>
+    </transaction>
+</catalogue_item_confirmation:catalogueItemConfirmationMessage>

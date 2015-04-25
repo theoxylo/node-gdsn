@@ -107,25 +107,23 @@ Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
 // xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
 // however, the cheerio version must not have namespace prefixes! so we clean the xml first
 
-Gdsn.prototype.log_msg_info = function (msg_info) {
-  log('msg_info msg_id   : ' + msg_info.msg_id)
-  log('msg_info version  : ' + msg_info.version)
-  log('msg_info type     : ' + msg_info.msg_type)
-  log('msg_info note     : ' + msg_info.note)
-  log('msg_info status   : ' + msg_info.status)
-  log('msg_info sender   : ' + msg_info.sender)
-  log('msg_info receiver : ' + msg_info.receiver)
-  log('msg_info provider : ' + msg_info.provider)
-  log('msg_info recipient: ' + msg_info.recipient)
-  log('msg_info xml size : ' + msg_info.xml.length)
-  log('msg_info party cnt: ' + msg_info.party.length)
-  log('msg_info item cnt : ' + msg_info.item.length)
-  log('msg_info pub count: ' + msg_info.pub.length)
-  log('msg_info sub count: ' + msg_info.sub.length)
-  log('msg_info gtin     : ' + msg_info.gtin)
-  log('msg_info gtins    : ' + msg_info.gtins.join(' '))
-  log('msg_info doc_count: ' + msg_info.doc_count)
-  log('msg_info trx      : ' + msg_info.trx.join(','))
+Gdsn.prototype.log_msg_info = function (msg) {
+  log('msg_id   : ' + msg.msg_id)
+  log('version  : ' + msg.version)
+  log('type     : ' + msg.msg_type)
+  log('note     : ' + msg.note)
+  log('status   : ' + msg.status)
+  log('sender   : ' + msg.sender)
+  log('receiver : ' + msg.receiver)
+  log('provider : ' + msg.provider)
+  log('recipient: ' + msg.recipient)
+  log('xml size : ' + msg.xml && msg.xml.length)
+  log('gtin     : ' + msg.gtin)
+  log('gtins    : ' + msg.gtins && msg.gtins.join(' '))
+  log('trx      : ' + msg.trx && msg.trx.join(','))
+  log('source_dp: ' + msg.source_dp)
+  log('recipient_dp: ' + msg.recipient_dp)
+  log('data (pub,sub,item,cic,party) count: ' + msg.data && msg.data.length)
 }
 
 Gdsn.prototype.get_msg_info = function (xml) {
@@ -140,12 +138,13 @@ Gdsn.prototype.get_party_info = function (xml, msg_info) {
 
 Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates = {}
-  this.templates.response  = fs.readFileSync(path + '/gdsn3/GS1Response.xml')
-  this.templates.bpr_to_gr = fs.readFileSync(path + '/gdsn3/BPR.xml')
-  this.templates.cis_to_gr = fs.readFileSync(path + '/gdsn3/CIS.xml')
-  this.templates.rci_to_gr = fs.readFileSync(path + '/gdsn3/RCI.xml')
-  this.templates.cin_out   = fs.readFileSync(path + '/gdsn3/CIN.xml')
-  this.templates.cic_to_pub= fs.readFileSync(path + '/gdsn3/CIC.xml')
+  this.templates.response    = fs.readFileSync(path + '/gdsn3/GS1Response.xml')
+  this.templates.bpr_to_gr   = fs.readFileSync(path + '/gdsn3/BPR.xml')
+  this.templates.cis_to_gr   = fs.readFileSync(path + '/gdsn3/CIS.xml')
+  this.templates.rfcin_to_gr = fs.readFileSync(path + '/gdsn3/RFCIN.xml')
+  this.templates.rci_to_gr   = fs.readFileSync(path + '/gdsn3/RCI.xml')
+  this.templates.cin_out     = fs.readFileSync(path + '/gdsn3/CIN.xml')
+  this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
 
   log('All gdsn templates read without errors')
 }
@@ -198,12 +197,11 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_inf
   }
 
   $('contentOwner > gln').each(function () {
-    $(this).text(req_msg_info.receiver)
+    $(this).text(req_msg_info.sender) // use the sender since we are using their original IDs
   })
 
   return $.html()
 }
-
 
 // the original BPR must be sent by the trading party to their own data pool, 
 // then a BPR to GR is generated. Only one party per message is supported.
@@ -279,7 +277,7 @@ Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
   })
 
   // SINGLE doc support:
-  var sub_info = tp_msg_info.sub && tp_msg_info.sub[0]
+  var sub_info = tp_msg_info.data && tp_msg_info.data[0]
   if (!sub_info) return ''
 
   // new values for this message
@@ -319,6 +317,69 @@ Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
 
   if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
   else $('recipientDataPool').remove()
+
+  $('contentOwner > gln').each(function () {
+    $(this).text(tp_msg_info.recipient)
+  })
+
+  return $.html()
+}
+
+Gdsn.prototype.populateRfcinToGr= function (config, tp_msg_info) {
+  log('populateRfcinToGr')
+  var $ = cheerio.load(this.templates.rfcin_to_gr, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  var new_msg_id = 'RFCIN_to_GR_' + Date.now() + '_' + tp_msg_info.recipient
+
+
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
+  $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+
+  $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
+
+  // original values from tp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on original msg_id and only support single doc
+  $('transactionIdentification > entityIdentification').text(new_msg_id + '_t1')
+
+  $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_t1_c1')
+
+  $('documentCommand > documentCommandHeader').attr('type', 'ADD') // set // ADD, DELETE
+
+  //var rfcin_repeat = $('request_for_catalogue_item_notification:requestForCatalogueItemNotification')
+
+  // for each RFCIN document in TP source msg
+  //tp_msg_info.data.forEach(function (rfcin) {
+
+    var rfcin = tp_msg_info
+
+      $('creationDateTime').text(new Date().toISOString())
+      $('catalogueItemSubscriptionIdentification > entityIdentification').text(new_msg_id + '_t1_c1_d1')
+      $('dataRecipient').text(rfcin.recipient)
+
+      //optional subscription criteria:
+      if (rfcin.provider) $('dataSource').text(rfcin.provider)
+      else $('dataSource').remove()
+
+      if (rfcin.gpc) $('gpcCategoryCode').text(rfcin.gpc)
+      else $('gpcCategoryCode').remove()
+
+      if (rfcin.gtin) $('gtin').text(rfcin.gtin)
+      else $('gtin').remove()
+
+      if (rfcin.tm) $('targetMarket > targetMarketCountryCode').text(rfcin.tm)
+      else $('targetMarket').remove()
+
+      if (rfcin.recipient_dp) $('recipientDataPool').text(rfcin.recipient_dp)
+      else $('recipientDataPool').remove()
+
+      $('isReload').text(Boolean(rfcin.reload == 'true' || rfcin.reload == 'TRUE').toString()) // string
+  //})
 
   $('contentOwner > gln').each(function () {
     $(this).text(tp_msg_info.recipient)
@@ -458,7 +519,7 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
 
   $('creationDateTime').text(dateTime)
   $('documentStatusCode').text(docStatus || 'ORIGINAL')
-  $('isReload').text(Boolean(reload == 'true').toString())
+  $('isReload').text(Boolean(reload == 'true' || reload == 'TRUE').toString()) // CIN "initial load" if reload along with ADD cmd
   
   var $ci       = $('catalogueItem')
   var $link     = $('catalogueItemChildItemLink', $ci).remove()
@@ -490,7 +551,35 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
   return $.html()
 }
 
-Gdsn.prototype.populateCic = function (config, cic_msg_info) {
+// send CIC receive to source_dp SDP for subscribed item, this is AUTO, no TP directly involved
+Gdsn.prototype.populateRdpCicRecForSdpCin = function (config, sdp_cin, state) {
+  log('populateCicFromCin')
+  var $ = cheerio.load(this.templates.cic_to_pub, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+  if (!sdp_cin) return ''
+
+    console.log('state:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ' + state)
+
+  if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED'
+  var rdp_cic = {
+
+    // sender and recipient_dp will always be home dp of subscriber
+      source_dp  : sdp_cin.sender
+    , receiver   : sdp_cin.source_dp
+    , recipient  : sdp_cin.recipient
+    , provider   : sdp_cin.provider
+    , gtin       : sdp_cin.gtin
+    , tm         : sdp_cin.tm
+    , tm_sub     : sdp_cin.tm_sub
+    , status     : state
+  }
+  return this.populateCicToSourceDP(config, rdp_cic)
+}
+
+Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
   log('populateCic')
   var $ = cheerio.load(this.templates.cic_to_pub, { 
     _:0
@@ -498,15 +587,15 @@ Gdsn.prototype.populateCic = function (config, cic_msg_info) {
     , xmlMode: true
   })
 
-  if (!cic_msg_info) return ''
+  if (!tp_cic) return ''
 
   // new values for this message
-  var new_msg_id = 'CIC_' + Date.now() + '_' + cic_msg_info.recipient + '_' + cic_msg_info.gtin
+  var new_msg_id = 'CIC_' + Date.now() + '_' + tp_cic.recipient + '_' + tp_cic.gtin
   var now_iso = new Date().toISOString()
+  var sender = recipient_dp = config.homeDataPoolGln
 
-
-  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
-  $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
+  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Receiver > sh\\:Identifier').text(tp_cic.source_dp) // could be to self for local publisher
   $('sh\\:InstanceIdentifier').text(new_msg_id)
 
   $('sh\\:CreationDateAndTime').text(now_iso) // when this message is created by DP (right now)
@@ -517,25 +606,38 @@ Gdsn.prototype.populateCic = function (config, cic_msg_info) {
 
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1')
 
-  $('documentCommand > documentCommandHeader').attr('type', cic_msg_info.status) // set // ADD, DELETE
-
   $('creationDateTime').text(now_iso)
-  $('catalogueItemSubscriptionIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
+  $('catalogueItemConfirmationIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
 
-  $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(cic_msg_info.status)
-  $('catalogueItemConfirmationState > recipientGLN').text(cic_msg_info.recipient)
-  $('catalogueItemConfirmationState > recipientDataPool').text(cic_msg_info.recipient)
+  $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(tp_cic.status)
+  $('catalogueItemConfirmationState > recipientGLN').text(tp_cic.recipient)
+  $('catalogueItemConfirmationState > recipientDataPool').text(recipient_dp)
 
-  $('catalogueItemReference > dataSource').text(cic_msg_info.provider)
-  $('catalogueItemReference > gtin').text(cic_msg_info.gtin)
-  $('catalogueItemReference > targetMarketCountryCode').text(cic_msg_info.tm)
-  if (cic_msg_info.tm_sub && cic_msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(cic_msg_info.tm_sub)
+  $('catalogueItemReference > dataSource').text(tp_cic.provider)
+  $('catalogueItemReference > gtin').text(tp_cic.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(tp_cic.tm)
+  if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cic.tm_sub)
   else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
 
-  $('catalogueItemConfirmationStatusDetail').remove() // TODO support review status code and description, optional correctiveAction
+
+  //if (tp_cic.status == 'REJECTED') { // || tp_cic.status == 'REVIEW') {
+  var cicsd = $('catalogueItemConfirmationStatusDetail')
+  if (tp_cic.confirm_code && tp_cic.confirm_desc) {
+    $('confirmationStatusCatalogueItem > dataSource', cicsd).text(tp_cic.provider)
+    $('confirmationStatusCatalogueItem > gtin'      , cicsd).text(tp_cic.gtin)
+    $('confirmationStatusCatalogueItem > targetMarketCountryCode', cicsd).text(tp_cic.tm)
+    if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') $('confirmationStatusCatalogueItem  > targetMarketSubdivisionCode', cicsd).text(tp_cic.tm_sub)
+    else $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).remove()
+
+    $('catalogueItemConfirmationStatus > confirmationStatusCode'           , cicsd).text(tp_cic.confirm_code) 
+    $('catalogueItemConfirmationStatus > confirmationStatusCodeDescription', cicsd).text(tp_cic.confirm_desc)
+  }
+  else { // RECEIVED, SYNCHRONISED // and REVIEW?
+    cicsd.remove()
+  }
 
   $('contentOwner > gln').each(function () {
-    $(this).text(cic_msg_info.recipient)
+    $(this).text(tp_cic.recipient)
   })
 
   return $.html()

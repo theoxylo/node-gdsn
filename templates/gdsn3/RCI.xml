@@ -26,25 +26,27 @@
 </documentCommandIdentification>
 </documentCommandHeader>
 <registry_catalogue_item:registryCatalogueItem>
-<creationDateTime>TOKEN</creationDateTime>
-<documentStatusCode>ORIGINAL</documentStatusCode>
-<registryCatalogueItemIdentification>
-<entityIdentification>TOKEN</entityIdentification>
-<contentOwner><gln>TOKEN</gln></contentOwner>
-</registryCatalogueItemIdentification>
-<gpcCategoryCode>TOKEN</gpcCategoryCode>
-<sourceDataPool>TOKEN</sourceDataPool>
-<registryCatalogueItemStateCode>REGISTERED</registryCatalogueItemStateCode>
-<catalogueItemReference>
-<dataSource>TOKEN</dataSource>
-<gtin>TOKEN</gtin>
-<targetMarketCountryCode>TOKEN</targetMarketCountryCode>
-<targetMarketSubdivisionCode>TOKEN</targetMarketSubdivisionCode>
-</catalogueItemReference>
-<catalogueItemDates>
-<lastChangedDateTime>TOKEN</lastChangedDateTime>
-<registrationDateTime>TOKEN</registrationDateTime>
-</catalogueItemDates>
+  <creationDateTime>TOKEN</creationDateTime>
+  <documentStatusCode>ORIGINAL</documentStatusCode>
+  <registryCatalogueItemIdentification>
+  <entityIdentification>TOKEN</entityIdentification>
+  <contentOwner><gln>TOKEN</gln></contentOwner>
+  </registryCatalogueItemIdentification>
+  <gpcCategoryCode>TOKEN</gpcCategoryCode>
+  <sourceDataPool>TOKEN</sourceDataPool>
+  <registryCatalogueItemStateCode>REGISTERED</registryCatalogueItemStateCode>
+  <catalogueItemReference>
+    <dataSource>TOKEN</dataSource>
+    <gtin>TOKEN</gtin>
+    <targetMarketCountryCode>TOKEN</targetMarketCountryCode>
+    <targetMarketSubdivisionCode>TOKEN</targetMarketSubdivisionCode>
+  </catalogueItemReference>
+  <catalogueItemDates>
+    <cancelDateTime>TOKEN_cancel_date</cancelDateTime>
+    <discontinuedDateTime>TOKEN_discon_date</discontinuedDateTime>
+    <lastChangedDateTime>TOKEN</lastChangedDateTime>
+    <registrationDateTime>TOKEN</registrationDateTime>
+  </catalogueItemDates>
 </registry_catalogue_item:registryCatalogueItem>
 </documentCommand>
 </transaction>

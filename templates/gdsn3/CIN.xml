@@ -33,18 +33,17 @@
 <contentOwner><gln>TOKEN</gln></contentOwner>
 </catalogueItemNotificationIdentification>
 <isReload>TOKEN</isReload>
-<!--catalogueItem-->
 <catalogueItem>
-<dataRecipient>TOKEN</dataRecipient>
-<sourceDataPool>TOKEN</sourceDataPool>
-<catalogueItemState>
-<catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
-</catalogueItemState>
-<!--tradeItem-->
-<catalogueItemChildItemLink>
-<quantity>TOKEN</quantity>
-<!--catalogueItem-->
-</catalogueItemChildItemLink>
+  <dataRecipient>TOKEN</dataRecipient>
+  <sourceDataPool>TOKEN</sourceDataPool>
+  <catalogueItemState>
+    <catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
+  </catalogueItemState>
+  <!--tradeItem-->
+  <catalogueItemChildItemLink>
+    <quantity>TOKEN</quantity>
+    <!--catalogueItem-->
+  </catalogueItemChildItemLink>
 </catalogueItem>
 </catalogue_item_notification:catalogueItemNotification>
 </documentCommand>

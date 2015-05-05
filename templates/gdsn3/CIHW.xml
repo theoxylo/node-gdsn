@@ -2,18 +2,13 @@
 <catalogue_item_hierarchical_withdrawal:catalogueItemHierarchicalWithdrawalMessage xmlns:catalogue_item_hierarchical_withdrawal="urn:gs1:gdsn:catalogue_item_hierarchical_withdrawal:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_hierarchical_withdrawal:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemHierarchicalWithdrawal.xsd">
 <sh:StandardBusinessDocumentHeader>
 <sh:HeaderVersion>1.0</sh:HeaderVersion>
-<sh:Sender>
-<sh:Identifier Authority="GS1">TOKEN_SDP_GLN</sh:Identifier>
-</sh:Sender>
-<sh:Receiver>
-<sh:Identifier Authority="GS1">TOKEN_RDP_GLN</sh:Identifier>
-</sh:Receiver>
+<sh:Sender><sh:Identifier Authority="GS1">TOKEN_SDP_GLN</sh:Identifier></sh:Sender>
+<sh:Receiver><sh:Identifier Authority="GS1">TOKEN_RDP_GLN</sh:Identifier></sh:Receiver>
 <sh:DocumentIdentification>
 <sh:Standard>GS1</sh:Standard>
 <sh:TypeVersion>3.1</sh:TypeVersion>
 <sh:InstanceIdentifier>TOKEN_MSG_ID</sh:InstanceIdentifier>
 <sh:Type>catalogueItemHierarchicalWithdrawal</sh:Type>
-<sh:MultipleType>false</sh:MultipleType>
 <sh:CreationDateAndTime>TOKEN_TS</sh:CreationDateAndTime>
 </sh:DocumentIdentification>
 </sh:StandardBusinessDocumentHeader>

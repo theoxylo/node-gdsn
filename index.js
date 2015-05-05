@@ -145,13 +145,16 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.rci_to_gr   = fs.readFileSync(path + '/gdsn3/RCI.xml')
   this.templates.cin_out     = fs.readFileSync(path + '/gdsn3/CIN.xml')
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
+  this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
 
   log('All gdsn templates read without errors')
 }
 
 // note that the req_msg_info argument is for the message we are responding to!
 // after we generate the response XML, it can have its own req_msg_info instance
-Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_info) {
+// Note: trxOwner is the gln of the TP (DS or DR) initiating the gdsn conversation
+// .e.g. for CIN from SDP to RDP, trxOwner would be DS/publisher and same for following CIC
+Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_info, trxOwner) {
   var $ = cheerio.load(this.templates.response, { 
     _:0
     , normalizeWhitespace: true
@@ -175,6 +178,7 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_inf
 
 
   $('gS1Response > originatingMessageIdentifier > entityIdentification').text(req_msg_info.msg_id)
+  $('gS1Response > originatingMessageIdentifier > contentOwner > gln').text(req_msg_info.sender)
   $('gS1Response > receiver').text(req_msg_info.receiver) // original receiver, sender of this reponse, should aways be dp
   $('gS1Response > sender')  .text(req_msg_info.sender)   // original sender, receiver of this response, should be local TP, GR, or other DP
 
@@ -192,13 +196,10 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_inf
     req_msg_info.trx.forEach(function (trx_id) {                        // to generate list of transactionResponse elements
       var $trx = $trx_resp.clone()
       $('transactionIdentifier > entityIdentification', $trx).text(trx_id)
+      $('transactionIdentifier > contentOwner > gln', $trx).text(trxOwner || req_msg_info.provider || req_msg_info.source_dp || req_msg_info.sender)
       $('gS1Response').append($trx)
     })
   }
-
-  $('contentOwner > gln').each(function () {
-    $(this).text(req_msg_info.sender) // use the sender since we are using their original IDs
-  })
 
   return $.html()
 }
@@ -391,9 +392,11 @@ Gdsn.prototype.populateRfcinToGr= function (config, tp_msg_info) {
 Gdsn.prototype.populateRciToGr = function (config, cin_msg_info) {
   log('populateRciToGr')
 
+  // rci can only be generated from local tp cin message to home dp, for now
   if (cin_msg_info.msg_type != 'catalogueItemNotification'
-    || cin_msg_info.sender != cin_msg_info.provider) 
-      return 'rci can only be generated from local tp cin message, for now'
+    || cin_msg_info.sender != cin_msg_info.provider) {
+      return ''
+  }
 
   var $ = cheerio.load(this.templates.rci_to_gr, { 
     _:0
@@ -415,19 +418,25 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info) {
   // assume naming convention based on new_msg_id and only support single doc
   $('transactionIdentification > entityIdentification').text(new_msg_id + '_trx1')
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1')
-  $('documentCommand > documentCommandHeader').attr('type', cin_msg_info.status) // set // ADD, DELETE
+  $('documentCommand > documentCommandHeader').attr('type', cin_msg_info.status) // set // ADD, CORRECT
 
   // SINGLE doc support:
   $('creationDateTime').text(new Date(cin_msg_info.created_ts || 1).toISOString())
   $('registryCatalogueItemIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
-
-  $('recipientDataPool').text(config.homeDataPoolGln)
-
+  $('gpcCategoryCode').text(cin_msg_info.gpc)
+  $('sourceDataPool').text(config.homeDataPoolGln)
+  //<registryCatalogueItemStateCode...  // TODO? for cancelled, etc
   $('catalogueItemReference > dataSource').text(cin_msg_info.provider)
   $('catalogueItemReference > gtin').text(cin_msg_info.gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(cin_msg_info.tm)
   if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(cin_msg_info.tm_sub)
   else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+
+  if (cin_msg_info.cancelledDate) $('catalogueItemDates > cancelDateTime').text(cin_msg_info.cancelledDate)
+  else $('catalogueItemDates > cancelDateTime').remove()
+
+  if (cin_msg_info.discontinuedDate) $('catalogueItemDates > discontinuedDateTime').text(cin_msg_info.discontinuedDate)
+  else $('catalogueItemDates > discontinuedDateTime').remove()
 
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
@@ -548,6 +557,26 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
     $(this).text(provider)
   })
 
+  $('tradeItem').each(function () {
+    var cancel = $('tradeItemSynchronisationDates > cancelledDateTime', this).text()
+    if (cancel) {
+      log('found ti cancel date: ' + cancel)
+      $(this).prev().append('<cancelDateTime>' + cancel + '</cancelDateTime>')
+      if (new Date(cancel).getTime() < Date.now()) { // change item state if canceled date has passed
+        log('updating CI state to CANCELED') // CANCELLED
+        $(this).prev().find('catalogueItemStateCode').text('CANCELED') // note spelling from CatalogueItemNotification.xsd
+      }
+    }
+    var discontinue = $('tradeItemSynchronisationDates > discontinuedDateTime', this).text()
+    if (discontinue) {
+      log('found ti discontinue date: ' + discontinue)
+      $(this).prev().append('<discontinueDateTime>' + discontinue + '</discontinueDateTime>')
+      if (new Date(discontinue).getTime() < Date.now()) { // change item state if discontinued date has passed
+        $(this).prev().find('catalogueItemStateCode').text('DISCONTINUED') // note spelling from CatalogueItemNotification.xsd
+      }
+    }
+  })
+
   return $.html()
 }
 
@@ -561,7 +590,7 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (config, sdp_cin, state) {
   })
   if (!sdp_cin) return ''
 
-    console.log('state:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ' + state)
+    log('state:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ' + state)
 
   if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED'
   var rdp_cic = {
@@ -580,6 +609,7 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (config, sdp_cin, state) {
 }
 
 Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
+
   log('populateCic')
   var $ = cheerio.load(this.templates.cic_to_pub, { 
     _:0
@@ -611,7 +641,7 @@ Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
 
   $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(tp_cic.status)
   $('catalogueItemConfirmationState > recipientGLN').text(tp_cic.recipient)
-  $('catalogueItemConfirmationState > recipientDataPool').text(recipient_dp)
+  $('catalogueItemConfirmationState > recipientDataPool').text(sender)
 
   $('catalogueItemReference > dataSource').text(tp_cic.provider)
   $('catalogueItemReference > gtin').text(tp_cic.gtin)
@@ -639,6 +669,55 @@ Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
   $('contentOwner > gln').each(function () {
     $(this).text(tp_cic.recipient)
   })
+
+  return $.html()
+}
+
+Gdsn.prototype.populateCihwToOtherSDP = function (config, tp_cihw) {
+
+  log('populateCihwToOtherSDP  ' + tp_cihw)
+
+  var $ = cheerio.load(this.templates.cihw_to_rdp, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  if (!tp_cihw) return ''
+
+  // new values for this message
+  var new_msg_id = 'CIHW_' + Date.now() + '_' + tp_cihw.recipient + '_' + tp_cihw.gtin
+  var now_iso = new Date().toISOString()
+
+  $('sh\\:Sender > sh\\:Identifier').text(tp_cihw.source_dp)
+  $('sh\\:Receiver > sh\\:Identifier').text(tp_cihw.recipient_dp) // could be to self for local publisher
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+
+  $('sh\\:CreationDateAndTime').text(now_iso) // when this message is created by DP (right now)
+
+  // original values from tp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on original msg_id and only support single doc per message
+  $('transactionIdentification > entityIdentification').text(new_msg_id + '_t1')
+  $('transactionIdentification > contentOwner > gln').text(tp_cihw.provider)
+
+  $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_t1_c1')
+  $('documentCommandIdentification > contentOwner > gln').text(tp_cihw.provider)
+
+  try { var tp_created_iso = (new Date(tp_cihw.created_ts)).toISOString() }
+  catch(e) { log.error('error getting orig created ts from tp msg document: ' + e) }
+  $('creationDateTime').text(tp_created_iso || now_iso)
+
+  $('catalogueItemHierarchicalWithdrawalIdentification > entityIdentification').text(new_msg_id + '_t1_c1_d1')
+  $('catalogueItemHierarchicalWithdrawalIdentification > contentOwner > gln').text(tp_cihw.provider)
+
+  $('catalogueItemReference > dataSource').text(tp_cihw.provider)
+  $('catalogueItemReference > gtin').text(tp_cihw.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(tp_cihw.tm)
+  if (tp_cihw.tm_sub && tp_cihw.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cihw.tm_sub)
+  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+
+  $('dataRecipient > gln').text(tp_cihw.recipient)
+  $('sourceDataPool > gln').text(tp_cihw.source_dp)
 
   return $.html()
 }

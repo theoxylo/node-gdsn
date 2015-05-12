@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue_item_confirmation:catalogueItemConfirmationMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:catalogue_item_confirmation="urn:gs1:gdsn:catalogue_item_confirmation:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_confirmation:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemConfirmation.xsd">
+<sh:StandardBusinessDocumentHeader>
+<sh:HeaderVersion>1.0</sh:HeaderVersion>
+<sh:Sender><sh:Identifier Authority="GS1">1100001011278</sh:Identifier></sh:Sender>
+<sh:Receiver><sh:Identifier Authority="GS1">1100001011285</sh:Identifier></sh:Receiver>
+<sh:DocumentIdentification>
+<sh:Standard>GS1</sh:Standard>
+<sh:TypeVersion>3.1</sh:TypeVersion>
+<sh:InstanceIdentifier>278_292_396_cic_rev_test1</sh:InstanceIdentifier>
+<sh:Type>catalogueItemConfirmation</sh:Type>
+<sh:MultipleType>false</sh:MultipleType>
+<sh:CreationDateAndTime>2015-01-09T19:24:56.480+08:00</sh:CreationDateAndTime>
+</sh:DocumentIdentification>
+</sh:StandardBusinessDocumentHeader>
+<transaction>
+<transactionIdentification>
+<entityIdentification>278_292_396_cic_rev_test1-t1</entityIdentification>
+<contentOwner>
+<gln>1100001011278</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>278_292_396_cic_rev_test1-t1-c1</entityIdentification>
+<contentOwner>
+<gln>1100001011278</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<catalogue_item_confirmation:catalogueItemConfirmation>
+<creationDateTime>2015-01-09T19:15:00.000+08:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+
+<catalogueItemConfirmationIdentification>
+<entityIdentification>278_292_396_cic_rev_test1-t1-c1-d1</entityIdentification>
+<contentOwner>
+<gln>1100001011278</gln>
+</contentOwner>
+</catalogueItemConfirmationIdentification>
+
+<catalogueItemConfirmationState>
+<catalogueItemConfirmationStateCode>REVIEW</catalogueItemConfirmationStateCode>
+<recipientGLN>1100001011278</recipientGLN>
+<recipientDataPool>1100001011285</recipientDataPool>
+</catalogueItemConfirmationState>
+
+<catalogueItemReference>
+<dataSource>1100001011292</dataSource>
+<gtin>10036016500279</gtin>
+<targetMarketCountryCode>840</targetMarketCountryCode>
+</catalogueItemReference>
+
+<catalogueItemConfirmationStatusDetail>
+  <confirmationStatusCatalogueItem>
+    <dataSource>1100001011292</dataSource>
+    <gtin>10036016500279</gtin>
+    <targetMarketCountryCode>840</targetMarketCountryCode>
+  </confirmationStatusCatalogueItem>
+  <catalogueItemConfirmationStatus>
+    <confirmationStatusCode>CIC999</confirmationStatusCode>
+    <confirmationStatusCodeDescription languageCode="en">custom cic review description</confirmationStatusCodeDescription>
+  </catalogueItemConfirmationStatus>
+</catalogueItemConfirmationStatusDetail>
+
+</catalogue_item_confirmation:catalogueItemConfirmation>
+</documentCommand>
+</transaction>
+</catalogue_item_confirmation:catalogueItemConfirmationMessage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue_item_registration_response:catalogueItemRegistrationResponseMessage xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:catalogue_item_registration_response="urn:gs1:gdsn:catalogue_item_registration_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_registration_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemRegistrationResponse.xsd">
+<sh:StandardBusinessDocumentHeader>
+<sh:HeaderVersion>1.0</sh:HeaderVersion>
+<sh:Sender>
+<sh:Identifier Authority="GS1">0614141810017</sh:Identifier>
+</sh:Sender>
+<sh:Receiver>
+<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+</sh:Receiver>
+<sh:DocumentIdentification>
+<sh:Standard>GS1</sh:Standard>
+<sh:TypeVersion>3.1</sh:TypeVersion>
+<sh:InstanceIdentifier>RCI_1430404267384_1100001011292_00031000247317_840_ID-143040465056255</sh:InstanceIdentifier>
+<sh:Type>catalogueItemRegistrationResponse</sh:Type>
+<sh:CreationDateAndTime>2015-04-30T10:37:30-04:00</sh:CreationDateAndTime>
+</sh:DocumentIdentification>
+<sh:BusinessScope>
+<sh:Scope>
+<sh:Type>GDSN</sh:Type>
+<sh:InstanceIdentifier>ID-143040465056295</sh:InstanceIdentifier>
+<sh:CorrelationInformation>
+<sh:RequestingDocumentInstanceIdentifier>RCI_1430404267384_1100001011292_00031000247317_840</sh:RequestingDocumentInstanceIdentifier>
+</sh:CorrelationInformation>
+</sh:Scope>
+</sh:BusinessScope>
+</sh:StandardBusinessDocumentHeader>
+<transaction>
+<transactionIdentification>
+<entityIdentification>RCI_1430404267384_1100001011292_00031000247317_840_trx1</entityIdentification>
+<contentOwner>
+<gln>1100001011292</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="CHANGE_BY_REFRESH">
+<documentCommandIdentification>
+<entityIdentification>RCI_1430404267384_1100001011292_00031000247317_840_trx1_cmd1</entityIdentification>
+<contentOwner>
+<gln>1100001011292</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<catalogue_item_registration_response:catalogueItemRegistrationResponse xmlns:catalogue_item_registration_response="urn:gs1:gdsn:catalogue_item_registration_response:xsd:3">
+<creationDateTime>2015-03-10T08:12:39.187Z</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<catalogueItemRegistrationResponseIdentification>
+<entityIdentification>RCI_1430404267384_1100001011292_00031000247317_840_trx1_cmd1_doc1</entityIdentification>
+<contentOwner>
+<gln>1100001011292</gln>
+</contentOwner>
+</catalogueItemRegistrationResponseIdentification>
+<lastChangedDateTime>2015-04-30T10:37:30-04:00</lastChangedDateTime>
+<registrationDateTime>2015-04-30T14:31:07.399Z</registrationDateTime>
+<responseStatus>ACCEPTED</responseStatus>
+<catalogueItemReference>
+<dataSource>1100001011292</dataSource>
+<gtin>00031000247317</gtin>
+<targetMarketCountryCode>840</targetMarketCountryCode>
+</catalogueItemReference>
+</catalogue_item_registration_response:catalogueItemRegistrationResponse>
+</documentCommand>
+</transaction>
+</catalogue_item_registration_response:catalogueItemRegistrationResponseMessage>

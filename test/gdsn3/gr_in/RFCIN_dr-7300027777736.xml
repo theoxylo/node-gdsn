@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><requestForCatalogueItemNotificationMessage xmlns:eanucc="urn:ean.ucc:2" xmlns:gdsn="urn:ean.ucc:gdsn:2" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gdsregistry.org/2.8/schemas/RequestForCatalogueItemNotificationProxy.xsd ">
+<sh:StandardBusinessDocumentHeader>
+<sh:HeaderVersion>1.0</sh:HeaderVersion>
+<sh:Sender>
+<sh:Identifier Authority="GS1">0614141810017</sh:Identifier>
+</sh:Sender>
+<sh:Receiver>
+<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+</sh:Receiver>
+<sh:DocumentIdentification>
+<sh:Standard>GS1</sh:Standard>
+<sh:TypeVersion>3.1</sh:TypeVersion>
+<sh:InstanceIdentifier>11987-19447399708</sh:InstanceIdentifier>
+<sh:Type>requestForCatalogueItemNotification</sh:Type>
+<sh:CreationDateAndTime>2015-04-22T12:17:15-04:00</sh:CreationDateAndTime>
+</sh:DocumentIdentification>
+</sh:StandardBusinessDocumentHeader>
+<eanucc:transaction>
+<transactionIdentification>
+<entityIdentification>TX-11987-19447399708</entityIdentification>
+<contentOwner>
+<gln>7300027777736</gln>
+</contentOwner>
+</transactionIdentification>
+<eanucc:documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-11987-19447399708</entityIdentification>
+<contentOwner>
+<gln>7300027777736</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<gdsn:requestForCatalogueItemNotification>
+<creationDateTime>2015-04-22T12:17:15-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<catalogueItemSubscriptionIdentification>
+<entityIdentification>DOC-20150422171530.0a285e83-5cbc-46ef-9e34-4f5bceb78f1a</entityIdentification>
+<contentOwner>
+<gln>7300027777736</gln>
+</contentOwner>
+</catalogueItemSubscriptionIdentification>
+<dataRecipient>7300027777736</dataRecipient>
+<gpcCategoryCode>10001762</gpcCategoryCode>
+<recipientDataPool>7300027777712</recipientDataPool>
+<isReload>true</isReload>
+</gdsn:requestForCatalogueItemNotification>
+</eanucc:documentCommand>
+</eanucc:transaction>
+</requestForCatalogueItemNotificationMessage>"
+

@@ -163,7 +163,12 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_inf
   var new_msg_id = err_msg ? 'X_' : ''
   new_msg_id += 'RESP_' + req_msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
 
-  if (config.homeDataPoolGln != req_msg_info.receiver) throw Error('********** WARN: responding to non-DP message: ' + req_msg_info)
+  log('config.homeDataPoolGln ' + config.homeDataPoolGln)
+  log('req_msg_info ' + req_msg_info)
+  if (config.homeDataPoolGln != req_msg_info.receiver) {
+    log('********** WARN: responding to non-DP message: ' + req_msg_info)
+    return
+  }
 
   $('sh\\:Sender   > sh\\:Identifier').text(req_msg_info.receiver)
   $('sh\\:Receiver > sh\\:Identifier').text(req_msg_info.sender)
@@ -235,7 +240,7 @@ Gdsn.prototype.populateBprToGr = function (config, tp_msg_info) {
     $('documentCommand > documentCommandHeader').attr('type', tp_msg_info.status)
   }
 
-  var party = tp_msg_info.party[0]
+  var party = tp_msg_info.data && tp_msg_info.data[0]
 
   if (party) {
     $('informationProviderOfParty > gln').text(party.gln)
@@ -269,7 +274,9 @@ Gdsn.prototype.populateBprToGr = function (config, tp_msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
+var cis_id_counter = 1000
+
+Gdsn.prototype.populateCisToGr = function (config, tp_msg_info) {
   log('populateCisToGr')
   var $ = cheerio.load(this.templates.cis_to_gr, { 
     _:0
@@ -282,7 +289,7 @@ Gdsn.prototype.populateCisToGr= function (config, tp_msg_info) {
   if (!sub_info) return ''
 
   // new values for this message
-  var new_msg_id = 'CIS_to_GR_' + Date.now() + '_' + sub_info.recipient
+  var new_msg_id = 'CIS_to_GR_' + Date.now() + '_' + sub_info.recipient + '_' + (cis_id_counter++)
 
 
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
@@ -389,8 +396,10 @@ Gdsn.prototype.populateRfcinToGr= function (config, tp_msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateRciToGr = function (config, cin_msg_info) {
+Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
   log('populateRciToGr')
+
+  gtin = gtin || cin_msg_info.gtin
 
   // rci can only be generated from local tp cin message to home dp, for now
   if (cin_msg_info.msg_type != 'catalogueItemNotification'
@@ -408,7 +417,7 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info) {
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
   // GR requires unique msg id, so use ts
-  var new_msg_id = 'RCI_' + Date.now() + '_' + cin_msg_info.provider + '_' + cin_msg_info.gtin + '_' + cin_msg_info.tm
+  var new_msg_id = 'RCI_' + Date.now() + '_' + cin_msg_info.provider + '_' + gtin + '_' + cin_msg_info.tm
   if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') new_msg_id += '_' + cin_msg_info.tm_sub
   $('sh\\:InstanceIdentifier').text(new_msg_id)
   $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
@@ -427,7 +436,7 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info) {
   $('sourceDataPool').text(config.homeDataPoolGln)
   //<registryCatalogueItemStateCode...  // TODO? for cancelled, etc
   $('catalogueItemReference > dataSource').text(cin_msg_info.provider)
-  $('catalogueItemReference > gtin').text(cin_msg_info.gtin)
+  $('catalogueItemReference > gtin').text(gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(cin_msg_info.tm)
   if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(cin_msg_info.tm_sub)
   else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
@@ -492,8 +501,8 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
   var item_xmls = {} 
   trade_items.forEach(function (item) {
     //item_xmls[item.gtin] = item.xml || ('<tradeItem><gtin>' + item.gtin + '</gtin></tradeItem>')
-    if (!item.xml) throw Error('missing xml for item query gtin ' + item.gtin)
-    item_xmls[item.gtin] = item.xml
+    if (!item.xml) log('missing xml for item query gtin ' + item.gtin)
+    item_xmls[item.gtin] = item.xml || ''
   })
 
   var ti = trade_items[0]
@@ -704,7 +713,7 @@ Gdsn.prototype.populateCihwToOtherSDP = function (config, tp_cihw) {
   $('documentCommandIdentification > contentOwner > gln').text(tp_cihw.provider)
 
   try { var tp_created_iso = (new Date(tp_cihw.created_ts)).toISOString() }
-  catch(e) { log.error('error getting orig created ts from tp msg document: ' + e) }
+  catch(e) { log('error getting orig created ts from tp msg document: ' + e) }
   $('creationDateTime').text(tp_created_iso || now_iso)
 
   $('catalogueItemHierarchicalWithdrawalIdentification > entityIdentification').text(new_msg_id + '_t1_c1_d1')
@@ -718,6 +727,8 @@ Gdsn.prototype.populateCihwToOtherSDP = function (config, tp_cihw) {
 
   $('dataRecipient > gln').text(tp_cihw.recipient)
   $('sourceDataPool > gln').text(tp_cihw.source_dp)
+
+  $('hierarchyDeletionReasonCode').text(tp_cihw.reason)
 
   return $.html()
 }

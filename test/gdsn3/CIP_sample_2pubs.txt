@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog_item_publication:catalogueItemPublicationMessage xmlns:catalog_item_publication="urn:gs1:gdsn:catalogue_item_publication:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_publication:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemPublication.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011292</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>CIP_4049111380010_1100001011292_02031000250728_ADD</sh:InstanceIdentifier>
+            <sh:Type>catalogueItemPublication</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2015-05-15T12:00:01.000-05:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>CIP_4049111380010_1100001011292_02031000250728_ADD_t1</entityIdentification>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>CIP_4049111380010_1100001011292_02031000250728_ADD_t1_c1</entityIdentification>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <catalog_item_publication:catalogueItemPublication>
+                <creationDateTime>2015-05-11T06:45:02.557-07:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemPublicationIdentification>
+                    <entityIdentification>CIP_4049111380010_1100001011292_02031000250728_ADD_t1_d1_c1_d1</entityIdentification>
+                </catalogueItemPublicationIdentification>
+                <publishToGLN>4049111380010</publishToGLN>
+                <extension>
+                    <initialLoad xmlns:gdsnExtension="urn:ean.ucc:gdsn:2">true</initialLoad>
+                </extension>
+                <catalogueItemReference>
+                    <dataSource>1100001011292</dataSource>
+                    <gtin>02031000250728</gtin>
+                    <targetMarketCountryCode>840</targetMarketCountryCode>
+                </catalogueItemReference>
+            </catalog_item_publication:catalogueItemPublication>
+            <catalog_item_publication:catalogueItemPublication>
+                <creationDateTime>2015-05-11T06:45:02.557-07:00</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemPublicationIdentification>
+                    <entityIdentification>CIP_4049111380010_1100001011292_02031000250728_ADD_t1_d1_c1_d1</entityIdentification>
+                </catalogueItemPublicationIdentification>
+                <publishToGLN>4049111380010</publishToGLN>
+                <catalogueItemReference>
+                    <dataSource>1100001011292</dataSource>
+                    <gtin>02031000250728</gtin>
+                    <targetMarketCountryCode>840</targetMarketCountryCode>
+                </catalogueItemReference>
+            </catalog_item_publication:catalogueItemPublication>
+        </documentCommand>
+    </transaction>
+</catalog_item_publication:catalogueItemPublicationMessage>

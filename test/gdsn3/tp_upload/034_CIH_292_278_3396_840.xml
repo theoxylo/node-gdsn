@@ -22,7 +22,7 @@
             <entityIdentification>tp_CIH_292_278_279_840_t1</entityIdentification>
         </transactionIdentification>
         <documentCommand>
-            <documentCommandHeader type="ADD">
+            <documentCommandHeader type="DELETE">
                 <documentCommandIdentification>
                     <entityIdentification>tp_CIH_292_278_279_840_t1_c1</entityIdentification>
                 </documentCommandIdentification>
@@ -33,7 +33,7 @@
                 <catalogueItemHierarchicalWithdrawalIdentification>
                     <entityIdentification>tp_CIH_292_278_279_840_t1_c1_d1</entityIdentification>
                 </catalogueItemHierarchicalWithdrawalIdentification>
-                <hierarchyDeletionReasonCode codeListVersion="custom_3.1">CORRECT</hierarchyDeletionReasonCode>
+                <hierarchyDeletionReasonCode>CORRECT</hierarchyDeletionReasonCode>
                 <catalogueItemReference>
                     <dataSource>1100001011292</dataSource>
                     <gtin>00018627703396</gtin>

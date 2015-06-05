@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<registry_party_data_dump:registryPartyDataDumpMessage xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+ 	urn:gs1:gdsn:registry_party_data_dump:xsd:3 
+	http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RegistryPartyDataDump.xsd"> 
+	<sh:StandardBusinessDocumentHeader> 
+		<sh:HeaderVersion>1.0</sh:HeaderVersion> 
+		<sh:Sender> 
+			<sh:Identifier Authority="GS1">0614141810017</sh:Identifier> 
+		</sh:Sender> 
+		<sh:Receiver> 
+			<sh:Identifier Authority="GS1">0614141810017</sh:Identifier> 
+		</sh:Receiver> 
+		<sh:DocumentIdentification> 
+			<sh:Standard>GS1</sh:Standard> 
+			<sh:TypeVersion>3.1</sh:TypeVersion> 
+			<sh:InstanceIdentifier>40399</sh:InstanceIdentifier> 
+			<sh:Type>registryPartyDataDump</sh:Type> 
+			<sh:CreationDateAndTime>2015-03-25T05:01:01-04:00</sh:CreationDateAndTime> 
+		</sh:DocumentIdentification> 
+	</sh:StandardBusinessDocumentHeader> <transaction>
+<transactionIdentification>
+<entityIdentification>TX-373745134-1</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-373745134-1</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-373745134-1</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>1100001004072</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T18:48:34-04:00</lastUpdateDateTime>
+<lastUpdateParty>1100001004072</lastUpdateParty>
+<registeringParty>1100001004072</registeringParty>
+<registrationDateTime>2015-03-23T14:54:32-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>1100001004096</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Sandy Springs</city>
+<countryCode>840</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>Georgia Distribution Center</name>
+<postalCode>30305</postalCode>
+<state>GA</state>
+<streetAddressOne>3525 Piedmont Road</streetAddressOne>
+<streetAddressTwo>8 Piedmont Center</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>AP</contactTypeCode>
+<personName>Karl Towns</personName>
+<communicationChannel>
+<communicationChannelCode>TELEPHONE</communicationChannelCode>
+<communicationValue>404-576-8026</communicationValue>
+</communicationChannel>
+<communicationChannel>
+<communicationChannelCode>EMAIL</communicationChannelCode>
+<communicationValue>dsmith@georgiadistribution.com</communicationValue>
+</communicationChannel>
+<communicationChannel>
+<communicationChannelCode>SOCIAL_MEDIA</communicationChannelCode>
+<communicationValue>Georgia Distribution Facebook</communicationValue>
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<messageCapability>
+<messageCapabilityCode>5</messageCapabilityCode>
+<messageCapabilityEffectiveStartDateTime>2015-01-18T00:00:00</messageCapabilityEffectiveStartDateTime>
+</messageCapability>
+<processCapability>
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+<processCapabilityEffectiveStartDateTime>2014-03-30T00:00:00.000</processCapabilityEffectiveStartDateTime>
+<registeredContext>
+<contextIdentification>DP006</contextIdentification>
+<contextEffectiveStartDateTime>2015-01-02T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+<registeredContext>
+<contextIdentification>DP009</contextIdentification>
+<contextEffectiveStartDateTime>2015-02-01T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+<registeredContext>
+<contextIdentification>DP015</contextIdentification>
+<contextEffectiveStartDateTime>2015-02-14T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>Retailer</partyName>
+<partyRoleCode>BUYER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-417192996-2</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-417192996-2</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-417192996-2</entityIdentification>
+<contentOwner>
+<gln>1100001004072</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>1100001004072</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T18:15:09-04:00</lastUpdateDateTime>
+<lastUpdateParty>1100001004072</lastUpdateParty>
+<registeringParty>1100001004072</registeringParty>
+<registrationDateTime>2015-03-24T18:15:09-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>1100001004089</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Miami</city>
+<countryCode>840</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>Best Supplier in Town</name>
+<postalCode>33193</postalCode>
+<state>FL</state>
+<streetAddressOne>5633 SW 137 Avenue</streetAddressOne>
+<streetAddressTwo>Suite 420</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>AP</contactTypeCode>
+<personName>Jessica Alonso</personName>
+<communicationChannel>
+<communicationChannelCode>TELEPHONE</communicationChannelCode>
+<communicationValue>305-756-7169</communicationValue>
+</communicationChannel>
+<communicationChannel>
+<communicationChannelCode>EMAIL</communicationChannelCode>
+<communicationValue>jalonso@gmail.com</communicationValue>
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<messageCapability>
+<messageCapabilityCode>5</messageCapabilityCode>
+<messageCapabilityEffectiveStartDateTime>2015-01-18T00:00:00</messageCapabilityEffectiveStartDateTime>
+</messageCapability>
+<processCapability>
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+<processCapabilityEffectiveStartDateTime>2014-03-30T00:00:00.000</processCapabilityEffectiveStartDateTime>
+<registeredContext>
+<contextIdentification>DP006</contextIdentification>
+<contextEffectiveStartDateTime>2015-01-02T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+<registeredContext>
+<contextIdentification>DP009</contextIdentification>
+<contextEffectiveStartDateTime>2015-02-01T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+<registeredContext>
+<contextIdentification>DP015</contextIdentification>
+<contextEffectiveStartDateTime>2015-02-14T00:00:00.000</contextEffectiveStartDateTime>
+</registeredContext>
+</processCapability>
+</partyCapability>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-407213241-3</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-407213241-3</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-407213241-3</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8690000000050</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T08:07:33-04:00</lastUpdateDateTime>
+<lastUpdateParty>8690000000050</lastUpdateParty>
+<registeringParty>8690000000050</registeringParty>
+<registrationDateTime>2015-03-23T05:50:07-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>8690000000029</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Kas</city>
+<countryCode>792</countryCode>
+<name>DATA RECEIPENT COMPANY</name>
+<streetAddressOne>Dr Drive 1</streetAddressOne>
+</partyAddress>
+<partyContact>
+<personName>Dalibor Biscevic</personName>
+<communicationChannel>
+              <communicationChannelCode>EMAIL</communicationChannelCode>
+              <communicationValue>dalibor.biscevic@laverna.hr</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+              <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+              <processCapabilityEffectiveStartDateTime>2014-07-03T00:00:00</processCapabilityEffectiveStartDateTime>
+            </processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>DATA RECEIPENT COMPANY</partyName>
+<partyRoleCode>BUYER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1111949289-4</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1111949289-4</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1111949289-4</entityIdentification>
+<contentOwner>
+<gln>8690000000050</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8690000000050</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T07:41:18-04:00</lastUpdateDateTime>
+<lastUpdateParty>8690000000050</lastUpdateParty>
+<registeringParty>8690000000050</registeringParty>
+<registrationDateTime>2015-03-23T05:24:46-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>8690000000012</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Ankara</city>
+<countryCode>792</countryCode>
+<name>DATA SOURCE COMPANY</name>
+<postalCode>06000</postalCode>
+<streetAddressOne>Ds Street 1</streetAddressOne>
+</partyAddress>
+<partyContact>
+<personName>Will Stein</personName>
+<communicationChannel>
+              <communicationChannelCode>EMAIL</communicationChannelCode>
+              <communicationValue>dalibor.biscevic@biztech.hr</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+              <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+              <processCapabilityEffectiveStartDateTime>2015-03-10T00:00:00</processCapabilityEffectiveStartDateTime>
+            </processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>DATA SOURCE COMPANY</partyName>
+<partyRoleCode>BILL_TO</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1044608010-5</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1044608010-5</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1044608010-5</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>6901234567816</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-25T01:05:02-04:00</lastUpdateDateTime>
+<lastUpdateParty>6901234567816</lastUpdateParty>
+<registeringParty>6901234567816</registeringParty>
+<registrationDateTime>2015-03-24T00:22:55-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>6901234000016</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>6901234000016</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>beijing</city>
+<countryCode>158</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>ANCC Debug Run Test DS</name>
+<pOBoxNumber>13693396317</pOBoxNumber>
+<postalCode>100010</postalCode>
+<state>beijing</state>
+<streetAddressOne>4f,Wing B,Imperial Internaional Bldg.,No 136 Andingmenwai Street</streetAddressOne>
+<streetAddressTwo>4f,Wing B,Imperial Internaional Bldg.,No 136 Andingmenwai Street</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Tom Lyles</personName>
+<communicationChannel>
+              <communicationChannelCode>TELEPHONE</communicationChannelCode>
+              <communicationValue>84295410</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyInRole>
+<partyName>ANCC Debug Run Test DS</partyName>
+<partyRoleCode>BILL_TO</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-2111965614-6</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-2111965614-6</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-2111965614-6</entityIdentification>
+<contentOwner>
+<gln>6901234567816</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>6901234567816</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-25T01:05:02-04:00</lastUpdateDateTime>
+<lastUpdateParty>6901234567816</lastUpdateParty>
+<registeringParty>6901234567816</registeringParty>
+<registrationDateTime>2015-03-23T23:10:25-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>6901234000023</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>6901234000023</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>beijing</city>
+<countryCode>158</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>ANCC Debug Run Test DR</name>
+<pOBoxNumber>13693396317</pOBoxNumber>
+<postalCode>100010</postalCode>
+<state>beijing</state>
+<streetAddressOne>4f,Wing B,Imperial Internaional Bldg.,No 136 Andingmenwai Street</streetAddressOne>
+<streetAddressTwo>4f,Wing B,Imperial Internaional Bldg.,No 136 Andingmenwai Street</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Tom Lyles</personName>
+<communicationChannel>
+              <communicationChannelCode>TELEPHONE</communicationChannelCode>
+              <communicationValue>84295410</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyInRole>
+<partyName>ANCC Debug Run Test DR</partyName>
+<partyRoleCode>BILL_TO</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-2140102213-7</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-2140102213-7</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-2140102213-7</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>4049111180016</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T08:26:13-04:00</lastUpdateDateTime>
+<lastUpdateParty>4049111180016</lastUpdateParty>
+<registeringParty>4049111180016</registeringParty>
+<registrationDateTime>2015-03-23T06:49:03-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>4049111380010</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Cologne</city>
+<countryCode>276</countryCode>
+<name>1WorldSync_TestRetailer</name>
+</partyAddress>
+<partyContact>
+<personName>Andrew Harrison</personName>
+</partyContact>
+<partyCapability>
+<processCapability>
+							<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+							<processCapabilityEffectiveStartDateTime>2015-03-24T13:19:02.811+01:00</processCapabilityEffectiveStartDateTime>
+						</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>1WorldSync_TestRetailer</partyName>
+<partyRoleCode codeListVersion="2">SELLER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-2018885181-8</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-2018885181-8</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-2018885181-8</entityIdentification>
+<contentOwner>
+<gln>4049111180016</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>4049111180016</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T08:26:13-04:00</lastUpdateDateTime>
+<lastUpdateParty>4049111180016</lastUpdateParty>
+<registeringParty>4049111180016</registeringParty>
+<registrationDateTime>2015-03-23T06:48:03-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>4049111280013</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Cologne</city>
+<countryCode>276</countryCode>
+<name>1WorldSync_TestSupplier</name>
+</partyAddress>
+<partyContact>
+<personName>Andrew Harrison</personName>
+</partyContact>
+<partyCapability>
+<processCapability>
+							<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+							<processCapabilityEffectiveStartDateTime>2015-03-24T13:18:55.684+01:00</processCapabilityEffectiveStartDateTime>
+						</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>1WorldSync_TestSupplier</partyName>
+<partyRoleCode codeListVersion="2">SUPPLIER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1345626615-9</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1345626615-9</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1345626615-9</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>3850000000008</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T11:18:26-04:00</lastUpdateDateTime>
+<lastUpdateParty>3850000000008</lastUpdateParty>
+<registeringParty>3850000000008</registeringParty>
+<registrationDateTime>2015-03-23T08:03:09-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>3850000000015</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>3850000000015</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Zagreb-correct</city>
+<countryCode>191</countryCode>
+<languageOfThePartyCode>hr</languageOfThePartyCode>
+<name>DS-1</name>
+<postalCode>10000</postalCode>
+<state>CROATIA</state>
+<streetAddressOne>Tuskanac 14</streetAddressOne>
+</partyAddress>
+<partyContact>
+<personName>Karl Towns</personName>
+<communicationChannel>
+      <communicationChannelCode>TELEPHONE</communicationChannelCode>
+      <communicationValue>+385 1 4895006</communicationValue>
+    </communicationChannel>
+<communicationChannel>
+      <communicationChannelCode>TELEFAX</communicationChannelCode>
+      <communicationValue>+385 1 4895001</communicationValue>
+    </communicationChannel>
+<communicationChannel>
+      <communicationChannelCode>EMAIL</communicationChannelCode>
+      <communicationValue>gdsn@gs1hr.org</communicationValue>
+    </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+      <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+      <processCapabilityEffectiveStartDateTime>2014-10-22T10:30:01.000+01:00</processCapabilityEffectiveStartDateTime>
+    </processCapability>
+</partyCapability>
+<partyInRole>
+<partyRoleCode>SUPPLIER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1282652277-10</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1282652277-10</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1282652277-10</entityIdentification>
+<contentOwner>
+<gln>3850000000008</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>3850000000008</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T11:25:56-04:00</lastUpdateDateTime>
+<lastUpdateParty>3850000000008</lastUpdateParty>
+<registeringParty>3850000000008</registeringParty>
+<registrationDateTime>2015-03-23T08:00:39-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>3850000000022</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>3850000000022</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Zagreb-correct</city>
+<countryCode>191</countryCode>
+<languageOfThePartyCode>hr</languageOfThePartyCode>
+<name>DR-1</name>
+<pOBoxNumber>14</pOBoxNumber>
+<postalCode>10000</postalCode>
+<state>CROATIA</state>
+<streetAddressOne>Tuskanac</streetAddressOne>
+</partyAddress>
+<partyContact>
+<personName>Karl Towns</personName>
+<communicationChannel>
+      <communicationChannelCode>TELEPHONE</communicationChannelCode>
+      <communicationValue>+385 1 4895006</communicationValue>
+    </communicationChannel>
+<communicationChannel>
+      <communicationChannelCode>TELEFAX</communicationChannelCode>
+      <communicationValue>+385 1 4895001</communicationValue>
+    </communicationChannel>
+<communicationChannel>
+      <communicationChannelCode>EMAIL</communicationChannelCode>
+      <communicationValue>gdsn@gs1hr.org</communicationValue>
+    </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+      <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+      <processCapabilityEffectiveStartDateTime>2014-10-22T10:50:01.000+01:00</processCapabilityEffectiveStartDateTime>
+    </processCapability>
+</partyCapability>
+<partyInRole>
+<partyRoleCode>SELLER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1918080514-11</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1918080514-11</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1918080514-11</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8426616200009</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T12:13:17-04:00</lastUpdateDateTime>
+<lastUpdateParty>8426616200009</lastUpdateParty>
+<registeringParty>8426616200009</registeringParty>
+<registrationDateTime>2015-03-23T11:38:15-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>8426616202003</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>8426616202003</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Barcelona</city>
+<countryCode>724</countryCode>
+<languageOfThePartyCode>es</languageOfThePartyCode>
+<name>EDICOM DATARECIPIENT</name>
+<postalCode>46980</postalCode>
+<streetAddressOne>Ronda Auguste y Louis Lumière,12</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>AP</contactTypeCode>
+<personName>Tom Lyles</personName>
+</partyContact>
+<partyCapability>
+<processCapability>
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+<processCapabilityEffectiveStartDateTime>2015-03-23T16:14:37.612+01:00</processCapabilityEffectiveStartDateTime>
+</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>EDICOM DATARECIPIENT</partyName>
+<partyRoleCode>CONSUMER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-2057367553-12</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-2057367553-12</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-2057367553-12</entityIdentification>
+<contentOwner>
+<gln>8426616200009</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8426616200009</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T12:13:17-04:00</lastUpdateDateTime>
+<lastUpdateParty>8426616200009</lastUpdateParty>
+<registeringParty>8426616200009</registeringParty>
+<registrationDateTime>2015-03-23T11:38:15-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>8426616201006</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>8426616201006</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Barcelona</city>
+<countryCode>724</countryCode>
+<languageOfThePartyCode>es</languageOfThePartyCode>
+<name>EDICOM DATASOURCE</name>
+<postalCode>46980</postalCode>
+<streetAddressOne>C. Charles Robert Darwin, 8</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>AP</contactTypeCode>
+<personName>Tom Lyles</personName>
+<communicationChannel>
+<communicationChannelCode>WEBSITE</communicationChannelCode>
+<communicationValue>www.edicomgroup.com</communicationValue>
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+<processCapabilityEffectiveStartDateTime>2015-03-23T16:25:55.233+01:00</processCapabilityEffectiveStartDateTime>
+</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>EDICOM DATASOURCE</partyName>
+<partyRoleCode>SUPPLIER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-547753448-13</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-547753448-13</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-547753448-13</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8380160030003</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T18:01:59-04:00</lastUpdateDateTime>
+<lastUpdateParty>8380160030003</lastUpdateParty>
+<registeringParty>8380160030003</registeringParty>
+<registrationDateTime>2015-03-23T00:00:04-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>0838016055017</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Peoria</city>
+<countryCode>840</countryCode>
+<name>1WS US mjR3 Certification IP GLN 1</name>
+<postalCode>60606</postalCode>
+<state>IL</state>
+<streetAddressOne>10 S Riverside Plaza</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>DOG</contactTypeCode>
+<personName>Andrew Harrison</personName>
+<departmentName>1SYNC Customer Support</departmentName>
+<communicationChannel> 
+<communicationChannelCode>TELEPHONE</communicationChannelCode> 
+<communicationValue>1 866.280.4013</communicationValue> 
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability> 
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode> 
+<processCapabilityEffectiveStartDateTime>2015-03-24T17:01:38.972</processCapabilityEffectiveStartDateTime> 
+</processCapability>
+</partyCapability>
+<partyInRole>
+<gln>0838016055017</gln>
+<partyName>1WS US mjR3 Certification IP GLN 1</partyName>
+<partyRoleCode>SUPPLIER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1382421511-14</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1382421511-14</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1382421511-14</entityIdentification>
+<contentOwner>
+<gln>8380160030003</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>8380160030003</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T18:09:59-04:00</lastUpdateDateTime>
+<lastUpdateParty>8380160030003</lastUpdateParty>
+<registeringParty>8380160030003</registeringParty>
+<registrationDateTime>2015-03-23T11:02:10-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>0838016056014</gln>
+</informationProviderOfParty>
+<partyAddress>
+<city>Schaumburg</city>
+<countryCode>840</countryCode>
+<name>1WS US mjR3 Certification RTL GLN 1</name>
+<postalCode>60606</postalCode>
+<state>IL</state>
+<streetAddressOne>10 S Riverside Plz</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>DOG</contactTypeCode>
+<personName>Andrew Harrison</personName>
+<departmentName>1SYNC Customer Support</departmentName>
+<communicationChannel> 
+<communicationChannelCode>TELEPHONE</communicationChannelCode> 
+<communicationValue>1 866.280.4013</communicationValue> 
+</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability> 
+<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode> 
+<processCapabilityEffectiveStartDateTime>2015-03-24T17:09:42.211</processCapabilityEffectiveStartDateTime> 
+</processCapability>
+</partyCapability>
+<partyInRole>
+<gln>0838016056014</gln>
+<partyName>1WS US mjR3 Certification RTL GLN 1</partyName>
+<partyRoleCode>BUYER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-3402645-15</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-3402645-15</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-3402645-15</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>1100001002160</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T16:50:33-04:00</lastUpdateDateTime>
+<lastUpdateParty>1100001002160</lastUpdateParty>
+<registeringParty>1100001002160</registeringParty>
+<registrationDateTime>2015-03-24T16:50:33-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>1100001002191</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>1100001002191</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Aurora</city>
+<countryCode>124</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>Commport Data Recipient</name>
+<postalCode>L4G 7B2</postalCode>
+<provinceCode>ON</provinceCode>
+<streetAddressOne>5 Scanlon Crt</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Daniel Zabalet</personName>
+<communicationChannel>
+              <communicationChannelCode>EMAIL</communicationChannelCode>
+              <communicationValue>danielz@commport.com</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+              <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+              <processCapabilityEffectiveStartDateTime>2015-03-24T00:00:00.000</processCapabilityEffectiveStartDateTime>
+            </processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>Commport Recipient</partyName>
+<partyRoleCode>BUYER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1162720621-16</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1162720621-16</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1162720621-16</entityIdentification>
+<contentOwner>
+<gln>1100001002160</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>1100001002160</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-24T16:42:48-04:00</lastUpdateDateTime>
+<lastUpdateParty>1100001002160</lastUpdateParty>
+<registeringParty>1100001002160</registeringParty>
+<registrationDateTime>2015-03-24T16:42:48-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>1100001002108</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>1100001002108</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Toronto</city>
+<countryCode>124</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>Commport Cert Datasource</name>
+<streetAddressOne>1 Datasource Way</streetAddressOne>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Daniel Zabalet</personName>
+<communicationChannel>
+              <communicationChannelCode>EMAIL</communicationChannelCode>
+              <communicationValue>danielz@commport.com</communicationValue>
+            </communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+              <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+              <processCapabilityEffectiveStartDateTime>2015-03-24T00:00:00.000</processCapabilityEffectiveStartDateTime>
+            </processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>Commport Datasource</partyName>
+<partyRoleCode>SUPPLIER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-2027611312-17</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-2027611312-17</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-2027611312-17</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>9501101020641</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-22T03:05:59-04:00</lastUpdateDateTime>
+<lastUpdateParty>9501101020641</lastUpdateParty>
+<registeringParty>9501101020641</registeringParty>
+<registrationDateTime>2015-03-22T03:05:59-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>9501101020665</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>9501101020665</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Makati</city>
+<countryCode>1226</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>KATO Data Recipient</name>
+<pOBoxNumber>15</pOBoxNumber>
+<postalCode>07122</postalCode>
+<state>Metro Manila</state>
+<streetAddressOne>Unit 309 Sedcco 1 Building</streetAddressOne>
+<streetAddressTwo>Rada Street , Legaspi Village</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Katrin Nunez</personName>
+<communicationChannel>
+							<communicationChannelCode>TELEPHONE</communicationChannelCode>
+							<communicationValue>6328184672</communicationValue>
+						</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+							<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+							<processCapabilityEffectiveStartDateTime>2015-03-22T14:45:00.000+08:00</processCapabilityEffectiveStartDateTime>
+							<registeredContext>
+								<contextIdentification>DP007</contextIdentification>
+								<contextEffectiveStartDateTime>2015-03-22T14:45:00.000+08:00</contextEffectiveStartDateTime>
+							</registeredContext>
+						</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>KATO Data Recipient</partyName>
+<partyRoleCode>SELLER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-1693988960-18</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-1693988960-18</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<registry_party_data_dump:registryPartyDataDump xmlns:registry_party_data_dump="urn:gs1:gdsn:registry_party_data_dump:xsd:3">
+<creationDateTime>2015-03-25T05:01:01-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<registryPartyDataDumpIdentification>
+<entityIdentification>DOC-1693988960-18</entityIdentification>
+<contentOwner>
+<gln>9501101020641</gln>
+</contentOwner>
+</registryPartyDataDumpIdentification>
+<informationProvider>9501101020641</informationProvider>
+<informationRecipient>0614141810017</informationRecipient>
+<party>
+<isPartyActive>true</isPartyActive>
+<lastUpdateDateTime>2015-03-22T02:56:04-04:00</lastUpdateDateTime>
+<lastUpdateParty>9501101020641</lastUpdateParty>
+<registeringParty>9501101020641</registeringParty>
+<registrationDateTime>2015-03-22T02:56:04-04:00</registrationDateTime>
+<informationProviderOfParty>
+<gln>9501101020658</gln>
+</informationProviderOfParty>
+<organisationHighestLevelParty>
+<gln>9501101020658</gln>
+</organisationHighestLevelParty>
+<partyAddress>
+<city>Makati</city>
+<countryCode>1226</countryCode>
+<languageOfThePartyCode>en</languageOfThePartyCode>
+<name>KATO Data Source</name>
+<pOBoxNumber>15</pOBoxNumber>
+<postalCode>07654</postalCode>
+<state>Metro Manila</state>
+<streetAddressOne>Unit 309 Sedcco 1 Building</streetAddressOne>
+<streetAddressTwo>Rada Street , Legaspi Village</streetAddressTwo>
+</partyAddress>
+<partyContact>
+<contactTypeCode>CP</contactTypeCode>
+<personName>Katrin Nunez</personName>
+<communicationChannel>
+							<communicationChannelCode>TELEPHONE</communicationChannelCode>
+							<communicationValue>6328184672</communicationValue>
+						</communicationChannel>
+</partyContact>
+<partyCapability>
+<processCapability>
+							<processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+							<processCapabilityEffectiveStartDateTime>2015-03-22T14:30:00.000+08:00</processCapabilityEffectiveStartDateTime>
+							<registeredContext>
+								<contextIdentification>DP001</contextIdentification>
+								<contextEffectiveStartDateTime>2015-03-22T14:30:00.000+08:00</contextEffectiveStartDateTime>
+							</registeredContext>
+						</processCapability>
+</partyCapability>
+<partyInRole>
+<partyName>KATO Data Source</partyName>
+<partyRoleCode>SELLER</partyRoleCode>
+</partyInRole>
+</party>
+</registry_party_data_dump:registryPartyDataDump>
+</documentCommand>
+</transaction>
+
+</registry_party_data_dump:registryPartyDataDumpMessage> 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage xmlns:request_for_catalogue_item_notification="urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RequestForCatalogueItemNotification.xsd">
+<sh:StandardBusinessDocumentHeader>
+<sh:HeaderVersion>1.0</sh:HeaderVersion>
+<sh:Sender>
+<sh:Identifier Authority="GS1">0614141810017</sh:Identifier>
+</sh:Sender>
+<sh:Receiver>
+<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+</sh:Receiver>
+<sh:DocumentIdentification>
+<sh:Standard>GS1</sh:Standard>
+<sh:TypeVersion>3.1</sh:TypeVersion>
+<sh:InstanceIdentifier>11993-20137876203</sh:InstanceIdentifier>
+<sh:Type>requestForCatalogueItemNotification</sh:Type>
+<sh:CreationDateAndTime>2015-04-22T12:28:37-04:00</sh:CreationDateAndTime>
+</sh:DocumentIdentification>
+</sh:StandardBusinessDocumentHeader>
+<transaction>
+<transactionIdentification>
+<entityIdentification>TX-11993-20137876203</entityIdentification>
+<contentOwner>
+<gln>5210047000061</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>CMD-11993-20137876203</entityIdentification>
+<contentOwner>
+<gln>5210047000061</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+<creationDateTime>2015-04-22T12:28:37-04:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<catalogueItemSubscriptionIdentification>
+<entityIdentification>DOC-20150422172242.db26d35b-0637-4c5b-a860-1189982e3eb9</entityIdentification>
+<contentOwner>
+<gln>5210047000061</gln>
+</contentOwner>
+</catalogueItemSubscriptionIdentification>
+<dataRecipient>5210047000061</dataRecipient>
+<gpcCategoryCode>10001766</gpcCategoryCode>
+<recipientDataPool>5210047000047</recipientDataPool>
+<isReload>true</isReload>
+</request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+</documentCommand>
+</transaction>
+</request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage>

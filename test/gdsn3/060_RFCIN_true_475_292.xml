@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage xmlns:request_for_catalogue_item_notification="urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd 
+urn:gs1:gdsn:request_for_catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RequestForCatalogueItemNotification.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">4243444546475</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>rfcin_4243444546475_1100001011292</sh:InstanceIdentifier>
+            <sh:Type>requestForCatalogueItemNotification</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2014-11-26T12:34:03.197+08:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <transaction>
+        <transactionIdentification>
+            <entityIdentification>rfcin_4243444546475_1100001011292_t1</entityIdentification>
+            <contentOwner>
+                <gln>4243444546475</gln>
+            </contentOwner>
+        </transactionIdentification>
+        <documentCommand>
+            <documentCommandHeader type="ADD">
+                <documentCommandIdentification>
+                    <entityIdentification>rfcin_4243444546475_1100001011292_t1_c1</entityIdentification>
+                    <contentOwner>
+                        <gln>4243444546475</gln>
+                    </contentOwner>
+                </documentCommandIdentification>
+            </documentCommandHeader>
+            <request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+                <creationDateTime>2015-02-18T01:01:01</creationDateTime>
+                <documentStatusCode>ORIGINAL</documentStatusCode>
+                <catalogueItemSubscriptionIdentification>
+                    <entityIdentification>rfcin_4243444546475_1100001011292_t1_c1_d2</entityIdentification>
+                    <contentOwner>
+                        <gln>4243444546475</gln>
+                    </contentOwner>
+                </catalogueItemSubscriptionIdentification>
+                <dataRecipient>4243444546475</dataRecipient>
+                <gpcCategoryCode>99999999</gpcCategoryCode>
+                <gtin>10036016500279</gtin>
+                <targetMarket>
+                    <targetMarketCountryCode>840</targetMarketCountryCode>
+                </targetMarket>
+                <isReload>true</isReload>
+            </request_for_catalogue_item_notification:requestForCatalogueItemNotification>
+        </documentCommand>
+    </transaction>
+</request_for_catalogue_item_notification:requestForCatalogueItemNotificationMessage>

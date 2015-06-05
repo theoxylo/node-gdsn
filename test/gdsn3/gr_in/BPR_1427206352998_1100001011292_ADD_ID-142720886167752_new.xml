@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><gS1ResponseMessage xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd ">
+		<sh:StandardBusinessDocumentHeader>
+ 		<sh:HeaderVersion>1.0</sh:HeaderVersion>
+ 		<sh:Sender> 
+ 	    	<sh:Identifier Authority="GS1">0614141810017</sh:Identifier> 
+ 		</sh:Sender>
+ 		<sh:Receiver>
+ 			<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+ 		</sh:Receiver>
+ 		<sh:DocumentIdentification> 
+ 			<sh:Standard>GS1</sh:Standard> 
+ 			<sh:TypeVersion>3.1</sh:TypeVersion> 
+ 			<sh:InstanceIdentifier>BPR_1427206352998_1100001011292_ADD_ID-142720886167752</sh:InstanceIdentifier> 
+ 			<sh:Type>gS1Response</sh:Type> 
+ 			<sh:CreationDateAndTime>2015-03-24T10:54:21-04:00</sh:CreationDateAndTime> 
+ 		</sh:DocumentIdentification> 
+ 		<sh:BusinessScope>
+ 			<sh:Scope>
+ 				<sh:Type>GDSN</sh:Type>
+ 				<sh:InstanceIdentifier>ID-142720886167868</sh:InstanceIdentifier>
+ 				<sh:CorrelationInformation>
+ 					<sh:RequestingDocumentInstanceIdentifier>BPR_1427206352998_1100001011292_ADD</sh:RequestingDocumentInstanceIdentifier>
+ 				</sh:CorrelationInformation>
+ 			</sh:Scope>
+ 		</sh:BusinessScope>
+		</sh:StandardBusinessDocumentHeader>
+<gS1Response>
+<originatingMessageIdentifier>
+<entityIdentification>BPR_1427206352998_1100001011292_ADD</entityIdentification>
+<contentOwner><gln>1100001011285</gln></contentOwner>
+</originatingMessageIdentifier>
+<receiver>0614141810017</receiver>
+<sender>1100001011285</sender>
+<gS1Exception>
+<messageException>
+<gS1Error>
+<errorCode>357</errorCode>
+<errorDateTime>2015-03-24T10:54:21-04:00</errorDateTime>
+<errorDescription>The same Document Identification Instance Identifier may not be repeated on multiple messages.</errorDescription>
+</gS1Error>
+</messageException>
+</gS1Exception>
+</gS1Response>
+</gS1ResponseMessage>

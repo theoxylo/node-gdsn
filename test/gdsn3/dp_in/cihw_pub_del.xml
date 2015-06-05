@@ -2,52 +2,60 @@
 <catalogue_item_hierarchical_withdrawal:catalogueItemHierarchicalWithdrawalMessage xmlns:catalogue_item_hierarchical_withdrawal="urn:gs1:gdsn:catalogue_item_hierarchical_withdrawal:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_hierarchical_withdrawal:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemHierarchicalWithdrawal.xsd">
 <sh:StandardBusinessDocumentHeader>
 <sh:HeaderVersion>1.0</sh:HeaderVersion>
-<sh:Sender><sh:Identifier Authority="GS1">TOKEN_SDP_GLN</sh:Identifier></sh:Sender>
-<sh:Receiver><sh:Identifier Authority="GS1">TOKEN_RDP_GLN</sh:Identifier></sh:Receiver>
+<sh:Sender>
+<sh:Identifier Authority="GS1">4049111180016</sh:Identifier>
+</sh:Sender>
+<sh:Receiver>
+<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+</sh:Receiver>
 <sh:DocumentIdentification>
 <sh:Standard>GS1</sh:Standard>
 <sh:TypeVersion>3.1</sh:TypeVersion>
-<sh:InstanceIdentifier>TOKEN_MSG_ID</sh:InstanceIdentifier>
+<sh:InstanceIdentifier>MSG-ae8d5430-f978-11e4-8cc8-005056b072d5</sh:InstanceIdentifier>
 <sh:Type>catalogueItemHierarchicalWithdrawal</sh:Type>
-<sh:CreationDateAndTime>TOKEN_TS</sh:CreationDateAndTime>
+<sh:MultipleType>false</sh:MultipleType>
+<sh:CreationDateAndTime>2015-05-13T16:02:24.787+02:00</sh:CreationDateAndTime>
 </sh:DocumentIdentification>
 </sh:StandardBusinessDocumentHeader>
 <transaction>
 <transactionIdentification>
-<entityIdentification>TOKEN_TRX_ID</entityIdentification>
+<entityIdentification>TRA-ae8d5430-f978-11e4-8cc8-005056b072d5</entityIdentification>
 <contentOwner>
-<gln>TOKEN_DS_GLN</gln>
+<gln>4049111280013</gln>
 </contentOwner>
 </transactionIdentification>
 <documentCommand>
 <documentCommandHeader type="DELETE">
 <documentCommandIdentification>
-<entityIdentification>TOKEN_CMD_ID</entityIdentification>
+<entityIdentification>CMD-ae8d5430-f978-11e4-8cc8-005056b072d5</entityIdentification>
 <contentOwner>
-<gln>TOKEN_DS_GLN</gln>
+<gln>4049111280013</gln>
 </contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
 <catalogue_item_hierarchical_withdrawal:catalogueItemHierarchicalWithdrawal>
-<creationDateTime>TOKEN_TS</creationDateTime>
+<creationDateTime>2015-05-13T16:02:24.787+02:00</creationDateTime>
 <documentStatusCode>ORIGINAL</documentStatusCode>
 <documentStructureVersion>3.1</documentStructureVersion>
 <catalogueItemHierarchicalWithdrawalIdentification>
-<entityIdentification>TOKEN_DOC_ID</entityIdentification>
+<entityIdentification>CIHW-ae8d5430-f978-11e4-8cc8-005056b072d5</entityIdentification>
 <contentOwner>
-<gln>TOKEN_DS_GLN</gln>
+<gln>4049111280013</gln>
 </contentOwner>
 </catalogueItemHierarchicalWithdrawalIdentification>
 <catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
-<hierarchyDeletionReasonCode codeListVersion="R1">TOKEN_REASON</hierarchyDeletionReasonCode>
+<hierarchyDeletionReasonCode codeListVersion="R1">PUBLICATION_WITHDRAWAL</hierarchyDeletionReasonCode>
 <catalogueItemReference>
-<dataSource>TOKEN_DS_GLN</dataSource>
-<gtin>TOKEN_GTIN</gtin>
-<targetMarketCountryCode>TOKEN_TM_COUNTRY_CODE</targetMarketCountryCode>
-<targetMarketSubdivisionCode>TOKEN_TM_SUBDIVISION</targetMarketSubdivisionCode>
+<dataSource>4049111280013</dataSource>
+<gtin>00031100245589</gtin>
+<targetMarketCountryCode>276</targetMarketCountryCode>
 </catalogueItemReference>
-<dataRecipient><gln>TOKEN_DR_GLN</gln></dataRecipient>
-<sourceDataPool><gln>TOKEN_SDP_GLN</gln></sourceDataPool>
+<dataRecipient>
+<gln>1100001011278</gln>
+</dataRecipient>
+<sourceDataPool>
+<gln>4049111180016</gln>
+</sourceDataPool>
 </catalogue_item_hierarchical_withdrawal:catalogueItemHierarchicalWithdrawal>
 </documentCommand>
 </transaction>

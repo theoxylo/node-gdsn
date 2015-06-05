@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gs1_response:gS1ResponseMessage xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:gs1:gdsn:gs1_response:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/GS1Response.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="GS1">1100001011292</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>GS1</sh:Standard>
+            <sh:TypeVersion>3.1</sh:TypeVersion>
+            <sh:InstanceIdentifier>RESP_123_BprAdd292_20150305</sh:InstanceIdentifier>
+            <sh:Type>gS1Response</sh:Type>
+            <sh:MultipleType>false</sh:MultipleType>
+            <sh:CreationDateAndTime>2015-03-05T12:00:01.000-05:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+        <sh:BusinessScope>
+            <sh:Scope>
+                <sh:Type>GDSN</sh:Type>
+                <sh:InstanceIdentifier>RESP_123_BprAdd292_20150305</sh:InstanceIdentifier>
+                <sh:CorrelationInformation>
+                    <sh:RequestingDocumentInstanceIdentifier>BprAdd292_20150305</sh:RequestingDocumentInstanceIdentifier>
+                </sh:CorrelationInformation>
+            </sh:Scope>
+        </sh:BusinessScope>
+    </sh:StandardBusinessDocumentHeader>
+
+    <gS1Response>
+        <originatingMessageIdentifier>
+            <entityIdentification>BprAdd292_20150305</entityIdentification>
+        </originatingMessageIdentifier>
+        <receiver>1100001011292</receiver>
+        <sender>1100001011285</sender>
+
+        <gS1Exception>
+            <transactionException>
+              <entityIdentification><entityIdentification>trx_123</entityIdentification></entityIdentification>
+              <gS1Error>
+                <errorCode>1001</errorCode>
+                <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                <errorDescription>TOKEN</errorDescription>
+              </gS1Error>
+              <gS1Error>
+                <errorCode>1002</errorCode>
+                <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                <errorDescription>TOKEN</errorDescription>
+              </gS1Error>
+              <commandException>
+                <entityIdentification><entityIdentification>cmd_123</entityIdentification></entityIdentification>
+                <gS1Error>
+                  <errorCode>1003</errorCode>
+                  <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                  <errorDescription>TOKEN</errorDescription>
+                </gS1Error>
+                <gS1Error>
+                  <errorCode>1004</errorCode>
+                  <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                  <errorDescription>TOKEN</errorDescription>
+                </gS1Error>
+                <documentException>
+                  <entityIdentification><entityIdentification>doc_123</entityIdentification></entityIdentification>
+                  <gS1Error>
+                    <errorCode>1006</errorCode>
+                    <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                    <errorDescription>TOKEN</errorDescription>
+                  </gS1Error>
+                  <gS1Error>
+                    <errorCode>1007</errorCode>
+                    <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                    <errorDescription>TOKEN</errorDescription>
+                  </gS1Error>
+                  <attributeException>
+                    <attributeName>gtin</attributeName>
+                    <attributeValue>99999999999999</attributeValue>
+                    <xPath>tradeItem/gtin</xPath>
+                    <gS1Error>
+                      <errorCode>1008</errorCode>
+                      <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                      <errorDescription>TOKEN</errorDescription>
+                    </gS1Error>
+                    <gS1Error>
+                      <errorCode>1009</errorCode>
+                      <errorDateTime>2014-12-15T12:00:01.000-05:00</errorDateTime>
+                      <errorDescription>TOKEN</errorDescription>
+                    </gS1Error>
+                  </attributeException>
+                </documentException>
+              </commandException>
+            </transactionException>
+        </gS1Exception>
+
+    </gS1Response>
+
+</gs1_response:gS1ResponseMessage>

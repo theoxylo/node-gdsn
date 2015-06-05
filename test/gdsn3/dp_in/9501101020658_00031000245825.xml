@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue_item_notification:catalogueItemNotificationMessage xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader">
+<sh:StandardBusinessDocumentHeader>
+<sh:HeaderVersion>1.0</sh:HeaderVersion>
+<sh:Sender>
+<sh:Identifier Authority="GS1">9501101020641</sh:Identifier>
+</sh:Sender>
+<sh:Receiver>
+<sh:Identifier Authority="GS1">1100001011285</sh:Identifier>
+</sh:Receiver>
+<sh:DocumentIdentification>
+<sh:Standard>GS1</sh:Standard>
+<sh:TypeVersion>3.1</sh:TypeVersion>
+<sh:InstanceIdentifier>test_cin_in_from_other_sdp</sh:InstanceIdentifier>
+<sh:Type>catalogueItemNotification</sh:Type>
+<sh:CreationDateAndTime>2015-04-18T04:04:10.716+08:00</sh:CreationDateAndTime>
+</sh:DocumentIdentification>
+</sh:StandardBusinessDocumentHeader>
+<transaction>
+<transactionIdentification>
+<entityIdentification>test_cin_in_from_other_sdp-t1</entityIdentification>
+<contentOwner>
+<gln>9501101020658</gln>
+</contentOwner>
+</transactionIdentification>
+<documentCommand>
+<documentCommandHeader type="ADD">
+<documentCommandIdentification>
+<entityIdentification>test_cin_in_from_other_sdp-t1-c1</entityIdentification>
+<contentOwner>
+<gln>9501101020658</gln>
+</contentOwner>
+</documentCommandIdentification>
+</documentCommandHeader>
+<catalogue_item_notification:catalogueItemNotification>
+<creationDateTime>2015-04-18T04:04:05.337+08:00</creationDateTime>
+<documentStatusCode>ORIGINAL</documentStatusCode>
+<catalogueItemNotificationIdentification>
+<entityIdentification>test_cin_in_from_other_sdp-t1-c1-d1</entityIdentification>
+<contentOwner>
+<gln>9501101020658</gln>
+</contentOwner>
+</catalogueItemNotificationIdentification>
+<isReload>false</isReload>
+<catalogueItem>
+<dataRecipient>1100001011278</dataRecipient>
+<sourceDataPool>9501101020641</sourceDataPool>
+<catalogueItemState>
+<catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
+</catalogueItemState>
+<tradeItem>
+<gtin>00031000245825</gtin>
+<isTradeItemABaseUnit>true</isTradeItemABaseUnit>
+<isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
+<isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
+<isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
+<isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+<tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
+<informationProviderOfTradeItem>
+<gln>9501101020658</gln>
+<partyName>Test Party</partyName>
+</informationProviderOfTradeItem>
+<gdsnTradeItemClassification>
+<gpcCategoryCode>10001778</gpcCategoryCode>
+<gpcCategoryName>Racquet Sports - Replacement Parts/Accessories</gpcCategoryName>
+</gdsnTradeItemClassification>
+<targetMarket>
+<targetMarketCountryCode>608</targetMarketCountryCode>
+</targetMarket>
+<tradeItemInformation>
+<extension>
+<trade_item_description:tradeItemDescriptionModule>
+<tradeItemDescriptionInformation>
+<functionalName languageCode="en">KATOfunction</functionalName>
+<brandNameInformation>
+<brandName>KATO_TT4_5_6_7_14</brandName>
+</brandNameInformation>
+</tradeItemDescriptionInformation>
+</trade_item_description:tradeItemDescriptionModule>
+<trade_item_measurements:tradeItemMeasurementsModule>
+<tradeItemMeasurements>
+<depth measurementUnitCode="INH">1.0000000000</depth>
+<height measurementUnitCode="INH">1.0000000000</height>
+<netContent measurementUnitCode="LBR">1.0000000000</netContent>
+<width measurementUnitCode="INH">1.0000000000</width>
+<tradeItemWeight>
+<grossWeight measurementUnitCode="LBR">1.0000000000</grossWeight>
+</tradeItemWeight>
+</tradeItemMeasurements>
+</trade_item_measurements:tradeItemMeasurementsModule>
+<variable_trade_item_information:variableTradeItemInformationModule>
+<variableTradeItemInformation>
+<isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+</variableTradeItemInformation>
+</variable_trade_item_information:variableTradeItemInformationModule>
+<delivery_purchasing_information:deliveryPurchasingInformationModule>
+<deliveryPurchasingInformation>
+<firstShipDateTime>2015-05-30T18:32:01.000+08:00</firstShipDateTime>
+<endAvailabilityDateTime>2015-12-31T12:21:01.000+08:00</endAvailabilityDateTime>
+<startAvailabilityDateTime>2015-03-23T18:32:01.000+08:00</startAvailabilityDateTime>
+</deliveryPurchasingInformation>
+</delivery_purchasing_information:deliveryPurchasingInformationModule>
+</extension>
+</tradeItemInformation>
+<tradeItemSynchronisationDates>
+<lastChangeDateTime>2015-03-23T18:32:01.000+08:00</lastChangeDateTime>
+<effectiveDateTime>2015-03-23T18:32:01.000+08:00</effectiveDateTime>
+</tradeItemSynchronisationDates>
+</tradeItem>
+</catalogueItem>
+</catalogue_item_notification:catalogueItemNotification>
+</documentCommand>
+</transaction>
+</catalogue_item_notification:catalogueItemNotificationMessage>

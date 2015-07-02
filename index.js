@@ -147,6 +147,9 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
   this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
 
+  // 2.8 support
+  this.templates.tp_cin        = fs.readFileSync(path + '/gdsn2/CIN.xml')
+
   log('All gdsn templates read without errors')
 }
 
@@ -491,7 +494,7 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
         </childTradeItem>
     </nextLowerLevelTradeItemInformation>
 */
-Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, docStatus) {
+Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, docStatus, sender) {
   
   log('create_cin')
   if (!trade_items || !trade_items.length) return ''
@@ -507,7 +510,7 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
 
   var ti = trade_items[0]
   
-  var sender    = this.config.homeDataPoolGln
+  sender        = sender || this.config.homeDataPoolGln
   var provider  = ti.provider
   var recipient = ti.recipient
   //var new_msg_id = 'CIN_' + Date.now() + '_' + recipient + '_' + provider + '_' + ti.gtin + '_' + ti.tm + '_' + ti.tm_sub || 'na' // maxlength 80
@@ -545,7 +548,7 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
   $('sourceDataPool', $ci).text(sender)
   
   function create_catalog_item(gtin) {
-    log('creating new catalog item with gtin: ' + gtin)
+    log('adding CIN gtin: ' + gtin)
     var $new_ci = $ci.clone()
     $new_ci.append(item_xmls[gtin])
     $('childTradeItem', $new_ci).each (function (idx, child) {
@@ -584,6 +587,84 @@ Gdsn.prototype.create_cin = function (trade_items, receiver, command, reload, do
         $(this).prev().find('catalogueItemStateCode').text('DISCONTINUED') // note spelling from CatalogueItemNotification.xsd
       }
     }
+  })
+
+  return $.html()
+}
+
+Gdsn.prototype.create_tp_pub_cin_28 = function (trade_items, receiver, command, reload, docStatus, sender) {
+  
+  log('create_tp_pub_cin_28')
+  if (!trade_items || !trade_items.length) return ''
+  
+  // for easy access to items by gtin
+  // save each gtin as an index to its xml
+  var item_xmls = {} 
+  trade_items.forEach(function (item) {
+    //item_xmls[item.gtin] = item.xml || ('<tradeItem><gtin>' + item.gtin + '</gtin></tradeItem>')
+    if (!item.xml) log('missing xml for item query gtin ' + item.gtin)
+    item_xmls[item.gtin] = item.xml || ''
+  })
+
+  var ti = trade_items[0]
+  
+  sender        = sender || this.config.homeDataPoolGln
+  var provider  = ti.provider
+  var recipient = ti.recipient
+  var new_msg_id = 'CIN_' + Date.now() + '_' + recipient + '_' + provider + '_' + ti.gtin // maxlength 64 in synch list queue table
+  var dateTime = new Date().toISOString()
+  var isReload = Boolean(reload == 'true' || reload == 'TRUE').toString() // CIN "initial load" if reload along with ADD cmd
+
+  var $ = cheerio.load(this.templates.tp_cin, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
+
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+  $('sh\\:CreationDateAndTime').text(dateTime)
+
+
+  // new message values for dp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on new_msg_id and only support single doc
+  $('entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same ID for msg, trx, cmd, doc
+  $('contentOwner > gln').text(sender)
+  $('documentCommandHeader').attr('type', command || 'ADD') // e.g ADD/CORRECT/etc
+
+  $('gdsn\\:catalogueItemNotification').attr('creationDateTime', dateTime)
+  $('gdsn\\:catalogueItemNotification').attr('documentStatus', docStatus || 'ORIGINAL')
+  $('gdsn\\:catalogueItemNotification').attr('isReload', isReload)
+
+  
+  var $ci       = $('catalogueItem')
+  var $link     = $('catalogueItemChildItemLink', $ci).remove()
+  
+  function create_catalog_item(gtin) {
+    log('adding CIN gtin: ' + gtin)
+    var $new_ci = $ci.clone()
+    $new_ci.append(item_xmls[gtin])
+    $new_ci.append('<dataRecipient>' + recipient + '</dataRecipient>')
+    $new_ci.append('<sourceDataPool>' + recipient + '</sourceDataPool>')
+    $('childTradeItem', $new_ci).each (function (idx, child) {
+      var child_gtin = $('tradeItemIdentification > gtin', child).text()
+      log('found child gtin: ' + child_gtin)
+      var quantity = $('quantityofNextLowerLevelTradeItem', child).text()
+      log('found child quantity: ' + quantity)
+      var $new_link = $link.clone()
+      $new_link.attr('quantity', quantity)
+      $new_link.append(create_catalog_item(child_gtin))
+      $new_ci.append($new_link)
+    })
+    return $new_ci.toString()
+  }
+  $ci.replaceWith(create_catalog_item(ti.gtin))
+
+  $('contentOwner > gln').each(function () {
+    $(this).text(provider)
   })
 
   return $.html()
@@ -740,7 +821,7 @@ Gdsn.prototype.trim_xml = Gdsn.trim_xml = function (xml) {
   var result = match && match[0]
   if (!result || !result.length) return ''
   result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
-  result = result.replace(/></g, '>\n<')  // add line return between tags
+  result = result.replace(/><([^\/])/g, '>\n<$1')  // add line return between tags but not as tag value
   return result
 }
 
@@ -752,4 +833,55 @@ Gdsn.prototype.clean_xml = Gdsn.clean_xml = function (xml) {
   xml = xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
   xml = xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
   return xml
+}
+
+Gdsn.prototype.create_tp_item_cin_28 = function (item) {
+  
+  log('create_tp_item_cin_28')
+  
+  if (!item || !item.xml) log('missing xml for item query gtin ' + item.gtin)
+
+  var sender    = item.provider
+  var provider  = item.provider
+  var recipient = item.recipient
+  var receiver  = item.recipient
+  var new_msg_id = 'CIN_' + Date.now() + '_' + recipient + '_' + provider + '_' + item.gtin // maxlength 64 in synch list queue table
+  var dateTime = new Date().toISOString()
+
+  var $ = cheerio.load(this.templates.tp_cin, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
+
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+  $('sh\\:CreationDateAndTime').text(dateTime)
+
+
+  // new message values for dp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on new_msg_id and only support single doc
+  $('entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same ID for msg, trx, cmd, doc
+  $('contentOwner > gln').text(sender)
+  $('documentCommandHeader').attr('type', 'ADD') // e.g ADD/CORRECT/etc
+
+  $('gdsn\\:catalogueItemNotification').attr('creationDateTime', dateTime)
+  $('gdsn\\:catalogueItemNotification').attr('documentStatus', 'ORIGINAL')
+  $('gdsn\\:catalogueItemNotification').attr('isReload', 'false')
+  
+  var $ci       = $('catalogueItem')
+  var $link     = $('catalogueItemChildItemLink', $ci).remove()
+  
+  $ci.append(item.xml)
+  $ci.append('<dataRecipient>' + recipient + '</dataRecipient>')
+  $ci.append('<sourceDataPool>' + recipient + '</sourceDataPool>')
+
+  $('contentOwner > gln').each(function () {
+    $(this).text(provider)
+  })
+
+  return $.html()
 }

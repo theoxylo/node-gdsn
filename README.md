@@ -1,6 +1,6 @@
 ## node-gdsn
 
-A GDSN service library for Node.js. 
+A GDSN service library for Node.js.
 
 Provides useful utilities for data pools and trading parties.
 
@@ -26,7 +26,7 @@ To run a quick test:
 ```js
 var Gdsn = require('gdsn')
 var gdsn = new Gdsn({
-  homeDataPoolGln: '1100001011285',  
+  homeDataPoolGln: '1100001011339',
   templatePath: './node_modules/gdsn/templates/'
   out_dir: './test'
 })
@@ -41,7 +41,7 @@ gdsn.processCinFromOtherDp(cinInboundFile)
 ```js
 var Gdsn = require('gdsn')
 var gdsn = new Gdsn()
-var gln = '1100001011292'
+var gln = '1100001011483'
 var isValid = gdsn.validateGln(gln) // return [true|false]
 console.log('GLN ' + gln + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```

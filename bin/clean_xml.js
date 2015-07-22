@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 (function () {
 
   if (process.argv.length < 3) {
@@ -35,4 +36,4 @@
     processFile(process.cwd() + '/' + process.argv.pop())
   }
 
-}())
+})()

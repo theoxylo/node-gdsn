@@ -6,7 +6,6 @@ var PartyStream   = require('./lib/PartyStream.js')
 var TradeItemInfo = require('./lib/TradeItemInfo.js')
 var MessageInfo   = require('./lib/MessageInfo.js')
 var PartyInfo     = require('./lib/PartyInfo.js')
-var xpath_dom     = require('./lib/xpath_dom.js')
 
 var log = console.log
 
@@ -31,10 +30,25 @@ var Gdsn = module.exports = function (config) {
   this.config = config
   config.gdsn = this
 
-  this.dom = xpath_dom
-
   this.itemStream = new ItemStream(this)
   this.partyStream = new PartyStream(this)
+}
+
+Gdsn.prototype.get_msg_info = function (xml) {
+  log('gdsn get_msg_info called with xml length ' + xml.length)
+  return new MessageInfo(Gdsn.trim_xml(xml), this.config) 
+}
+
+Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
+  return new TradeItemInfo(Gdsn.trim_xml(xml), this.config) // cheerio
+}
+
+Gdsn.prototype.get_party_info = function (xml, msg_info) {
+  return new PartyInfo(Gdsn.trim_xml(xml), msg_info)
+}
+
+Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
+  return this.get_party_info(xml, msg_info) // cheerio
 }
 
 // stream extract methods
@@ -45,16 +59,6 @@ Gdsn.prototype.getEachTradeItemFromStream = function (is, cb) {
 
 Gdsn.prototype.getEachPartyFromStream = function (is, cb) {
   this.partyStream.getEachParty(is, cb)
-}
-
-// legacy dom approach for extracting item and party info:
-
-Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
-  return this.dom.getTradeItemInfo(xml, msg_info) // <tradeItem/>
-}
-
-Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
-  return this.dom.getPartyInfo(xml, msg_info) // <party/>
 }
 
 ///////////////////////// utilities:
@@ -124,16 +128,6 @@ Gdsn.prototype.log_msg_info = function (msg) {
   log('source_dp: ' + msg.source_dp)
   log('recipient_dp: ' + msg.recipient_dp)
   log('data (pub,sub,item,cic,party) count: ' + msg.data && msg.data.length)
-}
-
-Gdsn.prototype.get_msg_info = function (xml) {
-  log('gdsn get_msg_info called with xml length ' + xml.length)
-  // synchronous parse of gdsn 2.8 or 3.1 xml for priority data
-  return new MessageInfo(Gdsn.trim_xml(xml), this.config) 
-}
-
-Gdsn.prototype.get_party_info = function (xml, msg_info) {
-  return new PartyInfo(Gdsn.trim_xml(xml), msg_info)
 }
 
 Gdsn.prototype.loadTemplatesSync = function (path) {

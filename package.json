@@ -9,9 +9,7 @@
     "name": "Theoxylo - https://github.com/theoxylo"
   },
   "dependencies": {
-     "xpath"  : "0.0.6"
-    ,"xmldom" : "0.1.19"
-    ,"cheerio": "0.17.0"
+    "cheerio": "0.17.0"
   },
   "devDependencies": {
     "tap": "0.4.4"

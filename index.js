@@ -136,13 +136,14 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.bpr_to_gr   = fs.readFileSync(path + '/gdsn3/BPR.xml')
   this.templates.cis_to_gr   = fs.readFileSync(path + '/gdsn3/CIS.xml')
   this.templates.rfcin_to_gr = fs.readFileSync(path + '/gdsn3/RFCIN.xml')
-  this.templates.rci_to_gr   = fs.readFileSync(path + '/gdsn3/RCI.xml')
+  this.templates.rci_to_gr_3 = fs.readFileSync(path + '/gdsn3/RCI.xml')
   this.templates.cin_out     = fs.readFileSync(path + '/gdsn3/CIN.xml')
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
   this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
 
   // 2.8 support
-  this.templates.tp_cin        = fs.readFileSync(path + '/gdsn2/CIN.xml')
+  this.templates.tp_cin      = fs.readFileSync(path + '/gdsn2/CIN.xml')
+  this.templates.rci_to_gr_2 = fs.readFileSync(path + '/gdsn2/RCI.xml')
 
   log('All gdsn templates read without errors')
 }
@@ -404,7 +405,7 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
       return ''
   }
 
-  var $ = cheerio.load(this.templates.rci_to_gr, { 
+  var $ = cheerio.load(this.templates.rci_to_gr_3, { 
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
@@ -435,8 +436,12 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
   $('catalogueItemReference > dataSource').text(cin_msg_info.provider)
   $('catalogueItemReference > gtin').text(gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(cin_msg_info.tm)
-  if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(cin_msg_info.tm_sub)
-  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(cin_msg_info.tm_sub)
+  }
+  else {
+    $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  }
 
   if (cin_msg_info.cancelledDate) $('catalogueItemDates > cancelDateTime').text(cin_msg_info.cancelledDate)
   else $('catalogueItemDates > cancelDateTime').remove()
@@ -730,8 +735,12 @@ Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
   $('catalogueItemReference > dataSource').text(tp_cic.provider)
   $('catalogueItemReference > gtin').text(tp_cic.gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(tp_cic.tm)
-  if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cic.tm_sub)
-  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cic.tm_sub)
+  }
+  else {
+    $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  }
 
 
   //if (tp_cic.status == 'REJECTED') { // || tp_cic.status == 'REVIEW') {
@@ -740,8 +749,12 @@ Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
     $('confirmationStatusCatalogueItem > dataSource', cicsd).text(tp_cic.provider)
     $('confirmationStatusCatalogueItem > gtin'      , cicsd).text(tp_cic.gtin)
     $('confirmationStatusCatalogueItem > targetMarketCountryCode', cicsd).text(tp_cic.tm)
-    if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') $('confirmationStatusCatalogueItem  > targetMarketSubdivisionCode', cicsd).text(tp_cic.tm_sub)
-    else $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).remove()
+    if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') {
+      $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).text(tp_cic.tm_sub)
+    }
+    else {
+      $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).remove()
+    }
 
     $('catalogueItemConfirmationStatus > confirmationStatusCode'           , cicsd).text(tp_cic.confirm_code) 
     $('catalogueItemConfirmationStatus > confirmationStatusCodeDescription', cicsd).text(tp_cic.confirm_desc)
@@ -797,8 +810,12 @@ Gdsn.prototype.populateCihwToOtherSDP = function (config, tp_cihw) {
   $('catalogueItemReference > dataSource').text(tp_cihw.provider)
   $('catalogueItemReference > gtin').text(tp_cihw.gtin)
   $('catalogueItemReference > targetMarketCountryCode').text(tp_cihw.tm)
-  if (tp_cihw.tm_sub && tp_cihw.tm_sub != 'na') $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cihw.tm_sub)
-  else $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  if (tp_cihw.tm_sub && tp_cihw.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cihw.tm_sub)
+  }
+  else {
+    $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  }
 
   $('dataRecipient > gln').text(tp_cihw.recipient)
   $('sourceDataPool > gln').text(tp_cihw.source_dp)
@@ -876,6 +893,62 @@ Gdsn.prototype.create_tp_item_cin_28 = function (item) {
   $('contentOwner > gln').each(function () {
     $(this).text(provider)
   })
+
+  return $.html()
+}
+
+Gdsn.prototype.create_tp_item_rci_28 = function (config, item) {
+  
+  log('create_tp_item_rci_28')
+  
+  if (!item || !item.xml) log('missing xml for item query gtin ' + item.gtin)
+
+  var sender    = item.source_dp
+  var provider  = item.provider
+  var receiver  = config.gdsn_gr_gln
+  var new_msg_id = 'RCI_' + Date.now() + '_' + provider + '_' + item.gtin // maxlength 64 in synch list queue table
+  var dateTime = new Date().toISOString()
+
+  var $ = cheerio.load(this.templates.rci_to_gr_2, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+  })
+
+  // new values for this message
+  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
+
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+  $('sh\\:CreationDateAndTime').text(dateTime)
+
+
+  $('entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same ID for msg, trx, cmd, NOT doc (updated below to provider)
+  $('contentOwner > gln').text(sender)
+
+  $('documentCommandHeader').attr('type', 'ADD' || 'CORRECT' || 'CHANGE_BY_REFRESH') // RCI command to GR
+
+  $('gdsn\\:registryCatalogueItem').attr('creationDateTime', dateTime)
+  $('gdsn\\:registryCatalogueItem').attr('documentStatus', 'ORIGINAL')
+
+  $('registryCatalogueItemIdentification > uniqueCreatorIdentification').text(new_msg_id + '_doc1')
+  $('registryCatalogueItemIdentification > contentOwner > gln').text(item.provider)
+
+  $('catalogueItemDates').attr('lastChangedDate', dateTime)
+  $('catalogueItemClassification').attr('classificationCategoryCode', item.gpc)
+  $('catalogueItemReference > gtin').text(item.gtin)
+  $('catalogueItemReference > dataSource').text(item.provider)
+
+  $('catalogueItemReference > targetMarket > targetMarketCountryCode > countryISOCode').text(item.tm) // 2.8!!!
+  
+  if (item.tm_sub && item.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode > countrySubDivisionISOCode').text(item.tm_sub) // 2.8!!!
+  }
+  else {
+    $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').remove() // 2.8!!!
+  }
+
+  $('sourceDataPool').text(item.source_dp)
 
   return $.html()
 }

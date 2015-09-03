@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sh:StandardBusinessDocument xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:eanucc="urn:ean.ucc:2" xmlns:gdsn="urn:ean.ucc:gdsn:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gs1globalregistry.net/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gs1globalregistry.net/2.8/schemas/RegistryPartyDataDumpProxy.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="EAN.UCC">0614141810017</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>EAN.UCC</sh:Standard>
+            <sh:TypeVersion>2.8</sh:TypeVersion>
+            <sh:InstanceIdentifier>28_rpdd_1100001011292</sh:InstanceIdentifier>
+            <sh:Type>registryPartyDataDump</sh:Type>
+            <sh:CreationDateAndTime>2013-11-06T20:16:39-05:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <eanucc:message>
+        <entityIdentification>
+            <uniqueCreatorIdentification>28_rpdd_1100001011292</uniqueCreatorIdentification>
+            <contentOwner>
+                <gln>0614141810017</gln>
+            </contentOwner>
+        </entityIdentification>
+        <eanucc:transaction xmlns:eanucc="urn:ean.ucc:2" xmlns:gdsn="urn:ean.ucc:gdsn:2">
+            <entityIdentification>
+                <uniqueCreatorIdentification>TRX1</uniqueCreatorIdentification>
+                <contentOwner>
+                    <gln>0614141810017</gln>
+                </contentOwner>
+            </entityIdentification>
+            <command>
+                <eanucc:documentCommand>
+                    <documentCommandHeader type="ADD">
+                        <entityIdentification>
+                            <uniqueCreatorIdentification>TRX1-CMD1</uniqueCreatorIdentification>
+                            <contentOwner>
+                                <gln>0614141810017</gln>
+                            </contentOwner>
+                        </entityIdentification>
+                    </documentCommandHeader>
+                    <documentCommandOperand>
+                        <gdsn:registryPartyDataDump documentStatus="ORIGINAL" creationDateTime="2014-12-30T20:00:01-05:00">
+                            <contentVersion>
+                                <versionIdentification>2.8</versionIdentification>
+                            </contentVersion>
+                            <documentStructureVersion>
+                                <versionIdentification>2.8</versionIdentification>
+                            </documentStructureVersion>
+                            <informationProvider>1100001011285</informationProvider>
+                            <informationRecipient>1100001011285</informationRecipient>
+                            <registryPartyDataDumpDetail>
+                                <processCapabilityInformation>
+                                    <processCapabilityCode>DATA_SYNCHRONISATION</processCapabilityCode>
+                                    <processCapabilityEffectiveStartDateTime>2014-12-30T00:00:00</processCapabilityEffectiveStartDateTime>
+                                </processCapabilityInformation>
+                                <registryParty>
+                                    <isPartyActive>true</isPartyActive>
+                                    <registryPartyInformation>
+                                        <partyRoleInformation>
+                                            <partyOrDepartmentName>ITN testing in Dev 292</partyOrDepartmentName>
+                                            <partyRole>CORPORATE_IDENTITY</partyRole>
+                                        </partyRoleInformation>
+                                        <contact>
+                                            <communicationChannel communicationChannelCode="EMAIL" communicationNumber="gdsn@itradenetwork.com"/>
+                                            <personOrDepartmentName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>ITN GDSN Support Email</text>
+                                                </description>
+                                            </personOrDepartmentName>
+                                        </contact>
+                                        <registryPartyNameAndAddress>
+                                            <city>Pleasanton</city>
+                                            <countryCode>
+                                                <countryISOCode>840</countryISOCode>
+                                            </countryCode>
+                                            <name>ITN® Test Party 292 rpdd-28</name>
+                                            <associatedLanguage>
+                                                <languageISOCode>en</languageISOCode>
+                                            </associatedLanguage>
+                                            <postalCode>94588</postalCode>
+                                            <streetAddressOne>4155 Hopyard Rd</streetAddressOne>
+                                            <streetAddressTwo>Suite 999</streetAddressTwo>
+                                        </registryPartyNameAndAddress>
+                                    </registryPartyInformation>
+                                    <informationProviderOfParty>
+                                        <gln>1100001011292</gln>
+                                    </informationProviderOfParty>
+                                </registryParty>
+                                <registryPartyDates>
+                                    <registeringParty>1100001011285</registeringParty>
+                                    <registrationDateTime>2014-12-30T17:29:44-05:00</registrationDateTime>
+                                    <lastUpdateParty>1100001011285</lastUpdateParty>
+                                    <lastUpdateDateTime>2014-12-30T17:29:44-05:00</lastUpdateDateTime>
+                                </registryPartyDates>
+                            </registryPartyDataDumpDetail>
+                            <registryPartyDataDumpIdentification>
+                                <uniqueCreatorIdentification>TRX1-CMD1-DOC1</uniqueCreatorIdentification>
+                                <contentOwner>
+                                    <gln>0614141810017</gln>
+                                </contentOwner>
+                            </registryPartyDataDumpIdentification>
+                        </gdsn:registryPartyDataDump>
+                    </documentCommandOperand>
+                </eanucc:documentCommand>
+            </command>
+        </eanucc:transaction>
+    </eanucc:message>
+</sh:StandardBusinessDocument>

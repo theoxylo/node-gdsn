@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sh:StandardBusinessDocument xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:eanucc="urn:ean.ucc:2" xmlns:gdsn="urn:ean.ucc:gdsn:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gdsregistry.org/2.8/schemas/ResponseProxy.xsd">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="EAN.UCC">0614141810017</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>EAN.UCC</sh:Standard>
+            <sh:TypeVersion>2.8</sh:TypeVersion>
+            <sh:InstanceIdentifier>TOKEN:msg_id</sh:InstanceIdentifier>
+            <sh:Type>GDSNResponse</sh:Type>
+            <sh:CreationDateAndTime>2012-11-05T13:38:34-05:00</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+        <sh:BusinessScope>
+            <sh:Scope>
+                <sh:Type>GDSN</sh:Type>
+                <sh:InstanceIdentifier></sh:InstanceIdentifier>
+                <sh:CorrelationInformation>
+                    <sh:RequestingDocumentInstanceIdentifier>TOKEN:req_msg_id</sh:RequestingDocumentInstanceIdentifier>
+                </sh:CorrelationInformation>
+            </sh:Scope>
+        </sh:BusinessScope>
+    </sh:StandardBusinessDocumentHeader>
+    <eanucc:message>
+        <entityIdentification>
+            <uniqueCreatorIdentification>525223</uniqueCreatorIdentification>
+            <contentOwner>
+                <gln>0614141810017</gln>
+            </contentOwner>
+        </entityIdentification>
+        <gdsn:catalogueItemRegistrationResponse xmlns:gdsn="urn:ean.ucc:gdsn:2" responseStatus="ACCEPTED">
+            <responseIdentification>
+                <uniqueCreatorIdentification>MSG_OUT_53081_TXN1_CMD1_DOC1</uniqueCreatorIdentification>
+                <contentOwner>
+                    <gln>4243444546475</gln>
+                </contentOwner>
+            </responseIdentification>
+            <catalogueItemRegistrationInformation lastChangedDate="2012-11-05T13:38:34-05:00" registrationDate="2012-11-05T13:38:34-05:00"/>
+            <catalogueItemReference>
+                <gtin>10036016500279</gtin>
+                <dataSource>4243444546475</dataSource>
+                <targetMarket>
+                    <targetMarketCountryCode>
+                        <countryISOCode>840</countryISOCode>
+                    </targetMarketCountryCode>
+                </targetMarket>
+            </catalogueItemReference>
+        </gdsn:catalogueItemRegistrationResponse>
+        <gdsn:catalogueItemRegistrationResponse xmlns:gdsn="urn:ean.ucc:gdsn:2" responseStatus="ACCEPTED">
+            <responseIdentification>
+                <uniqueCreatorIdentification>MSG_OUT_53081_TXN1_CMD1_DOC2</uniqueCreatorIdentification>
+                <contentOwner>
+                    <gln>4243444546475</gln>
+                </contentOwner>
+            </responseIdentification>
+            <catalogueItemRegistrationInformation lastChangedDate="2012-11-05T13:38:34-05:00" registrationDate="2012-11-05T13:38:34-05:00"/>
+            <catalogueItemReference>
+                <gtin>10024951191010</gtin>
+                <dataSource>4243444546475</dataSource>
+                <targetMarket>
+                    <targetMarketCountryCode>
+                        <countryISOCode>840</countryISOCode>
+                    </targetMarketCountryCode>
+                </targetMarket>
+            </catalogueItemReference>
+        </gdsn:catalogueItemRegistrationResponse>
+    </eanucc:message>
+</sh:StandardBusinessDocument>

@@ -25,6 +25,7 @@
 <documentCommandOperand>
 
 <gdsn:catalogueItemNotification creationDateTime="TOKEN" documentStatus="ORIGINAL" isReload="false">
+
   <catalogueItem>
     <catalogueItemState state="IN_PROGRESS"/>
     <!--tradeItem-->
@@ -32,6 +33,7 @@
       <!--catalogueItem-->
     </catalogueItemChildItemLink>
   </catalogueItem>
+  
   <catalogueItemNotificationIdentification><uniqueCreatorIdentification>TOKEN</uniqueCreatorIdentification><contentOwner><gln>TOKEN</gln></contentOwner></catalogueItemNotificationIdentification>
 </gdsn:catalogueItemNotification>
 

@@ -722,8 +722,8 @@ Gdsn.prototype.create_tp_item_rci_28 = function (config, item) {
   $('uniqueCreatorIdentification').text(new_msg_id + '_doc1') // ok to use same trc, cmd, doc ID?
   $('contentOwner > gln').text(item.provider) // almost always the provider, except at message level set below
 
-  $('eanucc:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
-  $('eanucc:message > entityIdentification > contentOwner > gln').text(sender) // sender NOT provider
+  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender) // sender NOT provider
 
   $('documentCommandHeader').attr('type', 'ADD' || 'CORRECT' || 'CHANGE_BY_REFRESH') // RCI command to GR
 

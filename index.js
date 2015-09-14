@@ -215,7 +215,7 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_inf
 
 // the original BPR must be sent by the trading party to their own data pool, 
 // then a BPR to GR is generated. Only one party per message is supported.
-Gdsn.prototype.populateBprToGr = function (config, tp_msg_info) {
+Gdsn.prototype.populateBprToGr = function (tp_msg_info) {
 
   log('populateBprToGr from party bpr with msg_id: ' + tp_msg_info)
   var $ = cheerio.load(this.templates.bpr_to_gr, { 
@@ -280,7 +280,7 @@ Gdsn.prototype.populateBprToGr = function (config, tp_msg_info) {
 
 var cis_id_counter = 1000
 
-Gdsn.prototype.populateCisToGr = function (config, tp_msg_info) {
+Gdsn.prototype.populateCisToGr = function (tp_msg_info) {
   log('populateCisToGr')
   var $ = cheerio.load(this.templates.cis_to_gr, { 
     _:0
@@ -337,7 +337,7 @@ Gdsn.prototype.populateCisToGr = function (config, tp_msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateRfcinToGr= function (config, tp_msg_info) {
+Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
   log('populateRfcinToGr')
   var $ = cheerio.load(this.templates.rfcin_to_gr, { 
     _:0
@@ -400,7 +400,7 @@ Gdsn.prototype.populateRfcinToGr= function (config, tp_msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
+Gdsn.prototype.populateRciToGr = function (cin_msg_info, gtin) {
   log('populateRciToGr')
 
   gtin = gtin || cin_msg_info.gtin
@@ -466,7 +466,7 @@ Gdsn.prototype.populateRciToGr = function (config, cin_msg_info, gtin) {
 }
 
 // send CIC receive to source_dp SDP for subscribed item, this is AUTO, no TP directly involved
-Gdsn.prototype.populateRdpCicRecForSdpCin = function (config, sdp_cin, state) {
+Gdsn.prototype.populateRdpCicRecForSdpCin = function (sdp_cin, state) {
   log('populateCicFromCin')
   var $ = cheerio.load(this.templates.cic_to_pub, { 
     _:0
@@ -490,10 +490,10 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (config, sdp_cin, state) {
     , tm_sub     : sdp_cin.tm_sub
     , status     : state
   }
-  return this.populateCicToSourceDP(config, rdp_cic)
+  return this.populateCicToSourceDP(rdp_cic)
 }
 
-Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
+Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
 
   log('populateCic')
   var $ = cheerio.load(this.templates.cic_to_pub, { 
@@ -566,7 +566,7 @@ Gdsn.prototype.populateCicToSourceDP = function (config, tp_cic) {
   return $.html()
 }
 
-Gdsn.prototype.populateCihwToOtherSDP = function (config, tp_cihw) {
+Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
 
   log('populateCihwToOtherSDP  ' + tp_cihw)
 
@@ -684,7 +684,7 @@ Gdsn.prototype.create_item_cin_28 = function (item) {
   
   $ci.append(item.xml)
   $ci.append('<dataRecipient>' + recipient + '</dataRecipient>')
-  $ci.append('<sourceDataPool>' + recipient + '</sourceDataPool>')
+  $ci.append('<sourceDataPool>' + config.homeDataPoolGln + '</sourceDataPool>')
 
   $('contentOwner > gln').each(function () {
     $(this).text(provider)
@@ -693,7 +693,7 @@ Gdsn.prototype.create_item_cin_28 = function (item) {
   return $.html()
 }
 
-Gdsn.prototype.create_tp_item_rci_28 = function (config, item) {
+Gdsn.prototype.create_tp_item_rci_28 = function (item) {
   
   log('create_tp_item_rci_28')
   

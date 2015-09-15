@@ -10,12 +10,13 @@ var get_create_cin_28 = require('./lib/create_cin_28.js')
 var get_create_cin_31 = require('./lib/create_cin_31.js')
 
 var log = console.log
+var config 
 
-var Gdsn = module.exports = function (config) {
+var Gdsn = module.exports = function (x_config) {
 
-  if (!(this instanceof Gdsn)) return new Gdsn(config)
+  if (!(this instanceof Gdsn)) return new Gdsn(x_config)
 
-  config = config || {clean_newline: true}
+  config = x_config || config || {clean_newline: true}
   log = config.log || log // config arg may have its own version of log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
@@ -29,7 +30,6 @@ var Gdsn = module.exports = function (config) {
   // pre-load xml message templates
   this.loadTemplatesSync(config.templatePath)
 
-  this.config = config
   config.gdsn = this
 
   this.itemStream = new ItemStream(this)
@@ -42,11 +42,11 @@ Gdsn.prototype.create_cin_31 = get_create_cin_31(cheerio)
 
 Gdsn.prototype.get_msg_info = function (xml) {
   log('gdsn get_msg_info called with xml length ' + xml.length)
-  return new MessageInfo(Gdsn.trim_xml(xml), this.config) 
+  return new MessageInfo(Gdsn.trim_xml(xml), config) 
 }
 
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
-  return new TradeItemInfo(Gdsn.trim_xml(xml), this.config) // cheerio
+  return new TradeItemInfo(Gdsn.trim_xml(xml), config) // cheerio
 }
 
 Gdsn.prototype.get_party_info = function (xml, msg_info) {
@@ -158,7 +158,7 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
 // after we generate the response XML, it can have its own req_msg_info instance
 // Note: trxOwner is the gln of the TP (DS or DR) initiating the gdsn conversation
 // .e.g. for CIN from SDP to RDP, trxOwner would be DS/publisher and same for following CIC
-Gdsn.prototype.populateResponseToSender = function (err_msg, config, req_msg_info, trxOwner) {
+Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOwner) {
   var $ = cheerio.load(this.templates.response, { 
     _:0
     , normalizeWhitespace: true

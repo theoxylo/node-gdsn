@@ -9,14 +9,15 @@ var PartyInfo     = require('./lib/PartyInfo.js')
 var get_create_cin_28 = require('./lib/create_cin_28.js')
 var get_create_cin_31 = require('./lib/create_cin_31.js')
 
-var log = console.log
-var config 
+var log    = console.log
+var config = {clean_newline: true}
+
 
 var Gdsn = module.exports = function (x_config) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(x_config)
 
-  config = x_config || config || {clean_newline: true}
+  config = x_config || config  
   log = config.log || log // config arg may have its own version of log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
@@ -158,8 +159,8 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
 // after we generate the response XML, it can have its own req_msg_info instance
 // Note: trxOwner is the gln of the TP (DS or DR) initiating the gdsn conversation
 // .e.g. for CIN from SDP to RDP, trxOwner would be DS/publisher and same for following CIC
-Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOwner) {
-  var $ = cheerio.load(this.templates.response, { 
+Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOwner) { // 3.1
+  var $ = cheerio.load(this.templates.response, {  // 3.1
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
@@ -209,16 +210,15 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOw
       $('gS1Response').append($trx)
     })
   }
-
   return $.html()
 }
 
 // the original BPR must be sent by the trading party to their own data pool, 
 // then a BPR to GR is generated. Only one party per message is supported.
-Gdsn.prototype.populateBprToGr = function (tp_msg_info) {
+Gdsn.prototype.populateBprToGr = function (tp_msg_info) { // 3.1
 
   log('populateBprToGr from party bpr with msg_id: ' + tp_msg_info)
-  var $ = cheerio.load(this.templates.bpr_to_gr, { 
+  var $ = cheerio.load(this.templates.bpr_to_gr, { // 3.1
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
@@ -271,9 +271,7 @@ Gdsn.prototype.populateBprToGr = function (tp_msg_info) {
     else $('partyContact > personName').remove()
   }
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(config.homeDataPoolGln)
-  })
+  $('contentOwner > gln').text(config.homeDataPoolGln)
 
   return $.html()
 }
@@ -330,9 +328,8 @@ Gdsn.prototype.populateCisToGr = function (tp_msg_info) {
   if (sub_info.recipient_dp) $('recipientDataPool').text(sub_info.recipient_dp)
   else $('recipientDataPool').remove()
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(tp_msg_info.recipient)
-  })
+  $('contentOwner > gln').text(tp_msg_info.recipient)
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
 }
@@ -393,9 +390,8 @@ Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
       $('isReload').text(Boolean(rfcin.reload == 'true' || rfcin.reload == 'TRUE').toString()) // string
   //})
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(tp_msg_info.recipient)
-  })
+  $('contentOwner > gln').text(tp_msg_info.recipient)
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
 }
@@ -458,9 +454,8 @@ Gdsn.prototype.populateRciToGr = function (cin_msg_info, gtin) {
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(cin_msg_info.provider)
-  })
+  $('contentOwner > gln').text(cin_msg_info.provider)
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
 }
@@ -475,9 +470,9 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (sdp_cin, state) {
   })
   if (!sdp_cin) return ''
 
-    log('state:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ' + state)
+  log('state:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: ' + state)
+  if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED' // 3.1: no more cic 'ACCEPTED'
 
-  if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED'
   var rdp_cic = {
 
     // sender and recipient_dp will always be home dp of subscriber
@@ -507,9 +502,9 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
   // new values for this message
   var new_msg_id = 'CIC_' + Date.now() + '_' + tp_cic.recipient + '_' + tp_cic.gtin
   var now_iso = new Date().toISOString()
-  var sender = recipient_dp = config.homeDataPoolGln
+  var recipient_dp = config.homeDataPoolGln
 
-  $('sh\\:Sender > sh\\:Identifier').text(sender)
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(tp_cic.source_dp) // could be to self for local publisher
   $('sh\\:InstanceIdentifier').text(new_msg_id)
 
@@ -526,7 +521,7 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
 
   $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(tp_cic.status)
   $('catalogueItemConfirmationState > recipientGLN').text(tp_cic.recipient)
-  $('catalogueItemConfirmationState > recipientDataPool').text(sender)
+  $('catalogueItemConfirmationState > recipientDataPool').text(config.homeDataPoolGln)
 
   $('catalogueItemReference > dataSource').text(tp_cic.provider)
   $('catalogueItemReference > gtin').text(tp_cic.gtin)
@@ -559,9 +554,8 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
     cicsd.remove()
   }
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(tp_cic.recipient)
-  })
+  $('contentOwner > gln').text(tp_cic.recipient)
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
 }
@@ -591,17 +585,15 @@ Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
   // original values from tp: trx/cmd/doc id and owner glns, created ts
   // assume naming convention based on original msg_id and only support single doc per message
   $('transactionIdentification > entityIdentification').text(new_msg_id + '_t1')
-  $('transactionIdentification > contentOwner > gln').text(tp_cihw.provider)
+  $('contentOwner > gln').text(tp_cihw.provider) // sender
 
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_t1_c1')
-  $('documentCommandIdentification > contentOwner > gln').text(tp_cihw.provider)
 
   try { var tp_created_iso = (new Date(tp_cihw.created_ts)).toISOString() }
   catch(e) { log('error getting orig created ts from tp msg document: ' + e) }
   $('creationDateTime').text(tp_created_iso || now_iso)
 
   $('catalogueItemHierarchicalWithdrawalIdentification > entityIdentification').text(new_msg_id + '_t1_c1_d1')
-  $('catalogueItemHierarchicalWithdrawalIdentification > contentOwner > gln').text(tp_cihw.provider)
 
   $('catalogueItemReference > dataSource').text(tp_cihw.provider)
   $('catalogueItemReference > gtin').text(tp_cihw.gtin)
@@ -648,12 +640,12 @@ Gdsn.prototype.create_item_cin_28 = function (item) {
   
   if (!item || !item.xml) log('missing xml for item query gtin ' + item.gtin)
 
-  var sender    = item.provider
-  var provider  = item.provider
-  var recipient = item.recipient
-  var receiver  = item.recipient
+  var sender     = item.provider
+  var provider   = item.provider
+  var recipient  = item.recipient
+  var receiver   = item.recipient
   var new_msg_id = 'CIN_' + Date.now() + '_' + recipient + '_' + provider + '_' + item.gtin // maxlength 64 in synch list queue table
-  var dateTime = new Date().toISOString()
+  var dateTime   = new Date().toISOString()
 
   var $ = cheerio.load(this.templates.cin_28, { 
     _:0
@@ -671,8 +663,6 @@ Gdsn.prototype.create_item_cin_28 = function (item) {
 
   // new message values for dp: trx/cmd/doc id and owner glns, created ts
   // assume naming convention based on new_msg_id and only support single doc
-  $('entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same ID for msg, trx, cmd, doc
-  $('contentOwner > gln').text(sender)
   $('documentCommandHeader').attr('type', 'ADD') // e.g ADD/CORRECT/etc
 
   $('gdsn\\:catalogueItemNotification').attr('creationDateTime', dateTime)
@@ -680,15 +670,17 @@ Gdsn.prototype.create_item_cin_28 = function (item) {
   $('gdsn\\:catalogueItemNotification').attr('isReload', 'false')
   
   var $ci       = $('catalogueItem')
-  var $link     = $('catalogueItemChildItemLink', $ci).remove() // no children
+  var $link     = $('catalogueItemChildItemLink', $ci).remove() // no children in single item mock CIN
   
-  $ci.append(item.xml)
+  $ci.append(item.xml) // <tradeItem>...</tradeItem>
   $ci.append('<dataRecipient>' + recipient + '</dataRecipient>')
   $ci.append('<sourceDataPool>' + config.homeDataPoolGln + '</sourceDataPool>')
 
-  $('contentOwner > gln').each(function () {
-    $(this).text(provider)
-  })
+  $(                   'entityIdentification > contentOwner > gln').text(provider)
+  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender)
+
+  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id)
+  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id)
 
   return $.html()
 }
@@ -719,20 +711,16 @@ Gdsn.prototype.create_tp_item_rci_28 = function (item) {
   $('sh\\:CreationDateAndTime').text(dateTime)
 
 
-  $('uniqueCreatorIdentification').text(new_msg_id + '_doc1') // ok to use same trc, cmd, doc ID?
-  $('contentOwner > gln').text(item.provider) // almost always the provider, except at message level set below
-
+  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // ok to use same trx, cmd, doc ID
   $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
+
+  $(                   'entityIdentification > contentOwner > gln').text(item.provider) // almost always the provider, except at message level set below
   $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender) // sender NOT provider
 
   $('documentCommandHeader').attr('type', 'ADD' || 'CORRECT' || 'CHANGE_BY_REFRESH') // RCI command to GR
 
   $('gdsn\\:registryCatalogueItem').attr('creationDateTime', dateTime)
   $('gdsn\\:registryCatalogueItem').attr('documentStatus', 'ORIGINAL')
-
-  $('uniqueCreatorIdentification').text(new_msg_id + '_doc1')
-  $('contentOwner > gln').text(item.provider)
-
   $('catalogueItemDates').attr('lastChangedDate', dateTime)
   $('catalogueItemClassification').attr('classificationCategoryCode', item.gpc)
   $('catalogueItemReference > gtin').text(item.gtin)

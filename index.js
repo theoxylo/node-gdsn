@@ -634,57 +634,6 @@ Gdsn.prototype.clean_xml = Gdsn.clean_xml = function (xml) {
   return xml
 }
 
-Gdsn.prototype.create_item_cin_28 = function (item) {
-  
-  log('create_item_cin_28 - single item')
-  
-  if (!item || !item.xml) log('missing xml for item query gtin ' + item.gtin)
-
-  var sender     = item.provider
-  var provider   = item.provider
-  var recipient  = item.recipient
-  var receiver   = item.recipient
-  var new_msg_id = 'CIN_' + Date.now() + '_' + recipient + '_' + provider + '_' + item.gtin // maxlength 64 in synch list queue table
-  var dateTime   = new Date().toISOString()
-
-  var $ = cheerio.load(this.templates.cin_28, { 
-    _:0
-    , normalizeWhitespace: true
-    , xmlMode: true
-  })
-
-  // new values for this message
-  $('sh\\:Sender > sh\\:Identifier').text(sender)
-  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
-
-  $('sh\\:InstanceIdentifier').text(new_msg_id)
-  $('sh\\:CreationDateAndTime').text(dateTime)
-
-
-  // new message values for dp: trx/cmd/doc id and owner glns, created ts
-  // assume naming convention based on new_msg_id and only support single doc
-  $('documentCommandHeader').attr('type', 'ADD') // e.g ADD/CORRECT/etc
-
-  $('gdsn\\:catalogueItemNotification').attr('creationDateTime', dateTime)
-  $('gdsn\\:catalogueItemNotification').attr('documentStatus', 'ORIGINAL')
-  $('gdsn\\:catalogueItemNotification').attr('isReload', 'false')
-  
-  var $ci       = $('catalogueItem')
-  var $link     = $('catalogueItemChildItemLink', $ci).remove() // no children in single item mock CIN
-  
-  $ci.append(item.xml) // <tradeItem>...</tradeItem>
-  $ci.append('<dataRecipient>' + recipient + '</dataRecipient>')
-  $ci.append('<sourceDataPool>' + config.homeDataPoolGln + '</sourceDataPool>')
-
-  $(                   'entityIdentification > contentOwner > gln').text(provider)
-  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender)
-
-  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id)
-  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id)
-
-  return $.html()
-}
-
 Gdsn.prototype.create_tp_item_rci_28 = function (item) {
   
   log('create_tp_item_rci_28')
@@ -711,11 +660,13 @@ Gdsn.prototype.create_tp_item_rci_28 = function (item) {
   $('sh\\:CreationDateAndTime').text(dateTime)
 
 
-  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // ok to use same trx, cmd, doc ID
-  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
-
   $(                   'entityIdentification > contentOwner > gln').text(item.provider) // almost always the provider, except at message level set below
+  $(    'registryCatalogueItemIdentification > contentOwner > gln').text(item.provider) // same xsd type as entityIdentification
   $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender) // sender NOT provider
+
+  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // ok to use same trx, cmd, doc ID
+  $(    'registryCatalogueItemIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // same xsd type as entityIdentification
+  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
 
   $('documentCommandHeader').attr('type', 'ADD' || 'CORRECT' || 'CHANGE_BY_REFRESH') // RCI command to GR
 

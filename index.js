@@ -6,12 +6,9 @@ var PartyStream   = require('./lib/PartyStream.js')
 var TradeItemInfo = require('./lib/TradeItemInfo.js')
 var MessageInfo   = require('./lib/MessageInfo.js')
 var PartyInfo     = require('./lib/PartyInfo.js')
-var get_create_cin_28 = require('./lib/create_cin_28.js')
-var get_create_cin_31 = require('./lib/create_cin_31.js')
 
 var log    = console.log
 var config = {clean_newline: true}
-
 
 var Gdsn = module.exports = function (x_config) {
 
@@ -35,11 +32,25 @@ var Gdsn = module.exports = function (x_config) {
 
   this.itemStream = new ItemStream(this)
   this.partyStream = new PartyStream(this)
+
+  this.cin_builder_28 = require('./lib/create_cin_28.js')(cheerio, this)
+  this.cin_builder_31 = require('./lib/create_cin_31.js')(cheerio, this)
 }
 
-Gdsn.prototype.create_cin_28 = get_create_cin_28(cheerio)
-
-Gdsn.prototype.create_cin_31 = get_create_cin_31(cheerio)
+Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
+  var cin = ''
+  try {
+    if (items[0].tradeItem.gtin) // 3.1 has short gtin xpath
+      cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
+    else
+      cin = this.cin_builder_28(items, receiver, command, reload, docStatus, sender)
+  }
+  catch (err) {
+    console.log(err)
+  }
+  console.log('created new cin with lenght ' + cin.length)
+  return cin
+}
 
 Gdsn.prototype.get_msg_info = function (xml) {
   log('gdsn get_msg_info called with xml length ' + xml.length)
@@ -107,7 +118,7 @@ Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
   if (checkDigit) {
       checkDigit = 10 - checkDigit
   }
-  log('gtin check-digit: ' + checkDigit)
+  //log('gtin check-digit: ' + checkDigit)
   return checkDigit == numbers[13]
 }
 

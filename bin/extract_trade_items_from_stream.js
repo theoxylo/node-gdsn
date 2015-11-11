@@ -3,7 +3,7 @@
 (function () {
 
   if (process.argv.length < 3) {
-    console.log("usage: node extract_trade_items.js cinFile1 cinFile2 ...")
+    console.log("usage: node extract_trade_items_from_stream.js cinFile1 cinFile2 ...")
     process.exit(1)
   }
 

@@ -14,7 +14,7 @@ var Gdsn = module.exports = function (x_config) {
 
   if (!(this instanceof Gdsn)) return new Gdsn(x_config)
 
-  config = x_config || config  
+  this.config = config = x_config || config  
   log = config.log || log // config arg may have its own version of log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
@@ -35,6 +35,8 @@ var Gdsn = module.exports = function (x_config) {
 
   this.cin_builder_28 = require('./lib/create_cin_28.js')(cheerio, this)
   this.cin_builder_31 = require('./lib/create_cin_31.js')(cheerio, this)
+
+  this.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
 }
 
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {

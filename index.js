@@ -37,6 +37,8 @@ var Gdsn = module.exports = function (x_config) {
   this.cin_builder_31 = require('./lib/create_cin_31.js')(cheerio, this)
 
   this.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
+
+  this.convert_tradeItem_28_31 = require('./lib/tradeItem_upgrade_28_31.js')(cheerio, this)
 }
 
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
@@ -158,6 +160,7 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.rfcin_to_gr = fs.readFileSync(path + '/gdsn3/RFCIN.xml')
   this.templates.rci_to_gr_3 = fs.readFileSync(path + '/gdsn3/RCI.xml')
   this.templates.cin_31      = fs.readFileSync(path + '/gdsn3/CIN.xml')
+  this.templates.ti_31       = fs.readFileSync(path + '/gdsn3/tradeItem.xml')
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
   this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
 

@@ -1,0 +1,46 @@
+<tradeItem>
+
+    <gtin>TOKEN</gtin>
+    <isTradeItemABaseUnit>TOKEN</isTradeItemABaseUnit>
+    <isTradeItemAConsumerUnit>TOKEN</isTradeItemAConsumerUnit>
+    <isTradeItemADespatchUnit>TOKEN</isTradeItemADespatchUnit>
+    <isTradeItemAnInvoiceUnit>TOKEN</isTradeItemAnInvoiceUnit>
+    <isTradeItemAnOrderableUnit>TOKEN</isTradeItemAnOrderableUnit>
+    <tradeItemUnitDescriptorCode>TOKEN</tradeItemUnitDescriptorCode>
+
+    <informationProviderOfTradeItem>
+        <gln>TOKEN</gln>
+        <partyName>TOKEN</partyName>
+    </informationProviderOfTradeItem>
+
+    <gdsnTradeItemClassification>
+        <gpcCategoryCode>TOKEN</gpcCategoryCode>
+    </gdsnTradeItemClassification>
+
+    <nextLowerLevelTradeItemInformation>
+        <quantityOfChildren>TOKEN</quantityOfChildren>
+        <totalQuantityOfNextLowerLevelTradeItem>TOKEN</totalQuantityOfNextLowerLevelTradeItem>
+
+        <childTradeItem>
+            <gtin>TOKEN</gtin>
+            <quantityOfNextLowerLevelTradeItem>TOKEN</quantityOfNextLowerLevelTradeItem>
+        </childTradeItem>
+
+    </nextLowerLevelTradeItemInformation>
+
+    <targetMarket>
+        <targetMarketCountryCode>TOKEN</targetMarketCountryCode>
+    </targetMarket>
+
+    <tradeItemInformation>
+        <extension>
+            <comingSoon>hello</comingSoon>
+        </extension>
+    </tradeItemInformation>
+
+    <tradeItemSynchronisationDates>
+        <lastChangeDateTime>TOKEN</lastChangeDateTime>
+        <effectiveDateTime>TOKEN</effectiveDateTime>
+    </tradeItemSynchronisationDates>
+
+</tradeItem>

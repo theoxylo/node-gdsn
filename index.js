@@ -15,7 +15,7 @@ var Gdsn = module.exports = function (x_config) {
   if (!(this instanceof Gdsn)) return new Gdsn(x_config)
 
   this.config = config = x_config || config  
-  log = config.log || log // config arg may have its own version of log
+  this.log = log = config.log || log // config arg may have its own version of log
   if (!config.templatePath)    config.templatePath    = __dirname + '/templates'
   if (!config.homeDataPoolGln) config.homeDataPoolGln = '0000000000000'
   if (!config.outbox_dir)      config.outbox_dir      = config.out_dir || __dirname + '/outbox'
@@ -33,18 +33,17 @@ var Gdsn = module.exports = function (x_config) {
   this.itemStream = new ItemStream(this)
   this.partyStream = new PartyStream(this)
 
-  this.cin_builder_28 = require('./lib/create_cin_28.js')(cheerio, this)
-  this.cin_builder_31 = require('./lib/create_cin_31.js')(cheerio, this)
-
-  this.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
-
-  this.convert_tradeItem_28_31 = require('./lib/tradeItem_upgrade_28_31.js')(cheerio, this)
+  Gdsn.prototype.cin_builder_28            = require('./lib/create_cin_28.js')(cheerio, this)
+  Gdsn.prototype.cin_builder_31            = require('./lib/create_cin_31.js')(cheerio, this)
+  Gdsn.prototype.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
+  Gdsn.prototype.convert_tradeItem_28_31   = require('./lib/tradeItem_upgrade_28_31.js')(cheerio, this)
+  Gdsn.prototype.create_tp_item_rci_28     = require('./lib/rci_28.js')(cheerio, this)
 }
 
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
   var cin = ''
   try {
-    if (items[0].tradeItem.gtin) // 3.1 has short gtin xpath
+    if (items[0].tradeItem.gtin || config.cin_31_only) // 3.1 has short gtin xpath
       cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
     else
       cin = this.cin_builder_28(items, receiver, command, reload, docStatus, sender)
@@ -164,7 +163,7 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
   this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
 
-  // 2.8 support
+  // legacy 2.8 support
   this.templates.cin_28      = fs.readFileSync(path + '/gdsn2/CIN.xml')
   this.templates.rci_to_gr_2 = fs.readFileSync(path + '/gdsn2/RCI.xml')
 
@@ -412,16 +411,10 @@ Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
   return $.html()
 }
 
-Gdsn.prototype.populateRciToGr = function (cin_msg_info, gtin) {
-  log('populateRciToGr')
+Gdsn.prototype.create_rci_to_gr = function (item, cmd) {
+  log('create_rci_to_gr')
 
-  gtin = gtin || cin_msg_info.gtin
-
-  // rci can only be generated from local tp cin message to home dp, for now
-  if (cin_msg_info.msg_type != 'catalogueItemNotification'
-    || cin_msg_info.sender != cin_msg_info.provider) {
-      return ''
-  }
+  cmd = cmd || 'ADD'
 
   var $ = cheerio.load(this.templates.rci_to_gr_3, { 
     _:0
@@ -433,8 +426,8 @@ Gdsn.prototype.populateRciToGr = function (cin_msg_info, gtin) {
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
   // GR requires unique msg id, so use ts
-  var new_msg_id = 'RCI_' + Date.now() + '_' + cin_msg_info.provider + '_' + gtin + '_' + cin_msg_info.tm
-  if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') new_msg_id += '_' + cin_msg_info.tm_sub
+  var new_msg_id = 'RCI_' + Date.now() + '_' + item.provider + '_' + item.gtin + '_' + item.tm
+  if (item.tm_sub && item.tm_sub != 'na') new_msg_id += '_' + item.tm_sub
   $('sh\\:InstanceIdentifier').text(new_msg_id)
   $('sh\\:CreationDateAndTime').text(new Date().toISOString()) // when this message is created by DP (right now)
 
@@ -443,34 +436,34 @@ Gdsn.prototype.populateRciToGr = function (cin_msg_info, gtin) {
   // assume naming convention based on new_msg_id and only support single doc
   $('transactionIdentification > entityIdentification').text(new_msg_id + '_trx1')
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1')
-  $('documentCommand > documentCommandHeader').attr('type', cin_msg_info.status) // set // ADD, CORRECT
+  $('documentCommand > documentCommandHeader').attr('type', cmd) // ADD, CORRECT
 
   // SINGLE doc support:
-  $('creationDateTime').text(new Date(cin_msg_info.created_ts || 1).toISOString())
+  $('creationDateTime').text(new Date(item.created_ts || 1).toISOString())
   $('registryCatalogueItemIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
-  $('gpcCategoryCode').text(cin_msg_info.gpc)
+  $('gpcCategoryCode').text(item.gpc)
   $('sourceDataPool').text(config.homeDataPoolGln)
   //<registryCatalogueItemStateCode...  // TODO? for cancelled, etc
-  $('catalogueItemReference > dataSource').text(cin_msg_info.provider)
-  $('catalogueItemReference > gtin').text(gtin)
-  $('catalogueItemReference > targetMarketCountryCode').text(cin_msg_info.tm)
-  if (cin_msg_info.tm_sub && cin_msg_info.tm_sub != 'na') {
-    $('catalogueItemReference > targetMarketSubdivisionCode').text(cin_msg_info.tm_sub)
+  $('catalogueItemReference > dataSource').text(item.provider)
+  $('catalogueItemReference > gtin').text(item.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(item.tm)
+  if (item.tm_sub && item.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(item.tm_sub)
   }
   else {
     $('catalogueItemReference > targetMarketSubdivisionCode').remove()
   }
 
-  if (cin_msg_info.cancelledDate) $('catalogueItemDates > cancelDateTime').text(cin_msg_info.cancelledDate)
+  if (item.cancelledDate) $('catalogueItemDates > cancelDateTime').text(item.cancelledDate)
   else $('catalogueItemDates > cancelDateTime').remove()
 
-  if (cin_msg_info.discontinuedDate) $('catalogueItemDates > discontinuedDateTime').text(cin_msg_info.discontinuedDate)
+  if (item.discontinuedDate) $('catalogueItemDates > discontinuedDateTime').text(item.discontinuedDate)
   else $('catalogueItemDates > discontinuedDateTime').remove()
 
   $('catalogueItemDates > lastChangedDateTime').text(new Date().toISOString())
   $('catalogueItemDates > registrationDateTime').text(new Date().toISOString())
 
-  $('contentOwner > gln').text(cin_msg_info.provider)
+  $('contentOwner > gln').text(item.provider)
   $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
@@ -648,61 +641,4 @@ Gdsn.prototype.clean_xml = Gdsn.clean_xml = function (xml) {
   xml = xml.replace(/\s*xmlns:[^=\s]*\s*=\s*['"][^'"]*['"]/g, '')          // remove xmlns:abc="123" ns attributes
   xml = xml.replace(/\s*[^:\s]*:schemaLocation\s*=\s*['"][^'"]*['"]/g, '') // remove abc:schemaLocation attributes
   return xml
-}
-
-Gdsn.prototype.create_tp_item_rci_28 = function (item) {
-  
-  log('create_tp_item_rci_28')
-  
-  if (!item || !item.xml) log('missing xml for item query gtin ' + item.gtin)
-
-  var sender    = item.source_dp
-  var provider  = item.provider
-  var receiver  = config.gdsn_gr_gln
-  var new_msg_id = 'RCI_' + Date.now() + '_' + provider + '_' + item.gtin // maxlength 64 in synch list queue table
-  var dateTime = new Date().toISOString()
-
-  var $ = cheerio.load(this.templates.rci_to_gr_2, { 
-    _:0
-    , normalizeWhitespace: true
-    , xmlMode: true
-  })
-
-  // new values for this message
-  $('sh\\:Sender > sh\\:Identifier').text(sender)
-  $('sh\\:Receiver > sh\\:Identifier').text(receiver)
-
-  $('sh\\:InstanceIdentifier').text(new_msg_id)
-  $('sh\\:CreationDateAndTime').text(dateTime)
-
-
-  $(                   'entityIdentification > contentOwner > gln').text(item.provider) // almost always the provider, except at message level set below
-  $(    'registryCatalogueItemIdentification > contentOwner > gln').text(item.provider) // same xsd type as entityIdentification
-  $('eanucc\\:message > entityIdentification > contentOwner > gln').text(sender) // sender NOT provider
-
-  $(                   'entityIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // ok to use same trx, cmd, doc ID
-  $(    'registryCatalogueItemIdentification > uniqueCreatorIdentification').text(new_msg_id + '_tcd01') // same xsd type as entityIdentification
-  $('eanucc\\:message > entityIdentification > uniqueCreatorIdentification').text(new_msg_id) // same as msg id
-
-  $('documentCommandHeader').attr('type', 'ADD' || 'CORRECT' || 'CHANGE_BY_REFRESH') // RCI command to GR
-
-  $('gdsn\\:registryCatalogueItem').attr('creationDateTime', dateTime)
-  $('gdsn\\:registryCatalogueItem').attr('documentStatus', 'ORIGINAL')
-  $('catalogueItemDates').attr('lastChangedDate', dateTime)
-  $('catalogueItemClassification').attr('classificationCategoryCode', item.gpc)
-  $('catalogueItemReference > gtin').text(item.gtin)
-  $('catalogueItemReference > dataSource').text(item.provider)
-
-  $('catalogueItemReference > targetMarket > targetMarketCountryCode > countryISOCode').text(item.tm) // 2.8!!!
-  
-  if (item.tm_sub && item.tm_sub != 'na') {
-    $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode > countrySubDivisionISOCode').text(item.tm_sub) // 2.8!!!
-  }
-  else {
-    $('catalogueItemReference > targetMarket > targetMarketSubdivisionCode').remove() // 2.8!!!
-  }
-
-  $('sourceDataPool').text(item.source_dp)
-
-  return $.html()
 }

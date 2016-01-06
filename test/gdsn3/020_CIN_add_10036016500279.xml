@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalogue_item_notification:catalogueItemNotificationMessage xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd">
+<cin:catalogueItemNotificationMessage xmlns:cin="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:fbi="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xmlns:dpi="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:vti="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:tim="urn:gs1:gdsn:trade_item_measurements:xsd:3" xmlns:tid="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd
+urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd
+   urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd
+    urn:gs1:gdsn:catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd
+        urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd
+         urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd
+http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd
+">
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
@@ -11,10 +19,10 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>cin_3items_292_279_20150223</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>api_cin_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2006-01-10T12:00:01.000-05:00</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2015-10-10T12:00:01.000-05:00</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
@@ -33,7 +41,7 @@
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
-            <catalogue_item_notification:catalogueItemNotification>
+            <cin:catalogueItemNotification>
                 <creationDateTime>2011-03-11T11:00:00.000-05:00</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <catalogueItemNotificationIdentification>
@@ -53,18 +61,19 @@
                         <gtin>10036016500279</gtin>
                         <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="SUPPLIER_ASSIGNED">45678</additionalTradeItemIdentification>
                         <contextIdentification>1</contextIdentification>
-                        <isTradeItemABaseUnit>true</isTradeItemABaseUnit>
+                        <isTradeItemABaseUnit>false</isTradeItemABaseUnit>
                         <isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
                         <isTradeItemADespatchUnit>false</isTradeItemADespatchUnit>
                         <isTradeItemAnInvoiceUnit>false</isTradeItemAnInvoiceUnit>
                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                        <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
+                        <tradeItemUnitDescriptorCode>CASE</tradeItemUnitDescriptorCode>
                         <informationProviderOfTradeItem>
                             <gln>1100001011292</gln>
                             <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                         </informationProviderOfTradeItem>
                         <gdsnTradeItemClassification>
                             <gpcCategoryCode>99999999</gpcCategoryCode>
+                            <gpcCategoryName>Fruit - Unprepared/Unprocessed</gpcCategoryName>
                         </gdsnTradeItemClassification>
                         <nextLowerLevelTradeItemInformation>
                             <quantityOfChildren>2</quantityOfChildren>
@@ -85,7 +94,42 @@
                         </targetMarket>
                         <tradeItemInformation>
                             <extension>
-                                <food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
+                                <dpi:deliveryPurchasingInformationModule>
+                                    <deliveryPurchasingInformation>
+                                        <firstShipDateTime>2015-08-01T00:00:00+01:00</firstShipDateTime>
+                                        <isTradeItemReorderable>false</isTradeItemReorderable>
+                                        <isTradeItemSizeBasedPricing>false</isTradeItemSizeBasedPricing>
+                                        <startAvailabilityDateTime>2015-05-15T16:24:54.278805+01:00</startAvailabilityDateTime>
+                                    </deliveryPurchasingInformation>
+                                </dpi:deliveryPurchasingInformationModule>
+                                <tid:tradeItemDescriptionModule>
+                                    <tradeItemDescriptionInformation>
+                                        <descriptionShort languageCode="en" codeListVersion="1">short desc</descriptionShort>
+                                        <functionalName languageCode="en" codeListVersion="1">func name</functionalName>
+                                        <tradeItemDescription languageCode="en" codeListVersion="1">ti description</tradeItemDescription>
+                                        <brandNameInformation>
+                                            <brandName>SuperBrand</brandName>
+                                        </brandNameInformation>
+                                    </tradeItemDescriptionInformation>
+                                </tid:tradeItemDescriptionModule>
+                                <tim:tradeItemMeasurementsModule>
+                                    <tradeItemMeasurements>
+                                        <depth measurementUnitCode="CM" codeListVersion="1">25</depth>
+                                        <height measurementUnitCode="CM" codeListVersion="1">10</height>
+                                        <netContent measurementUnitCode="LB" codeListVersion="1">100</netContent>
+                                        <width measurementUnitCode="CM" codeListVersion="1">25</width>
+                                        <tradeItemWeight>
+                                            <grossWeight measurementUnitCode="LB" codeListVersion="1">100</grossWeight>
+                                            <netWeight measurementUnitCode="LB" codeListVersion="1">100</netWeight>
+                                        </tradeItemWeight>
+                                    </tradeItemMeasurements>
+                                </tim:tradeItemMeasurementsModule>
+                                <vti:variableTradeItemInformationModule>
+                                    <variableTradeItemInformation>
+                                        <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+                                    </variableTradeItemInformation>
+                                </vti:variableTradeItemInformationModule>
+                                <fbi:foodAndBeverageIngredientModule>
                                     <additiveInformation>
                                         <additiveName>Sodium Nitrate</additiveName>
                                         <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
@@ -95,11 +139,20 @@
                                         <ingredientContentPercentage>80.00</ingredientContentPercentage>
                                         <ingredientName languageCode="en">Milk</ingredientName>
                                     </foodAndBeverageIngredient>
-                                </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
+                                    <foodAndBeverageIngredient>
+                                        <ingredientSequence>2</ingredientSequence>
+                                        <ingredientContentPercentage>20.00</ingredientContentPercentage>
+                                        <ingredientName languageCode="en">Sugar</ingredientName>
+                                    </foodAndBeverageIngredient>
+                                </fbi:foodAndBeverageIngredientModule>
                             </extension>
                         </tradeItemInformation>
                         <tradeItemSynchronisationDates>
                             <lastChangeDateTime>2015-02-20T12:01:01</lastChangeDateTime>
+                            <!--<cancelledDateTime>2001-12-17T09:30:47Z</cancelledDateTime>-->
+                            <communityVisibilityDateTime>2001-12-17T09:30:47Z</communityVisibilityDateTime>
+                            <discontinuedDateTime>2001-12-17T09:30:47Z</discontinuedDateTime>
+                            <effectiveDateTime>2014-10-31T12:35:01.000+08:00</effectiveDateTime>
                         </tradeItemSynchronisationDates>
                     </tradeItem>
                     <catalogueItemChildItemLink>
@@ -129,8 +182,16 @@
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
                                     <targetMarketSubdivisionCode>us-ca</targetMarketSubdivisionCode>
                                 </targetMarket>
+                                <tradeItemInformation>
+                                    <extension>
+                                    </extension>
+                                </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
                                     <lastChangeDateTime>2015-02-20T12:01:01</lastChangeDateTime>
+                                    <!--<cancelledDateTime>2001-12-17T09:30:47Z</cancelledDateTime>-->
+                                    <communityVisibilityDateTime>2001-12-17T09:30:47Z</communityVisibilityDateTime>
+                                    <discontinuedDateTime>2001-12-17T09:30:47Z</discontinuedDateTime>
+                                    <effectiveDateTime>2014-10-31T12:35:01.000+08:00</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>
@@ -161,14 +222,22 @@
                                 <targetMarket>
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
                                 </targetMarket>
+                                <tradeItemInformation>
+                                    <extension>
+                                    </extension>
+                                </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
                                     <lastChangeDateTime>2015-02-20T12:01:01</lastChangeDateTime>
+                                    <!--<cancelledDateTime>2001-12-17T09:30:47Z</cancelledDateTime>-->
+                                    <communityVisibilityDateTime>2001-12-17T09:30:47Z</communityVisibilityDateTime>
+                                    <discontinuedDateTime>2001-12-17T09:30:47Z</discontinuedDateTime>
+                                    <effectiveDateTime>2014-10-31T12:35:01.000+08:00</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>
                     </catalogueItemChildItemLink>
                 </catalogueItem>
-            </catalogue_item_notification:catalogueItemNotification>
+            </cin:catalogueItemNotification>
         </documentCommand>
     </transaction>
-</catalogue_item_notification:catalogueItemNotificationMessage>
+</cin:catalogueItemNotificationMessage>

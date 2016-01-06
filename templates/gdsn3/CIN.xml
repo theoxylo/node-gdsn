@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalogue_item_notification:catalogueItemNotificationMessage xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd">
+<cin:catalogueItemNotificationMessage 
+  xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" 
+  xmlns:cin="urn:gs1:gdsn:catalogue_item_notification:xsd:3" 
+  xmlns:dpi="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" 
+  xmlns:fbi="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" 
+  xmlns:tim="urn:gs1:gdsn:trade_item_measurements:xsd:3" 
+  xmlns:tid="urn:gs1:gdsn:trade_item_description:xsd:3" 
+  xmlns:vti="urn:gs1:gdsn:variable_trade_item_information:xsd:3" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="
+http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd
+urn:gs1:gdsn:catalogue_item_notification:xsd:3     http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd
+urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd
+urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3    http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd
+urn:gs1:gdsn:trade_item_measurements:xsd:3         http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd
+urn:gs1:gdsn:trade_item_description:xsd:3          http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd
+urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd
+">
 <sh:StandardBusinessDocumentHeader>
 <sh:HeaderVersion>1.0</sh:HeaderVersion>
 <sh:Sender><sh:Identifier Authority="GS1">TOKEN</sh:Identifier></sh:Sender>
@@ -25,7 +42,7 @@
 <contentOwner><gln>TOKEN</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
-<catalogue_item_notification:catalogueItemNotification>
+<cin:catalogueItemNotification>
 <creationDateTime>TOKEN</creationDateTime>
 <documentStatusCode>TOKEN</documentStatusCode>
 <catalogueItemNotificationIdentification>
@@ -45,7 +62,7 @@
     <!--catalogueItem-->
   </catalogueItemChildItemLink>
 </catalogueItem>
-</catalogue_item_notification:catalogueItemNotification>
+</cin:catalogueItemNotification>
 </documentCommand>
 </transaction>
-</catalogue_item_notification:catalogueItemNotificationMessage>
+</cin:catalogueItemNotificationMessage>

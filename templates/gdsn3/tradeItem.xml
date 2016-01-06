@@ -1,6 +1,9 @@
 <tradeItem>
 
     <gtin>TOKEN</gtin>
+
+    <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="TOKEN">TOKEN</additionalTradeItemIdentification>
+
     <isTradeItemABaseUnit>TOKEN</isTradeItemABaseUnit>
     <isTradeItemAConsumerUnit>TOKEN</isTradeItemAConsumerUnit>
     <isTradeItemADespatchUnit>TOKEN</isTradeItemADespatchUnit>
@@ -10,11 +13,12 @@
 
     <informationProviderOfTradeItem>
         <gln>TOKEN</gln>
-        <partyName>TOKEN</partyName>
+        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
 
     <gdsnTradeItemClassification>
         <gpcCategoryCode>TOKEN</gpcCategoryCode>
+        <gpcCategoryName>TOKEN</gpcCategoryName>
     </gdsnTradeItemClassification>
 
     <nextLowerLevelTradeItemInformation>
@@ -34,13 +38,73 @@
 
     <tradeItemInformation>
         <extension>
-            <comingSoon>hello</comingSoon>
+
+            <dpi:deliveryPurchasingInformationModule>
+                <deliveryPurchasingInformation>
+                    <firstShipDateTime>2015-08-01T00:00:00+01:00</firstShipDateTime>
+                    <isTradeItemReorderable>false</isTradeItemReorderable>
+                    <isTradeItemSizeBasedPricing>false</isTradeItemSizeBasedPricing>
+                    <startAvailabilityDateTime>2015-05-15T16:24:54.278805+01:00</startAvailabilityDateTime>
+                </deliveryPurchasingInformation>
+            </dpi:deliveryPurchasingInformationModule>
+
+            <tid:tradeItemDescriptionModule>
+                <tradeItemDescriptionInformation>
+                    <descriptionShort languageCode="en" codeListVersion="1">short desc</descriptionShort>
+                    <functionalName languageCode="en" codeListVersion="1">func name</functionalName>
+                    <tradeItemDescription languageCode="en" codeListVersion="1">ti description</tradeItemDescription>
+                    <brandNameInformation>
+                        <brandName>TOKEN</brandName>
+                    </brandNameInformation>
+                </tradeItemDescriptionInformation>
+            </tid:tradeItemDescriptionModule>
+
+            <tim:tradeItemMeasurementsModule>
+                <tradeItemMeasurements>
+                    <depth measurementUnitCode="CM" codeListVersion="1">25</depth>
+                    <height measurementUnitCode="CM" codeListVersion="1">10</height>
+                    <netContent measurementUnitCode="LB" codeListVersion="1">100</netContent>
+                    <width measurementUnitCode="CM" codeListVersion="1">25</width>
+                    <tradeItemWeight>
+                        <grossWeight measurementUnitCode="LB" codeListVersion="1">100</grossWeight>
+                        <netWeight measurementUnitCode="LB" codeListVersion="1">100</netWeight>
+                    </tradeItemWeight>
+                </tradeItemMeasurements>
+            </tim:tradeItemMeasurementsModule>
+
+            <vti:variableTradeItemInformationModule>
+                <variableTradeItemInformation>
+                    <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+                </variableTradeItemInformation>
+            </vti:variableTradeItemInformationModule>
+
+            <fbi:foodAndBeverageIngredientModule>
+                <additiveInformation>
+                    <additiveName>Sodium Nitrate</additiveName>
+                    <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
+                </additiveInformation>
+                <foodAndBeverageIngredient>
+                    <ingredientSequence>1</ingredientSequence>
+                    <ingredientContentPercentage>80.00</ingredientContentPercentage>
+                    <ingredientName languageCode="en">Milk</ingredientName>
+                </foodAndBeverageIngredient>
+                <foodAndBeverageIngredient>
+                    <ingredientSequence>2</ingredientSequence>
+                    <ingredientContentPercentage>20.00</ingredientContentPercentage>
+                    <ingredientName languageCode="en">Sugar</ingredientName>
+                </foodAndBeverageIngredient>
+            </fbi:foodAndBeverageIngredientModule>
+
         </extension>
     </tradeItemInformation>
 
     <tradeItemSynchronisationDates>
         <lastChangeDateTime>TOKEN</lastChangeDateTime>
+        <cancelledDateTime>TOKEN</cancelledDateTime>
+        <communityVisibilityDateTime>TOKEN</communityVisibilityDateTime>
+        <discontinuedDateTime>TOKEN</discontinuedDateTime>
         <effectiveDateTime>TOKEN</effectiveDateTime>
+        <publicationDateTime>TOKEN</publicationDateTime>
     </tradeItemSynchronisationDates>
 
 </tradeItem>

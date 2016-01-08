@@ -39,27 +39,24 @@
     <tradeItemInformation>
         <extension>
 
-            <dpi:deliveryPurchasingInformationModule>
+            <delivery_purchasing_information:deliveryPurchasingInformationModule>
                 <deliveryPurchasingInformation>
-                    <firstShipDateTime>2015-08-01T00:00:00+01:00</firstShipDateTime>
-                    <isTradeItemReorderable>false</isTradeItemReorderable>
-                    <isTradeItemSizeBasedPricing>false</isTradeItemSizeBasedPricing>
-                    <startAvailabilityDateTime>2015-05-15T16:24:54.278805+01:00</startAvailabilityDateTime>
+                    <firstShipDateTime>TOKEN</firstShipDateTime>
                 </deliveryPurchasingInformation>
-            </dpi:deliveryPurchasingInformationModule>
+            </delivery_purchasing_information:deliveryPurchasingInformationModule>
 
-            <tid:tradeItemDescriptionModule>
+            <trade_item_description:tradeItemDescriptionModule>
                 <tradeItemDescriptionInformation>
-                    <descriptionShort languageCode="en" codeListVersion="1">short desc</descriptionShort>
-                    <functionalName languageCode="en" codeListVersion="1">func name</functionalName>
-                    <tradeItemDescription languageCode="en" codeListVersion="1">ti description</tradeItemDescription>
+                    <descriptionShort languageCode="en" codeListVersion="1">TOKEN</descriptionShort>
+                    <functionalName languageCode="en" codeListVersion="1">TOKEN</functionalName>
+                    <tradeItemDescription languageCode="en" codeListVersion="1">TOKEN</tradeItemDescription>
                     <brandNameInformation>
                         <brandName>TOKEN</brandName>
                     </brandNameInformation>
                 </tradeItemDescriptionInformation>
-            </tid:tradeItemDescriptionModule>
+            </trade_item_description:tradeItemDescriptionModule>
 
-            <tim:tradeItemMeasurementsModule>
+            <trade_item_measurements:tradeItemMeasurementsModule>
                 <tradeItemMeasurements>
                     <depth measurementUnitCode="CM" codeListVersion="1">25</depth>
                     <height measurementUnitCode="CM" codeListVersion="1">10</height>
@@ -70,15 +67,15 @@
                         <netWeight measurementUnitCode="LB" codeListVersion="1">100</netWeight>
                     </tradeItemWeight>
                 </tradeItemMeasurements>
-            </tim:tradeItemMeasurementsModule>
+            </trade_item_measurements:tradeItemMeasurementsModule>
 
-            <vti:variableTradeItemInformationModule>
+            <variable_trade_item_information:variableTradeItemInformationModule>
                 <variableTradeItemInformation>
                     <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
                 </variableTradeItemInformation>
-            </vti:variableTradeItemInformationModule>
+            </variable_trade_item_information:variableTradeItemInformationModule>
 
-            <fbi:foodAndBeverageIngredientModule>
+            <food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                 <additiveInformation>
                     <additiveName>Sodium Nitrate</additiveName>
                     <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
@@ -93,7 +90,7 @@
                     <ingredientContentPercentage>20.00</ingredientContentPercentage>
                     <ingredientName languageCode="en">Sugar</ingredientName>
                 </foodAndBeverageIngredient>
-            </fbi:foodAndBeverageIngredientModule>
+            </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
 
         </extension>
     </tradeItemInformation>

@@ -51,7 +51,7 @@ Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, 
   catch (err) {
     console.log(err)
   }
-  console.log('created new cin with lenght ' + cin.length)
+  console.log('created new CIN XML with length ' + cin.length)
   return cin
 }
 

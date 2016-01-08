@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cin:catalogueItemNotificationMessage 
+<catalogue_item_notification:catalogueItemNotificationMessage 
   xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" 
-  xmlns:cin="urn:gs1:gdsn:catalogue_item_notification:xsd:3" 
-  xmlns:dpi="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" 
-  xmlns:fbi="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" 
-  xmlns:tim="urn:gs1:gdsn:trade_item_measurements:xsd:3" 
-  xmlns:tid="urn:gs1:gdsn:trade_item_description:xsd:3" 
-  xmlns:vti="urn:gs1:gdsn:variable_trade_item_information:xsd:3" 
+  xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" 
+  xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" 
+  xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" 
+  xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" 
+  xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" 
+  xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="
 http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd
@@ -42,7 +42,7 @@ urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.
 <contentOwner><gln>TOKEN</gln></contentOwner>
 </documentCommandIdentification>
 </documentCommandHeader>
-<cin:catalogueItemNotification>
+<catalogue_item_notification:catalogueItemNotification>
 <creationDateTime>TOKEN</creationDateTime>
 <documentStatusCode>TOKEN</documentStatusCode>
 <catalogueItemNotificationIdentification>
@@ -62,7 +62,7 @@ urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.
     <!--catalogueItem-->
   </catalogueItemChildItemLink>
 </catalogueItem>
-</cin:catalogueItemNotification>
+</catalogue_item_notification:catalogueItemNotification>
 </documentCommand>
 </transaction>
-</cin:catalogueItemNotificationMessage>
+</catalogue_item_notification:catalogueItemNotificationMessage>

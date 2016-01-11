@@ -13,6 +13,7 @@
 
     <informationProviderOfTradeItem>
         <gln>TOKEN</gln>
+        <partyName>TOKEN</partyName>
         <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
 
@@ -34,6 +35,7 @@
 
     <targetMarket>
         <targetMarketCountryCode>TOKEN</targetMarketCountryCode>
+        <targetMarketSubdivisionCode>TOKEN</targetMarketSubdivisionCode>
     </targetMarket>
 
     <tradeItemInformation>

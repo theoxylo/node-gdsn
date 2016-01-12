@@ -20,6 +20,19 @@
     <gdsnTradeItemClassification>
         <gpcCategoryCode>TOKEN</gpcCategoryCode>
         <gpcCategoryName>TOKEN</gpcCategoryName>
+        <gDSNTradeItemClassificationAttribute>
+            <gpcAttributeTypeCode>TOKEN</gpcAttributeTypeCode>
+            <gpcAttributeValueCode>TOKEN</gpcAttributeValueCode>
+            <!--
+            <gpcAttributeTypeDefinition>TOKEN</gpcAttributeTypeDefinition>
+            <gpcAttributeTypeName>TOKEN</gpcAttributeTypeName>
+            <gpcAttributeValueName>TOKEN</gpcAttributeValueName>
+            -->
+        </gDSNTradeItemClassificationAttribute>
+        <additionalTradeItemClassification>
+            <additionalTradeItemClassificationSystemCode>TOKEN</additionalTradeItemClassificationSystemCode>
+            <additionalTradeItemClassificationValue><additionalTradeItemClassificationCodeValue>TOKEN</additionalTradeItemClassificationCodeValue></additionalTradeItemClassificationValue>
+        </additionalTradeItemClassification>
     </gdsnTradeItemClassification>
 
     <nextLowerLevelTradeItemInformation>
@@ -49,9 +62,9 @@
 
             <trade_item_description:tradeItemDescriptionModule>
                 <tradeItemDescriptionInformation>
-                    <descriptionShort languageCode="en" codeListVersion="1">TOKEN</descriptionShort>
-                    <functionalName languageCode="en" codeListVersion="1">TOKEN</functionalName>
-                    <tradeItemDescription languageCode="en" codeListVersion="1">TOKEN</tradeItemDescription>
+                    <!--descriptionShort-->
+                    <!--functionalName-->
+                    <!--invoiceName-->
                     <brandNameInformation>
                         <brandName>TOKEN</brandName>
                     </brandNameInformation>

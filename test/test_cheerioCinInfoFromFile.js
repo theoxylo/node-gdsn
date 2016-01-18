@@ -10,10 +10,7 @@ test('cheerioCinInfoFromFile', function (t) {
     , outbox_dir: __dirname + '/outbox'
   })
 
-  var filename = __dirname + '../../../test/cin_test_large_28mb.xml'
-  //var filename = __dirname + '/cin_from_other_dp.xml'
-  //var filename = __dirname + '/cin_from_other_dp_LARGE.xml'
-  //var filename = __dirname + '/cin_from_other_dp_HUGE.xml'
+  var filename = __dirname + '/gdsn2/cin_from_other_dp.xml'
 
   fs.readFile(filename, 'utf8', function (err, content) {
     if (err) throw err

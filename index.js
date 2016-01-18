@@ -43,21 +43,26 @@ var Gdsn = module.exports = function (x_config) {
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
   var cin = ''
   try {
-    if (items[0].tradeItem.gtin || config.cin_31_only) // 3.1 has short gtin xpath
+    if (items[0].tradeItem.gtin || config.cin_31_only) {
+      log('generating 3.1 CIN for item count ' + (items && items.length))
       cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
-    else
+    }
+    else {
+      log('generating 2.8 CIN for item count ' + (items && items.length))
       cin = this.cin_builder_28(items, receiver, command, reload, docStatus, sender)
+    }
   }
-  catch (err) {
-    console.log(err)
+  catch (err) { // eg empty or null items array, malformed tradeItemi
+    log(err)
   }
-  console.log('created new CIN XML with length ' + cin.length)
+  log('created new CIN XML with length ' + cin.length)
   return cin
 }
 
 Gdsn.prototype.get_msg_info = function (xml) {
   log('gdsn get_msg_info called with xml length ' + xml.length)
   return new MessageInfo(Gdsn.trim_xml(xml), config) 
+  //return new MessageInfo(Gdsn.trim_xml(Gdsn.clean_xml(xml)), config) 
 }
 
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
@@ -104,7 +109,7 @@ Gdsn.validateGln = Gdsn.prototype.validateGln = function (gln) {
   return checkDigit == numbers[12]
 }
 
-Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
+Gdsn.validate_gtin = Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
   if (!gtin || gtin.length != 14) return false
 
   var digits = gtin.split('')
@@ -121,16 +126,8 @@ Gdsn.validateGtin = Gdsn.prototype.validateGtin = function (gtin) {
   if (checkDigit) {
       checkDigit = 10 - checkDigit
   }
-  //log('gtin check-digit: ' + checkDigit)
   return checkDigit == numbers[13]
 }
-
-
-//// new cheerio dom approach, like jquery ////
-// compare: 
-// cheerio: var type = $('DocumentIdentification Type').text()
-// xpath:   var type = this.getNodeData($msg, '//*[local-name()="DocumentIdentification"]/*[local-name()="Type"]')
-// however, the cheerio version must not have namespace prefixes! so we clean the xml first
 
 Gdsn.prototype.log_msg_info = function (msg) {
   log('msg_id   : ' + msg.msg_id)

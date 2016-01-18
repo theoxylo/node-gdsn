@@ -7,7 +7,7 @@ test('getTradeItemsFromFile', function (t) {
 
   var gdsn   = new Gdsn()
 
-  var filename = __dirname + '/cin_from_other_dp.xml'
+  var filename = __dirname + '/gdsn2/cin_from_other_dp.xml'
   var is = fs.createReadStream(filename, {encoding: 'utf8'})
   var items = []
 

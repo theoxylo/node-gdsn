@@ -7,9 +7,7 @@ test('getPartiesFromFile', function (t) {
 
   var gdsn   = new Gdsn()
 
-  var filename = __dirname + '/rpdd_28_small.xml'
-  //var filename = __dirname + '/rpdd_28_med.xml'
-  //var filename = __dirname + '/rpdd_28_HUGE.xml'
+  var filename = __dirname + '/gdsn2/rpdd_28_small.xml'
 
   var start = Date.now()
   console.log('start file read at ' + start + ' ms')

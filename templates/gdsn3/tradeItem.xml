@@ -62,11 +62,18 @@
 
             <trade_item_description:tradeItemDescriptionModule>
                 <tradeItemDescriptionInformation>
+                    <additionalTradeItemDescription/>
                     <descriptionShort/>
                     <functionalName/>
                     <invoiceName/>
+                    <labelDescription/>
+                    <productRange/>
+                    <tradeItemDescription/>
                     <brandNameInformation>
-                        <brandName>TOKEN</brandName>
+                        <brandName/>
+                        <languageSpecificBrandName/>
+                        <languageSpecificSubbrandName/>
+                        <subBrand/>
                     </brandNameInformation>
                 </tradeItemDescriptionInformation>
             </trade_item_description:tradeItemDescriptionModule>

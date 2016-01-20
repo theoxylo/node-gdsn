@@ -1,6 +1,6 @@
 {
   "name": "gdsn",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "GDSN utility library for Node.js",
   "engines": {
     "node": ">=0.10.26"

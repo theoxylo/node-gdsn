@@ -210,7 +210,6 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOw
   // remove trx success/error and start with message exception
   var $trx_resp = $('gS1Response > transactionResponse').remove()
 
-  //if (req_msg_info.status == 'ERROR' || !req_msg_info.trx || !req_msg_info.trx.length) { // populate simple message exception response
   if (err_msg) {
     $('messageException > gS1Error > errorDateTime').text(new Date().toISOString())
     $('messageException > gS1Error > errorDescription').text(err_msg)
@@ -528,7 +527,10 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
   $('creationDateTime').text(now_iso)
   $('catalogueItemConfirmationIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
 
-  $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(tp_cic.status)
+  var state = tp_cic.status
+  if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED' // 3.1: no more cic 'ACCEPTED'
+  $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(state)
+  
   $('catalogueItemConfirmationState > recipientGLN').text(tp_cic.recipient)
   $('catalogueItemConfirmationState > recipientDataPool').text(config.homeDataPoolGln)
 
@@ -542,8 +544,6 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
     $('catalogueItemReference > targetMarketSubdivisionCode').remove()
   }
 
-
-  //if (tp_cic.status == 'REJECTED') { // || tp_cic.status == 'REVIEW') {
   var cicsd = $('catalogueItemConfirmationStatusDetail')
   if (tp_cic.confirm_code && tp_cic.confirm_desc) {
     $('confirmationStatusCatalogueItem > dataSource', cicsd).text(tp_cic.provider)

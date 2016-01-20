@@ -43,7 +43,7 @@ var Gdsn = module.exports = function (x_config) {
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
   var cin = ''
   try {
-    if (items[0].tradeItem.gtin || config.cin_31_only) {
+    if (!items[0].tradeItem /* not parsed */ || items[0].tradeItem.gtin || config.cin_31_only) {
       log('generating 3.1 CIN for item count ' + (items && items.length))
       cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
     }

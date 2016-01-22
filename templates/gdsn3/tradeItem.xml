@@ -1,19 +1,19 @@
 <tradeItem>
 
-    <gtin>TOKEN</gtin>
+    <gtin/>
 
-    <additionalTradeItemIdentification additionalTradeItemIdentificationTypeCode="TOKEN">TOKEN</additionalTradeItemIdentification>
+    <additionalTradeItemIdentification/>
 
-    <isTradeItemABaseUnit>TOKEN</isTradeItemABaseUnit>
-    <isTradeItemAConsumerUnit>TOKEN</isTradeItemAConsumerUnit>
-    <isTradeItemADespatchUnit>TOKEN</isTradeItemADespatchUnit>
-    <isTradeItemAnInvoiceUnit>TOKEN</isTradeItemAnInvoiceUnit>
-    <isTradeItemAnOrderableUnit>TOKEN</isTradeItemAnOrderableUnit>
-    <tradeItemUnitDescriptorCode>TOKEN</tradeItemUnitDescriptorCode>
+    <isTradeItemABaseUnit/>
+    <isTradeItemAConsumerUnit/>
+    <isTradeItemADespatchUnit/>
+    <isTradeItemAnInvoiceUnit/>
+    <isTradeItemAnOrderableUnit/>
+    <tradeItemUnitDescriptorCode/>
 
     <informationProviderOfTradeItem>
-        <gln>TOKEN</gln>
-        <partyName>TOKEN</partyName>
+        <gln/>
+        <partyName/>
         <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
 
@@ -36,27 +36,33 @@
     </gdsnTradeItemClassification>
 
     <nextLowerLevelTradeItemInformation>
-        <quantityOfChildren>TOKEN</quantityOfChildren>
-        <totalQuantityOfNextLowerLevelTradeItem>TOKEN</totalQuantityOfNextLowerLevelTradeItem>
+        <quantityOfChildren/>
+        <totalQuantityOfNextLowerLevelTradeItem/>
 
         <childTradeItem>
-            <gtin>TOKEN</gtin>
-            <quantityOfNextLowerLevelTradeItem>TOKEN</quantityOfNextLowerLevelTradeItem>
+            <gtin/>
+            <quantityOfNextLowerLevelTradeItem/>
         </childTradeItem>
 
     </nextLowerLevelTradeItemInformation>
 
     <targetMarket>
-        <targetMarketCountryCode>TOKEN</targetMarketCountryCode>
-        <targetMarketSubdivisionCode>TOKEN</targetMarketSubdivisionCode>
+        <targetMarketCountryCode/>
+        <targetMarketSubdivisionCode/>
     </targetMarket>
 
+    <!-- zero to many, repeated for each variant -->
     <tradeItemInformation>
+
+        <productionVariantDescription/>
+        <productionVariantEffectiveDateTime/>
+        <!--tradeItemComponents/-->
+        
         <extension>
 
             <delivery_purchasing_information:deliveryPurchasingInformationModule>
                 <deliveryPurchasingInformation>
-                    <firstShipDateTime>TOKEN</firstShipDateTime>
+                    <firstShipDateTime/>
                 </deliveryPurchasingInformation>
             </delivery_purchasing_information:deliveryPurchasingInformationModule>
 
@@ -118,9 +124,12 @@
             </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
 
         </extension>
+
+        <avpList/>
+
     </tradeItemInformation>
 
-    <tradeItemSynchronisationDates>
+    <tradeItemSynchronisationDates><!-- one and only one -->
         <lastChangeDateTime>TOKEN</lastChangeDateTime>
         <cancelledDateTime>TOKEN</cancelledDateTime>
         <communityVisibilityDateTime>TOKEN</communityVisibilityDateTime>

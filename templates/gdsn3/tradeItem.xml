@@ -62,7 +62,26 @@
 
             <delivery_purchasing_information:deliveryPurchasingInformationModule>
                 <deliveryPurchasingInformation>
+                    <agreedMaximumBuyingQuantity/>
+                    <agreedMinimumBuyingQuantity/>
+                    <consumerFirstAvailabilityDateTime/>
                     <firstShipDateTime/>
+                    <endAvailabilityDateTime/>
+                    <endDateTimeOfExclusivity/>
+                    <endMaximumBuyingQuantityDateTime/>
+                    <endMinimumBuyingQuantityDateTime/>
+                    <firstOrderDateTime/>
+                    <lastOrderDateTime/>
+                    <lastShipDateTime/>
+                    <orderQuantityMaximum/>
+                    <orderQuantityMinimum/>
+                    <orderQuantityMultiple/>
+                    <startAvailabilityDateTime/>
+                    <startDateMaximumBuyingQuantity/>
+                    <startDateMinimumBuyingQuantity/>
+                    <orderableReturnableInformation>
+                        <isNonSoldTradeItemReturnable/>
+                    </orderableReturnableInformation>
                 </deliveryPurchasingInformation>
             </delivery_purchasing_information:deliveryPurchasingInformationModule>
 

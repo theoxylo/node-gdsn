@@ -125,6 +125,15 @@
                 </variableTradeItemInformation>
             </variable_trade_item_information:variableTradeItemInformationModule>
 
+            <allergen_information:allergenInformationModule>
+                <allergenRelatedInformation>
+                    <allergenSpecificationAgency/>
+                    <allergenSpecificationName/>
+                    <allergenStatement/>
+                    <allergen/>
+                </allergenRelatedInformation>
+            </allergen_information:allergenInformationModule>
+
             <food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                 <additiveInformation>
                     <additiveName>Sodium Nitrate</additiveName>

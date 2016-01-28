@@ -150,15 +150,19 @@ Gdsn.prototype.log_msg_info = function (msg) {
 
 Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates = {}
-  this.templates.response    = fs.readFileSync(path + '/gdsn3/GS1Response.xml')
-  this.templates.bpr_to_gr   = fs.readFileSync(path + '/gdsn3/BPR.xml')
-  this.templates.cis_to_gr   = fs.readFileSync(path + '/gdsn3/CIS.xml')
-  this.templates.rfcin_to_gr = fs.readFileSync(path + '/gdsn3/RFCIN.xml')
-  this.templates.rci_to_gr_3 = fs.readFileSync(path + '/gdsn3/RCI.xml')
-  this.templates.cin_31      = fs.readFileSync(path + '/gdsn3/CIN.xml')
-  this.templates.ti_31       = fs.readFileSync(path + '/gdsn3/tradeItem.xml')
-  this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml')
-  this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml')
+  var options = {encoding: 'utf8'}
+  this.templates.response    = fs.readFileSync(path + '/gdsn3/GS1Response.xml', options)
+  this.templates.bpr_to_gr   = fs.readFileSync(path + '/gdsn3/BPR.xml',         options)
+  this.templates.cis_to_gr   = fs.readFileSync(path + '/gdsn3/CIS.xml',         options)
+  this.templates.rfcin_to_gr = fs.readFileSync(path + '/gdsn3/RFCIN.xml',       options)
+  this.templates.rci_to_gr_3 = fs.readFileSync(path + '/gdsn3/RCI.xml',         options)
+  this.templates.cin_31      = fs.readFileSync(path + '/gdsn3/CIN.xml',         options)
+  this.templates.ti_31       = fs.readFileSync(path + '/gdsn3/tradeItem.xml',   options)
+  this.templates.ext_aim     = fs.readFileSync(path + '/gdsn3/EXT_AIM.xml',     options)
+  this.templates.ext_diet    = fs.readFileSync(path + '/gdsn3/EXT_DIET.xml',    options)
+  this.templates.ext_fbim    = fs.readFileSync(path + '/gdsn3/EXT_FBIM.xml',    options)
+  this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml',         options)
+  this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml',        options)
 
   // legacy 2.8 support
   this.templates.cin_28      = fs.readFileSync(path + '/gdsn2/CIN.xml')

@@ -18,20 +18,20 @@
     </informationProviderOfTradeItem>
 
     <gdsnTradeItemClassification>
-        <gpcCategoryCode>TOKEN</gpcCategoryCode>
-        <gpcCategoryName>TOKEN</gpcCategoryName>
+        <gpcCategoryCode/>
+        <gpcCategoryName/>
         <gDSNTradeItemClassificationAttribute>
-            <gpcAttributeTypeCode>TOKEN</gpcAttributeTypeCode>
-            <gpcAttributeValueCode>TOKEN</gpcAttributeValueCode>
+            <gpcAttributeTypeCode/>
+            <gpcAttributeValueCode/>
             <!--
-            <gpcAttributeTypeDefinition>TOKEN</gpcAttributeTypeDefinition>
-            <gpcAttributeTypeName>TOKEN</gpcAttributeTypeName>
-            <gpcAttributeValueName>TOKEN</gpcAttributeValueName>
+            <gpcAttributeTypeDefinition/>
+            <gpcAttributeTypeName/>
+            <gpcAttributeValueName/>
             -->
         </gDSNTradeItemClassificationAttribute>
         <additionalTradeItemClassification>
-            <additionalTradeItemClassificationSystemCode>TOKEN</additionalTradeItemClassificationSystemCode>
-            <additionalTradeItemClassificationValue><additionalTradeItemClassificationCodeValue>TOKEN</additionalTradeItemClassificationCodeValue></additionalTradeItemClassificationValue>
+            <additionalTradeItemClassificationSystemCode/>
+            <additionalTradeItemClassificationValue><additionalTradeItemClassificationCodeValue/></additionalTradeItemClassificationValue>
         </additionalTradeItemClassification>
     </gdsnTradeItemClassification>
 
@@ -51,14 +51,27 @@
         <targetMarketSubdivisionCode/>
     </targetMarket>
 
-    <!-- zero to many, repeated for each variant -->
     <tradeItemInformation>
 
+        <!-- this first TII will never be a variant, so don't need these 2 elements:
         <productionVariantDescription/>
         <productionVariantEffectiveDateTime/>
+        -->
+
         <!--tradeItemComponents/-->
         
         <extension>
+
+            <!-- now loaded from EXT_AIM.xml:
+            <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
+                <allergenRelatedInformation>
+                    <allergenSpecificationAgency/>
+                    <allergenSpecificationName/>
+                    <allergenStatement/>
+                    <allergen/>
+                </allergenRelatedInformation>
+            </allergen_information:allergenInformationModule>
+            -->
 
             <delivery_purchasing_information:deliveryPurchasingInformationModule>
                 <deliveryPurchasingInformation>
@@ -108,13 +121,13 @@
 
             <trade_item_measurements:tradeItemMeasurementsModule>
                 <tradeItemMeasurements>
-                    <depth measurementUnitCode="CM" codeListVersion="1">25</depth>
-                    <height measurementUnitCode="CM" codeListVersion="1">10</height>
-                    <netContent measurementUnitCode="LB" codeListVersion="1">100</netContent>
-                    <width measurementUnitCode="CM" codeListVersion="1">25</width>
+                    <depth measurementUnitCode/>
+                    <height measurementUnitCode/>
+                    <netContent measurementUnitCode/>
+                    <width measurementUnitCode/>
                     <tradeItemWeight>
-                        <grossWeight measurementUnitCode="LB" codeListVersion="1">100</grossWeight>
-                        <netWeight measurementUnitCode="LB" codeListVersion="1">100</netWeight>
+                        <grossWeight measurementUnitCode/>
+                        <netWeight measurementUnitCode/>
                     </tradeItemWeight>
                 </tradeItemMeasurements>
             </trade_item_measurements:tradeItemMeasurementsModule>
@@ -125,15 +138,9 @@
                 </variableTradeItemInformation>
             </variable_trade_item_information:variableTradeItemInformationModule>
 
-            <allergen_information:allergenInformationModule>
-                <allergenRelatedInformation>
-                    <allergenSpecificationAgency/>
-                    <allergenSpecificationName/>
-                    <allergenStatement/>
-                    <allergen/>
-                </allergenRelatedInformation>
-            </allergen_information:allergenInformationModule>
+            <food_and_beverage_ingredient:foodAndBeverageIngredientModule/>
 
+            <!--
             <food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                 <additiveInformation>
                     <additiveName>Sodium Nitrate</additiveName>
@@ -144,26 +151,23 @@
                     <ingredientContentPercentage>80.00</ingredientContentPercentage>
                     <ingredientName languageCode="en">Milk</ingredientName>
                 </foodAndBeverageIngredient>
-                <foodAndBeverageIngredient>
-                    <ingredientSequence>2</ingredientSequence>
-                    <ingredientContentPercentage>20.00</ingredientContentPercentage>
-                    <ingredientName languageCode="en">Sugar</ingredientName>
-                </foodAndBeverageIngredient>
             </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
+            -->
 
         </extension>
 
         <avpList/>
 
     </tradeItemInformation>
+    <!-- 0..* additional tradeItemInformation variants may follow, repeated for each 2.8 fbi variant: -->
 
-    <tradeItemSynchronisationDates><!-- one and only one -->
-        <lastChangeDateTime>TOKEN</lastChangeDateTime>
-        <cancelledDateTime>TOKEN</cancelledDateTime>
-        <communityVisibilityDateTime>TOKEN</communityVisibilityDateTime>
-        <discontinuedDateTime>TOKEN</discontinuedDateTime>
-        <effectiveDateTime>TOKEN</effectiveDateTime>
-        <publicationDateTime>TOKEN</publicationDateTime>
+    <tradeItemSynchronisationDates>
+        <lastChangeDateTime/>
+        <cancelledDateTime/>
+        <communityVisibilityDateTime/>
+        <discontinuedDateTime/>
+        <effectiveDateTime/>
+        <publicationDateTime/>
     </tradeItemSynchronisationDates>
 
 </tradeItem>

@@ -1,0 +1,16 @@
+<food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
+    <additiveInformation>
+        <additiveName/>
+        <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
+    </additiveInformation>
+    <foodAndBeverageIngredient>
+        <ingredientSequence>1.0</ingredientSequence>
+        <ingredientContentPercentage/>
+        <ingredientName languageCode="en"/>
+    </foodAndBeverageIngredient>
+    <foodAndBeverageIngredient>
+        <ingredientSequence>2.0</ingredientSequence>
+        <ingredientContentPercentage>20.00</ingredientContentPercentage>
+        <ingredientName languageCode="en">Milk</ingredientName>
+    </foodAndBeverageIngredient>
+</food_and_beverage_ingredient:foodAndBeverageIngredientModule>

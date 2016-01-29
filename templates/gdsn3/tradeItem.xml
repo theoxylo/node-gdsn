@@ -62,17 +62,6 @@
         
         <extension>
 
-            <!-- now loaded from EXT_AIM.xml:
-            <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
-                <allergenRelatedInformation>
-                    <allergenSpecificationAgency/>
-                    <allergenSpecificationName/>
-                    <allergenStatement/>
-                    <allergen/>
-                </allergenRelatedInformation>
-            </allergen_information:allergenInformationModule>
-            -->
-
             <delivery_purchasing_information:deliveryPurchasingInformationModule>
                 <deliveryPurchasingInformation>
                     <agreedMaximumBuyingQuantity/>
@@ -137,22 +126,6 @@
                     <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
                 </variableTradeItemInformation>
             </variable_trade_item_information:variableTradeItemInformationModule>
-
-            <food_and_beverage_ingredient:foodAndBeverageIngredientModule/>
-
-            <!--
-            <food_and_beverage_ingredient:foodAndBeverageIngredientModule>
-                <additiveInformation>
-                    <additiveName>Sodium Nitrate</additiveName>
-                    <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
-                </additiveInformation>
-                <foodAndBeverageIngredient>
-                    <ingredientSequence>1</ingredientSequence>
-                    <ingredientContentPercentage>80.00</ingredientContentPercentage>
-                    <ingredientName languageCode="en">Milk</ingredientName>
-                </foodAndBeverageIngredient>
-            </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
-            -->
 
         </extension>
 

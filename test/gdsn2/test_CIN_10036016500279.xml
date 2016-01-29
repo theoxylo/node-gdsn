@@ -1,0 +1,1944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sh:StandardBusinessDocument xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:eanucc="urn:ean.ucc:2" xmlns:food="urn:ean.ucc:align:food_beverage_tobacco:2" xmlns:gdsn="urn:ean.ucc:gdsn:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/2.8/schemas/sbdh/StandardBusinessDocumentHeader.xsd urn:ean.ucc:2 http://www.gdsregistry.org/2.8/schemas/CatalogueItemNotificationProxy.xsd urn:ean.ucc:2 http://www.gdsregistry.org/2.8/schemas/AttributeValuePairExtensionProxy.xsd urn:ean.ucc:2 http://www.gdsregistry.org/2.8/schemas/FoodAndBeverageTradeItemExtensionProxy.xsd ">
+    <sh:StandardBusinessDocumentHeader>
+        <sh:HeaderVersion>1.0</sh:HeaderVersion>
+        <sh:Sender>
+            <sh:Identifier Authority="EAN.UCC">1100001011292</sh:Identifier>
+        </sh:Sender>
+        <sh:Receiver>
+            <sh:Identifier Authority="EAN.UCC">1100001011285</sh:Identifier>
+        </sh:Receiver>
+        <sh:DocumentIdentification>
+            <sh:Standard>EAN.UCC</sh:Standard>
+            <sh:TypeVersion>2.8</sh:TypeVersion>
+            <sh:InstanceIdentifier>CIN_28_10036016500279</sh:InstanceIdentifier>
+            <sh:Type>catalogueItemNotification</sh:Type>
+            <sh:CreationDateAndTime>2016-01-06T01:01:01</sh:CreationDateAndTime>
+        </sh:DocumentIdentification>
+    </sh:StandardBusinessDocumentHeader>
+    <eanucc:message>
+        <entityIdentification>
+            <uniqueCreatorIdentification>CIN_28_10036016500279</uniqueCreatorIdentification>
+            <contentOwner>
+                <gln>1100001011292</gln>
+            </contentOwner>
+        </entityIdentification>
+        <eanucc:transaction>
+            <entityIdentification>
+                <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1</uniqueCreatorIdentification>
+                <contentOwner>
+                    <gln>1100001011292</gln>
+                </contentOwner>
+            </entityIdentification>
+            <command>
+                <eanucc:documentCommand>
+                    <documentCommandHeader type="ADD">
+                        <entityIdentification>
+                            <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1_CMD-1</uniqueCreatorIdentification>
+                            <contentOwner>
+                                <gln>1100001011292</gln>
+                            </contentOwner>
+                        </entityIdentification>
+                    </documentCommandHeader>
+                    <documentCommandOperand>
+                        <gdsn:catalogueItemNotification creationDateTime="2016-01-01T16:21:49.226-08:00" documentStatus="ORIGINAL" isReload="false">
+                            <catalogueItem>
+                                <catalogueItemState state="IN_PROGRESS"/>
+                                <!--catalogueItemState discontinueDate="2016-01-01T00:00:00" state="IN_PROGRESS"/-->
+                                <tradeItem>
+                                    <tradeItemUnitDescriptor>CASE</tradeItemUnitDescriptor>
+                                    <tradeItemIdentification>
+                                        <gtin>10036016500279</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>ABC_12345</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>DEF_6789</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </tradeItemIdentification>
+                                    <nextLowerLevelTradeItemInformation>
+                                        <quantityOfChildren>1</quantityOfChildren>
+                                        <totalQuantityOfNextLowerLevelTradeItem>42</totalQuantityOfNextLowerLevelTradeItem>
+                                        <childTradeItem>
+                                            <quantityofNextLowerLevelTradeItem>42</quantityofNextLowerLevelTradeItem>
+                                            <tradeItemIdentification>
+                                                <gtin>10024951191010</gtin>
+                                            </tradeItemIdentification>
+                                        </childTradeItem>
+                                    </nextLowerLevelTradeItemInformation>
+                                    <tradeItemInformation>
+                                        <informationProviderOfTradeItem>
+                                            <informationProvider>
+                                                <gln>1100001011292</gln>
+                                                <additionalPartyIdentification>
+                                                    <additionalPartyIdentificationValue>001011292</additionalPartyIdentificationValue>
+                                                    <additionalPartyIdentificationType>DUNS</additionalPartyIdentificationType>
+                                                </additionalPartyIdentification>
+                                                <additionalPartyIdentification>
+                                                    <additionalPartyIdentificationValue>1100001011292</additionalPartyIdentificationValue>
+                                                    <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
+                                                </additionalPartyIdentification>
+                                            </informationProvider>
+                                            <nameOfInformationProvider>Provider © ® ½ ¼ ¾ Name 35</nameOfInformationProvider>
+                                        </informationProviderOfTradeItem>
+                                        <targetMarketInformation>
+                                            <targetMarketCountryCode>
+                                                <countryISOCode>840</countryISOCode>
+                                            </targetMarketCountryCode>
+                                            <targetMarketSubdivisionCode>
+                                                <countrySubDivisionISOCode>US-CA</countrySubDivisionISOCode>
+                                            </targetMarketSubdivisionCode>
+                                        </targetMarketInformation>
+                                        <classificationCategoryCode>
+                                            <classificationCategoryCode>10000279</classificationCategoryCode>
+                                            <additionalClassification>
+                                                <additionalClassificationAgencyName>1</additionalClassificationAgencyName>
+                                                <additionalClassificationCategoryCode>234</additionalClassificationCategoryCode>
+                                                <additionalClassificationCategoryDescription>FCC class 234</additionalClassificationCategoryDescription>
+                                            </additionalClassification>
+                                            <additionalClassification>
+                                                <additionalClassificationAgencyName>2</additionalClassificationAgencyName>
+                                                <additionalClassificationCategoryCode>456</additionalClassificationCategoryCode>
+                                                <additionalClassificationCategoryDescription>FCC class 456</additionalClassificationCategoryDescription>
+                                            </additionalClassification>
+                                            <gDSNTradeItemClassificationAttribute>
+                                                <eANUCCClassificationAttributeTypeCode>20000002</eANUCCClassificationAttributeTypeCode>
+                                                <gDSNTradeItemClassificationAttributeValue>
+                                                    <eANUCCClassificationAttributeValueCode>30000564</eANUCCClassificationAttributeValueCode>
+                                                </gDSNTradeItemClassificationAttributeValue>
+                                            </gDSNTradeItemClassificationAttribute>
+                                        </classificationCategoryCode>
+                                        <tradeItemDescriptionInformation>
+                                            <brandName>BestTest2016 © 70</brandName>
+                                            <descriptionShort>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>Short Description © 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>fr</languageISOCode>
+                                                    </language>
+                                                    <shortText>Fr Short Description © 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <shortText>ES Short Description © 35</shortText>
+                                                </description>
+                                            </descriptionShort>
+                                            <functionalName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>fr</languageISOCode>
+                                                    </language>
+                                                    <shortText>French functionalName © 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>Functional © &amp; &amp; &amp; &amp; &amp; &amp; &amp; Name 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <shortText>Spanish functionalName © 35</shortText>
+                                                </description>
+                                            </functionalName>
+                                            <tradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>en</languageISOCode>
+                                                </language>
+                                                <text>English tradeItemDescription © 200</text>
+                                            </tradeItemDescription>
+                                            <tradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>fr</languageISOCode>
+                                                </language>
+                                                <text>French  tradeItemDescription © 200</text>
+                                            </tradeItemDescription>
+                                            <tradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>es</languageISOCode>
+                                                </language>
+                                                <text>Spanish  tradeItemDescription © 200</text>
+                                            </tradeItemDescription>
+                                            <additionalTradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>fr</languageISOCode>
+                                                </language>
+                                                <text>French additionalTradeItemDescription © entre 500</text>
+                                            </additionalTradeItemDescription>
+                                            <additionalTradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>en</languageISOCode>
+                                                </language>
+                                                <text>English additionalTradeItemDescription © now 500</text>
+                                            </additionalTradeItemDescription>
+                                            <additionalTradeItemDescription>
+                                                <language>
+                                                    <languageISOCode>es</languageISOCode>
+                                                </language>
+                                                <text>Spanish additionalTradeItemDescription © ahorra 500</text>
+                                            </additionalTradeItemDescription>
+                                            <invoiceName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>en invoiceName © 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <shortText>es invoiceName © 35</shortText>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>fr</languageISOCode>
+                                                    </language>
+                                                    <shortText>fr invoiceName © 35</shortText>
+                                                </description>
+                                            </invoiceName>
+                                            <productRange>Best Product Range Ever 35</productRange>
+                                            <subBrand>A subbrand of Brand X © 70</subBrand>
+                                            <tradeItemGroupIdentificationCode>GroupID-XXX</tradeItemGroupIdentificationCode>
+                                            <tradeItemGroupIdentificationDescription>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>Group 1 is big</shortText>
+                                                </description>
+                                            </tradeItemGroupIdentificationDescription>
+                                            <tradeItemFormDescription>Form 1</tradeItemFormDescription>
+                                            <variant>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>v1 d1</shortText>
+                                                </description>
+                                            </variant>
+                                            <tradeItemExternalInformation>
+                                                <fileName>my_ti_file.txt</fileName>
+                                                <contentDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>TI Content Description</text>
+                                                </contentDescription>
+                                                <fileFormatDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>TI Format Description</text>
+                                                </fileFormatDescription>
+                                                <fileFormatName>formatTI</fileFormatName>
+                                                <uniformResourceIdentifier>http://example.com/funky-URL &amp; stuff/image.jpg</uniformResourceIdentifier>
+                                                <fileEffectiveEndDateTime>2018-01-01T11:59:58</fileEffectiveEndDateTime>
+                                                <fileEffectiveStartDateTime>2016-01-01T11:59:58</fileEffectiveStartDateTime>
+                                                <typeOfInformation>PRODUCT_IMAGE</typeOfInformation>
+                                            </tradeItemExternalInformation>
+                                            <tradeItemExternalInformation>
+                                                <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
+                                                <typeOfInformation>PRODUCT_LABEL_IMAGE</typeOfInformation>
+                                            </tradeItemExternalInformation>
+                                            <isTradeItemAService>false</isTradeItemAService>
+                                            <isTradeItemReconditioned>NOT_APPLICABLE</isTradeItemReconditioned>
+                                            <languageSpecificBrandName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>English brand name YYY © 70</text>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <text>Spanish brand name YYY © 70</text>
+                                                </description>
+                                            </languageSpecificBrandName>
+                                            <languageSpecificSubBrandName>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <text>Spanish subbrand name YYY © 70</text>
+                                                </description>
+                                                <description>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>English subbrand name YYY © 70</text>
+                                                </description>
+                                            </languageSpecificSubBrandName>
+                                        </tradeItemDescriptionInformation>
+                                        <tradingPartnerNeutralTradeItemInformation>
+                                            <tradeItemUnitIndicator>
+                                                <isTradeItemABaseUnit>false</isTradeItemABaseUnit>
+                                                <isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
+                                                <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
+                                                <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
+                                                <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+                                                <isTradeItemAVariableUnit>true</isTradeItemAVariableUnit>
+                                                <priceByMeasureType>COUNT</priceByMeasureType>
+                                                <variableTradeItemType>PRE_PACKED</variableTradeItemType>
+                                            </tradeItemUnitIndicator>
+                                            <barCodeType>UCC_EAN_128_SYMBOL</barCodeType>
+                                            <brandOwnerOfTradeItem>
+                                                <brandOwner>
+                                                    <gln>1100001011292</gln>
+                                                </brandOwner>
+                                                <nameOfBrandOwner>Brand X ©</nameOfBrandOwner>
+                                            </brandOwnerOfTradeItem>
+                                            <manufacturerOfTradeItem>
+                                                <manufacturer>
+                                                    <gln>1100001011292</gln>
+                                                </manufacturer>
+                                                <nameOfManufacturer>Manufacturer ABC © 70</nameOfManufacturer>
+                                            </manufacturerOfTradeItem>
+                                            <materialSafetyData>
+                                                <materialSafetyDataSheetNumber>123789</materialSafetyDataSheetNumber>
+                                            </materialSafetyData>
+                                            <organicTradeItemCharacteristics>
+                                                <organicClaimAgency>1</organicClaimAgency>
+                                                <organicTradeItemCode>2</organicTradeItemCode>
+                                            </organicTradeItemCharacteristics>
+                                            <packagingMarking>
+                                                <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
+                                                <isPackagingMarkedWithIngredients>false</isPackagingMarkedWithIngredients>
+                                                <offerOnPack>Buy 1 and you could qualify to get 3 more for free!</offerOnPack>
+                                                <packagingMarkedRecyclableScheme>Please bring empty container back to retailer</packagingMarkedRecyclableScheme>
+                                                <packageMarksDietAllergen>LOW_ON_SUGAR</packageMarksDietAllergen>
+                                                <packageMarksEnvironment>RAINFOREST_ALLIANCE</packageMarksEnvironment>
+                                                <packageMarksEthical>FAIR_TRADE_MARK</packageMarksEthical>
+                                                <packageMarksFreeFrom>WITHOUT_ADDED_SUGAR</packageMarksFreeFrom>
+                                                <packagingMarkedExpirationDateType>BEST_BEFORE_DATE</packagingMarkedExpirationDateType>
+                                                <isPriceOnPack>true</isPriceOnPack>
+                                                <packageMarksHygienic>STERILE</packageMarksHygienic>
+                                                <packagingMarkedDateFormat>mm/dd/yyyy</packagingMarkedDateFormat>
+                                                <packagingMarkingLanguage><languageISOCode>en</languageISOCode></packagingMarkingLanguage>
+                                            </packagingMarking>
+                                            <packagingMaterial>
+                                                <packagingMaterialCode>43</packagingMaterialCode>
+                                                <packagingMaterialCodeListMaintenanceAgency>E</packagingMaterialCodeListMaintenanceAgency>
+                                                <packagingMaterialCompositionQuantity>
+                                                    <measurementValue unitOfMeasure="CM"><value>14.097</value></measurementValue>
+                                                </packagingMaterialCompositionQuantity>
+                                                <packagingMaterialDescription>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <shortText>pack. mat. desc. abc</shortText>
+                                                    </description>
+                                                </packagingMaterialDescription>
+                                                <packagingTermsAndCondition>3</packagingTermsAndCondition>
+                                                <depositValueEffectiveDate>2016-01-01</depositValueEffectiveDate>
+                                                <depositValueEndDate>2018-01-01</depositValueEndDate>
+                                                <returnablePackageDepositCode>Code 987</returnablePackageDepositCode>
+                                                <returnablePackageDepositAmount>
+                                                    <currencyCode>
+                                                        <currencyISOCode>USD</currencyISOCode>
+                                                    </currencyCode>
+                                                    <monetaryAmount>2.25</monetaryAmount>
+                                                </returnablePackageDepositAmount>
+                                            </packagingMaterial>
+                                            <packagingType>
+                                                <packagingTypeCode>BLK</packagingTypeCode>
+                                                <packagingTypeDescription>Optional description goes here</packagingTypeDescription>
+                                                <packagingWeight unitOfMeasure="LB"><value>2.345</value></packagingWeight>
+                                                <isPackagingExemptFromRefuseObligation>NOT_APPLICABLE</isPackagingExemptFromRefuseObligation>
+                                                <packagingFunction>ANTI_TAMPERING</packagingFunction>
+                                                <packagingFunction>GIFT_WRAPPED</packagingFunction>
+                                                <usableProductVolume unitOfMeasure="QT"><value>3.10</value></usableProductVolume>
+                                            </packagingType>
+                                            <tradeItemCountryOfOrigin>
+                                                <countryISOCode>840</countryISOCode>
+                                            </tradeItemCountryOfOrigin>
+                                            <tradeItemDateInformation>
+                                                <effectiveDate>2010-12-01</effectiveDate>
+                                                <lastChangeDateTime>2016-01-21T11:59:59</lastChangeDateTime>
+                                                <publicationDate>2016-01-01</publicationDate>
+                                                <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
+                                                <!--canceledDate>2018-01-01</canceledDate-->
+                                                <consumerAvailabilityDateTime>2016-01-01T11:59:59</consumerAvailabilityDateTime>
+                                                <!--discontinuedDate>2018-01-01</discontinuedDate-->
+                                                <endAvailabilityDateTime>2018-01-01T11:59:59</endAvailabilityDateTime>
+                                                <endDateMaximumBuyingQuantity>2018-01-01T11:59:59</endDateMaximumBuyingQuantity>
+                                                <endDateMinimumBuyingQuantity>2018-01-01T11:59:59</endDateMinimumBuyingQuantity>
+                                                <endDateTimeOfExclusivity>2018-01-01T11:59:59</endDateTimeOfExclusivity>
+                                                <firstOrderDate>2016-01-01</firstOrderDate>
+                                                <firstShipDate>2015-12-02</firstShipDate>
+                                                <lastOrderDate>2018-12-01</lastOrderDate>
+                                                <lastShipDate>2018-12-02</lastShipDate>
+                                                <startDateMaximumBuyingQuantity>2016-01-01T11:59:59</startDateMaximumBuyingQuantity>
+                                                <startDateMinimumBuyingQuantity>2016-01-01T11:59:59</startDateMinimumBuyingQuantity>
+                                                <communityVisibilityDateTime>2016-01-01T11:59:59</communityVisibilityDateTime>
+                                                <firstReturnableDateTime>2016-01-01T11:59:59</firstReturnableDateTime>
+                                            </tradeItemDateInformation>
+                                            <tradeItemHandlingInformation>
+                                                <handlingInstructionsCode>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <codeValue>A4321</codeValue>
+                                                </handlingInstructionsCode>
+                                                <minimumTradeItemLifespanFromTimeOfArrival>1234</minimumTradeItemLifespanFromTimeOfArrival>
+                                                <stackingFactor>123456</stackingFactor>
+                                                <stackingWeightMaximum><measurementValue unitOfMeasure="KG"><value>4</value></measurementValue></stackingWeightMaximum>
+                                                <minimumTradeItemLifespanFromTimeOfProduction>3456</minimumTradeItemLifespanFromTimeOfProduction>
+                                                <consumerUsageStorageInstructions>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <longText>Please store product in closed container in cool dark place</longText>
+                                                </consumerUsageStorageInstructions>
+                                                <openedTradeItemLifespan>789</openedTradeItemLifespan>
+                                                <clampPressure unitOfMeasure="PS"><!-- maps to new 3.1 tradeItemHandlingModule --><value>12.5</value></clampPressure>
+                                                <handlingInstructionsCodeAgency>Agency 123</handlingInstructionsCodeAgency>
+                                                <handlingInstructionsDescription>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <longText>Please wash hands after contact</longText>
+                                                    </description>
+                                                </handlingInstructionsDescription>
+                                            </tradeItemHandlingInformation>
+                                            <tradeItemHierarchy isTradeItemPackedIrregularly="FALSE">
+                                                <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
+                                                <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
+                                                <quantityOfTradeItemsContainedInACompleteLayer>7</quantityOfTradeItemsContainedInACompleteLayer>
+                                                <quantityOfTradeItemsPerPallet>456789</quantityOfTradeItemsPerPallet>
+                                                <quantityOfTradeItemsPerPalletLayer>567890</quantityOfTradeItemsPerPalletLayer>
+                                                <quantityOfInnerPack>123</quantityOfInnerPack>
+                                                <quantityOfNextLevelTradeItemWithinInnerPack>234</quantityOfNextLevelTradeItemWithinInnerPack>
+                                            </tradeItemHierarchy>
+                                            <tradeItemMarking>
+                                                <hasBatchNumber>true</hasBatchNumber>
+                                                <isNonSoldTradeItemReturnable>true</isNonSoldTradeItemReturnable>
+                                                <isTradeItemMarkedAsRecyclable>true</isTradeItemMarkedAsRecyclable>
+                                            </tradeItemMarking>
+                                            <tradeItemMeasurements hasDisplayReadyPackaging="NOT_APPLICABLE">
+                                                <depth>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>25.99</value>
+                                                    </measurementValue>
+                                                </depth>
+                                                <grossWeight>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>8</value>
+                                                    </measurementValue>
+                                                </grossWeight>
+                                                <height>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>12.6</value>
+                                                    </measurementValue>
+                                                </height>
+                                                <isNetContentDeclarationIndicated>false</isNetContentDeclarationIndicated>
+                                                <width>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>50.000001</value>
+                                                    </measurementValue>
+                                                </width>
+                                                <diameter>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>25.000001</value>
+                                                    </measurementValue>
+                                                </diameter>
+                                                <drainedWeight>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>7.56</value>
+                                                    </measurementValue>
+                                                </drainedWeight>
+                                                <genericIngredient>Corn Meal, Granulated</genericIngredient>
+                                                <genericIngredientStrength>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>7.15</value>
+                                                    </measurementValue>
+                                                </genericIngredientStrength>
+                                                <ingredientStrength>Full Strength</ingredientStrength>
+                                                <netContent>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>5</value>
+                                                    </measurementValue>
+                                                </netContent>
+                                                <netWeight>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>4</value>
+                                                    </measurementValue>
+                                                </netWeight>
+                                                <pegMeasurements>
+                                                    <pegHoleNumber>2</pegHoleNumber>
+                                                    <pegHorizontal>
+                                                        <measurementValue unitOfMeasure="IN">
+                                                            <value>4</value>
+                                                        </measurementValue>
+                                                    </pegHorizontal>
+                                                    <pegVertical>
+                                                        <measurementValue unitOfMeasure="IN">
+                                                            <value>6</value>
+                                                        </measurementValue>
+                                                    </pegVertical>
+                                                    <pegHoleType>Standard Hanging Type</pegHoleType>
+                                                </pegMeasurements>
+                                                <priceComparisonContentType>PER_KILOGRAM</priceComparisonContentType>
+                                                <priceComparisonMeasurement>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>4.1</value>
+                                                    </measurementValue>
+                                                </priceComparisonMeasurement>
+                                                <tradeItemCompositionWidth>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>48.000001</value>
+                                                    </measurementValue>
+                                                </tradeItemCompositionWidth>
+                                                <casingTareWeight unitOfMeasure="OZ">
+                                                    <value>12.5</value>
+                                                </casingTareWeight>
+                                                <layerHeight unitOfMeasure="IN">
+                                                    <value>12.5</value>
+                                                </layerHeight>
+                                                <nestingIncrement>
+                                                    <measurementValue unitOfMeasure="PC">
+                                                        <value>3</value>
+                                                    </measurementValue>
+                                                </nestingIncrement>
+                                                <tradeItemCompositionDepth>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>4</value>
+                                                    </measurementValue>
+                                                </tradeItemCompositionDepth>
+                                                <tradeItemDisplayDimensions displayDimensionTypeCode="RETAIL_DISPLAY">
+                                                    <displayDimensions>
+                                                        <height>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>12.1</value>
+                                                            </measurementValue>
+                                                        </height>
+                                                        <depth>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>25</value>
+                                                            </measurementValue>
+                                                        </depth>
+                                                        <width>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>50</value>
+                                                            </measurementValue>
+                                                        </width>
+                                                    </displayDimensions>
+                                                </tradeItemDisplayDimensions>
+                                                <tradeItemNesting nestingDirection="HORIZONTAL" nestingType="POSITIVE"/>
+                                                <tradeItemOrientation orientationPreferenceSequence="3" orientationType="BAF_000"/>
+                                                <inBoxCubeDimension>
+                                                    <measurementValue unitOfMeasure="CF">
+                                                        <value>6.123</value>
+                                                    </measurementValue>
+                                                    <measurementValue unitOfMeasure="CI">
+                                                        <value>881.712</value>
+                                                    </measurementValue>
+                                                </inBoxCubeDimension>
+                                            </tradeItemMeasurements>
+                                            <tradeItemOrderInformation>
+                                                <orderingLeadTime>
+                                                    <measurementValue unitOfMeasure="DA">
+                                                        <value>40</value>
+                                                    </measurementValue>
+                                                </orderingLeadTime>
+                                                <orderQuantityMaximum>143</orderQuantityMaximum>
+                                                <orderQuantityMinimum>8</orderQuantityMinimum>
+                                                <orderQuantityMultiple>16</orderQuantityMultiple>
+                                                <orderSizingFactor>
+                                                    <measurementValue unitOfMeasure="BX">
+                                                        <value>24</value>
+                                                    </measurementValue>
+                                                </orderSizingFactor>
+                                                <agreedMinimumBuyingQuantity>12</agreedMinimumBuyingQuantity>
+                                                <agreedMaximumBuyingQuantity>144</agreedMaximumBuyingQuantity>
+                                                <isTradeItemReorderable>true</isTradeItemReorderable>
+                                                <isTradeItemSizeBasedPricing>false</isTradeItemSizeBasedPricing>
+                                                <goodsPickUpLeadTime>
+                                                    <measurementValue unitOfMeasure="DA">
+                                                        <value>40</value>
+                                                    </measurementValue>
+                                                </goodsPickUpLeadTime>
+                                            </tradeItemOrderInformation>
+                                            <tradeItemPalletInformation>
+                                                <palletTypeCode>3</palletTypeCode>
+                                                <palletTermsAndConditions>1</palletTermsAndConditions>
+                                            </tradeItemPalletInformation>
+                                            <cataloguePrice>
+                                                <effectiveStartDate>2010-10-30</effectiveStartDate>
+                                                <effectiveEndDate>2018-01-01</effectiveEndDate>
+                                                <tradeItemPrice>
+                                                    <currencyCode>
+                                                        <currencyISOCode>USD</currencyISOCode>
+                                                    </currencyCode>
+                                                    <value>19.98</value>
+                                                </tradeItemPrice>
+                                                <tradeItemPriceBasisQuantity>
+                                                    <value>1.023</value>
+                                                    <unitOfMeasure>
+                                                        <measurementUnitCodeValue>EA</measurementUnitCodeValue>
+                                                    </unitOfMeasure>
+                                                </tradeItemPriceBasisQuantity>
+                                            </cataloguePrice>
+                                            <suggestedRetailPrice>
+                                                <effectiveStartDate>2010-10-29</effectiveStartDate>
+                                                <effectiveEndDate>2018-01-01</effectiveEndDate>
+                                                <tradeItemPrice>
+                                                    <currencyCode>
+                                                        <currencyISOCode>USD</currencyISOCode>
+                                                    </currencyCode>
+                                                    <value>19.97</value>
+                                                </tradeItemPrice>
+                                                <tradeItemPriceBasisQuantity>
+                                                    <value>1.0234</value>
+                                                    <unitOfMeasure>
+                                                        <measurementUnitCodeValue>EA</measurementUnitCodeValue>
+                                                    </unitOfMeasure>
+                                                </tradeItemPriceBasisQuantity>
+                                            </suggestedRetailPrice>
+                                            <tradeItemSizeDescription>
+                                                <sizeCodeListAgency>1</sizeCodeListAgency>
+                                                <sizeCodeValue>Code_1234789_IRS</sizeCodeValue>
+                                                <descriptiveSize>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <shortText>Size is very large</shortText>
+                                                </descriptiveSize>
+                                            </tradeItemSizeDescription>
+                                            <tradeItemTaxInformation>
+                                                <tradeItemTaxAmount>
+                                                    <currencyCode>
+                                                        <currencyISOCode>USD</currencyISOCode>
+                                                    </currencyCode>
+                                                    <taxAmount>9.99</taxAmount>
+                                                    <taxAgency taxApplicabilityCode="ZERO">
+                                                        <taxAgencyCode>IRS</taxAgencyCode>
+                                                        <taxTypeCode>123</taxTypeCode>
+                                                        <taxTypeDescription>Desciption of tax type</taxTypeDescription>
+                                                    </taxAgency>
+                                                </tradeItemTaxAmount>
+                                            </tradeItemTaxInformation>
+                                            <tradeItemTaxInformation>
+                                                <tradeItemTaxRate>
+                                                    <taxRate>9.25</taxRate>
+                                                    <taxAgency taxApplicabilityCode="ZERO">
+                                                        <taxAgencyCode>IRS</taxAgencyCode>
+                                                        <taxTypeCode>123</taxTypeCode>
+                                                        <taxTypeDescription>Desciption of tax type</taxTypeDescription>
+                                                    </taxAgency>
+                                                </tradeItemTaxRate>
+                                            </tradeItemTaxInformation>
+                                            <tradeItemTemperatureInformation>
+                                                <deliveryToDistributionCenterTemperatureMaximum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>100</value>
+                                                    </measurementValue>
+                                                </deliveryToDistributionCenterTemperatureMaximum>
+                                                <deliveryToDistributionCenterTemperatureMinimum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>40</value>
+                                                    </measurementValue>
+                                                </deliveryToDistributionCenterTemperatureMinimum>
+                                                <deliveryToMarketTemperatureMaximum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>99</value>
+                                                    </measurementValue>
+                                                </deliveryToMarketTemperatureMaximum>
+                                                <deliveryToMarketTemperatureMinimum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>39</value>
+                                                    </measurementValue>
+                                                </deliveryToMarketTemperatureMinimum>
+                                                <storageHandlingTemperatureMaximum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>90</value>
+                                                    </measurementValue>
+                                                </storageHandlingTemperatureMaximum>
+                                                <storageHandlingTemperatureMinimum>
+                                                    <measurementValue unitOfMeasure="FA">
+                                                        <value>50</value>
+                                                    </measurementValue>
+                                                </storageHandlingTemperatureMinimum>
+                                                <storageHandlingHumidityMaximum>
+                                                    <measurementValue unitOfMeasure="P1">
+                                                        <value>90</value>
+                                                    </measurementValue>
+                                                </storageHandlingHumidityMaximum>
+                                                <storageHandlingHumidityMinimum>
+                                                    <measurementValue unitOfMeasure="P1">
+                                                        <value>50</value>
+                                                    </measurementValue>
+                                                </storageHandlingHumidityMinimum>
+                                            </tradeItemTemperatureInformation>
+                                            <classComplianceRegulationCode>ENERGY_STAR</classComplianceRegulationCode>
+                                            <tradeItemCountryOfAssembly>
+                                                <countryISOCode>840</countryISOCode>
+                                            </tradeItemCountryOfAssembly>
+                                            <marketingInformation>
+                                                <campaignEndDate>2018-01-01</campaignEndDate>
+                                                <campaignName>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Campaign Sell-More</text>
+                                                </campaignName>
+                                                <campaignStartDate>2016-01-01</campaignStartDate>
+                                                <specialItemCode>GIFT_WITH_PURCHASE</specialItemCode>
+                                                <tradeItemFeatureBenefit>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Feature Benefit X</text>
+                                                </tradeItemFeatureBenefit>
+                                                <tradeItemMarketingMessage>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <longText>Long Campaign Message Goes Here</longText>
+                                                </tradeItemMarketingMessage>
+                                            </marketingInformation>
+                                            <materialComposition>
+                                                <materialAgencyCode>DIN60001_PART4</materialAgencyCode>
+                                                <materialContent>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Contains many materials</text>
+                                                </materialContent>
+                                                <materialPercentage>40.40</materialPercentage>
+                                                <materialCode>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <text>English material code</text>
+                                                    </description>
+                                                </materialCode>
+                                            </materialComposition>
+                                            <nonPackageTradeItemDimension>
+                                                <sizeGroup>JUNIORS</sizeGroup>
+                                                <nonPackagedSizeDimension>
+                                                    <sizeDimension unitOfMeasure="IN">
+                                                        <value>12.5</value>
+                                                    </sizeDimension>
+                                                    <sizeSystem>US</sizeSystem>
+                                                </nonPackagedSizeDimension>
+                                                <nonPackagedSizeDimension>
+                                                    <sizeType>INSEAM</sizeType>
+                                                    <descriptiveSizeDimension>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <text>Size LARGE</text>
+                                                    </descriptiveSizeDimension>
+                                                    <sizeSystem>CONTINENTAL</sizeSystem>
+                                                </nonPackagedSizeDimension>
+                                            </nonPackageTradeItemDimension>
+                                            <orderingAndSellingUnitOfMeasure>
+                                                <orderingUnitOfMeasure>Order by the bushel</orderingUnitOfMeasure>
+                                                <sellingUnitOfMeasure>Sell by the ounce</sellingUnitOfMeasure>
+                                            </orderingAndSellingUnitOfMeasure>
+                                            <season>
+                                                <seasonalAvailabilityEndDate>2018-01-01</seasonalAvailabilityEndDate>
+                                                <seasonalAvailabilityStartDate>2016-01-01</seasonalAvailabilityStartDate>
+                                                <seasonCalendarYear>2010</seasonCalendarYear>
+                                                <seasonCalendarYear>2016</seasonCalendarYear>
+                                                <seasonName>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Summer of Love</text>
+                                                </seasonName>
+                                                <seasonParameter>SPRING_SUMMER</seasonParameter>
+                                                <seasonParameter>SUMMER</seasonParameter>
+                                                <isTradeItemSeasonal>TRUE</isTradeItemSeasonal>
+                                            </season>
+                                            <securityTagInformation>
+                                                <securityTagLocation>CONCEALED_INSIDE_THE_TRADE_ITEM</securityTagLocation>
+                                                <securityTagType>ELECTRO_MAGNETIC_EAS_TAG</securityTagType>
+                                            </securityTagInformation>
+                                            <targetConsumer>
+                                                <targetConsumerAge>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Mid to late thirties</text>
+                                                </targetConsumerAge>
+                                                <targetConsumerGender>FEMALE</targetConsumerGender>
+                                            </targetConsumer>
+                                            <tradeItemFinish>
+                                                <tradeItemFinishDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Very shiny polished look</text>
+                                                </tradeItemFinishDescription>
+                                            </tradeItemFinish>
+                                            <tradeItemMaterial>
+                                                <materialWeight unitOfMeasure="KG">
+                                                    <value>12.5</value>
+                                                </materialWeight>
+                                                <threadCount>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>TC 500 - 1000</text>
+                                                </threadCount>
+                                            </tradeItemMaterial>
+                                            <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
+                                            <rFIDTaggedCode>SOMETIMES</rFIDTaggedCode>
+                                            <shipFromLocation>
+                                                <shipFromLocationIdentification>0614141810017</shipFromLocationIdentification>
+                                                <shipFromLocationName>Central Shipping Facility</shipFromLocationName>
+                                            </shipFromLocation>
+                                            <tradeItemCountryOfLastProcessing>
+                                                <countryISOCode>840</countryISOCode>
+                                            </tradeItemCountryOfLastProcessing>
+                                            <tradeItemBarCodeInformation>
+                                                <isBarCodeDerivable>true</isBarCodeDerivable>
+                                                <barCodeInformation>
+                                                    <barCodeValue>123456789012</barCodeValue>
+                                                    <barCodeValueType>UA</barCodeValueType>
+                                                </barCodeInformation>
+                                                <barCodeInformation>
+                                                    <barCodeValue>987654</barCodeValue>
+                                                    <barCodeValueType>UK</barCodeValueType>
+                                                </barCodeInformation>
+                                                <barCodeInformation>
+                                                    <barCodeValue>789</barCodeValue>
+                                                    <barCodeValueType>UP</barCodeValueType>
+                                                </barCodeInformation>
+                                            </tradeItemBarCodeInformation>
+                                        </tradingPartnerNeutralTradeItemInformation>
+                                        <tradeItemTradeChannel>GROCERY</tradeItemTradeChannel>
+                                        <tradeItemTradeChannel>FOOD_SERVICE</tradeItemTradeChannel>
+                                        <brandDistributionType>UNRESTRICTED_DISTRIBUTION</brandDistributionType>
+                                        <builtInProductType>embedded wi-fi</builtInProductType>
+                                        <builtInProductType>built-in toaster</builtInProductType>
+                                        <tradeItemRegulatoryInformation>
+                                            <regulatoryAct>Act ABC</regulatoryAct>
+                                            <regulatoryAgency>Agency ABC</regulatoryAgency>
+                                            <permitIdentification>
+                                                <permitEndDate>2018-01-01</permitEndDate>
+                                                <permitStartDate>2016-01-01</permitStartDate>
+                                                <regulatoryPermitIdentification>id 123456-abc</regulatoryPermitIdentification>
+                                            </permitIdentification>
+                                        </tradeItemRegulatoryInformation>
+                                    </tradeItemInformation>
+                                    <extension>
+                                        <gdsn:attributeValuePairExtension>
+                                            <value name="doesTradeItemCarryUSDAChildNutritionLabel">No</value>
+                                            <value name="individualUnitMin">15</value>
+                                            <value name="individualUnitMinUOM">OZ</value>
+                                            <value name="individualUnitMax">15</value>
+                                            <value name="individualUnitMaxUOM">OZ</value>
+                                            <value name="someCustomKey">someCustomValue</value>
+                                            <value name="allergenRelevantDataProvided">true</value>
+                                            <value name="foodCompositionAgencyNameCode">ANSES</value>
+                                            <value name="foodCompositionCode">MR3155678 FORCE</value>
+                                            <value name="isPrivate">true</value>
+                                            <value name="isPrivateLabel">true</value>
+                                            <value name="nutrientRelevantDataProvided">true</value>
+                                            <value name="nutrientValueDerivation">ANALYTICAL</value>
+                                            <value name="servingSizeWeight">120 GR</value>
+                                            <value name="tradeItemCubeMeasurement">114.641</value>
+                                            <value name="tradeItemCubeMeasurementUOM">CI</value>
+                                        </gdsn:attributeValuePairExtension>
+                                        <food:foodAndBeverageTradeItemExtension>
+                                            <foodAndBeverageInformation>
+                                                <foodAndBeverageAllergyRelatedInformation>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>X99</allergenTypeCode>
+                                                        <levelOfContainment>CONTAINS</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <allergenStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <longText>Contains many allergens</longText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <longText>Este producto es muy allergenic</longText>
+                                                        </description>
+                                                    </allergenStatement>
+                                                </foodAndBeverageAllergyRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <foodAndBeverageDietTypeInformation>
+                                                        <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
+                                                    </foodAndBeverageDietTypeInformation>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeveragePreparationInformation>
+                                                    <preparationType>STIR_FRYING</preparationType>
+                                                    <preparationInstructions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Stir quickly and often over high heat</text>
+                                                        </description>
+                                                    </preparationInstructions>
+                                                </foodAndBeveragePreparationInformation>
+                                            </foodAndBeverageInformation>
+                                            <foodAndBeverageInformation>
+                                                <productionVariantDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>SERVING_SIZE_COCOA_BUTTER</text>
+                                                </productionVariantDescription>
+                                                <productionVariantEffectiveDate>2016-01-02</productionVariantEffectiveDate>
+                                                <foodAndBeverageAllergyRelatedInformation>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>X99</allergenTypeCode>
+                                                        <levelOfContainment>FREE_FROM</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>AC</allergenTypeCode>
+                                                        <levelOfContainment>MAY_CONTAIN</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Alt Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Alt Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>NM</allergenTypeCode>
+                                                        <levelOfContainment>CONTAINS</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <allergenStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <longText>Contains many allergens</longText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <longText>Este producto es muy allergenic</longText>
+                                                        </description>
+                                                    </allergenStatement>
+                                                </foodAndBeverageAllergyRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <foodAndBeverageDietTypeInformation>
+                                                        <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
+                                                    </foodAndBeverageDietTypeInformation>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <dietCertificationNumber>369</dietCertificationNumber>
+                                                    <foodAndBeverageDietTypeInformation>
+                                                        <dietTypeCode>KOSHER</dietTypeCode>
+                                                        <dietTypeSubcode>K_PAREVE</dietTypeSubcode>
+                                                    </foodAndBeverageDietTypeInformation>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <dietCertificationNumber>111987</dietCertificationNumber>
+                                                    <dietCertificationAgency>222876</dietCertificationAgency>
+                                                    <dietTypeDescription>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Some diet info</text>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <text>El diet info</text>
+                                                        </description>
+                                                    </dietTypeDescription>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageIngredientInformation>
+                                                    <foodAndBeverageIngredient>
+                                                        <contentPercentage>11.45</contentPercentage>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>840</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>156</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <ingredientSequence>1</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Water</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Agua</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                        <fishCatchZone>Zone 17</fishCatchZone>
+                                                        <fishCatchZone>Zone 23</fishCatchZone>
+                                                        <grapeVarietyCode>A137</grapeVarietyCode>
+                                                        <growingMethodCode>FLY_FREE</growingMethodCode>
+                                                        <growingMethodCode>HYDROPONIC</growingMethodCode>
+                                                        <ingredientPurpose>Flavor</ingredientPurpose>
+                                                        <ingredientPurpose>Preservitive</ingredientPurpose>
+                                                        <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
+                                                        <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
+                                                    </foodAndBeverageIngredient>
+                                                    <foodAndBeverageIngredient>
+                                                        <ingredientSequence>2</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Cane Sugar</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Sucre de Cano</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                    </foodAndBeverageIngredient>
+                                                    <foodAndBeverageIngredient>
+                                                        <ingredientSequence>3</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Water</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                    </foodAndBeverageIngredient>
+                                                    <ingredientStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Some ingredient info</text>
+                                                        </description>
+                                                    </ingredientStatement>
+                                                    <geneticallyModifiedDeclarationCode>MAY_CONTAIN</geneticallyModifiedDeclarationCode>
+                                                    <isHomogenised>NOT_APPLICABLE</isHomogenised>
+                                                    <rawMaterialUsedInPreparationWeight unitOfMeasure="OZ">
+                                                        <value>12.5</value>
+                                                    </rawMaterialUsedInPreparationWeight>
+                                                    <degreeOfOriginalWort>Sweet</degreeOfOriginalWort>
+                                                </foodAndBeverageIngredientInformation>
+                                                <foodAndBeverageMicrobiologicalInformation>
+                                                    <organismCode>BACILLUS_CEREUS</organismCode>
+                                                    <organismMaximumValue>
+                                                        <measurementValue unitOfMeasure="BX">
+                                                            <value>24</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="EA">
+                                                            <value>25000</value>
+                                                        </measurementValue>
+                                                    </organismMaximumValue>
+                                                </foodAndBeverageMicrobiologicalInformation>
+                                                <foodAndBeverageMicrobiologicalInformation>
+                                                    <organismCode>YEASTS</organismCode>
+                                                    <organismMaximumValue>
+                                                        <measurementValue unitOfMeasure="BX">
+                                                            <value>3</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="EA">
+                                                            <value>33</value>
+                                                        </measurementValue>
+                                                    </organismMaximumValue>
+                                                </foodAndBeverageMicrobiologicalInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>PREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>1.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>1.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>1.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <dailyValueIntakeReference>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The daily value intake reference used for PREPARED</text>
+                                                        </description>
+                                                    </dailyValueIntakeReference>
+                                                    <householdServingSize>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The household serving size for PREPARED</text>
+                                                        </description>
+                                                    </householdServingSize>
+                                                    <servingSize>
+                                                        <measurementValue unitOfMeasure="OZ">
+                                                            <value>2.25</value>
+                                                        </measurementValue>
+                                                    </servingSize>
+                                                    <fatInMilkContent>2.00</fatInMilkContent>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>UNPREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>2.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>2.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>2.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <dailyValueIntakeReference>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The daily value intake reference for UNPREPARED</text>
+                                                        </description>
+                                                    </dailyValueIntakeReference>
+                                                    <householdServingSize>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The household serving size for UNPREPARED</text>
+                                                        </description>
+                                                    </householdServingSize>
+                                                    <servingSize>
+                                                        <measurementValue unitOfMeasure="OZ">
+                                                            <value>2.75</value>
+                                                        </measurementValue>
+                                                    </servingSize>
+                                                    <fatInMilkContent>3.00</fatInMilkContent>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeveragePhysiochemicalCharacteristic>
+                                                    <characteristicCode>TARGET_NON-FAT_DRY_SOLIDS</characteristicCode>
+                                                    <characteristicValue>
+                                                        <measurementValue unitOfMeasure="QS">
+                                                            <value>11</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="RL">
+                                                            <value>2500</value>
+                                                        </measurementValue>
+                                                    </characteristicValue>
+                                                </foodAndBeveragePhysiochemicalCharacteristic>
+                                                <foodAndBeveragePhysiochemicalCharacteristic>
+                                                    <characteristicCode>WEIGHT_DENSITY</characteristicCode>
+                                                    <characteristicValue>
+                                                        <measurementValue unitOfMeasure="PC">
+                                                            <value>33</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="SH">
+                                                            <value>3399</value>
+                                                        </measurementValue>
+                                                    </characteristicValue>
+                                                </foodAndBeveragePhysiochemicalCharacteristic>
+                                                <foodAndBeveragePreparationInformation>
+                                                    <preparationType>BAKING</preparationType>
+                                                    <foodAndBeverageProductYieldInformation>
+                                                        <productYieldTypeCode>DRAINED_WEIGHT</productYieldTypeCode>
+                                                        <productYieldVariation>20.50</productYieldVariation>
+                                                        <productYield>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>25.99999</value>
+                                                            </measurementValue>
+                                                            <measurementValue unitOfMeasure="QS">
+                                                                <value>11</value>
+                                                            </measurementValue>
+                                                        </productYield>
+                                                    </foodAndBeverageProductYieldInformation>
+                                                    <preparationInstructions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Bake at 350 degrees F for 30 minutes or until golden brown</text>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <text>Hornee a 350 grados F durante 30 minutos o hasta que esten doradas</text>
+                                                        </description>
+                                                    </preparationInstructions>
+                                                    <precautions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <longText>Please handle with care to avoid injury to fingers</longText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <longText>Por favor, maneje con cuidado para evitar lesiones en los dedos</longText>
+                                                        </description>
+                                                    </precautions>
+                                                    <convenienceLevel>99.01</convenienceLevel>
+                                                    <minimumOptimumConsumptionTemperature>
+                                                        <measurementValue unitOfMeasure="FA">
+                                                            <value>35</value>
+                                                        </measurementValue>
+                                                    </minimumOptimumConsumptionTemperature>
+                                                    <maximumOptimumConsumptionTemperature>
+                                                        <measurementValue unitOfMeasure="FA">
+                                                            <value>95</value>
+                                                        </measurementValue>
+                                                    </maximumOptimumConsumptionTemperature>
+                                                </foodAndBeveragePreparationInformation>
+                                                <foodAndBeveragePreparationInformation>
+                                                    <preparationType>DEEP_FRYING</preparationType>
+                                                    <preparationInstructions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Fry at 410 degrees F for 12 minutes or until golden brown</text>
+                                                        </description>
+                                                    </preparationInstructions>
+                                                </foodAndBeveragePreparationInformation>
+                                                <foodAndBeverageServingInformation maximumNumberOfSmallestUnitsPerPackage="24">
+                                                    <numberOfServingsPerPackage>4</numberOfServingsPerPackage>
+                                                    <numberOfSmallestUnitsPerPackage>20</numberOfSmallestUnitsPerPackage>
+                                                </foodAndBeverageServingInformation>
+                                                <foodAndBeverageAdditiveInformation>
+                                                    <additiveName>BHT</additiveName>
+                                                    <levelOfContainment>CONTAINS</levelOfContainment>
+                                                </foodAndBeverageAdditiveInformation>
+                                                <foodAndBeverageAdditiveInformation>
+                                                    <additiveName>MSG</additiveName>
+                                                    <levelOfContainment>FREE_FROM</levelOfContainment>
+                                                </foodAndBeverageAdditiveInformation>
+                                            </foodAndBeverageInformation>
+                                            <foodAndBeverageInformation>
+                                                <productionVariantDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>100_GRAM_COCOA_BUTTER</text>
+                                                </productionVariantDescription>
+                                                <productionVariantEffectiveDate>2016-01-03</productionVariantEffectiveDate>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <foodAndBeverageDietTypeInformation>
+                                                        <dietTypeCode>COELIAC</dietTypeCode>
+                                                    </foodAndBeverageDietTypeInformation>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>PREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>3.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>3.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>3.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>UNPREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>4.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>4.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>4.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                </foodAndBeverageNutrientInformation>
+                                            </foodAndBeverageInformation>
+                                            <foodAndBeverageInformation>
+                                                <productionVariantDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>SERVING_SIZE_VEG_OIL</text>
+                                                </productionVariantDescription>
+                                                <productionVariantEffectiveDate>2016-01-05</productionVariantEffectiveDate>
+                                                <foodAndBeverageAllergyRelatedInformation>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>AC</allergenTypeCode>
+                                                        <levelOfContainment>MAY_CONTAIN</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <foodAndBeverageAllergen>
+                                                        <allergenSpecificationAgency>Alt Allergen Agency</allergenSpecificationAgency>
+                                                        <allergenSpecificationName>Alt Allergen Spec</allergenSpecificationName>
+                                                        <allergenTypeCode>NM</allergenTypeCode>
+                                                        <levelOfContainment>CONTAINS</levelOfContainment>
+                                                    </foodAndBeverageAllergen>
+                                                    <allergenStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <longText>Contains many allergens</longText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <longText>Este producto es muy allergenic</longText>
+                                                        </description>
+                                                    </allergenStatement>
+                                                </foodAndBeverageAllergyRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <foodAndBeverageDietTypeInformation>
+                                                        <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
+                                                    </foodAndBeverageDietTypeInformation>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageDietRelatedInformation>
+                                                    <dietCertificationNumber>111987</dietCertificationNumber>
+                                                    <dietCertificationAgency>222876</dietCertificationAgency>
+                                                    <dietTypeDescription>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Some diet info</text>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <text>El diet info</text>
+                                                        </description>
+                                                    </dietTypeDescription>
+                                                </foodAndBeverageDietRelatedInformation>
+                                                <foodAndBeverageIngredientInformation>
+                                                    <foodAndBeverageIngredient>
+                                                        <contentPercentage>11.45</contentPercentage>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>840</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>156</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <ingredientSequence>1</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Water</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Agua</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                        <fishCatchZone>Zone 17</fishCatchZone>
+                                                        <fishCatchZone>Zone 23</fishCatchZone>
+                                                        <grapeVarietyCode>A137</grapeVarietyCode>
+                                                        <growingMethodCode>FLY_FREE</growingMethodCode>
+                                                        <growingMethodCode>HYDROPONIC</growingMethodCode>
+                                                        <ingredientPurpose>Flavor</ingredientPurpose>
+                                                        <ingredientPurpose>Preservitive</ingredientPurpose>
+                                                        <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
+                                                        <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
+                                                    </foodAndBeverageIngredient>
+                                                </foodAndBeverageIngredientInformation>
+                                                <foodAndBeverageIngredientInformation>
+                                                    <foodAndBeverageIngredient>
+                                                        <ingredientSequence>2</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Cane Sugar</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Sucre de Cano</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                    </foodAndBeverageIngredient>
+                                                    <foodAndBeverageIngredient>
+                                                        <ingredientSequence>3</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Water</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                    </foodAndBeverageIngredient>
+                                                    <ingredientStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Some ingredient info</text>
+                                                        </description>
+                                                    </ingredientStatement>
+                                                    <geneticallyModifiedDeclarationCode>MAY_CONTAIN</geneticallyModifiedDeclarationCode>
+                                                    <isHomogenised>NOT_APPLICABLE</isHomogenised>
+                                                    <rawMaterialUsedInPreparationWeight unitOfMeasure="OZ">
+                                                        <value>12.5</value>
+                                                    </rawMaterialUsedInPreparationWeight>
+                                                    <degreeOfOriginalWort>Sweet</degreeOfOriginalWort>
+                                                </foodAndBeverageIngredientInformation>
+                                                <foodAndBeverageMicrobiologicalInformation>
+                                                    <organismCode>BACILLUS_CEREUS</organismCode>
+                                                    <organismMaximumValue>
+                                                        <measurementValue unitOfMeasure="BX">
+                                                            <value>24</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="EA">
+                                                            <value>25000</value>
+                                                        </measurementValue>
+                                                    </organismMaximumValue>
+                                                </foodAndBeverageMicrobiologicalInformation>
+                                                <foodAndBeverageMicrobiologicalInformation>
+                                                    <organismCode>YEASTS</organismCode>
+                                                    <organismMaximumValue>
+                                                        <measurementValue unitOfMeasure="BX">
+                                                            <value>3</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="EA">
+                                                            <value>33</value>
+                                                        </measurementValue>
+                                                    </organismMaximumValue>
+                                                </foodAndBeverageMicrobiologicalInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>PREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>5.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>5.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>5.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <dailyValueIntakeReference>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The daily value intake reference used for PREPARED</text>
+                                                        </description>
+                                                    </dailyValueIntakeReference>
+                                                    <householdServingSize>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The household serving size for PREPARED</text>
+                                                        </description>
+                                                    </householdServingSize>
+                                                    <servingSize>
+                                                        <measurementValue unitOfMeasure="OZ">
+                                                            <value>2.25</value>
+                                                        </measurementValue>
+                                                    </servingSize>
+                                                    <fatInMilkContent>2.00</fatInMilkContent>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>UNPREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>6.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>6.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>6.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <dailyValueIntakeReference>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The daily value intake reference for UNPREPARED</text>
+                                                        </description>
+                                                    </dailyValueIntakeReference>
+                                                    <householdServingSize>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>The household serving size for UNPREPARED</text>
+                                                        </description>
+                                                    </householdServingSize>
+                                                    <servingSize>
+                                                        <measurementValue unitOfMeasure="OZ">
+                                                            <value>2.75</value>
+                                                        </measurementValue>
+                                                    </servingSize>
+                                                    <fatInMilkContent>3.00</fatInMilkContent>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeveragePhysiochemicalCharacteristic>
+                                                    <characteristicCode>TARGET_NON-FAT_DRY_SOLIDS</characteristicCode>
+                                                    <characteristicValue>
+                                                        <measurementValue unitOfMeasure="QS">
+                                                            <value>11</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="RL">
+                                                            <value>2500</value>
+                                                        </measurementValue>
+                                                    </characteristicValue>
+                                                </foodAndBeveragePhysiochemicalCharacteristic>
+                                                <foodAndBeveragePhysiochemicalCharacteristic>
+                                                    <characteristicCode>WEIGHT_DENSITY</characteristicCode>
+                                                    <characteristicValue>
+                                                        <measurementValue unitOfMeasure="PC">
+                                                            <value>33</value>
+                                                        </measurementValue>
+                                                        <measurementValue unitOfMeasure="SH">
+                                                            <value>3399</value>
+                                                        </measurementValue>
+                                                    </characteristicValue>
+                                                </foodAndBeveragePhysiochemicalCharacteristic>
+                                                <foodAndBeveragePreparationInformation>
+                                                    <preparationType>BAKING</preparationType>
+                                                    <foodAndBeverageProductYieldInformation>
+                                                        <productYieldTypeCode>DRAINED_WEIGHT</productYieldTypeCode>
+                                                        <productYieldVariation>20.60</productYieldVariation>
+                                                        <productYield>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>25.99999</value>
+                                                            </measurementValue>
+                                                            <measurementValue unitOfMeasure="QS">
+                                                                <value>11</value>
+                                                            </measurementValue>
+                                                        </productYield>
+                                                    </foodAndBeverageProductYieldInformation>
+                                                    <preparationInstructions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Bake at 350 degrees F for 30 minutes or until golden brown</text>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <text>Hornee a 350 grados F durante 30 minutos o hasta que est�n doradas</text>
+                                                        </description>
+                                                    </preparationInstructions>
+                                                    <precautions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <longText>Please handle with care to avoid injury to fingers</longText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <longText>Por favor, maneje con cuidado para evitar lesiones en los dedos</longText>
+                                                        </description>
+                                                    </precautions>
+                                                    <convenienceLevel>99.02</convenienceLevel>
+                                                    <minimumOptimumConsumptionTemperature>
+                                                        <measurementValue unitOfMeasure="FA">
+                                                            <value>35</value>
+                                                        </measurementValue>
+                                                    </minimumOptimumConsumptionTemperature>
+                                                    <maximumOptimumConsumptionTemperature>
+                                                        <measurementValue unitOfMeasure="FA">
+                                                            <value>95</value>
+                                                        </measurementValue>
+                                                    </maximumOptimumConsumptionTemperature>
+                                                </foodAndBeveragePreparationInformation>
+                                                <foodAndBeveragePreparationInformation>
+                                                    <preparationType>DEEP_FRYING</preparationType>
+                                                    <preparationInstructions>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Fry at 410 degrees F for 12 minutes or until golden brown</text>
+                                                        </description>
+                                                    </preparationInstructions>
+                                                </foodAndBeveragePreparationInformation>
+                                                <foodAndBeverageServingInformation maximumNumberOfSmallestUnitsPerPackage="24">
+                                                    <numberOfServingsPerPackage>4</numberOfServingsPerPackage>
+                                                    <numberOfSmallestUnitsPerPackage>20</numberOfSmallestUnitsPerPackage>
+                                                </foodAndBeverageServingInformation>
+                                                <foodAndBeverageAdditiveInformation>
+                                                    <additiveName>BHT</additiveName>
+                                                    <levelOfContainment>CONTAINS</levelOfContainment>
+                                                </foodAndBeverageAdditiveInformation>
+                                                <foodAndBeverageAdditiveInformation>
+                                                    <additiveName>MSG</additiveName>
+                                                    <levelOfContainment>FREE_FROM</levelOfContainment>
+                                                </foodAndBeverageAdditiveInformation>
+                                            </foodAndBeverageInformation>
+                                            <foodAndBeverageInformation>
+                                                <productionVariantDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>100_GRAM_VEG_OIL</text>
+                                                </productionVariantDescription>
+                                                <productionVariantEffectiveDate>2016-01-06</productionVariantEffectiveDate>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>PREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>7.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>7.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>7.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                </foodAndBeverageNutrientInformation>
+                                                <foodAndBeverageNutrientInformation>
+                                                    <preparationState>UNPREPARED</preparationState>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="ENER"/>
+                                                        <percentageOfDailyValueIntake>8.10</percentageOfDailyValueIntake>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="E14">
+                                                                <value>8.20</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>APPROXIMATELY</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="BIOT"/>
+                                                        <percentageOfDailyValueIntake>8.30</percentageOfDailyValueIntake>
+                                                    </foodAndBeverageNutrient>
+                                                    <foodAndBeverageNutrient>
+                                                        <measurementPrecision>EXACT</measurementPrecision>
+                                                        <nutrientTypeCode iNFOODSCodeValue="NA"/>
+                                                        <quantityContained>
+                                                            <measurementValue unitOfMeasure="ME">
+                                                                <value>0</value>
+                                                            </measurementValue>
+                                                        </quantityContained>
+                                                    </foodAndBeverageNutrient>
+                                                </foodAndBeverageNutrientInformation>
+                                            </foodAndBeverageInformation>
+                                            <foodAndBeverageMarketingInformationExtension>
+                                                <servingSuggestion>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <longText>Serve as part of a complete breakfast</longText>
+                                                    </description>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>es</languageISOCode>
+                                                        </language>
+                                                        <longText>Actuar como parte de un desayuno completo</longText>
+                                                    </description>
+                                                </servingSuggestion>
+                                            </foodAndBeverageMarketingInformationExtension>
+                                            <tradeItemExternalInformation>
+                                                <fileName>my_file.txt</fileName>
+                                                <contentDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Content Description</text>
+                                                </contentDescription>
+                                                <fileFormatDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Format Description</text>
+                                                </fileFormatDescription>
+                                                <fileFormatName>formatX</fileFormatName>
+                                                <uniformResourceIdentifier>http://example.com/FOOD-EXT/image123</uniformResourceIdentifier>
+                                                <fileEffectiveEndDateTime>2018-01-01T11:59:59</fileEffectiveEndDateTime>
+                                                <fileEffectiveStartDateTime>2016-01-01T11:59:59</fileEffectiveStartDateTime>
+                                                <typeOfInformation>PRODUCT_IMAGE</typeOfInformation>
+                                            </tradeItemExternalInformation>
+                                            <tradeItemExternalInformation>
+                                                <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
+                                                <typeOfInformation>PRODUCT_LABEL_IMAGE</typeOfInformation>
+                                            </tradeItemExternalInformation>
+                                            <nutritionLabelTypeCode>1</nutritionLabelTypeCode>
+                                            <nutritionLabelTypeCode>TEST_VALUE</nutritionLabelTypeCode>
+                                        </food:foodAndBeverageTradeItemExtension>
+                                    </extension>
+                                    <equivalentTradeItem>
+                                        <gtin>19999999900065</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>JKL_345</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </equivalentTradeItem>
+                                    <equivalentTradeItem>
+                                        <gtin>19999999900058</gtin>
+                                    </equivalentTradeItem>
+                                    <itemVariantMaster>
+                                        <gtin>19999996780011</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>DEF_1245</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </itemVariantMaster>
+                                    <replacedByTradeItem>
+                                        <gtin>19999999700016</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>DEF_12345</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </replacedByTradeItem>
+                                    <substitutedTradeItem>
+                                        <gtin>00008000325109</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>TN_123</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </substitutedTradeItem>
+                                    <substitutedByTradeItem>
+                                        <gtin>50041820041526</gtin>
+                                        <additionalTradeItemIdentification>
+                                            <additionalTradeItemIdentificationValue>123</additionalTradeItemIdentificationValue>
+                                            <additionalTradeItemIdentificationType>SUPPLIER_ASSIGNED</additionalTradeItemIdentificationType>
+                                        </additionalTradeItemIdentification>
+                                    </substitutedByTradeItem>
+                                </tradeItem>
+                                <dataRecipient>1100001011285</dataRecipient>
+                                <sourceDataPool>1100001011285</sourceDataPool>
+                                <catalogueItemChildItemLink quantity="42">
+                                    <catalogueItem>
+                                        <catalogueItemState state="IN_PROGRESS"/>
+                                        <!--catalogueItemState discontinueDate="2016-01-01T00:00:00" state="IN_PROGRESS"/-->
+                                        <tradeItem>
+                                            <tradeItemUnitDescriptor>BASE_UNIT_OR_EACH</tradeItemUnitDescriptor>
+                                            <tradeItemIdentification>
+                                                <gtin>10024951191010</gtin>
+                                            </tradeItemIdentification>
+                                            <tradeItemInformation>
+                                                <informationProviderOfTradeItem>
+                                                    <informationProvider>
+                                                        <gln>1100001011292</gln>
+                                                    </informationProvider>
+                                                    <nameOfInformationProvider>Provider © ® ½ ¼ ¾ Name 35</nameOfInformationProvider>
+                                                </informationProviderOfTradeItem>
+                                                <targetMarketInformation>
+                                                    <targetMarketCountryCode>
+                                                        <countryISOCode>840</countryISOCode>
+                                                    </targetMarketCountryCode>
+                                                    <targetMarketSubdivisionCode>
+                                                        <countrySubDivisionISOCode>US-CA</countrySubDivisionISOCode>
+                                                    </targetMarketSubdivisionCode>
+                                                </targetMarketInformation>
+                                                <classificationCategoryCode>
+                                                    <classificationCategoryCode>10000279</classificationCategoryCode>
+                                                </classificationCategoryCode>
+                                                <tradeItemDescriptionInformation>
+                                                    <brandName>Required brandName 9¾ 70</brandName>
+                                                    <functionalName>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <shortText>Required functionalName 35</shortText>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <shortText>2nd functionalName es 35</shortText>
+                                                        </description>
+                                                    </functionalName>
+                                                </tradeItemDescriptionInformation>
+                                                <tradingPartnerNeutralTradeItemInformation>
+                                                    <tradeItemUnitIndicator>
+                                                        <isTradeItemABaseUnit>true</isTradeItemABaseUnit>
+                                                        <isTradeItemAConsumerUnit>true</isTradeItemAConsumerUnit>
+                                                        <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
+                                                        <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
+                                                        <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+                                                        <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+                                                    </tradeItemUnitIndicator>
+                                                    <packagingMarking>
+                                                        <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
+                                                    </packagingMarking>
+                                                    <tradeItemMeasurements hasDisplayReadyPackaging="NOT_APPLICABLE">
+                                                        <depth>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>25.99999</value>
+                                                            </measurementValue>
+                                                        </depth>
+                                                        <grossWeight>
+                                                            <measurementValue unitOfMeasure="KG">
+                                                                <value>1.123</value>
+                                                            </measurementValue>
+                                                        </grossWeight>
+                                                        <height>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>12.6</value>
+                                                            </measurementValue>
+                                                        </height>
+                                                        <width>
+                                                            <measurementValue unitOfMeasure="CM">
+                                                                <value>50.000001</value>
+                                                            </measurementValue>
+                                                        </width>
+                                                    </tradeItemMeasurements>
+                                                </tradingPartnerNeutralTradeItemInformation>
+                                            </tradeItemInformation>
+                                        </tradeItem>
+                                        <dataRecipient>1100001011285</dataRecipient>
+                                        <sourceDataPool>1100001011285</sourceDataPool>
+                                    </catalogueItem>
+                                </catalogueItemChildItemLink>
+                            </catalogueItem>
+                            <catalogueItemNotificationIdentification>
+                                <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1_CMD-1_DOC-1</uniqueCreatorIdentification>
+                                <contentOwner>
+                                    <gln>1100001011292</gln>
+                                </contentOwner>
+                            </catalogueItemNotificationIdentification>
+                        </gdsn:catalogueItemNotification>
+                    </documentCommandOperand>
+                </eanucc:documentCommand>
+            </command>
+        </eanucc:transaction>
+    </eanucc:message>
+</sh:StandardBusinessDocument>

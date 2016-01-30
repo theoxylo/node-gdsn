@@ -160,7 +160,7 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
   this.templates.ti_31       = fs.readFileSync(path + '/gdsn3/tradeItem.xml',   options)
   this.templates.ext_aim     = fs.readFileSync(path + '/gdsn3/EXT_AIM.xml',     options)
   this.templates.ext_diet    = fs.readFileSync(path + '/gdsn3/EXT_DIET.xml',    options)
-  this.templates.ext_fbim    = fs.readFileSync(path + '/gdsn3/EXT_FBIM.xml',    options)
+  //this.templates.ext_fbim    = fs.readFileSync(path + '/gdsn3/EXT_FBIM.xml',    options)
   this.templates.cic_to_pub  = fs.readFileSync(path + '/gdsn3/CIC.xml',         options)
   this.templates.cihw_to_rdp = fs.readFileSync(path + '/gdsn3/CIHW.xml',        options)
 

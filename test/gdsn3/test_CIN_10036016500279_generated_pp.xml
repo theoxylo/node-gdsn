@@ -20,15 +20,15 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1454080647832_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1454173701434_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-01-29T15:17:27.832Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-01-30T17:08:21.434Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1454080647832_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -36,17 +36,17 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1454080647832_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-01-29T15:17:27.832Z</creationDateTime>
+                <creationDateTime>2016-01-30T17:08:21.434Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1454080647832_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -271,20 +271,19 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     </dietInformation>
                                 </diet_information:dietInformationModule>
                                 <food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
-                                    <additiveInformation>
-                                        <additiveName/>
-                                        <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
-                                    </additiveInformation>
                                     <foodAndBeverageIngredient>
-                                        <ingredientSequence>1.0</ingredientSequence>
-                                        <ingredientContentPercentage/>
-                                        <ingredientName languageCode="en"/>
+                                        <ingredientSequence>1</ingredientSequence>
+                                        <ingredientContentPercentage>11.45</ingredientContentPercentage>
+                                        <ingredientName languageCode="en">Water</ingredientName>
+                                        <ingredientName languageCode="es">Agua</ingredientName>
                                     </foodAndBeverageIngredient>
                                     <foodAndBeverageIngredient>
-                                        <ingredientSequence>2.0</ingredientSequence>
-                                        <ingredientContentPercentage>20.00</ingredientContentPercentage>
-                                        <ingredientName languageCode="en">Milk</ingredientName>
+                                        <ingredientSequence>2</ingredientSequence>
+                                        <ingredientName languageCode="en">Cane Sugar</ingredientName>
+                                        <ingredientName languageCode="es">Sucre de Cano</ingredientName>
                                     </foodAndBeverageIngredient>
+                                    <ingredientStatement languageCode="en">Some ingredient info</ingredientStatement>
+                                    <ingredientStatement languageCode="es">Some Spanish ingredient info</ingredientStatement>
                                 </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                             </extension>
                         </tradeItemInformation>
@@ -341,19 +340,11 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     </dietInformation>
                                 </diet_information:dietInformationModule>
                                 <food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
-                                    <additiveInformation>
-                                        <additiveName/>
-                                        <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
-                                    </additiveInformation>
                                     <foodAndBeverageIngredient>
-                                        <ingredientSequence>1.0</ingredientSequence>
-                                        <ingredientContentPercentage/>
-                                        <ingredientName languageCode="en"/>
-                                    </foodAndBeverageIngredient>
-                                    <foodAndBeverageIngredient>
-                                        <ingredientSequence>2.0</ingredientSequence>
-                                        <ingredientContentPercentage>20.00</ingredientContentPercentage>
-                                        <ingredientName languageCode="en">Milk</ingredientName>
+                                        <ingredientSequence>1</ingredientSequence>
+                                        <ingredientContentPercentage>11.45</ingredientContentPercentage>
+                                        <ingredientName languageCode="en">Veg Oil</ingredientName>
+                                        <ingredientName languageCode="es">Ollo</ingredientName>
                                     </foodAndBeverageIngredient>
                                 </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                             </extension>
@@ -452,7 +443,7 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                 </tradeItemInformation>
                                 <!-- 0..* additional tradeItemInformation variants may follow, repeated for each 2.8 fbi variant: -->
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-01-29T15:17:27.820Z</lastChangeDateTime>
+                                    <lastChangeDateTime>2016-01-30T17:08:21.426Z</lastChangeDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

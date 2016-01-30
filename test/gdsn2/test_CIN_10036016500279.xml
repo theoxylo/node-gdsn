@@ -972,83 +972,72 @@
                                                         </description>
                                                     </dietTypeDescription>
                                                 </foodAndBeverageDietRelatedInformation>
-                                                <foodAndBeverageIngredientInformation>
-                                                    <foodAndBeverageIngredient>
-                                                        <contentPercentage>11.45</contentPercentage>
-                                                        <countryOfOrigin>
-                                                            <countryISOCode>840</countryISOCode>
-                                                        </countryOfOrigin>
-                                                        <countryOfOrigin>
-                                                            <countryISOCode>156</countryISOCode>
-                                                        </countryOfOrigin>
-                                                        <ingredientSequence>1</ingredientSequence>
-                                                        <ingredientName>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>en</languageISOCode>
-                                                                </language>
-                                                                <text>Water</text>
-                                                            </description>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>es</languageISOCode>
-                                                                </language>
-                                                                <text>Agua</text>
-                                                            </description>
-                                                        </ingredientName>
-                                                        <fishCatchZone>Zone 17</fishCatchZone>
-                                                        <fishCatchZone>Zone 23</fishCatchZone>
-                                                        <grapeVarietyCode>A137</grapeVarietyCode>
-                                                        <growingMethodCode>FLY_FREE</growingMethodCode>
-                                                        <growingMethodCode>HYDROPONIC</growingMethodCode>
-                                                        <ingredientPurpose>Flavor</ingredientPurpose>
-                                                        <ingredientPurpose>Preservitive</ingredientPurpose>
-                                                        <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
-                                                        <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
-                                                    </foodAndBeverageIngredient>
-                                                    <foodAndBeverageIngredient>
-                                                        <ingredientSequence>2</ingredientSequence>
-                                                        <ingredientName>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>en</languageISOCode>
-                                                                </language>
-                                                                <text>Cane Sugar</text>
-                                                            </description>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>es</languageISOCode>
-                                                                </language>
-                                                                <text>Sucre de Cano</text>
-                                                            </description>
-                                                        </ingredientName>
-                                                    </foodAndBeverageIngredient>
-                                                    <foodAndBeverageIngredient>
-                                                        <ingredientSequence>3</ingredientSequence>
-                                                        <ingredientName>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>en</languageISOCode>
-                                                                </language>
-                                                                <text>Water</text>
-                                                            </description>
-                                                        </ingredientName>
-                                                    </foodAndBeverageIngredient>
-                                                    <ingredientStatement>
-                                                        <description>
-                                                            <language>
-                                                                <languageISOCode>en</languageISOCode>
-                                                            </language>
-                                                            <text>Some ingredient info</text>
-                                                        </description>
-                                                    </ingredientStatement>
-                                                    <geneticallyModifiedDeclarationCode>MAY_CONTAIN</geneticallyModifiedDeclarationCode>
-                                                    <isHomogenised>NOT_APPLICABLE</isHomogenised>
-                                                    <rawMaterialUsedInPreparationWeight unitOfMeasure="OZ">
-                                                        <value>12.5</value>
-                                                    </rawMaterialUsedInPreparationWeight>
-                                                    <degreeOfOriginalWort>Sweet</degreeOfOriginalWort>
-                                                </foodAndBeverageIngredientInformation>
+    <foodAndBeverageIngredientInformation>
+        <foodAndBeverageIngredient>
+            <contentPercentage>11.45</contentPercentage>
+            <countryOfOrigin>
+                <countryISOCode>840</countryISOCode>
+            </countryOfOrigin>
+            <countryOfOrigin>
+                <countryISOCode>156</countryISOCode>
+            </countryOfOrigin>
+            <ingredientSequence>1</ingredientSequence>
+            <ingredientName>
+                <description>
+                    <language>
+                        <languageISOCode>en</languageISOCode>
+                    </language>
+                    <text>Water</text>
+                </description>
+                <description>
+                    <language>
+                        <languageISOCode>es</languageISOCode>
+                    </language>
+                    <text>Agua</text>
+                </description>
+            </ingredientName>
+            <fishCatchZone>Zone 17</fishCatchZone>
+            <fishCatchZone>Zone 23</fishCatchZone>
+            <grapeVarietyCode>A137</grapeVarietyCode>
+            <growingMethodCode>FLY_FREE</growingMethodCode>
+            <growingMethodCode>HYDROPONIC</growingMethodCode>
+            <ingredientPurpose>Flavor</ingredientPurpose>
+            <ingredientPurpose>Preservitive</ingredientPurpose>
+            <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
+            <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
+        </foodAndBeverageIngredient>
+        <foodAndBeverageIngredient>
+            <ingredientSequence>2</ingredientSequence>
+            <ingredientName>
+                <description>
+                    <language>
+                        <languageISOCode>en</languageISOCode>
+                    </language>
+                    <text>Cane Sugar</text>
+                </description>
+                <description>
+                    <language>
+                        <languageISOCode>es</languageISOCode>
+                    </language>
+                    <text>Sucre de Cano</text>
+                </description>
+            </ingredientName>
+        </foodAndBeverageIngredient>
+        <ingredientStatement>
+            <description>
+                <language>
+                    <languageISOCode>en</languageISOCode>
+                </language>
+                <text>Some ingredient info</text>
+            </description>
+            <description>
+                <language>
+                    <languageISOCode>es</languageISOCode>
+                </language>
+                <text>Some Spanish ingredient info</text>
+            </description>
+        </ingredientStatement>
+    </foodAndBeverageIngredientInformation>
                                                 <foodAndBeverageMicrobiologicalInformation>
                                                     <organismCode>BACILLUS_CEREUS</organismCode>
                                                     <organismMaximumValue>
@@ -1399,81 +1388,22 @@
                                                 <foodAndBeverageIngredientInformation>
                                                     <foodAndBeverageIngredient>
                                                         <contentPercentage>11.45</contentPercentage>
-                                                        <countryOfOrigin>
-                                                            <countryISOCode>840</countryISOCode>
-                                                        </countryOfOrigin>
-                                                        <countryOfOrigin>
-                                                            <countryISOCode>156</countryISOCode>
-                                                        </countryOfOrigin>
                                                         <ingredientSequence>1</ingredientSequence>
                                                         <ingredientName>
                                                             <description>
                                                                 <language>
                                                                     <languageISOCode>en</languageISOCode>
                                                                 </language>
-                                                                <text>Water</text>
+                                                                <text>Veg Oil</text>
                                                             </description>
                                                             <description>
                                                                 <language>
                                                                     <languageISOCode>es</languageISOCode>
                                                                 </language>
-                                                                <text>Agua</text>
-                                                            </description>
-                                                        </ingredientName>
-                                                        <fishCatchZone>Zone 17</fishCatchZone>
-                                                        <fishCatchZone>Zone 23</fishCatchZone>
-                                                        <grapeVarietyCode>A137</grapeVarietyCode>
-                                                        <growingMethodCode>FLY_FREE</growingMethodCode>
-                                                        <growingMethodCode>HYDROPONIC</growingMethodCode>
-                                                        <ingredientPurpose>Flavor</ingredientPurpose>
-                                                        <ingredientPurpose>Preservitive</ingredientPurpose>
-                                                        <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
-                                                        <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
-                                                    </foodAndBeverageIngredient>
-                                                </foodAndBeverageIngredientInformation>
-                                                <foodAndBeverageIngredientInformation>
-                                                    <foodAndBeverageIngredient>
-                                                        <ingredientSequence>2</ingredientSequence>
-                                                        <ingredientName>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>en</languageISOCode>
-                                                                </language>
-                                                                <text>Cane Sugar</text>
-                                                            </description>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>es</languageISOCode>
-                                                                </language>
-                                                                <text>Sucre de Cano</text>
+                                                                <text>Ollo</text>
                                                             </description>
                                                         </ingredientName>
                                                     </foodAndBeverageIngredient>
-                                                    <foodAndBeverageIngredient>
-                                                        <ingredientSequence>3</ingredientSequence>
-                                                        <ingredientName>
-                                                            <description>
-                                                                <language>
-                                                                    <languageISOCode>en</languageISOCode>
-                                                                </language>
-                                                                <text>Water</text>
-                                                            </description>
-                                                        </ingredientName>
-                                                    </foodAndBeverageIngredient>
-                                                    <ingredientStatement>
-                                                        <description>
-                                                            <language>
-                                                                <languageISOCode>en</languageISOCode>
-                                                            </language>
-                                                            <text>Some ingredient info</text>
-                                                        </description>
-                                                    </ingredientStatement>
-                                                    <geneticallyModifiedDeclarationCode>MAY_CONTAIN</geneticallyModifiedDeclarationCode>
-                                                    <isHomogenised>NOT_APPLICABLE</isHomogenised>
-                                                    <rawMaterialUsedInPreparationWeight unitOfMeasure="OZ">
-                                                        <value>12.5</value>
-                                                    </rawMaterialUsedInPreparationWeight>
-                                                    <degreeOfOriginalWort>Sweet</degreeOfOriginalWort>
                                                 </foodAndBeverageIngredientInformation>
                                                 <foodAndBeverageMicrobiologicalInformation>
                                                     <organismCode>BACILLUS_CEREUS</organismCode>

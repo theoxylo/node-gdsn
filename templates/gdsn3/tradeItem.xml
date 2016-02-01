@@ -108,25 +108,6 @@
                 </tradeItemDescriptionInformation>
             </trade_item_description:tradeItemDescriptionModule>
 
-            <trade_item_measurements:tradeItemMeasurementsModule>
-                <tradeItemMeasurements>
-                    <depth measurementUnitCode/>
-                    <height measurementUnitCode/>
-                    <netContent measurementUnitCode/>
-                    <width measurementUnitCode/>
-                    <tradeItemWeight>
-                        <grossWeight measurementUnitCode/>
-                        <netWeight measurementUnitCode/>
-                    </tradeItemWeight>
-                </tradeItemMeasurements>
-            </trade_item_measurements:tradeItemMeasurementsModule>
-
-            <variable_trade_item_information:variableTradeItemInformationModule>
-                <variableTradeItemInformation>
-                    <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
-                </variableTradeItemInformation>
-            </variable_trade_item_information:variableTradeItemInformationModule>
-
         </extension>
 
         <avpList/>

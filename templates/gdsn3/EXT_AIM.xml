@@ -1,8 +1,0 @@
-<allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
-    <allergenRelatedInformation>
-        <allergenSpecificationAgency/>
-        <allergenSpecificationName/>
-        <allergenStatement/>
-        <allergen/>
-    </allergenRelatedInformation>
-</allergen_information:allergenInformationModule>

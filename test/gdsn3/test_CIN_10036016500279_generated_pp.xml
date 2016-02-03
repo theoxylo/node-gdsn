@@ -20,15 +20,15 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1454173701434_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1454537429643_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-01-30T17:08:21.434Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-02-03T22:10:29.643Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -36,17 +36,17 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-01-30T17:08:21.434Z</creationDateTime>
+                <creationDateTime>2016-02-03T22:10:29.643Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1454173701434_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -82,11 +82,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                             <gDSNTradeItemClassificationAttribute>
                                 <gpcAttributeTypeCode>20000002</gpcAttributeTypeCode>
                                 <gpcAttributeValueCode>30000564</gpcAttributeValueCode>
-                                <!--
-            <gpcAttributeTypeDefinition/>
-            <gpcAttributeTypeName/>
-            <gpcAttributeValueName/>
-            -->
                             </gDSNTradeItemClassificationAttribute>
                             <additionalTradeItemClassification>
                                 <additionalTradeItemClassificationSystemCode>1</additionalTradeItemClassificationSystemCode>
@@ -114,13 +109,28 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                             <targetMarketSubdivisionCode>US-CA</targetMarketSubdivisionCode>
                         </targetMarket>
                         <tradeItemInformation>
-                            <!-- this first TII will never be a variant, so don't need these 2 elements:
-        <productionVariantDescription/>
-        <productionVariantEffectiveDateTime/>
-        -->
                             <!--tradeItemComponents/-->
                             <extension>
-                                <delivery_purchasing_information:deliveryPurchasingInformationModule>
+                                <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
+                                    <allergenRelatedInformation>
+                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
+                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
+                                        <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
+                                        <allergenStatement languageCode="es">Este producto es muy allergenic</allergenStatement>
+                                        <allergen>
+                                            <allergenTypeCode>X99</allergenTypeCode>
+                                            <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
+                                        </allergen>
+                                    </allergenRelatedInformation>
+                                </allergen_information:allergenInformationModule>
+                                <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
+                                    <dietInformation>
+                                        <dietTypeInformation>
+                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
+                                        </dietTypeInformation>
+                                    </dietInformation>
+                                </diet_information:dietInformationModule>
+                                <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
                                     <deliveryPurchasingInformation>
                                         <agreedMaximumBuyingQuantity>144</agreedMaximumBuyingQuantity>
                                         <agreedMinimumBuyingQuantity>12</agreedMinimumBuyingQuantity>
@@ -144,7 +154,7 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         </orderableReturnableInformation>
                                     </deliveryPurchasingInformation>
                                 </delivery_purchasing_information:deliveryPurchasingInformationModule>
-                                <trade_item_description:tradeItemDescriptionModule>
+                                <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                     <tradeItemDescriptionInformation>
                                         <additionalTradeItemDescription languageCode="fr">French additionalTradeItemDescription &#xA9; entre 500</additionalTradeItemDescription>
                                         <additionalTradeItemDescription languageCode="en">English additionalTradeItemDescription &#xA9; now 500</additionalTradeItemDescription>
@@ -158,13 +168,11 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         <invoiceName languageCode="en">en invoiceName &#xA9; 35</invoiceName>
                                         <invoiceName languageCode="es">es invoiceName &#xA9; 35</invoiceName>
                                         <invoiceName languageCode="fr">fr invoiceName &#xA9; 35</invoiceName>
-                                        <labelDescription languageCode="en">New label descripiton 500 field. Is there something from 2.8 we can map to here? TBD</labelDescription>
                                         <productRange>Best Product Range Ever 35</productRange>
                                         <tradeItemDescription languageCode="en">English tradeItemDescription &#xA9; 200</tradeItemDescription>
                                         <tradeItemDescription languageCode="fr">French tradeItemDescription &#xA9; 200</tradeItemDescription>
                                         <tradeItemDescription languageCode="es">Spanish tradeItemDescription &#xA9; 200</tradeItemDescription>
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
-                                        <tradeItemGroupIdentificationCodeReference>GroupID-XXX</tradeItemGroupIdentificationCodeReference>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
                                             <brandName>BestTest2016 &#xA9; 70</brandName>
@@ -176,46 +184,24 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         </brandNameInformation>
                                     </tradeItemDescriptionInformation>
                                 </trade_item_description:tradeItemDescriptionModule>
-                                <trade_item_measurements:tradeItemMeasurementsModule>
+                                <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                     <tradeItemMeasurements>
-                                        <depth measurementUnitCode=""/>
-                                        <height measurementUnitCode=""/>
-                                        <netContent measurementUnitCode=""/>
-                                        <width measurementUnitCode=""/>
+                                        <depth measurementUnitCode="CM">25.99</depth>
+                                        <height measurementUnitCode="CM">12.6</height>
+                                        <width measurementUnitCode="CM">50.000001</width>
                                         <tradeItemWeight>
-                                            <grossWeight measurementUnitCode=""/>
-                                            <netWeight measurementUnitCode=""/>
+                                            <netWeight measurementUnitCode="KG">4</netWeight>
                                         </tradeItemWeight>
                                     </tradeItemMeasurements>
                                 </trade_item_measurements:tradeItemMeasurementsModule>
-                                <variable_trade_item_information:variableTradeItemInformationModule>
+                                <variable_trade_item_information:variableTradeItemInformationModule xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd">
                                     <variableTradeItemInformation>
-                                        <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
+                                        <isTradeItemAVariableUnit>true</isTradeItemAVariableUnit>
                                     </variableTradeItemInformation>
                                 </variable_trade_item_information:variableTradeItemInformationModule>
-                                <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
-                                    <allergenRelatedInformation>
-                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
-                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
-                                        <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
-                                        <allergenStatement languageCode="es">Este producto es muy allergenic</allergenStatement>
-                                        <allergen>
-                                            <allergenTypeCode>X99</allergenTypeCode>
-                                            <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
-                                        </allergen>
-                                    </allergenRelatedInformation>
-                                </allergen_information:allergenInformationModule>
-                                <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
-                                    <dietInformation>
-                                        <dietTypeInformation>
-                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
-                                        </dietTypeInformation>
-                                    </dietInformation>
-                                </diet_information:dietInformationModule>
                             </extension>
                             <avpList/>
                         </tradeItemInformation>
-                        <!-- 0..* additional tradeItemInformation variants may follow, repeated for each 2.8 fbi variant: -->
                         <tradeItemInformation>
                             <productionVariantDescription languageCode="en">SERVING_SIZE_COCOA_BUTTER</productionVariantDescription>
                             <productionVariantEffectiveDateTime>2016-01-02T01:01:01.009Z</productionVariantEffectiveDateTime>
@@ -285,6 +271,46 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     <ingredientStatement languageCode="en">Some ingredient info</ingredientStatement>
                                     <ingredientStatement languageCode="es">Some Spanish ingredient info</ingredientStatement>
                                 </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
+                                <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutrientHeader>
+                                        <preparationStateCode>PREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>1.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">1.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>1.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                    <nutrientHeader>
+                                        <preparationStateCode>UNPREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>2.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">2.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>2.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                </nutritional_information:nutritionalInformationModule>
                             </extension>
                         </tradeItemInformation>
                         <tradeItemInformation>
@@ -298,6 +324,46 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         </dietTypeInformation>
                                     </dietInformation>
                                 </diet_information:dietInformationModule>
+                                <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutrientHeader>
+                                        <preparationStateCode>PREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>3.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">3.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>3.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                    <nutrientHeader>
+                                        <preparationStateCode>UNPREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>4.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">4.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>4.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                </nutritional_information:nutritionalInformationModule>
                             </extension>
                         </tradeItemInformation>
                         <tradeItemInformation>
@@ -347,12 +413,93 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         <ingredientName languageCode="es">Ollo</ingredientName>
                                     </foodAndBeverageIngredient>
                                 </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
+                                <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutrientHeader>
+                                        <preparationStateCode>PREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>5.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">5.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>5.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                    <nutrientHeader>
+                                        <preparationStateCode>UNPREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>6.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">6.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>6.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                </nutritional_information:nutritionalInformationModule>
                             </extension>
                         </tradeItemInformation>
                         <tradeItemInformation>
                             <productionVariantDescription languageCode="en">100_GRAM_VEG_OIL</productionVariantDescription>
                             <productionVariantEffectiveDateTime>2016-01-06T01:01:01.009Z</productionVariantEffectiveDateTime>
-                            <extension> </extension>
+                            <extension>
+                                <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutrientHeader>
+                                        <preparationStateCode>PREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>7.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">7.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>7.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                    <nutrientHeader>
+                                        <preparationStateCode>UNPREPARED</preparationStateCode>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>ENER</nutrientTypeCode>
+                                            <dailyValueIntakePercent>8.10</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="E14">8.20</quantityContained>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>BIOT</nutrientTypeCode>
+                                            <dailyValueIntakePercent>8.30</dailyValueIntakePercent>
+                                            <measurementPrecisionCode>APPROXIMATELY</measurementPrecisionCode>
+                                        </nutrientDetail>
+                                        <nutrientDetail>
+                                            <nutrientTypeCode>NA</nutrientTypeCode>
+                                            <measurementPrecisionCode>EXACT</measurementPrecisionCode>
+                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                        </nutrientDetail>
+                                    </nutrientHeader>
+                                </nutritional_information:nutritionalInformationModule>
+                            </extension>
                         </tradeItemInformation>
                         <tradeItemSynchronisationDates>
                             <lastChangeDateTime>2016-01-21T11:59:59</lastChangeDateTime>
@@ -393,47 +540,26 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     <targetMarketSubdivisionCode>US-CA</targetMarketSubdivisionCode>
                                 </targetMarket>
                                 <tradeItemInformation>
-                                    <!-- this first TII will never be a variant, so don't need these 2 elements:
-        <productionVariantDescription/>
-        <productionVariantEffectiveDateTime/>
-        -->
                                     <!--tradeItemComponents/-->
                                     <extension>
-                                        <delivery_purchasing_information:deliveryPurchasingInformationModule>
-                                            <deliveryPurchasingInformation>
-                                                <agreedMaximumBuyingQuantity/>
-                                                <agreedMinimumBuyingQuantity/>
-                                                <orderQuantityMaximum/>
-                                                <orderQuantityMinimum/>
-                                                <orderQuantityMultiple/>
-                                                <orderableReturnableInformation>
-                                                    <isNonSoldTradeItemReturnable/>
-                                                </orderableReturnableInformation>
-                                            </deliveryPurchasingInformation>
-                                        </delivery_purchasing_information:deliveryPurchasingInformationModule>
-                                        <trade_item_description:tradeItemDescriptionModule>
+                                        <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
-                                                <labelDescription languageCode="en">New label descripiton 500 field. Is there something from 2.8 we can map to here? TBD</labelDescription>
                                                 <brandNameInformation>
                                                     <brandName>Required brandName 9&#xBE; 70</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
-                                        <trade_item_measurements:tradeItemMeasurementsModule>
+                                        <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                             <tradeItemMeasurements>
-                                                <depth measurementUnitCode=""/>
-                                                <height measurementUnitCode=""/>
-                                                <netContent measurementUnitCode=""/>
-                                                <width measurementUnitCode=""/>
-                                                <tradeItemWeight>
-                                                    <grossWeight measurementUnitCode=""/>
-                                                    <netWeight measurementUnitCode=""/>
-                                                </tradeItemWeight>
+                                                <depth measurementUnitCode="CM">25.99999</depth>
+                                                <height measurementUnitCode="CM">12.6</height>
+                                                <width measurementUnitCode="CM">50.000001</width>
+                                                <tradeItemWeight/>
                                             </tradeItemMeasurements>
                                         </trade_item_measurements:tradeItemMeasurementsModule>
-                                        <variable_trade_item_information:variableTradeItemInformationModule>
+                                        <variable_trade_item_information:variableTradeItemInformationModule xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd">
                                             <variableTradeItemInformation>
                                                 <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
                                             </variableTradeItemInformation>
@@ -441,9 +567,8 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     </extension>
                                     <avpList/>
                                 </tradeItemInformation>
-                                <!-- 0..* additional tradeItemInformation variants may follow, repeated for each 2.8 fbi variant: -->
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-01-30T17:08:21.426Z</lastChangeDateTime>
+                                    <lastChangeDateTime>2016-02-03T22:10:29.638Z</lastChangeDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

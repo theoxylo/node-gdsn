@@ -23,11 +23,6 @@
         <gDSNTradeItemClassificationAttribute>
             <gpcAttributeTypeCode/>
             <gpcAttributeValueCode/>
-            <!--
-            <gpcAttributeTypeDefinition/>
-            <gpcAttributeTypeName/>
-            <gpcAttributeValueName/>
-            -->
         </gDSNTradeItemClassificationAttribute>
         <additionalTradeItemClassification>
             <additionalTradeItemClassificationSystemCode/>
@@ -52,68 +47,10 @@
     </targetMarket>
 
     <tradeItemInformation>
-
-        <!-- this first TII will never be a variant, so don't need these 2 elements:
-        <productionVariantDescription/>
-        <productionVariantEffectiveDateTime/>
-        -->
-
         <!--tradeItemComponents/-->
-        
-        <extension>
-
-            <delivery_purchasing_information:deliveryPurchasingInformationModule>
-                <deliveryPurchasingInformation>
-                    <agreedMaximumBuyingQuantity/>
-                    <agreedMinimumBuyingQuantity/>
-                    <consumerFirstAvailabilityDateTime/>
-                    <firstShipDateTime/>
-                    <endAvailabilityDateTime/>
-                    <endDateTimeOfExclusivity/>
-                    <endMaximumBuyingQuantityDateTime/>
-                    <endMinimumBuyingQuantityDateTime/>
-                    <firstOrderDateTime/>
-                    <lastOrderDateTime/>
-                    <lastShipDateTime/>
-                    <orderQuantityMaximum/>
-                    <orderQuantityMinimum/>
-                    <orderQuantityMultiple/>
-                    <startAvailabilityDateTime/>
-                    <startDateMaximumBuyingQuantity/>
-                    <startDateMinimumBuyingQuantity/>
-                    <orderableReturnableInformation>
-                        <isNonSoldTradeItemReturnable/>
-                    </orderableReturnableInformation>
-                </deliveryPurchasingInformation>
-            </delivery_purchasing_information:deliveryPurchasingInformationModule>
-
-            <trade_item_description:tradeItemDescriptionModule>
-                <tradeItemDescriptionInformation>
-                    <additionalTradeItemDescription/>
-                    <descriptionShort/>
-                    <functionalName/>
-                    <invoiceName/>
-                    <labelDescription/>
-                    <productRange/>
-                    <tradeItemDescription/>
-                    <tradeItemFormDescription/>
-                    <tradeItemGroupIdentificationCodeReference/>
-                    <variantDescription/>
-                    <brandNameInformation>
-                        <brandName/>
-                        <languageSpecificBrandName/>
-                        <languageSpecificSubbrandName/>
-                        <subBrand/>
-                    </brandNameInformation>
-                </tradeItemDescriptionInformation>
-            </trade_item_description:tradeItemDescriptionModule>
-
-        </extension>
-
+        <extension/>
         <avpList/>
-
     </tradeItemInformation>
-    <!-- 0..* additional tradeItemInformation variants may follow, repeated for each 2.8 fbi variant: -->
 
     <tradeItemSynchronisationDates>
         <lastChangeDateTime/>

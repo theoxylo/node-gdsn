@@ -47,6 +47,7 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
 <catalogue_item_notification:catalogueItemNotification>
 <creationDateTime>TOKEN</creationDateTime>
 <documentStatusCode>TOKEN</documentStatusCode>
+<documentActionCode>ADD</documentActionCode>
 <catalogueItemNotificationIdentification>
 <entityIdentification>TOKEN</entityIdentification>
 <contentOwner><gln>TOKEN</gln></contentOwner>

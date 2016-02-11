@@ -843,11 +843,6 @@
                                     <extension>
                                         <gdsn:attributeValuePairExtension>
                                             <value name="doesTradeItemCarryUSDAChildNutritionLabel">No</value>
-                                            <value name="individualUnitMin">15</value>
-                                            <value name="individualUnitMinUOM">OZ</value>
-                                            <value name="individualUnitMax">15</value>
-                                            <value name="individualUnitMaxUOM">OZ</value>
-                                            <value name="someCustomKey">someCustomValue</value>
                                             <value name="allergenRelevantDataProvided">true</value>
                                             <value name="foodCompositionAgencyNameCode">ANSES</value>
                                             <value name="foodCompositionCode">MR3155678 FORCE</value>

@@ -9,13 +9,24 @@
     <isTradeItemADespatchUnit/>
     <isTradeItemAnInvoiceUnit/>
     <isTradeItemAnOrderableUnit/>
+
+    <isTradeItemAService>false</isTradeItemAService>
+    <isTradeItemNonphysical>false</isTradeItemNonphysical>
+    <isTradeItemRecalled>false</isTradeItemRecalled>
+
     <tradeItemUnitDescriptorCode/>
+
+    <tradeItemTradeChannelCode/>
+
+    <brandOwner/>
 
     <informationProviderOfTradeItem>
         <gln/>
         <partyName/>
         <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
+
+    <manufacturerOfTradeItem/>
 
     <gdsnTradeItemClassification>
         <gpcCategoryCode/>
@@ -46,11 +57,7 @@
         <targetMarketSubdivisionCode/>
     </targetMarket>
 
-    <tradeItemInformation>
-        <!--tradeItemComponents/-->
-        <extension/>
-        <avpList/>
-    </tradeItemInformation>
+    <tradeItemInformation/>
 
     <tradeItemSynchronisationDates>
         <lastChangeDateTime/>

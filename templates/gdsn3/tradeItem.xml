@@ -57,7 +57,9 @@
         <targetMarketSubdivisionCode/>
     </targetMarket>
 
-    <tradeItemInformation/>
+    <tradeItemInformation>
+        <extension/>
+    </tradeItemInformation>
 
     <tradeItemSynchronisationDates>
         <lastChangeDateTime/>

@@ -33,7 +33,6 @@ var Gdsn = module.exports = function (x_config) {
   this.itemStream = new ItemStream(this)
   this.partyStream = new PartyStream(this)
 
-  Gdsn.prototype.cin_builder_28            = require('./lib/create_cin_28.js')(cheerio, this)
   Gdsn.prototype.cin_builder_31            = require('./lib/create_cin_31.js')(cheerio, this)
   Gdsn.prototype.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
   Gdsn.prototype.convert_tradeItem_28_31   = require('./lib/tradeItem_upgrade_28_31.js')(cheerio, this)
@@ -43,26 +42,18 @@ var Gdsn = module.exports = function (x_config) {
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
   var cin = ''
   try {
-    if (!items[0].tradeItem /* not parsed */ || items[0].tradeItem.gtin || config.cin_31_only) {
-      log('generating 3.1 CIN for item count ' + (items && items.length))
-      cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
-    }
-    else {
-      log('generating 2.8 CIN for item count ' + (items && items.length))
-      cin = this.cin_builder_28(items, receiver, command, reload, docStatus, sender)
-    }
+    cin = this.cin_builder_31(items, receiver, command, reload, docStatus, sender) 
   }
-  catch (err) { // eg empty or null items array, malformed tradeItemi
+  catch (err) { // eg empty or null items array, malformed tradeItem
     log(err)
   }
-  log('created new CIN XML with length ' + cin.length)
+  log('created new CIN XML with length ' + cin.length + ' for receiver ' + receiver)
   return cin
 }
 
 Gdsn.prototype.get_msg_info = function (xml) {
   log('gdsn get_msg_info called with xml length ' + xml.length)
   return new MessageInfo(Gdsn.trim_xml(xml), config) 
-  //return new MessageInfo(Gdsn.trim_xml(Gdsn.clean_xml(xml)), config) 
 }
 
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
@@ -622,13 +613,21 @@ Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
 
 // removes extra whitespace between tags, but adds a new line for easy diff later
 Gdsn.prototype.trim_xml = Gdsn.trim_xml = function (xml) {
+  if (!xml || !xml.length) return xml
+
   // match xml chunk, trim leading and trailing non-XML (e.g. multipart boundries)
-  var match = xml.match(/<[^]*>/) 
-  var result = match && match[0]
-  if (!result || !result.length) return ''
-  result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
-  result = result.replace(/><([^\/])/g, '>\n<$1')  // add line return between tags but not as tag value
-  return result
+  try {
+    var match = xml.match(/<[^]*>/) 
+    var result = match && match[0]
+    if (!result || !result.length) return ''
+    result = result.replace(/>\s*</g, '><') // remove extra whitespace between tags
+    result = result.replace(/><([^\/])/g, '>\n<$1')  // add line return between tags but not as tag value
+    return result
+  }
+  catch (e) {
+    log('Gdsn.trim_xml error: ' + e)
+    return xml // return original xml in case of misc error
+  }
 }
 
 // removes all namespace information

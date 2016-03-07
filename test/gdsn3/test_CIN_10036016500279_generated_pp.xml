@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<catalogue_item_notification:catalogueItemNotificationMessage xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
-http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd
-urn:gs1:gdsn:catalogue_item_notification:xsd:3     http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd
-urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd
-urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3    http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd
-urn:gs1:gdsn:trade_item_measurements:xsd:3         http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd
-urn:gs1:gdsn:trade_item_description:xsd:3          http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd
-urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd
-urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd
-">
+<catalogue_item_notification:catalogueItemNotificationMessage xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:catalogue_item_notification="urn:gs1:gdsn:catalogue_item_notification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader http://www.gdsregistry.org/3.1/schemas/sbdh/StandardBusinessDocumentHeader.xsd
+                      urn:gs1:gdsn:catalogue_item_notification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CatalogueItemNotification.xsd">
     <sh:StandardBusinessDocumentHeader>
         <sh:HeaderVersion>1.0</sh:HeaderVersion>
         <sh:Sender>
@@ -20,15 +12,15 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1454537429643_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1456933195397_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-02-03T22:10:29.643Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-02T15:39:55.397Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1456933195397_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -36,17 +28,18 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1456933195397_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-02-03T22:10:29.643Z</creationDateTime>
+                <creationDateTime>2016-03-02T15:39:55.397Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
+                <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1454537429643_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1456933195397_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -68,7 +61,16 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                         <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
                         <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+                        <isTradeItemAService>false</isTradeItemAService>
+                        <isTradeItemNonphysical>false</isTradeItemNonphysical>
+                        <isTradeItemRecalled>false</isTradeItemRecalled>
                         <tradeItemUnitDescriptorCode>CASE</tradeItemUnitDescriptorCode>
+                        <tradeItemTradeChannelCode>GROCERY</tradeItemTradeChannelCode>
+                        <tradeItemTradeChannelCode>FOOD_SERVICE</tradeItemTradeChannelCode>
+                        <brandOwner>
+                            <gln>1100001011292</gln>
+                            <partyName>Brand X &#xA9;</partyName>
+                        </brandOwner>
                         <informationProviderOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
@@ -76,6 +78,10 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                             <partyName>Provider &#xA9; &#xAE; &#xBD; &#xBC; &#xBE; Name 35</partyName>
                             <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                         </informationProviderOfTradeItem>
+                        <manufacturerOfTradeItem>
+                            <gln>1100001011292</gln>
+                            <partyName>Manufacturer ABC &#xA9; 70</partyName>
+                        </manufacturerOfTradeItem>
                         <gdsnTradeItemClassification>
                             <gpcCategoryCode>10000279</gpcCategoryCode>
                             <gpcCategoryName>na</gpcCategoryName>
@@ -104,17 +110,44 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                 <quantityOfNextLowerLevelTradeItem>42</quantityOfNextLowerLevelTradeItem>
                             </childTradeItem>
                         </nextLowerLevelTradeItemInformation>
+                        <referencedFileInformation>
+                            <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
+                            <fileEffectiveEndDateTime>2023-01-01T11:59:58</fileEffectiveEndDateTime>
+                            <fileEffectiveStartDateTime>2016-01-01T11:59:58</fileEffectiveStartDateTime>
+                            <fileFormatName>formatTI</fileFormatName>
+                            <fileName>my_ti_file.txt</fileName>
+                            <uniformResourceIdentifier>http://www.kayfabenews.com/wp-content/uploads/2015/02/puppy4.jpg</uniformResourceIdentifier>
+                        </referencedFileInformation>
+                        <referencedFileInformation>
+                            <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
+                            <fileEffectiveStartDateTime>2016-03-02T15:39:55.287Z</fileEffectiveStartDateTime>
+                            <fileFormatName>JPG</fileFormatName>
+                            <fileName>filename</fileName>
+                            <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
+                        </referencedFileInformation>
+                        <referencedFileInformation>
+                            <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
+                            <fileEffectiveEndDateTime>2023-01-01T11:59:59</fileEffectiveEndDateTime>
+                            <fileEffectiveStartDateTime>2016-01-01T11:59:59</fileEffectiveStartDateTime>
+                            <fileFormatName>formatX</fileFormatName>
+                            <fileName>my_file.txt</fileName>
+                            <uniformResourceIdentifier>https://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg</uniformResourceIdentifier>
+                        </referencedFileInformation>
+                        <referencedFileInformation>
+                            <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
+                            <fileEffectiveStartDateTime>2016-03-02T15:39:55.289Z</fileEffectiveStartDateTime>
+                            <fileFormatName>JPG</fileFormatName>
+                            <fileName>filename</fileName>
+                            <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
+                        </referencedFileInformation>
                         <targetMarket>
                             <targetMarketCountryCode>840</targetMarketCountryCode>
-                            <targetMarketSubdivisionCode>US-CA</targetMarketSubdivisionCode>
                         </targetMarket>
                         <tradeItemInformation>
-                            <!--tradeItemComponents/-->
+                            <productionVariantDescription languageCode="en">FIRST_NON_VARIANT</productionVariantDescription>
                             <extension>
                                 <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
                                     <allergenRelatedInformation>
-                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
-                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
                                         <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
                                         <allergenStatement languageCode="es">Este producto es muy allergenic</allergenStatement>
                                         <allergen>
@@ -123,13 +156,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         </allergen>
                                     </allergenRelatedInformation>
                                 </allergen_information:allergenInformationModule>
-                                <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
-                                    <dietInformation>
-                                        <dietTypeInformation>
-                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
-                                        </dietTypeInformation>
-                                    </dietInformation>
-                                </diet_information:dietInformationModule>
                                 <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
                                     <deliveryPurchasingInformation>
                                         <agreedMaximumBuyingQuantity>144</agreedMaximumBuyingQuantity>
@@ -154,6 +180,27 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         </orderableReturnableInformation>
                                     </deliveryPurchasingInformation>
                                 </delivery_purchasing_information:deliveryPurchasingInformationModule>
+                                <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
+                                    <dataCarrier>
+                                        <dataCarrierTypeCode>EAN_8_COMPOSITE</dataCarrierTypeCode>
+                                    </dataCarrier>
+                                </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
+                                <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
+                                    <dietInformation>
+                                        <dietTypeInformation>
+                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
+                                        </dietTypeInformation>
+                                    </dietInformation>
+                                </diet_information:dietInformationModule>
+                                <safety_data_sheet:safetyDataSheetModule xmlns:safety_data_sheet="urn:gs1:gdsn:safety_data_sheet:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:safety_data_sheet:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SafetyDataSheetModule.xsd">
+                                    <safetyDataSheetInformation/>
+                                </safety_data_sheet:safetyDataSheetModule>
+                                <sales_information:salesInformationModule xmlns:sales_information="urn:gs1:gdsn:sales_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sales_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SalesInformationModule.xsd">
+                                    <salesInformation>
+                                        <brandDistributionTypeCode>UNRESTRICTED_DISTRIBUTION</brandDistributionTypeCode>
+                                        <priceByMeasureTypeCode>COUNT</priceByMeasureTypeCode>
+                                    </salesInformation>
+                                </sales_information:salesInformationModule>
                                 <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                     <tradeItemDescriptionInformation>
                                         <additionalTradeItemDescription languageCode="fr">French additionalTradeItemDescription &#xA9; entre 500</additionalTradeItemDescription>
@@ -175,7 +222,7 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
-                                            <brandName>BestTest2016 &#xA9; 70</brandName>
+                                            <brandName>BestTest2016&#xA9;</brandName>
                                             <languageSpecificBrandName languageCode="en">English brand name YYY &#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificBrandName languageCode="es">Spanish brand name YYY &#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &#xA9; 70</languageSpecificSubbrandName>
@@ -187,9 +234,14 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                 <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                     <tradeItemMeasurements>
                                         <depth measurementUnitCode="CM">25.99</depth>
+                                        <diameter measurementUnitCode="CM">25.000001</diameter>
                                         <height measurementUnitCode="CM">12.6</height>
+                                        <inBoxCubeDimension measurementUnitCode="CF">6.123</inBoxCubeDimension>
+                                        <netContent measurementUnitCode="KG">5</netContent>
                                         <width measurementUnitCode="CM">50.000001</width>
                                         <tradeItemWeight>
+                                            <drainedWeight measurementUnitCode="KG">4</drainedWeight>
+                                            <grossWeight measurementUnitCode="KG">8</grossWeight>
                                             <netWeight measurementUnitCode="KG">4</netWeight>
                                         </tradeItemWeight>
                                     </tradeItemMeasurements>
@@ -200,7 +252,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     </variableTradeItemInformation>
                                 </variable_trade_item_information:variableTradeItemInformationModule>
                             </extension>
-                            <avpList/>
                         </tradeItemInformation>
                         <tradeItemInformation>
                             <productionVariantDescription languageCode="en">SERVING_SIZE_COCOA_BUTTER</productionVariantDescription>
@@ -208,14 +259,8 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                             <extension>
                                 <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
                                     <allergenRelatedInformation>
-                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
-                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
                                         <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
                                         <allergenStatement languageCode="es">Este producto es muy allergenic</allergenStatement>
-                                        <allergen>
-                                            <allergenTypeCode>X99</allergenTypeCode>
-                                            <levelOfContainmentCode>FREE_FROM</levelOfContainmentCode>
-                                        </allergen>
                                         <allergen>
                                             <allergenTypeCode>AC</allergenTypeCode>
                                             <levelOfContainmentCode>MAY_CONTAIN</levelOfContainmentCode>
@@ -231,32 +276,17 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         <dietTypeDescription languageCode="en">Some diet info</dietTypeDescription>
                                         <dietTypeDescription languageCode="es">El diet info</dietTypeDescription>
                                         <dietTypeInformation>
-                                            <dietCertification>
-                                                <certificationAgency>222876</certificationAgency>
-                                                <certification>
-                                                    <certificationValue>111987</certificationValue>
-                                                </certification>
-                                            </dietCertification>
+                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
                                         </dietTypeInformation>
-                                    </dietInformation>
-                                    <dietInformation>
                                         <dietTypeInformation>
                                             <dietTypeCode>KOSHER</dietTypeCode>
                                             <dietTypeSubcode>K_PAREVE</dietTypeSubcode>
-                                            <dietCertification>
-                                                <certification>
-                                                    <certificationValue>369</certificationValue>
-                                                </certification>
-                                            </dietCertification>
-                                        </dietTypeInformation>
-                                    </dietInformation>
-                                    <dietInformation>
-                                        <dietTypeInformation>
-                                            <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
                                         </dietTypeInformation>
                                     </dietInformation>
                                 </diet_information:dietInformationModule>
                                 <food_and_beverage_ingredient:foodAndBeverageIngredientModule xmlns:food_and_beverage_ingredient="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_ingredient:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeverageIngredientModule.xsd">
+                                    <ingredientStatement languageCode="en">Some ingredient info</ingredientStatement>
+                                    <ingredientStatement languageCode="es">Some Spanish ingredient info</ingredientStatement>
                                     <foodAndBeverageIngredient>
                                         <ingredientSequence>1</ingredientSequence>
                                         <ingredientContentPercentage>11.45</ingredientContentPercentage>
@@ -268,8 +298,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                         <ingredientName languageCode="en">Cane Sugar</ingredientName>
                                         <ingredientName languageCode="es">Sucre de Cano</ingredientName>
                                     </foodAndBeverageIngredient>
-                                    <ingredientStatement languageCode="en">Some ingredient info</ingredientStatement>
-                                    <ingredientStatement languageCode="es">Some Spanish ingredient info</ingredientStatement>
                                 </food_and_beverage_ingredient:foodAndBeverageIngredientModule>
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
                                     <nutrientHeader>
@@ -372,8 +400,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                             <extension>
                                 <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
                                     <allergenRelatedInformation>
-                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
-                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
                                         <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
                                         <allergenStatement languageCode="es">Este producto es muy allergenic</allergenStatement>
                                         <allergen>
@@ -390,16 +416,6 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                     <dietInformation>
                                         <dietTypeDescription languageCode="en">Some diet info</dietTypeDescription>
                                         <dietTypeDescription languageCode="es">El diet info</dietTypeDescription>
-                                        <dietTypeInformation>
-                                            <dietCertification>
-                                                <certificationAgency>222876</certificationAgency>
-                                                <certification>
-                                                    <certificationValue>111987</certificationValue>
-                                                </certification>
-                                            </dietCertification>
-                                        </dietTypeInformation>
-                                    </dietInformation>
-                                    <dietInformation>
                                         <dietTypeInformation>
                                             <dietTypeCode>FREE_FROM_GLUTEN</dietTypeCode>
                                         </dietTypeInformation>
@@ -525,6 +541,9 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                 <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
                                 <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
                                 <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
+                                <isTradeItemAService>false</isTradeItemAService>
+                                <isTradeItemNonphysical>false</isTradeItemNonphysical>
+                                <isTradeItemRecalled>false</isTradeItemRecalled>
                                 <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
                                 <informationProviderOfTradeItem>
                                     <gln>1100001011292</gln>
@@ -537,17 +556,23 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                 </gdsnTradeItemClassification>
                                 <targetMarket>
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
-                                    <targetMarketSubdivisionCode>US-CA</targetMarketSubdivisionCode>
                                 </targetMarket>
                                 <tradeItemInformation>
-                                    <!--tradeItemComponents/-->
                                     <extension>
+                                        <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
+                                            <dataCarrier>
+                                                <dataCarrierTypeCode>EAN_8_COMPOSITE</dataCarrierTypeCode>
+                                            </dataCarrier>
+                                        </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
+                                        <safety_data_sheet:safetyDataSheetModule xmlns:safety_data_sheet="urn:gs1:gdsn:safety_data_sheet:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:safety_data_sheet:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SafetyDataSheetModule.xsd">
+                                            <safetyDataSheetInformation/>
+                                        </safety_data_sheet:safetyDataSheetModule>
                                         <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
                                                 <brandNameInformation>
-                                                    <brandName>Required brandName 9&#xBE; 70</brandName>
+                                                    <brandName>BestTest2016&#xA9;</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
@@ -556,7 +581,9 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                                 <depth measurementUnitCode="CM">25.99999</depth>
                                                 <height measurementUnitCode="CM">12.6</height>
                                                 <width measurementUnitCode="CM">50.000001</width>
-                                                <tradeItemWeight/>
+                                                <tradeItemWeight>
+                                                    <grossWeight measurementUnitCode="KG">1.123</grossWeight>
+                                                </tradeItemWeight>
                                             </tradeItemMeasurements>
                                         </trade_item_measurements:tradeItemMeasurementsModule>
                                         <variable_trade_item_information:variableTradeItemInformationModule xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd">
@@ -565,10 +592,10 @@ urn:gs1:gdsn:allergen_information:xsd:3            http://www.gdsregistry.org/3.
                                             </variableTradeItemInformation>
                                         </variable_trade_item_information:variableTradeItemInformationModule>
                                     </extension>
-                                    <avpList/>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-02-03T22:10:29.638Z</lastChangeDateTime>
+                                    <lastChangeDateTime>2016-03-02T15:39:55.385Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-02T15:39:55.385Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

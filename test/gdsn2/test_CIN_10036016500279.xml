@@ -11,7 +11,7 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_28_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_28_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:CreationDateAndTime>2016-01-06T01:01:01</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
@@ -44,7 +44,6 @@
                         <gdsn:catalogueItemNotification creationDateTime="2016-01-01T16:21:49.226-08:00" documentStatus="ORIGINAL" isReload="false">
                             <catalogueItem>
                                 <catalogueItemState state="IN_PROGRESS"/>
-                                <!--catalogueItemState discontinueDate="2016-01-01T00:00:00" state="IN_PROGRESS"/-->
                                 <tradeItem>
                                     <tradeItemUnitDescriptor>CASE</tradeItemUnitDescriptor>
                                     <tradeItemIdentification>
@@ -87,9 +86,6 @@
                                             <targetMarketCountryCode>
                                                 <countryISOCode>840</countryISOCode>
                                             </targetMarketCountryCode>
-                                            <targetMarketSubdivisionCode>
-                                                <countrySubDivisionISOCode>US-CA</countrySubDivisionISOCode>
-                                            </targetMarketSubdivisionCode>
                                         </targetMarketInformation>
                                         <classificationCategoryCode>
                                             <classificationCategoryCode>10000279</classificationCategoryCode>
@@ -111,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>BestTest2016 © 70</brandName>
+                                            <brandName>BestTest2016©</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -243,8 +239,8 @@
                                                     <text>TI Format Description</text>
                                                 </fileFormatDescription>
                                                 <fileFormatName>formatTI</fileFormatName>
-                                                <uniformResourceIdentifier>http://example.com/funky-URL &amp; stuff/image.jpg</uniformResourceIdentifier>
-                                                <fileEffectiveEndDateTime>2018-01-01T11:59:58</fileEffectiveEndDateTime>
+                                                <uniformResourceIdentifier>http://www.kayfabenews.com/wp-content/uploads/2015/02/puppy4.jpg</uniformResourceIdentifier>
+                                                <fileEffectiveEndDateTime>2023-01-01T11:59:58</fileEffectiveEndDateTime>
                                                 <fileEffectiveStartDateTime>2016-01-01T11:59:58</fileEffectiveStartDateTime>
                                                 <typeOfInformation>PRODUCT_IMAGE</typeOfInformation>
                                             </tradeItemExternalInformation>
@@ -327,13 +323,17 @@
                                                 <isPriceOnPack>true</isPriceOnPack>
                                                 <packageMarksHygienic>STERILE</packageMarksHygienic>
                                                 <packagingMarkedDateFormat>mm/dd/yyyy</packagingMarkedDateFormat>
-                                                <packagingMarkingLanguage><languageISOCode>en</languageISOCode></packagingMarkingLanguage>
+                                                <packagingMarkingLanguage>
+                                                    <languageISOCode>en</languageISOCode>
+                                                </packagingMarkingLanguage>
                                             </packagingMarking>
                                             <packagingMaterial>
                                                 <packagingMaterialCode>43</packagingMaterialCode>
                                                 <packagingMaterialCodeListMaintenanceAgency>E</packagingMaterialCodeListMaintenanceAgency>
                                                 <packagingMaterialCompositionQuantity>
-                                                    <measurementValue unitOfMeasure="CM"><value>14.097</value></measurementValue>
+                                                    <measurementValue unitOfMeasure="CM">
+                                                        <value>14.097</value>
+                                                    </measurementValue>
                                                 </packagingMaterialCompositionQuantity>
                                                 <packagingMaterialDescription>
                                                     <description>
@@ -357,11 +357,15 @@
                                             <packagingType>
                                                 <packagingTypeCode>BLK</packagingTypeCode>
                                                 <packagingTypeDescription>Optional description goes here</packagingTypeDescription>
-                                                <packagingWeight unitOfMeasure="LB"><value>2.345</value></packagingWeight>
+                                                <packagingWeight unitOfMeasure="LB">
+                                                    <value>2.345</value>
+                                                </packagingWeight>
                                                 <isPackagingExemptFromRefuseObligation>NOT_APPLICABLE</isPackagingExemptFromRefuseObligation>
                                                 <packagingFunction>ANTI_TAMPERING</packagingFunction>
                                                 <packagingFunction>GIFT_WRAPPED</packagingFunction>
-                                                <usableProductVolume unitOfMeasure="QT"><value>3.10</value></usableProductVolume>
+                                                <usableProductVolume unitOfMeasure="QT">
+                                                    <value>3.10</value>
+                                                </usableProductVolume>
                                             </packagingType>
                                             <tradeItemCountryOfOrigin>
                                                 <countryISOCode>840</countryISOCode>
@@ -371,9 +375,7 @@
                                                 <lastChangeDateTime>2016-01-21T11:59:59</lastChangeDateTime>
                                                 <publicationDate>2016-01-01</publicationDate>
                                                 <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
-                                                <!--canceledDate>2018-01-01</canceledDate-->
                                                 <consumerAvailabilityDateTime>2016-01-01T11:59:59</consumerAvailabilityDateTime>
-                                                <!--discontinuedDate>2018-01-01</discontinuedDate-->
                                                 <endAvailabilityDateTime>2018-01-01T11:59:59</endAvailabilityDateTime>
                                                 <endDateMaximumBuyingQuantity>2018-01-01T11:59:59</endDateMaximumBuyingQuantity>
                                                 <endDateMinimumBuyingQuantity>2018-01-01T11:59:59</endDateMinimumBuyingQuantity>
@@ -396,7 +398,11 @@
                                                 </handlingInstructionsCode>
                                                 <minimumTradeItemLifespanFromTimeOfArrival>1234</minimumTradeItemLifespanFromTimeOfArrival>
                                                 <stackingFactor>123456</stackingFactor>
-                                                <stackingWeightMaximum><measurementValue unitOfMeasure="KG"><value>4</value></measurementValue></stackingWeightMaximum>
+                                                <stackingWeightMaximum>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>4</value>
+                                                    </measurementValue>
+                                                </stackingWeightMaximum>
                                                 <minimumTradeItemLifespanFromTimeOfProduction>3456</minimumTradeItemLifespanFromTimeOfProduction>
                                                 <consumerUsageStorageInstructions>
                                                     <language>
@@ -405,7 +411,10 @@
                                                     <longText>Please store product in closed container in cool dark place</longText>
                                                 </consumerUsageStorageInstructions>
                                                 <openedTradeItemLifespan>789</openedTradeItemLifespan>
-                                                <clampPressure unitOfMeasure="PS"><!-- maps to new 3.1 tradeItemHandlingModule --><value>12.5</value></clampPressure>
+                                                <clampPressure unitOfMeasure="PS">
+                                                    <!-- maps to new 3.1 tradeItemHandlingModule -->
+                                                    <value>12.5</value>
+                                                </clampPressure>
                                                 <handlingInstructionsCodeAgency>Agency 123</handlingInstructionsCodeAgency>
                                                 <handlingInstructionsDescription>
                                                     <description>
@@ -459,7 +468,7 @@
                                                 </diameter>
                                                 <drainedWeight>
                                                     <measurementValue unitOfMeasure="KG">
-                                                        <value>7.56</value>
+                                                        <value>4</value>
                                                     </measurementValue>
                                                 </drainedWeight>
                                                 <genericIngredient>Corn Meal, Granulated</genericIngredient>
@@ -856,6 +865,12 @@
                                         </gdsn:attributeValuePairExtension>
                                         <food:foodAndBeverageTradeItemExtension>
                                             <foodAndBeverageInformation>
+                                                <productionVariantDescription>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>FIRST_NON_VARIANT</text>
+                                                </productionVariantDescription>
                                                 <foodAndBeverageAllergyRelatedInformation>
                                                     <foodAndBeverageAllergen>
                                                         <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
@@ -904,12 +919,6 @@
                                                 </productionVariantDescription>
                                                 <productionVariantEffectiveDate>2016-01-02</productionVariantEffectiveDate>
                                                 <foodAndBeverageAllergyRelatedInformation>
-                                                    <foodAndBeverageAllergen>
-                                                        <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
-                                                        <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
-                                                        <allergenTypeCode>X99</allergenTypeCode>
-                                                        <levelOfContainment>FREE_FROM</levelOfContainment>
-                                                    </foodAndBeverageAllergen>
                                                     <foodAndBeverageAllergen>
                                                         <allergenSpecificationAgency>Allergen Agency</allergenSpecificationAgency>
                                                         <allergenSpecificationName>Allergen Spec</allergenSpecificationName>
@@ -967,72 +976,72 @@
                                                         </description>
                                                     </dietTypeDescription>
                                                 </foodAndBeverageDietRelatedInformation>
-    <foodAndBeverageIngredientInformation>
-        <foodAndBeverageIngredient>
-            <contentPercentage>11.45</contentPercentage>
-            <countryOfOrigin>
-                <countryISOCode>840</countryISOCode>
-            </countryOfOrigin>
-            <countryOfOrigin>
-                <countryISOCode>156</countryISOCode>
-            </countryOfOrigin>
-            <ingredientSequence>1</ingredientSequence>
-            <ingredientName>
-                <description>
-                    <language>
-                        <languageISOCode>en</languageISOCode>
-                    </language>
-                    <text>Water</text>
-                </description>
-                <description>
-                    <language>
-                        <languageISOCode>es</languageISOCode>
-                    </language>
-                    <text>Agua</text>
-                </description>
-            </ingredientName>
-            <fishCatchZone>Zone 17</fishCatchZone>
-            <fishCatchZone>Zone 23</fishCatchZone>
-            <grapeVarietyCode>A137</grapeVarietyCode>
-            <growingMethodCode>FLY_FREE</growingMethodCode>
-            <growingMethodCode>HYDROPONIC</growingMethodCode>
-            <ingredientPurpose>Flavor</ingredientPurpose>
-            <ingredientPurpose>Preservitive</ingredientPurpose>
-            <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
-            <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
-        </foodAndBeverageIngredient>
-        <foodAndBeverageIngredient>
-            <ingredientSequence>2</ingredientSequence>
-            <ingredientName>
-                <description>
-                    <language>
-                        <languageISOCode>en</languageISOCode>
-                    </language>
-                    <text>Cane Sugar</text>
-                </description>
-                <description>
-                    <language>
-                        <languageISOCode>es</languageISOCode>
-                    </language>
-                    <text>Sucre de Cano</text>
-                </description>
-            </ingredientName>
-        </foodAndBeverageIngredient>
-        <ingredientStatement>
-            <description>
-                <language>
-                    <languageISOCode>en</languageISOCode>
-                </language>
-                <text>Some ingredient info</text>
-            </description>
-            <description>
-                <language>
-                    <languageISOCode>es</languageISOCode>
-                </language>
-                <text>Some Spanish ingredient info</text>
-            </description>
-        </ingredientStatement>
-    </foodAndBeverageIngredientInformation>
+                                                <foodAndBeverageIngredientInformation>
+                                                    <foodAndBeverageIngredient>
+                                                        <contentPercentage>11.45</contentPercentage>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>840</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <countryOfOrigin>
+                                                            <countryISOCode>156</countryISOCode>
+                                                        </countryOfOrigin>
+                                                        <ingredientSequence>1</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Water</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Agua</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                        <fishCatchZone>Zone 17</fishCatchZone>
+                                                        <fishCatchZone>Zone 23</fishCatchZone>
+                                                        <grapeVarietyCode>A137</grapeVarietyCode>
+                                                        <growingMethodCode>FLY_FREE</growingMethodCode>
+                                                        <growingMethodCode>HYDROPONIC</growingMethodCode>
+                                                        <ingredientPurpose>Flavor</ingredientPurpose>
+                                                        <ingredientPurpose>Preservitive</ingredientPurpose>
+                                                        <ingredientSourceAnimalCode>ALLIGATOR</ingredientSourceAnimalCode>
+                                                        <ingredientSourceAnimalCode>COW</ingredientSourceAnimalCode>
+                                                    </foodAndBeverageIngredient>
+                                                    <foodAndBeverageIngredient>
+                                                        <ingredientSequence>2</ingredientSequence>
+                                                        <ingredientName>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>en</languageISOCode>
+                                                                </language>
+                                                                <text>Cane Sugar</text>
+                                                            </description>
+                                                            <description>
+                                                                <language>
+                                                                    <languageISOCode>es</languageISOCode>
+                                                                </language>
+                                                                <text>Sucre de Cano</text>
+                                                            </description>
+                                                        </ingredientName>
+                                                    </foodAndBeverageIngredient>
+                                                    <ingredientStatement>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>en</languageISOCode>
+                                                            </language>
+                                                            <text>Some ingredient info</text>
+                                                        </description>
+                                                        <description>
+                                                            <language>
+                                                                <languageISOCode>es</languageISOCode>
+                                                            </language>
+                                                            <text>Some Spanish ingredient info</text>
+                                                        </description>
+                                                    </ingredientStatement>
+                                                </foodAndBeverageIngredientInformation>
                                                 <foodAndBeverageMicrobiologicalInformation>
                                                     <organismCode>BACILLUS_CEREUS</organismCode>
                                                     <organismMaximumValue>
@@ -1714,8 +1723,8 @@
                                                     <text>Format Description</text>
                                                 </fileFormatDescription>
                                                 <fileFormatName>formatX</fileFormatName>
-                                                <uniformResourceIdentifier>http://example.com/FOOD-EXT/image123</uniformResourceIdentifier>
-                                                <fileEffectiveEndDateTime>2018-01-01T11:59:59</fileEffectiveEndDateTime>
+                                                <uniformResourceIdentifier>https://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg</uniformResourceIdentifier>
+                                                <fileEffectiveEndDateTime>2023-01-01T11:59:59</fileEffectiveEndDateTime>
                                                 <fileEffectiveStartDateTime>2016-01-01T11:59:59</fileEffectiveStartDateTime>
                                                 <typeOfInformation>PRODUCT_IMAGE</typeOfInformation>
                                             </tradeItemExternalInformation>
@@ -1771,7 +1780,6 @@
                                 <catalogueItemChildItemLink quantity="42">
                                     <catalogueItem>
                                         <catalogueItemState state="IN_PROGRESS"/>
-                                        <!--catalogueItemState discontinueDate="2016-01-01T00:00:00" state="IN_PROGRESS"/-->
                                         <tradeItem>
                                             <tradeItemUnitDescriptor>BASE_UNIT_OR_EACH</tradeItemUnitDescriptor>
                                             <tradeItemIdentification>
@@ -1788,15 +1796,12 @@
                                                     <targetMarketCountryCode>
                                                         <countryISOCode>840</countryISOCode>
                                                     </targetMarketCountryCode>
-                                                    <targetMarketSubdivisionCode>
-                                                        <countrySubDivisionISOCode>US-CA</countrySubDivisionISOCode>
-                                                    </targetMarketSubdivisionCode>
                                                 </targetMarketInformation>
                                                 <classificationCategoryCode>
                                                     <classificationCategoryCode>10000279</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>Required brandName 9¾ 70</brandName>
+                                                    <brandName>BestTest2016©</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>

@@ -10,9 +10,9 @@
     <isTradeItemAnInvoiceUnit/>
     <isTradeItemAnOrderableUnit/>
 
-    <isTradeItemAService>false</isTradeItemAService>
-    <isTradeItemNonphysical>false</isTradeItemNonphysical>
-    <isTradeItemRecalled>false</isTradeItemRecalled>
+    <!--isTradeItemAService>false</isTradeItemAService-->
+    <!--isTradeItemNonphysical>false</isTradeItemNonphysical-->
+    <!--isTradeItemRecalled>false</isTradeItemRecalled-->
 
     <tradeItemUnitDescriptorCode/>
 
@@ -31,10 +31,7 @@
     <gdsnTradeItemClassification>
         <gpcCategoryCode/>
         <gpcCategoryName/>
-        <gDSNTradeItemClassificationAttribute>
-            <gpcAttributeTypeCode/>
-            <gpcAttributeValueCode/>
-        </gDSNTradeItemClassificationAttribute>
+        <!--gDSNTradeItemClassificationAttribute><gpcAttributeTypeCode/><gpcAttributeValueCode/></gDSNTradeItemClassificationAttribute-->
         <additionalTradeItemClassification>
             <additionalTradeItemClassificationSystemCode/>
             <additionalTradeItemClassificationValue><additionalTradeItemClassificationCodeValue/></additionalTradeItemClassificationValue>
@@ -44,12 +41,10 @@
     <nextLowerLevelTradeItemInformation>
         <quantityOfChildren/>
         <totalQuantityOfNextLowerLevelTradeItem/>
-
         <childTradeItem>
             <gtin/>
             <quantityOfNextLowerLevelTradeItem/>
         </childTradeItem>
-
     </nextLowerLevelTradeItemInformation>
 
     <referencedFileInformation/>

@@ -28,6 +28,8 @@
 
     <manufacturerOfTradeItem/>
 
+    <displayUnitInformation/>
+
     <gdsnTradeItemClassification>
         <gpcCategoryCode/>
         <gpcCategoryName/>

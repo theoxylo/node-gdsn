@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1458594968888_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1458673744550_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-21T21:16:08.888Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-22T19:09:04.550Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1458594968888_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1458594968888_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-21T21:16:08.888Z</creationDateTime>
+                <creationDateTime>2016-03-22T19:09:04.550Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1458594968888_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -82,6 +82,9 @@
                             <gln>1100001011292</gln>
                             <partyName>Manufacturer ABC &#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
+                        <displayUnitInformation>
+                            <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
+                        </displayUnitInformation>
                         <gdsnTradeItemClassification>
                             <gpcCategoryCode>10000279</gpcCategoryCode>
                             <gpcCategoryName>na</gpcCategoryName>
@@ -117,7 +120,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-21T21:16:08.809Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-22T19:09:04.454Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -132,7 +135,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-21T21:16:08.810Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-22T19:09:04.455Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -233,6 +236,12 @@
                                         <microbiologicalOrganismCode>BACILLUS_CEREUS</microbiologicalOrganismCode>
                                     </microbiologicalInformation>
                                 </food_and_beverage_properties_information:foodAndBeveragePropertiesInformationModule>
+                                <health_related_information:healthRelatedInformationModule xmlns:health_related_information="urn:gs1:gdsn:health_related_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_related_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthRelatedInformationModule.xsd">
+                                    <healthRelatedInformation>
+                                        <nutritionalLabelTypeCode>1</nutritionalLabelTypeCode>
+                                        <nutritionalLabelTypeCode>TEST_VALUE</nutritionalLabelTypeCode>
+                                    </healthRelatedInformation>
+                                </health_related_information:healthRelatedInformationModule>
                                 <marketing_information:marketingInformationModule xmlns:marketing_information="urn:gs1:gdsn:marketing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:marketing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/MarketingInformationModule.xsd">
                                     <marketingInformation>
                                         <tradeItemFeatureBenefit languageCode="en"> en Feature Benefit X</tradeItemFeatureBenefit>
@@ -245,7 +254,16 @@
                                 </packaging_information:packagingInformationModule>
                                 <packaging_marking:packagingMarkingModule xmlns:packaging_marking="urn:gs1:gdsn:packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingMarkingModule.xsd">
                                     <packagingMarking>
-                                        <consumerPackageDisclaimer languageCode="en">true</consumerPackageDisclaimer>
+                                        <hasBatchNumber>false</hasBatchNumber>
+                                        <isNetContentDeclarationIndicated>false</isNetContentDeclarationIndicated>
+                                        <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
+                                        <isPriceOnPack>true</isPriceOnPack>
+                                        <isTradeItemMarkedAsRecyclable>false</isTradeItemMarkedAsRecyclable>
+                                        <offerOnPack>Buy 1 and you could qualify to get 3 more for free!</offerOnPack>
+                                        <packagingMarkedRecyclableScheme>Please bring empty container back to retailer</packagingMarkedRecyclableScheme>
+                                        <packagingDate>
+                                            <tradeItemDateOnPackagingTypeCode>BEST_BEFORE_DATE</tradeItemDateOnPackagingTypeCode>
+                                        </packagingDate>
                                     </packagingMarking>
                                 </packaging_marking:packagingMarkingModule>
                                 <safety_data_sheet:safetyDataSheetModule xmlns:safety_data_sheet="urn:gs1:gdsn:safety_data_sheet:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:safety_data_sheet:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SafetyDataSheetModule.xsd">
@@ -299,11 +317,23 @@
                                 <trade_item_handling:tradeItemHandlingModule xmlns:trade_item_handling="urn:gs1:gdsn:trade_item_handling:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_handling:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHandlingModule.xsd">
                                     <tradeItemHandlingInformation>
                                         <clampPressure measurementUnitCode="PS">12.5</clampPressure>
+                                        <handlingInstructionsCodeReference>A4321</handlingInstructionsCodeReference>
+                                        <tradeItemStacking>
+                                            <stackingFactor>123456</stackingFactor>
+                                            <stackingWeightMaximum measurementUnitCode="KG">4</stackingWeightMaximum>
+                                        </tradeItemStacking>
                                     </tradeItemHandlingInformation>
                                 </trade_item_handling:tradeItemHandlingModule>
                                 <trade_item_hierarchy:tradeItemHierarchyModule xmlns:trade_item_hierarchy="urn:gs1:gdsn:trade_item_hierarchy:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_hierarchy:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHierarchyModule.xsd">
                                     <tradeItemHierarchy>
-                                        <quantityOfInnerPack>33</quantityOfInnerPack>
+                                        <isTradeItemPackedIrregularly>UNSPECIFIED</isTradeItemPackedIrregularly>
+                                        <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
+                                        <quantityOfInnerPack>123</quantityOfInnerPack>
+                                        <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
+                                        <quantityOfNextLevelTradeItemWithinInnerPack>234</quantityOfNextLevelTradeItemWithinInnerPack>
+                                        <quantityOfTradeItemsContainedInACompleteLayer>7</quantityOfTradeItemsContainedInACompleteLayer>
+                                        <quantityOfTradeItemsPerPallet>456789</quantityOfTradeItemsPerPallet>
+                                        <quantityOfTradeItemsPerPalletLayer>567890</quantityOfTradeItemsPerPalletLayer>
                                     </tradeItemHierarchy>
                                 </trade_item_hierarchy:tradeItemHierarchyModule>
                                 <trade_item_lifespan:tradeItemLifespanModule xmlns:trade_item_lifespan="urn:gs1:gdsn:trade_item_lifespan:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_lifespan:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemLifespanModule.xsd">
@@ -320,7 +350,19 @@
                                         <height measurementUnitCode="CM">12.6</height>
                                         <inBoxCubeDimension measurementUnitCode="CF">6.123</inBoxCubeDimension>
                                         <netContent measurementUnitCode="KG">5</netContent>
+                                        <tradeItemCompositionDepth measurementUnitCode="CM">4</tradeItemCompositionDepth>
+                                        <tradeItemCompositionWidth measurementUnitCode="CM">48.000001</tradeItemCompositionWidth>
                                         <width measurementUnitCode="CM">50.000001</width>
+                                        <pegMeasurements>
+                                            <pegHoleNumber>2</pegHoleNumber>
+                                            <pegHorizontal measurementUnitCode="IN">4</pegHorizontal>
+                                            <pegVertical measurementUnitCode="IN">6</pegVertical>
+                                        </pegMeasurements>
+                                        <tradeItemNesting>
+                                            <nestingDirectionCode>na</nestingDirectionCode>
+                                            <nestingIncrement measurementUnitCode="PC">3</nestingIncrement>
+                                            <nestingTypeCode>na</nestingTypeCode>
+                                        </tradeItemNesting>
                                         <tradeItemWeight>
                                             <drainedWeight measurementUnitCode="KG">4</drainedWeight>
                                             <grossWeight measurementUnitCode="KG">8</grossWeight>
@@ -688,6 +730,9 @@
                                     <partyName>Provider &#xA9; &#xAE; &#xBD; &#xBC; &#xBE; Name 35</partyName>
                                     <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                                 </informationProviderOfTradeItem>
+                                <displayUnitInformation>
+                                    <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
+                                </displayUnitInformation>
                                 <gdsnTradeItemClassification>
                                     <gpcCategoryCode>10000279</gpcCategoryCode>
                                     <gpcCategoryName>na</gpcCategoryName>
@@ -731,7 +776,12 @@
                                         </packaging_information:packagingInformationModule>
                                         <packaging_marking:packagingMarkingModule xmlns:packaging_marking="urn:gs1:gdsn:packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingMarkingModule.xsd">
                                             <packagingMarking>
-                                                <consumerPackageDisclaimer languageCode="en">true</consumerPackageDisclaimer>
+                                                <hasBatchNumber>false</hasBatchNumber>
+                                                <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
+                                                <isPriceOnPack>false</isPriceOnPack>
+                                                <isTradeItemMarkedAsRecyclable>false</isTradeItemMarkedAsRecyclable>
+                                                <offerOnPack>false</offerOnPack>
+                                                <packagingMarkedRecyclableScheme>na</packagingMarkedRecyclableScheme>
                                             </packagingMarking>
                                         </packaging_marking:packagingMarkingModule>
                                         <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
@@ -749,9 +799,7 @@
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
                                         <trade_item_hierarchy:tradeItemHierarchyModule xmlns:trade_item_hierarchy="urn:gs1:gdsn:trade_item_hierarchy:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_hierarchy:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHierarchyModule.xsd">
-                                            <tradeItemHierarchy>
-                                                <quantityOfInnerPack>33</quantityOfInnerPack>
-                                            </tradeItemHierarchy>
+                                            <tradeItemHierarchy/>
                                         </trade_item_hierarchy:tradeItemHierarchyModule>
                                         <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                             <tradeItemMeasurements>
@@ -776,8 +824,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-21T21:16:08.879Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-21T21:16:08.879Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-22T19:09:04.541Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-22T19:09:04.541Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

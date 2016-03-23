@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1458673744550_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1458754486588_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-22T19:09:04.550Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-23T17:34:46.588Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-22T19:09:04.550Z</creationDateTime>
+                <creationDateTime>2016-03-23T17:34:46.588Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1458673744550_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -120,7 +120,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-22T19:09:04.454Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-23T17:34:46.447Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -135,7 +135,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-22T19:09:04.455Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-23T17:34:46.450Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -165,11 +165,6 @@
                                         </avpList>
                                     </allergenRelatedInformation>
                                 </allergen_information:allergenInformationModule>
-                                <consumer_instructions:consumerInstructionsModule xmlns:consumer_instructions="urn:gs1:gdsn:consumer_instructions:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:consumer_instructions:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ConsumerInstructionsModule.xsd">
-                                    <consumerInstructions>
-                                        <consumerStorageInstructions languageCode="en">Please store product in closed container in cool dark place</consumerStorageInstructions>
-                                    </consumerInstructions>
-                                </consumer_instructions:consumerInstructionsModule>
                                 <certification_information:certificationInformationModule xmlns:certification_information="urn:gs1:gdsn:certification_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:certification_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/CertificationInformationModule.xsd">
                                     <certificationInformation>
                                         <certificationStandard>certification standard</certificationStandard>
@@ -178,6 +173,16 @@
                                         </certification>
                                     </certificationInformation>
                                 </certification_information:certificationInformationModule>
+                                <consumer_instructions:consumerInstructionsModule xmlns:consumer_instructions="urn:gs1:gdsn:consumer_instructions:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:consumer_instructions:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ConsumerInstructionsModule.xsd">
+                                    <consumerInstructions>
+                                        <consumerStorageInstructions languageCode="en">Please store product in closed container in cool dark place</consumerStorageInstructions>
+                                    </consumerInstructions>
+                                </consumer_instructions:consumerInstructionsModule>
+                                <dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule xmlns:dairy_fish_meat_poultry="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DairyFishMeatPoultryItemModule.xsd">
+                                    <dairyFishMeatPoultryInformation>
+                                        <casingTareWeight measurementUnitCode="OZ">12.5</casingTareWeight>
+                                    </dairyFishMeatPoultryInformation>
+                                </dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule>
                                 <dangerous_substance_information:dangerousSubstanceInformationModule xmlns:dangerous_substance_information="urn:gs1:gdsn:dangerous_substance_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:dangerous_substance_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DangerousSubstanceInformationModule.xsd">
                                     <dangerousSubstanceInformation>
                                         <dangerousSubstanceProperties>
@@ -250,6 +255,9 @@
                                 <packaging_information:packagingInformationModule xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingInformationModule.xsd">
                                     <packaging>
                                         <doesPackagingHaveWheels>FALSE</doesPackagingHaveWheels>
+                                        <packagingTypeCode>BLK</packagingTypeCode>
+                                        <packagingWeight measurementUnitCode="LB">2.345</packagingWeight>
+                                        <packagingTypeDescription languageCode="en">Optional description goes here</packagingTypeDescription>
                                     </packaging>
                                 </packaging_information:packagingInformationModule>
                                 <packaging_marking:packagingMarkingModule xmlns:packaging_marking="urn:gs1:gdsn:packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingMarkingModule.xsd">
@@ -260,6 +268,9 @@
                                         <isPriceOnPack>true</isPriceOnPack>
                                         <isTradeItemMarkedAsRecyclable>false</isTradeItemMarkedAsRecyclable>
                                         <offerOnPack>Buy 1 and you could qualify to get 3 more for free!</offerOnPack>
+                                        <packagingMarkedLabelAccreditationCode>RAINFOREST_ALLIANCE</packagingMarkedLabelAccreditationCode>
+                                        <packagingMarkedLabelAccreditationCode>FAIR_TRADE_MARK</packagingMarkedLabelAccreditationCode>
+                                        <packagingMarkedLabelAccreditationCode>STERILE</packagingMarkedLabelAccreditationCode>
                                         <packagingMarkedRecyclableScheme>Please bring empty container back to retailer</packagingMarkedRecyclableScheme>
                                         <packagingDate>
                                             <tradeItemDateOnPackagingTypeCode>BEST_BEFORE_DATE</tradeItemDateOnPackagingTypeCode>
@@ -327,6 +338,7 @@
                                 <trade_item_hierarchy:tradeItemHierarchyModule xmlns:trade_item_hierarchy="urn:gs1:gdsn:trade_item_hierarchy:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_hierarchy:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHierarchyModule.xsd">
                                     <tradeItemHierarchy>
                                         <isTradeItemPackedIrregularly>UNSPECIFIED</isTradeItemPackedIrregularly>
+                                        <layerHeight measurementUnitCode="IN">12.5</layerHeight>
                                         <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
                                         <quantityOfInnerPack>123</quantityOfInnerPack>
                                         <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
@@ -769,11 +781,6 @@
                                                 <microbiologicalOrganismCode>BACILLUS_CEREUS</microbiologicalOrganismCode>
                                             </microbiologicalInformation>
                                         </food_and_beverage_properties_information:foodAndBeveragePropertiesInformationModule>
-                                        <packaging_information:packagingInformationModule xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingInformationModule.xsd">
-                                            <packaging>
-                                                <doesPackagingHaveWheels>FALSE</doesPackagingHaveWheels>
-                                            </packaging>
-                                        </packaging_information:packagingInformationModule>
                                         <packaging_marking:packagingMarkingModule xmlns:packaging_marking="urn:gs1:gdsn:packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingMarkingModule.xsd">
                                             <packagingMarking>
                                                 <hasBatchNumber>false</hasBatchNumber>
@@ -824,8 +831,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-22T19:09:04.541Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-22T19:09:04.541Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-23T17:34:46.578Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-23T17:34:46.578Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

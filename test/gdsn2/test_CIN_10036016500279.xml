@@ -291,6 +291,7 @@
                                                 <variableTradeItemType>PRE_PACKED</variableTradeItemType>
                                             </tradeItemUnitIndicator>
                                             <barCodeType>UCC_EAN_128_SYMBOL</barCodeType>
+                                            <barCodeType>EAN_UCC_14_SYMBOL</barCodeType>
                                             <brandOwnerOfTradeItem>
                                                 <brandOwner>
                                                     <gln>1100001011292</gln>

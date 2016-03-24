@@ -68,5 +68,7 @@
         <effectiveDateTime/>
         <publicationDateTime/>
     </tradeItemSynchronisationDates>
+    
+    <avpList/>
 
 </tradeItem>

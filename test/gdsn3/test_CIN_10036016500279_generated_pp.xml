@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1458754486588_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1458830960557_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-23T17:34:46.588Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-24T14:49:20.557Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-23T17:34:46.588Z</creationDateTime>
+                <creationDateTime>2016-03-24T14:49:20.557Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1458754486588_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -84,6 +84,7 @@
                         </manufacturerOfTradeItem>
                         <displayUnitInformation>
                             <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
+                            <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                         </displayUnitInformation>
                         <gdsnTradeItemClassification>
                             <gpcCategoryCode>10000279</gpcCategoryCode>
@@ -120,7 +121,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-23T17:34:46.447Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-24T14:49:20.455Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -135,7 +136,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-23T17:34:46.450Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-24T14:49:20.456Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -291,8 +292,29 @@
                                     </salesInformation>
                                 </sales_information:salesInformationModule>
                                 <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
+                                    <gs1TradeItemIdentificationKey>
+                                        <gs1TradeItemIdentificationKeyCode>UA</gs1TradeItemIdentificationKeyCode>
+                                        <gs1TradeItemIdentificationKeyValue>123456789012</gs1TradeItemIdentificationKeyValue>
+                                        <isBarCodeDerivable>true</isBarCodeDerivable>
+                                        <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
+                                    </gs1TradeItemIdentificationKey>
+                                    <gs1TradeItemIdentificationKey>
+                                        <gs1TradeItemIdentificationKeyCode>UK</gs1TradeItemIdentificationKeyCode>
+                                        <gs1TradeItemIdentificationKeyValue>987654</gs1TradeItemIdentificationKeyValue>
+                                        <isBarCodeDerivable>true</isBarCodeDerivable>
+                                        <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
+                                    </gs1TradeItemIdentificationKey>
+                                    <gs1TradeItemIdentificationKey>
+                                        <gs1TradeItemIdentificationKeyCode>UP</gs1TradeItemIdentificationKeyCode>
+                                        <gs1TradeItemIdentificationKeyValue>789</gs1TradeItemIdentificationKeyValue>
+                                        <isBarCodeDerivable>true</isBarCodeDerivable>
+                                        <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
+                                    </gs1TradeItemIdentificationKey>
                                     <dataCarrier>
-                                        <dataCarrierTypeCode>EAN_8_COMPOSITE</dataCarrierTypeCode>
+                                        <dataCarrierTypeCode>UCC_EAN_128_SYMBOL</dataCarrierTypeCode>
+                                    </dataCarrier>
+                                    <dataCarrier>
+                                        <dataCarrierTypeCode>EAN_UCC_14_SYMBOL</dataCarrierTypeCode>
                                     </dataCarrier>
                                 </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
                                 <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
@@ -715,6 +737,19 @@
                             <effectiveDateTime>2010-12-01T01:01:01.009Z</effectiveDateTime>
                             <publicationDateTime>2016-01-01T01:01:01.009Z</publicationDateTime>
                         </tradeItemSynchronisationDates>
+                        <avpList>
+                            <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">No</stringAVP>
+                            <stringAVP attributeName="allergenRelevantDataProvided">true</stringAVP>
+                            <stringAVP attributeName="foodCompositionAgencyNameCode">ANSES</stringAVP>
+                            <stringAVP attributeName="foodCompositionCode">MR3155678 FORCE</stringAVP>
+                            <stringAVP attributeName="isPrivate">true</stringAVP>
+                            <stringAVP attributeName="isPrivateLabel">true</stringAVP>
+                            <stringAVP attributeName="nutrientRelevantDataProvided">true</stringAVP>
+                            <stringAVP attributeName="nutrientValueDerivation">ANALYTICAL</stringAVP>
+                            <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
+                            <stringAVP attributeName="tradeItemCubeMeasurement">114.641</stringAVP>
+                            <stringAVP attributeName="tradeItemCubeMeasurementUOM">CI</stringAVP>
+                        </avpList>
                     </tradeItem>
                     <catalogueItemChildItemLink>
                         <quantity>42</quantity>
@@ -744,6 +779,7 @@
                                 </informationProviderOfTradeItem>
                                 <displayUnitInformation>
                                     <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
+                                    <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                                 </displayUnitInformation>
                                 <gdsnTradeItemClassification>
                                     <gpcCategoryCode>10000279</gpcCategoryCode>
@@ -791,11 +827,6 @@
                                                 <packagingMarkedRecyclableScheme>na</packagingMarkedRecyclableScheme>
                                             </packagingMarking>
                                         </packaging_marking:packagingMarkingModule>
-                                        <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
-                                            <dataCarrier>
-                                                <dataCarrierTypeCode>EAN_8_COMPOSITE</dataCarrierTypeCode>
-                                            </dataCarrier>
-                                        </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
                                         <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
@@ -831,8 +862,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-23T17:34:46.578Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-23T17:34:46.578Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-24T14:49:20.556Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-24T14:49:20.556Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

@@ -295,14 +295,44 @@
                                             <brandOwnerOfTradeItem>
                                                 <brandOwner>
                                                     <gln>1100001011292</gln>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>001011292</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>1100001011292</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
                                                 </brandOwner>
                                                 <nameOfBrandOwner>Brand X ©</nameOfBrandOwner>
                                             </brandOwnerOfTradeItem>
                                             <manufacturerOfTradeItem>
                                                 <manufacturer>
                                                     <gln>1100001011292</gln>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>001011292</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>1100001011292</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
                                                 </manufacturer>
                                                 <nameOfManufacturer>Manufacturer ABC © 70</nameOfManufacturer>
+                                            </manufacturerOfTradeItem>
+                                            <manufacturerOfTradeItem>
+                                                <manufacturer>
+                                                    <gln>1100001011293</gln>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>001011293</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
+                                                    <additionalPartyIdentification>
+                                                        <additionalPartyIdentificationValue>1100001011293</additionalPartyIdentificationValue>
+                                                        <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
+                                                    </additionalPartyIdentification>
+                                                </manufacturer>
+                                                <nameOfManufacturer>Manufacturer DEF © 70</nameOfManufacturer>
                                             </manufacturerOfTradeItem>
                                             <materialSafetyData>
                                                 <materialSafetyDataSheetNumber>123789</materialSafetyDataSheetNumber>
@@ -779,8 +809,8 @@
                                                 <isTradeItemSeasonal>TRUE</isTradeItemSeasonal>
                                             </season>
                                             <securityTagInformation>
-                                                <securityTagLocation>CONCEALED_INSIDE_THE_TRADE_ITEM</securityTagLocation>
-                                                <securityTagType>ELECTRO_MAGNETIC_EAS_TAG</securityTagType>
+                                                <securityTagLocation>INTEGRATED_INSIDE_OF_TRADE_ITEM</securityTagLocation>
+                                                <securityTagType>ACOUSTO_MAGNETIC_EAS_TAG</securityTagType>
                                             </securityTagInformation>
                                             <targetConsumer>
                                                 <targetConsumerAge>
@@ -819,6 +849,55 @@
                                             <tradeItemCountryOfLastProcessing>
                                                 <countryISOCode>840</countryISOCode>
                                             </tradeItemCountryOfLastProcessing>
+                                            <tradeItemSustainabilityInformation areHazardousComponentsRemovable="TRUE" componentsLabeledForDisassemblyRecyclingPercent="60.50" doesTradeItemHaveRefuseObligations="TRUE" isTradeItemConsumerUpgradeableOrMaintainable="TRUE" isTradeItemDesignedForEasyDisassembly="TRUE" isTradeItemROHSCompliant="TRUE" isTradeItemRigidPlasticPackagingContainer="TRUE" isTradeItemUniversalWaste="TRUE">
+                                                <tradeItemEnvironmentalProperties doesTradeItemContainPesticide="TRUE" doesTradeItemContainPolyvinylChloride="TRUE" doesTradeItemContainPropellant="TRUE" doesTradeItemContainShortChainChlorinatedParaffins="TRUE" isTradeItemChemicalNotIntendedForHumanConsumption="TRUE" renewablePlantBasedPlasticComponentsPercent="21.23">
+                                                    <rOHSComplianceFailureMaterial>ROHS dangerous material ABC</rOHSComplianceFailureMaterial>
+                                                    <rOHSComplianceFailureMaterial>ROHS dangerous material XYZ</rOHSComplianceFailureMaterial>
+                                                </tradeItemEnvironmentalProperties>
+                                                <manufacturerTakeBackProgram doesManufacturerHaveTakeBackProgram="TRUE">
+                                                    <manufacturerTakeBackProgramFee>
+                                                        <amount>
+                                                            <currencyCode>
+                                                                <currencyISOCode>USD</currencyISOCode>
+                                                            </currencyCode>
+                                                            <monetaryAmount>9.97</monetaryAmount>
+                                                        </amount>
+                                                    </manufacturerTakeBackProgramFee>
+                                                </manufacturerTakeBackProgram>
+                                                <tradeItemElectricalUsageInformation isTradeItemAutomaticPowerDownEnabled="TRUE">
+                                                    <automaticPowerDownDefaultTimePeriod unitOfMeasure="MIN">
+                                                        <value>10</value>
+                                                    </automaticPowerDownDefaultTimePeriod>
+                                                    <electricalUsageAgencyCode>123</electricalUsageAgencyCode>
+                                                    <electricalUsageAgencyCode>456</electricalUsageAgencyCode>
+                                                    <electricalUsage runMode="STANDBY">
+                                                        <maximumEnergyUsage unitOfMeasure="WTT">
+                                                            <value>10</value>
+                                                        </maximumEnergyUsage>
+                                                        <maximumEnergyUsageTimePeriod timeMeasurementUnitOfMeasure="SEC">
+                                                            <timeMeasurementValue>59.333</timeMeasurementValue>
+                                                        </maximumEnergyUsageTimePeriod>
+                                                    </electricalUsage>
+                                                    <electricalUsageTradeItemClassification electricalUsageTradeItemClassificationAgency="ABC" electricalUsageTradeItemClassificationCode="123" electricalUsageTradeItemClassificationName="Household">
+                                                        <electricalUsageTradeItemSubclassification electricalUsageSubclassificationCode="765" electricalUsageSubclassificationName="Light Usage"/>
+                                                    </electricalUsageTradeItemClassification>
+                                                    <tradeItemScreenInformation displayResolution="1600_1200">
+                                                        <totalScreenArea>
+                                                            <measurementValue unitOfMeasure="IN">
+                                                                <value>120</value>
+                                                            </measurementValue>
+                                                        </totalScreenArea>
+                                                    </tradeItemScreenInformation>
+                                                </tradeItemElectricalUsageInformation>
+                                                <tradeItemWasteManagement>
+                                                    <wasteAmount unitOfMeasure="LB">
+                                                        <value>3.342</value>
+                                                    </wasteAmount>
+                                                    <wasteDirectiveApplianceType>Common</wasteDirectiveApplianceType>
+                                                    <wasteDirectiveName>Reduction Now</wasteDirectiveName>
+                                                    <wasteDirectiveRegistrationNumber>12346789</wasteDirectiveRegistrationNumber>
+                                                </tradeItemWasteManagement>
+                                            </tradeItemSustainabilityInformation>
                                             <tradeItemBarCodeInformation>
                                                 <isBarCodeDerivable>true</isBarCodeDerivable>
                                                 <barCodeInformation>

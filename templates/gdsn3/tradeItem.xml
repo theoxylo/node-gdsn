@@ -1,45 +1,46 @@
 <tradeItem>
-
     <gtin/>
-
     <additionalTradeItemIdentification/>
-
     <isTradeItemABaseUnit/>
     <isTradeItemAConsumerUnit/>
     <isTradeItemADespatchUnit/>
     <isTradeItemAnInvoiceUnit/>
     <isTradeItemAnOrderableUnit/>
-
-    <!--isTradeItemAService>false</isTradeItemAService-->
-    <!--isTradeItemNonphysical>false</isTradeItemNonphysical-->
-    <!--isTradeItemRecalled>false</isTradeItemRecalled-->
-
+    <isTradeItemAService>false</isTradeItemAService>
+    <isTradeItemNonphysical>false</isTradeItemNonphysical>
+    <isTradeItemRecalled>false</isTradeItemRecalled>
     <tradeItemUnitDescriptorCode/>
-
     <tradeItemTradeChannelCode/>
-
-    <brandOwner/>
-
+    <brandOwner>
+        <gln/>
+        <partyAddress>na</partyAddress>
+        <partyName/>
+        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
+    </brandOwner>
     <informationProviderOfTradeItem>
         <gln/>
+        <partyAddress>na</partyAddress>
         <partyName/>
         <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
-
-    <manufacturerOfTradeItem/>
-
+    <manufacturerOfTradeItem>
+        <gln/>
+        <partyAddress>na</partyAddress>
+        <partyName/>
+        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
+    </manufacturerOfTradeItem>
     <displayUnitInformation/>
-
     <gdsnTradeItemClassification>
         <gpcCategoryCode/>
         <gpcCategoryName/>
-        <!--gDSNTradeItemClassificationAttribute><gpcAttributeTypeCode/><gpcAttributeValueCode/></gDSNTradeItemClassificationAttribute-->
+        <gDSNTradeItemClassificationAttribute><gpcAttributeTypeCode/><gpcAttributeValueCode/></gDSNTradeItemClassificationAttribute>
         <additionalTradeItemClassification>
             <additionalTradeItemClassificationSystemCode/>
-            <additionalTradeItemClassificationValue><additionalTradeItemClassificationCodeValue/></additionalTradeItemClassificationValue>
+            <additionalTradeItemClassificationValue>
+                <additionalTradeItemClassificationCodeValue/>
+            </additionalTradeItemClassificationValue>
         </additionalTradeItemClassification>
     </gdsnTradeItemClassification>
-
     <nextLowerLevelTradeItemInformation>
         <quantityOfChildren/>
         <totalQuantityOfNextLowerLevelTradeItem/>
@@ -48,18 +49,14 @@
             <quantityOfNextLowerLevelTradeItem/>
         </childTradeItem>
     </nextLowerLevelTradeItemInformation>
-
     <referencedFileInformation/>
-    
     <targetMarket>
         <targetMarketCountryCode/>
         <targetMarketSubdivisionCode/>
     </targetMarket>
-
     <tradeItemInformation>
         <extension/>
     </tradeItemInformation>
-
     <tradeItemSynchronisationDates>
         <lastChangeDateTime/>
         <cancelledDateTime/>
@@ -68,7 +65,5 @@
         <effectiveDateTime/>
         <publicationDateTime/>
     </tradeItemSynchronisationDates>
-    
     <avpList/>
-
 </tradeItem>

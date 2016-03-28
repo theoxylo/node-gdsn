@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1458830960557_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1459190254419_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-24T14:49:20.557Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-28T18:37:34.419Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-24T14:49:20.557Z</creationDateTime>
+                <creationDateTime>2016-03-28T18:37:34.419Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1458830960557_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -61,26 +61,40 @@
                         <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
                         <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                        <!--isTradeItemAService>false</isTradeItemAService-->
-                        <!--isTradeItemNonphysical>false</isTradeItemNonphysical-->
-                        <!--isTradeItemRecalled>false</isTradeItemRecalled-->
+                        <isTradeItemAService>false</isTradeItemAService>
+                        <isTradeItemNonphysical>false</isTradeItemNonphysical>
+                        <isTradeItemRecalled>false</isTradeItemRecalled>
                         <tradeItemUnitDescriptorCode>CASE</tradeItemUnitDescriptorCode>
                         <tradeItemTradeChannelCode>GROCERY</tradeItemTradeChannelCode>
                         <tradeItemTradeChannelCode>FOOD_SERVICE</tradeItemTradeChannelCode>
                         <brandOwner>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
+                            <partyAddress>na</partyAddress>
                             <partyName>Brand X &#xA9;</partyName>
                         </brandOwner>
                         <informationProviderOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
+                            <partyAddress>na</partyAddress>
                             <partyName>Provider &#xA9; &#xAE; &#xBD; &#xBC; &#xBE; Name 35</partyName>
                             <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                         </informationProviderOfTradeItem>
                         <manufacturerOfTradeItem>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
+                            <partyAddress>na</partyAddress>
                             <partyName>Manufacturer ABC &#xA9; 70</partyName>
+                        </manufacturerOfTradeItem>
+                        <manufacturerOfTradeItem>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011293</additionalPartyIdentification>
+                            <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011293</additionalPartyIdentification>
+                            <gln>1100001011293</gln>
+                            <partyAddress>na</partyAddress>
+                            <partyName>Manufacturer DEF &#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
                         <displayUnitInformation>
                             <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
@@ -89,7 +103,10 @@
                         <gdsnTradeItemClassification>
                             <gpcCategoryCode>10000279</gpcCategoryCode>
                             <gpcCategoryName>na</gpcCategoryName>
-                            <!--gDSNTradeItemClassificationAttribute><gpcAttributeTypeCode/><gpcAttributeValueCode/></gDSNTradeItemClassificationAttribute-->
+                            <gDSNTradeItemClassificationAttribute>
+                                <gpcAttributeTypeCode>20000002</gpcAttributeTypeCode>
+                                <gpcAttributeValueCode>30000564</gpcAttributeValueCode>
+                            </gDSNTradeItemClassificationAttribute>
                             <additionalTradeItemClassification>
                                 <additionalTradeItemClassificationSystemCode>1</additionalTradeItemClassificationSystemCode>
                                 <additionalTradeItemClassificationValue>
@@ -121,7 +138,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-24T14:49:20.455Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-28T18:37:34.258Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -136,7 +153,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-24T14:49:20.456Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-28T18:37:34.260Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -291,6 +308,34 @@
                                         <priceComparisonContentTypeCode>PER_KILOGRAM</priceComparisonContentTypeCode>
                                     </salesInformation>
                                 </sales_information:salesInformationModule>
+                                <security_tag_information:securityTagInformationModule xmlns:security_tag_information="urn:gs1:gdsn:security_tag_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:security_tag_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SecurityTagInformationModule.xsd">
+                                    <securityTagInformation>
+                                        <securityTagLocationCode>INTEGRATED_INSIDE_OF_TRADE_ITEM</securityTagLocationCode>
+                                        <securityTagTypeCode>ACOUSTO_MAGNETIC_EAS_TAG</securityTagTypeCode>
+                                    </securityTagInformation>
+                                </security_tag_information:securityTagInformationModule>
+                                <sustainability_module:sustainabilityModule xmlns:sustainability_module="urn:gs1:gdsn:sustainability_module:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sustainability_module:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SustainabilityModule.xsd">
+                                    <sustainabilityInformation>
+                                        <doesTradeItemContainPesticide>TRUE</doesTradeItemContainPesticide>
+                                        <isTradeItemRigidPlasticPackagingContainer>TRUE</isTradeItemRigidPlasticPackagingContainer>
+                                        <isTradeItemROHSCompliant>TRUE</isTradeItemROHSCompliant>
+                                        <renewablePlantBasedPlasticComponentsPercent>21.23</renewablePlantBasedPlasticComponentsPercent>
+                                        <rOHSComplianceFailureMaterial>ROHS dangerous material ABC</rOHSComplianceFailureMaterial>
+                                        <rOHSComplianceFailureMaterial>ROHS dangerous material XYZ</rOHSComplianceFailureMaterial>
+                                    </sustainabilityInformation>
+                                </sustainability_module:sustainabilityModule>
+                                <textile_material:textileMaterialModule xmlns:textile_material="urn:gs1:gdsn:textile_material:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:textile_material:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TextileMaterialModule.xsd">
+                                    <textileMaterial>
+                                        <materialAgencyCode>DIN60001_PART4</materialAgencyCode>
+                                        <textileMaterialComposition>
+                                            <materialCode>English material code</materialCode>
+                                            <materialContent languageCode="en">Contains many materials</materialContent>
+                                            <materialPercentage>40.40</materialPercentage>
+                                            <materialThreadCount languageCode="en">TC 500 - 1000</materialThreadCount>
+                                            <materialWeight measurementUnitCode="KG">12.5</materialWeight>
+                                        </textileMaterialComposition>
+                                    </textileMaterial>
+                                </textile_material:textileMaterialModule>
                                 <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
                                     <gs1TradeItemIdentificationKey>
                                         <gs1TradeItemIdentificationKeyCode>UA</gs1TradeItemIdentificationKeyCode>
@@ -370,6 +415,13 @@
                                         <quantityOfTradeItemsPerPalletLayer>567890</quantityOfTradeItemsPerPalletLayer>
                                     </tradeItemHierarchy>
                                 </trade_item_hierarchy:tradeItemHierarchyModule>
+                                <trade_item_humidity_information:tradeItemHumidityInformationModule xmlns:trade_item_humidity_information="urn:gs1:gdsn:trade_item_humidity_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_humidity_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHumidityInformationModule.xsd">
+                                    <tradeItemHumidityInformation>
+                                        <humidityQualifierCode>STORAGE_HANDLING</humidityQualifierCode>
+                                        <maximumHumidityPercentage>90</maximumHumidityPercentage>
+                                        <minimumHumidityPercentage>50</minimumHumidityPercentage>
+                                    </tradeItemHumidityInformation>
+                                </trade_item_humidity_information:tradeItemHumidityInformationModule>
                                 <trade_item_lifespan:tradeItemLifespanModule xmlns:trade_item_lifespan="urn:gs1:gdsn:trade_item_lifespan:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_lifespan:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemLifespanModule.xsd">
                                     <tradeItemLifespan>
                                         <minimumTradeItemLifespanFromTimeOfArrival>1234</minimumTradeItemLifespanFromTimeOfArrival>
@@ -406,7 +458,19 @@
                                 </trade_item_measurements:tradeItemMeasurementsModule>
                                 <trade_item_temperature_information:tradeItemTemperatureInformationModule xmlns:trade_item_temperature_information="urn:gs1:gdsn:trade_item_temperature_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_temperature_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemTemperatureInformationModule.xsd">
                                     <tradeItemTemperatureInformation>
-                                        <minimumTemperature temperatureMeasurementUnitCode="DFE">30</minimumTemperature>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FA">100</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FA">40</minimumTemperature>
+                                        <temperatureQualifierCode>DELIVERY_TO_DISTRIBUTION_CENTRE</temperatureQualifierCode>
+                                    </tradeItemTemperatureInformation>
+                                    <tradeItemTemperatureInformation>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FA">99</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FA">39</minimumTemperature>
+                                        <temperatureQualifierCode>DELIVERY_TO_MARKET</temperatureQualifierCode>
+                                    </tradeItemTemperatureInformation>
+                                    <tradeItemTemperatureInformation>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FA">90</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FA">50</minimumTemperature>
+                                        <temperatureQualifierCode>STORAGE_HANDLING</temperatureQualifierCode>
                                     </tradeItemTemperatureInformation>
                                 </trade_item_temperature_information:tradeItemTemperatureInformationModule>
                                 <variable_trade_item_information:variableTradeItemInformationModule xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd">
@@ -768,12 +832,13 @@
                                 <isTradeItemADespatchUnit>true</isTradeItemADespatchUnit>
                                 <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
                                 <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
-                                <!--isTradeItemAService>false</isTradeItemAService-->
-                                <!--isTradeItemNonphysical>false</isTradeItemNonphysical-->
-                                <!--isTradeItemRecalled>false</isTradeItemRecalled-->
+                                <isTradeItemAService>false</isTradeItemAService>
+                                <isTradeItemNonphysical>false</isTradeItemNonphysical>
+                                <isTradeItemRecalled>false</isTradeItemRecalled>
                                 <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
                                 <informationProviderOfTradeItem>
                                     <gln>1100001011292</gln>
+                                    <partyAddress>na</partyAddress>
                                     <partyName>Provider &#xA9; &#xAE; &#xBD; &#xBC; &#xBE; Name 35</partyName>
                                     <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
                                 </informationProviderOfTradeItem>
@@ -784,7 +849,6 @@
                                 <gdsnTradeItemClassification>
                                     <gpcCategoryCode>10000279</gpcCategoryCode>
                                     <gpcCategoryName>na</gpcCategoryName>
-                                    <!--gDSNTradeItemClassificationAttribute><gpcAttributeTypeCode/><gpcAttributeValueCode/></gDSNTradeItemClassificationAttribute-->
                                 </gdsnTradeItemClassification>
                                 <targetMarket>
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
@@ -849,11 +913,6 @@
                                                 </tradeItemWeight>
                                             </tradeItemMeasurements>
                                         </trade_item_measurements:tradeItemMeasurementsModule>
-                                        <trade_item_temperature_information:tradeItemTemperatureInformationModule xmlns:trade_item_temperature_information="urn:gs1:gdsn:trade_item_temperature_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_temperature_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemTemperatureInformationModule.xsd">
-                                            <tradeItemTemperatureInformation>
-                                                <minimumTemperature temperatureMeasurementUnitCode="DFE">30</minimumTemperature>
-                                            </tradeItemTemperatureInformation>
-                                        </trade_item_temperature_information:tradeItemTemperatureInformationModule>
                                         <variable_trade_item_information:variableTradeItemInformationModule xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:variable_trade_item_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/VariableTradeItemInformationModule.xsd">
                                             <variableTradeItemInformation>
                                                 <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
@@ -862,8 +921,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-24T14:49:20.556Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-24T14:49:20.556Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-28T18:37:34.418Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-28T18:37:34.418Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

@@ -107,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>BestTest2016©</brandName>
+                                            <brandName>BestTest2016 © Spring</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -753,20 +753,38 @@
                                                 </tradeItemMarketingMessage>
                                             </marketingInformation>
                                             <materialComposition>
-                                                <materialAgencyCode>DIN60001_PART4</materialAgencyCode>
+                                                <materialAgencyCode>ANSI</materialAgencyCode>
                                                 <materialContent>
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <text>Contains many materials</text>
+                                                    <text>First en material comp content</text>
                                                 </materialContent>
-                                                <materialPercentage>40.40</materialPercentage>
+                                                <materialPercentage>40.44</materialPercentage>
                                                 <materialCode>
                                                     <description>
                                                         <language>
                                                             <languageISOCode>en</languageISOCode>
                                                         </language>
-                                                        <text>English material code</text>
+                                                        <text>First en material comp code</text>
+                                                    </description>
+                                                </materialCode>
+                                            </materialComposition>
+                                            <materialComposition>
+                                                <materialAgencyCode>DIN60001_PART4</materialAgencyCode>
+                                                <materialContent>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
+                                                    <text>Second en material comp content</text>
+                                                </materialContent>
+                                                <materialPercentage>50.55</materialPercentage>
+                                                <materialCode>
+                                                    <description>
+                                                        <language>
+                                                            <languageISOCode>en</languageISOCode>
+                                                        </language>
+                                                        <text>Second en material comp code</text>
                                                     </description>
                                                 </materialCode>
                                             </materialComposition>
@@ -802,6 +820,12 @@
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
+                                                    <text>Summer</text>
+                                                </seasonName>
+                                                <seasonName>
+                                                    <language>
+                                                        <languageISOCode>en</languageISOCode>
+                                                    </language>
                                                     <text>Summer of Love</text>
                                                 </seasonName>
                                                 <seasonParameter>SPRING_SUMMER</seasonParameter>
@@ -831,13 +855,13 @@
                                             </tradeItemFinish>
                                             <tradeItemMaterial>
                                                 <materialWeight unitOfMeasure="KG">
-                                                    <value>12.5</value>
+                                                    <value>12.555</value>
                                                 </materialWeight>
                                                 <threadCount>
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <text>TC 500 - 1000</text>
+                                                    <text>trade item material en threadcount text</text>
                                                 </threadCount>
                                             </tradeItemMaterial>
                                             <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
@@ -1881,7 +1905,7 @@
                                                     <classificationCategoryCode>10000279</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>BestTest2016©</brandName>
+                                                    <brandName>BestTest2016 © Spring</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -1906,6 +1930,7 @@
                                                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
                                                         <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
                                                     </tradeItemUnitIndicator>
+                                                    <barCodeType>UCC_EAN_128_SYMBOL</barCodeType>
                                                     <packagingMarking>
                                                         <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
                                                     </packagingMarking>

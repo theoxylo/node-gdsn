@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1459190254419_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1459350758244_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-28T18:37:34.419Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-30T15:12:38.244Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-28T18:37:34.419Z</creationDateTime>
+                <creationDateTime>2016-03-30T15:12:38.244Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1459190254419_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -138,7 +138,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-28T18:37:34.258Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-30T15:12:38.105Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -153,7 +153,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-28T18:37:34.260Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-30T15:12:38.108Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -198,7 +198,7 @@
                                 </consumer_instructions:consumerInstructionsModule>
                                 <dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule xmlns:dairy_fish_meat_poultry="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DairyFishMeatPoultryItemModule.xsd">
                                     <dairyFishMeatPoultryInformation>
-                                        <casingTareWeight measurementUnitCode="OZ">12.5</casingTareWeight>
+                                        <casingTareWeight measurementUnitCode="ONZ">12.5</casingTareWeight>
                                     </dairyFishMeatPoultryInformation>
                                 </dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule>
                                 <dangerous_substance_information:dangerousSubstanceInformationModule xmlns:dangerous_substance_information="urn:gs1:gdsn:dangerous_substance_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:dangerous_substance_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DangerousSubstanceInformationModule.xsd">
@@ -268,13 +268,29 @@
                                 <marketing_information:marketingInformationModule xmlns:marketing_information="urn:gs1:gdsn:marketing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:marketing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/MarketingInformationModule.xsd">
                                     <marketingInformation>
                                         <tradeItemFeatureBenefit languageCode="en"> en Feature Benefit X</tradeItemFeatureBenefit>
+                                        <marketingCampaign>
+                                            <campaignEndDateTime>2018-01-01T01:01:01.009Z</campaignEndDateTime>
+                                            <campaignName languageCode="en">Campaign Sell-More</campaignName>
+                                            <campaignStartDateTime>2016-01-01T01:01:01.009Z</campaignStartDateTime>
+                                        </marketingCampaign>
+                                        <season>
+                                            <isTradeItemSeasonal>TRUE</isTradeItemSeasonal>
+                                            <seasonalAvailabilityEndDateTime>2018-01-01T01:01:01.009Z</seasonalAvailabilityEndDateTime>
+                                            <seasonalAvailabilityStartDateTime>2016-01-01T01:01:01.009Z</seasonalAvailabilityStartDateTime>
+                                            <seasonCalendarYear>2010</seasonCalendarYear>
+                                            <seasonCalendarYear>2016</seasonCalendarYear>
+                                            <seasonName languageCode="en">Summer</seasonName>
+                                            <seasonName languageCode="en">Summer of Love</seasonName>
+                                            <seasonParameterCode>SPRING_SUMMER</seasonParameterCode>
+                                            <seasonParameterCode>SUMMER</seasonParameterCode>
+                                        </season>
                                     </marketingInformation>
                                 </marketing_information:marketingInformationModule>
                                 <packaging_information:packagingInformationModule xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingInformationModule.xsd">
                                     <packaging>
                                         <doesPackagingHaveWheels>FALSE</doesPackagingHaveWheels>
                                         <packagingTypeCode>BLK</packagingTypeCode>
-                                        <packagingWeight measurementUnitCode="LB">2.345</packagingWeight>
+                                        <packagingWeight measurementUnitCode="LBR">2.345</packagingWeight>
                                         <packagingTypeDescription languageCode="en">Optional description goes here</packagingTypeDescription>
                                     </packaging>
                                 </packaging_information:packagingInformationModule>
@@ -304,7 +320,7 @@
                                     <salesInformation>
                                         <brandDistributionTypeCode>UNRESTRICTED_DISTRIBUTION</brandDistributionTypeCode>
                                         <priceByMeasureTypeCode>COUNT</priceByMeasureTypeCode>
-                                        <priceComparisonMeasurement measurementUnitCode="KG">4.1</priceComparisonMeasurement>
+                                        <priceComparisonMeasurement measurementUnitCode="KGM">4.1</priceComparisonMeasurement>
                                         <priceComparisonContentTypeCode>PER_KILOGRAM</priceComparisonContentTypeCode>
                                     </salesInformation>
                                 </sales_information:salesInformationModule>
@@ -326,13 +342,25 @@
                                 </sustainability_module:sustainabilityModule>
                                 <textile_material:textileMaterialModule xmlns:textile_material="urn:gs1:gdsn:textile_material:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:textile_material:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TextileMaterialModule.xsd">
                                     <textileMaterial>
+                                        <materialAgencyCode>ANSI</materialAgencyCode>
+                                        <textileMaterialComposition>
+                                            <materialCode>First en material comp code</materialCode>
+                                            <materialContent languageCode="en">First en material comp content</materialContent>
+                                            <materialPercentage>40.44</materialPercentage>
+                                        </textileMaterialComposition>
+                                    </textileMaterial>
+                                    <textileMaterial>
                                         <materialAgencyCode>DIN60001_PART4</materialAgencyCode>
                                         <textileMaterialComposition>
-                                            <materialCode>English material code</materialCode>
-                                            <materialContent languageCode="en">Contains many materials</materialContent>
-                                            <materialPercentage>40.40</materialPercentage>
-                                            <materialThreadCount languageCode="en">TC 500 - 1000</materialThreadCount>
-                                            <materialWeight measurementUnitCode="KG">12.5</materialWeight>
+                                            <materialCode>Second en material comp code</materialCode>
+                                            <materialContent languageCode="en">Second en material comp content</materialContent>
+                                            <materialPercentage>50.55</materialPercentage>
+                                        </textileMaterialComposition>
+                                    </textileMaterial>
+                                    <textileMaterial>
+                                        <textileMaterialComposition>
+                                            <materialThreadCount languageCode="en">trade item material en threadcount text</materialThreadCount>
+                                            <materialWeight measurementUnitCode="KGM">12.555</materialWeight>
                                         </textileMaterialComposition>
                                     </textileMaterial>
                                 </textile_material:textileMaterialModule>
@@ -356,7 +384,7 @@
                                         <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
                                     </gs1TradeItemIdentificationKey>
                                     <dataCarrier>
-                                        <dataCarrierTypeCode>UCC_EAN_128_SYMBOL</dataCarrierTypeCode>
+                                        <dataCarrierTypeCode>GS1_128</dataCarrierTypeCode>
                                     </dataCarrier>
                                     <dataCarrier>
                                         <dataCarrierTypeCode>EAN_UCC_14_SYMBOL</dataCarrierTypeCode>
@@ -383,7 +411,7 @@
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
-                                            <brandName>BestTest2016&#xA9;</brandName>
+                                            <brandName>BestTest2016 &#xA9; Spring</brandName>
                                             <languageSpecificBrandName languageCode="en">English brand name YYY &#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificBrandName languageCode="es">Spanish brand name YYY &#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &#xA9; 70</languageSpecificSubbrandName>
@@ -398,14 +426,14 @@
                                         <handlingInstructionsCodeReference>A4321</handlingInstructionsCodeReference>
                                         <tradeItemStacking>
                                             <stackingFactor>123456</stackingFactor>
-                                            <stackingWeightMaximum measurementUnitCode="KG">4</stackingWeightMaximum>
+                                            <stackingWeightMaximum measurementUnitCode="KGM">4</stackingWeightMaximum>
                                         </tradeItemStacking>
                                     </tradeItemHandlingInformation>
                                 </trade_item_handling:tradeItemHandlingModule>
                                 <trade_item_hierarchy:tradeItemHierarchyModule xmlns:trade_item_hierarchy="urn:gs1:gdsn:trade_item_hierarchy:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_hierarchy:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHierarchyModule.xsd">
                                     <tradeItemHierarchy>
                                         <isTradeItemPackedIrregularly>UNSPECIFIED</isTradeItemPackedIrregularly>
-                                        <layerHeight measurementUnitCode="IN">12.5</layerHeight>
+                                        <layerHeight measurementUnitCode="INH">12.5</layerHeight>
                                         <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
                                         <quantityOfInnerPack>123</quantityOfInnerPack>
                                         <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
@@ -431,28 +459,28 @@
                                 </trade_item_lifespan:tradeItemLifespanModule>
                                 <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                     <tradeItemMeasurements>
-                                        <depth measurementUnitCode="CM">25.99</depth>
-                                        <diameter measurementUnitCode="CM">25.000001</diameter>
-                                        <height measurementUnitCode="CM">12.6</height>
-                                        <inBoxCubeDimension measurementUnitCode="CF">6.123</inBoxCubeDimension>
-                                        <netContent measurementUnitCode="KG">5</netContent>
-                                        <tradeItemCompositionDepth measurementUnitCode="CM">4</tradeItemCompositionDepth>
-                                        <tradeItemCompositionWidth measurementUnitCode="CM">48.000001</tradeItemCompositionWidth>
-                                        <width measurementUnitCode="CM">50.000001</width>
+                                        <depth measurementUnitCode="CMT">25.99</depth>
+                                        <diameter measurementUnitCode="CMT">25.000001</diameter>
+                                        <height measurementUnitCode="CMT">12.6</height>
+                                        <inBoxCubeDimension measurementUnitCode="FTQ">6.123</inBoxCubeDimension>
+                                        <netContent measurementUnitCode="KGM">5</netContent>
+                                        <tradeItemCompositionDepth measurementUnitCode="CMT">4</tradeItemCompositionDepth>
+                                        <tradeItemCompositionWidth measurementUnitCode="CMT">48.000001</tradeItemCompositionWidth>
+                                        <width measurementUnitCode="CMT">50.000001</width>
                                         <pegMeasurements>
                                             <pegHoleNumber>2</pegHoleNumber>
-                                            <pegHorizontal measurementUnitCode="IN">4</pegHorizontal>
-                                            <pegVertical measurementUnitCode="IN">6</pegVertical>
+                                            <pegHorizontal measurementUnitCode="INH">4</pegHorizontal>
+                                            <pegVertical measurementUnitCode="INH">6</pegVertical>
                                         </pegMeasurements>
                                         <tradeItemNesting>
                                             <nestingDirectionCode>na</nestingDirectionCode>
-                                            <nestingIncrement measurementUnitCode="PC">3</nestingIncrement>
+                                            <nestingIncrement measurementUnitCode="H87">3</nestingIncrement>
                                             <nestingTypeCode>na</nestingTypeCode>
                                         </tradeItemNesting>
                                         <tradeItemWeight>
-                                            <drainedWeight measurementUnitCode="KG">4</drainedWeight>
-                                            <grossWeight measurementUnitCode="KG">8</grossWeight>
-                                            <netWeight measurementUnitCode="KG">4</netWeight>
+                                            <drainedWeight measurementUnitCode="KGM">4</drainedWeight>
+                                            <grossWeight measurementUnitCode="KGM">8</grossWeight>
+                                            <netWeight measurementUnitCode="KGM">4</netWeight>
                                         </tradeItemWeight>
                                     </tradeItemMeasurements>
                                 </trade_item_measurements:tradeItemMeasurementsModule>
@@ -545,7 +573,7 @@
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
-                                        <servingSize measurementUnitCode="OZ">2.25</servingSize>
+                                        <servingSize measurementUnitCode="ONZ">2.25</servingSize>
                                         <servingSizeDescription languageCode="en">The household serving size for PREPARED</servingSizeDescription>
                                         <nutrientDetail>
                                             <nutrientTypeCode>ENER</nutrientTypeCode>
@@ -561,12 +589,12 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                     <nutrientHeader>
                                         <preparationStateCode>UNPREPARED</preparationStateCode>
-                                        <servingSize measurementUnitCode="OZ">2.75</servingSize>
+                                        <servingSize measurementUnitCode="ONZ">2.75</servingSize>
                                         <servingSizeDescription languageCode="en">The household serving size for UNPREPARED</servingSizeDescription>
                                         <nutrientDetail>
                                             <nutrientTypeCode>ENER</nutrientTypeCode>
@@ -582,7 +610,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                 </nutritional_information:nutritionalInformationModule>
@@ -622,7 +650,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                     <nutrientHeader>
@@ -641,7 +669,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                 </nutritional_information:nutritionalInformationModule>
@@ -700,7 +728,7 @@
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
-                                        <servingSize measurementUnitCode="OZ">2.25</servingSize>
+                                        <servingSize measurementUnitCode="ONZ">2.25</servingSize>
                                         <servingSizeDescription languageCode="en">The household serving size for PREPARED</servingSizeDescription>
                                         <nutrientDetail>
                                             <nutrientTypeCode>ENER</nutrientTypeCode>
@@ -716,12 +744,12 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                     <nutrientHeader>
                                         <preparationStateCode>UNPREPARED</preparationStateCode>
-                                        <servingSize measurementUnitCode="OZ">2.75</servingSize>
+                                        <servingSize measurementUnitCode="ONZ">2.75</servingSize>
                                         <servingSizeDescription languageCode="en">The household serving size for UNPREPARED</servingSizeDescription>
                                         <nutrientDetail>
                                             <nutrientTypeCode>ENER</nutrientTypeCode>
@@ -737,7 +765,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                 </nutritional_information:nutritionalInformationModule>
@@ -770,7 +798,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                     <nutrientHeader>
@@ -789,7 +817,7 @@
                                         <nutrientDetail>
                                             <nutrientTypeCode>NA</nutrientTypeCode>
                                             <measurementPrecisionCode>EXACT</measurementPrecisionCode>
-                                            <quantityContained measurementUnitCode="ME">0</quantityContained>
+                                            <quantityContained measurementUnitCode="MGM">0</quantityContained>
                                         </nutrientDetail>
                                     </nutrientHeader>
                                 </nutritional_information:nutritionalInformationModule>
@@ -891,12 +919,17 @@
                                                 <packagingMarkedRecyclableScheme>na</packagingMarkedRecyclableScheme>
                                             </packagingMarking>
                                         </packaging_marking:packagingMarkingModule>
+                                        <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
+                                            <dataCarrier>
+                                                <dataCarrierTypeCode>GS1_128</dataCarrierTypeCode>
+                                            </dataCarrier>
+                                        </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
                                         <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
                                                 <brandNameInformation>
-                                                    <brandName>BestTest2016&#xA9;</brandName>
+                                                    <brandName>BestTest2016 &#xA9; Spring</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
@@ -905,11 +938,11 @@
                                         </trade_item_hierarchy:tradeItemHierarchyModule>
                                         <trade_item_measurements:tradeItemMeasurementsModule xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" xsi:schemaLocation="urn:gs1:gdsn:trade_item_measurements:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemMeasurementsModule.xsd">
                                             <tradeItemMeasurements>
-                                                <depth measurementUnitCode="CM">25.99999</depth>
-                                                <height measurementUnitCode="CM">12.6</height>
-                                                <width measurementUnitCode="CM">50.000001</width>
+                                                <depth measurementUnitCode="CMT">25.99999</depth>
+                                                <height measurementUnitCode="CMT">12.6</height>
+                                                <width measurementUnitCode="CMT">50.000001</width>
                                                 <tradeItemWeight>
-                                                    <grossWeight measurementUnitCode="KG">1.123</grossWeight>
+                                                    <grossWeight measurementUnitCode="KGM">1.123</grossWeight>
                                                 </tradeItemWeight>
                                             </tradeItemMeasurements>
                                         </trade_item_measurements:tradeItemMeasurementsModule>
@@ -921,8 +954,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-28T18:37:34.418Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-28T18:37:34.418Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-30T15:12:38.243Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-30T15:12:38.243Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

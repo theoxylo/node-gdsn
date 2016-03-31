@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1459350758244_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1459433107513_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-03-30T15:12:38.244Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-03-31T14:05:07.513Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1459433107513_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1459433107513_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-03-30T15:12:38.244Z</creationDateTime>
+                <creationDateTime>2016-03-31T14:05:07.513Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1459350758244_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1459433107513_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -138,7 +138,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-30T15:12:38.105Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-31T14:05:07.392Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
@@ -153,7 +153,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-03-30T15:12:38.108Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-03-31T14:05:07.393Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -288,9 +288,26 @@
                                 </marketing_information:marketingInformationModule>
                                 <packaging_information:packagingInformationModule xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingInformationModule.xsd">
                                     <packaging>
+                                        <platformTermsAndConditionsCode>1</platformTermsAndConditionsCode>
+                                        <platformTypeCode>27</platformTypeCode>
+                                        <packagingMaterial>
+                                            <packagingMaterialTypeCode>STEEL</packagingMaterialTypeCode>
+                                        </packagingMaterial>
+                                    </packaging>
+                                    <packaging>
                                         <doesPackagingHaveWheels>FALSE</doesPackagingHaveWheels>
                                         <packagingTypeCode>BLK</packagingTypeCode>
                                         <packagingWeight measurementUnitCode="LBR">2.345</packagingWeight>
+                                        <packagingMaterial>
+                                            <packagingMaterialTypeCode>43</packagingMaterialTypeCode>
+                                            <packagingMaterialCompositionQuantity measurementUnitCode="KGM">2.001</packagingMaterialCompositionQuantity>
+                                        </packagingMaterial>
+                                        <packageDeposit>
+                                            <depositValueEffectiveDateTime>2016-01-01T01:01:01.009Z</depositValueEffectiveDateTime>
+                                            <depositValueEndDateTime>2018-01-01T01:01:01.009Z</depositValueEndDateTime>
+                                            <returnablePackageDepositAmount currencyCode="USD">2.25</returnablePackageDepositAmount>
+                                            <returnablePackageDepositIdentification>Code 987</returnablePackageDepositIdentification>
+                                        </packageDeposit>
                                         <packagingTypeDescription languageCode="en">Optional description goes here</packagingTypeDescription>
                                     </packaging>
                                 </packaging_information:packagingInformationModule>
@@ -319,9 +336,9 @@
                                 <sales_information:salesInformationModule xmlns:sales_information="urn:gs1:gdsn:sales_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sales_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SalesInformationModule.xsd">
                                     <salesInformation>
                                         <brandDistributionTypeCode>UNRESTRICTED_DISTRIBUTION</brandDistributionTypeCode>
-                                        <priceByMeasureTypeCode>COUNT</priceByMeasureTypeCode>
-                                        <priceComparisonMeasurement measurementUnitCode="KGM">4.1</priceComparisonMeasurement>
-                                        <priceComparisonContentTypeCode>PER_KILOGRAM</priceComparisonContentTypeCode>
+                                        <priceByMeasureTypeCode>VOLUME</priceByMeasureTypeCode>
+                                        <priceComparisonMeasurement measurementUnitCode="2Q">4.1</priceComparisonMeasurement>
+                                        <priceComparisonContentTypeCode>DRAINED_WEIGHT</priceComparisonContentTypeCode>
                                     </salesInformation>
                                 </sales_information:salesInformationModule>
                                 <security_tag_information:securityTagInformationModule xmlns:security_tag_information="urn:gs1:gdsn:security_tag_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:security_tag_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SecurityTagInformationModule.xsd">
@@ -904,6 +921,11 @@
                                                 </dangerousSubstanceProperties>
                                             </dangerousSubstanceInformation>
                                         </dangerous_substance_information:dangerousSubstanceInformationModule>
+                                        <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
+                                            <deliveryPurchasingInformation>
+                                                <startAvailabilityDateTime>2016-03-31T14:05:07.504Z</startAvailabilityDateTime>
+                                            </deliveryPurchasingInformation>
+                                        </delivery_purchasing_information:deliveryPurchasingInformationModule>
                                         <food_and_beverage_properties_information:foodAndBeveragePropertiesInformationModule xmlns:food_and_beverage_properties_information="urn:gs1:gdsn:food_and_beverage_properties_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_properties_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePropertiesInformationModule.xsd">
                                             <microbiologicalInformation>
                                                 <microbiologicalOrganismCode>BACILLUS_CEREUS</microbiologicalOrganismCode>
@@ -940,6 +962,7 @@
                                             <tradeItemMeasurements>
                                                 <depth measurementUnitCode="CMT">25.99999</depth>
                                                 <height measurementUnitCode="CMT">12.6</height>
+                                                <netContent measurementUnitCode="KGM">5</netContent>
                                                 <width measurementUnitCode="CMT">50.000001</width>
                                                 <tradeItemWeight>
                                                     <grossWeight measurementUnitCode="KGM">1.123</grossWeight>
@@ -954,8 +977,8 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-03-30T15:12:38.243Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-03-30T15:12:38.243Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-03-31T14:05:07.511Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-03-31T14:05:07.511Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                             </tradeItem>
                         </catalogueItem>

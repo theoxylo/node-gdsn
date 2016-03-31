@@ -287,7 +287,7 @@
                                                 <isTradeItemAnInvoiceUnit>true</isTradeItemAnInvoiceUnit>
                                                 <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
                                                 <isTradeItemAVariableUnit>true</isTradeItemAVariableUnit>
-                                                <priceByMeasureType>COUNT</priceByMeasureType>
+                                                <priceByMeasureType>VOLUME</priceByMeasureType>
                                                 <variableTradeItemType>PRE_PACKED</variableTradeItemType>
                                             </tradeItemUnitIndicator>
                                             <barCodeType>UCC_EAN_128_SYMBOL</barCodeType>
@@ -362,8 +362,8 @@
                                                 <packagingMaterialCode>43</packagingMaterialCode>
                                                 <packagingMaterialCodeListMaintenanceAgency>E</packagingMaterialCodeListMaintenanceAgency>
                                                 <packagingMaterialCompositionQuantity>
-                                                    <measurementValue unitOfMeasure="CM">
-                                                        <value>14.097</value>
+                                                    <measurementValue unitOfMeasure="KG">
+                                                        <value>2.001</value>
                                                     </measurementValue>
                                                 </packagingMaterialCompositionQuantity>
                                                 <packagingMaterialDescription>
@@ -533,9 +533,9 @@
                                                     </pegVertical>
                                                     <pegHoleType>Standard Hanging Type</pegHoleType>
                                                 </pegMeasurements>
-                                                <priceComparisonContentType>PER_KILOGRAM</priceComparisonContentType>
+                                                <priceComparisonContentType>DRAINED_WEIGHT</priceComparisonContentType>
                                                 <priceComparisonMeasurement>
-                                                    <measurementValue unitOfMeasure="KG">
+                                                    <measurementValue unitOfMeasure="2Q">
                                                         <value>4.1</value>
                                                     </measurementValue>
                                                 </priceComparisonMeasurement>
@@ -615,7 +615,7 @@
                                                 </goodsPickUpLeadTime>
                                             </tradeItemOrderInformation>
                                             <tradeItemPalletInformation>
-                                                <palletTypeCode>3</palletTypeCode>
+                                                <palletTypeCode>7</palletTypeCode>
                                                 <palletTermsAndConditions>1</palletTermsAndConditions>
                                             </tradeItemPalletInformation>
                                             <cataloguePrice>
@@ -1955,6 +1955,11 @@
                                                                 <value>50.000001</value>
                                                             </measurementValue>
                                                         </width>
+                                                        <netContent>
+                                                            <measurementValue unitOfMeasure="KG">
+                                                                <value>5</value>
+                                                            </measurementValue>
+                                                        </netContent>
                                                     </tradeItemMeasurements>
                                                 </tradingPartnerNeutralTradeItemInformation>
                                             </tradeItemInformation>

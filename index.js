@@ -35,7 +35,7 @@ var Gdsn = module.exports = function (x_config) {
 
   Gdsn.prototype.cin_builder_31            = require('./lib/create_cin_31.js')(cheerio, this)
   Gdsn.prototype.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
-  Gdsn.prototype.convert_tradeItem_28_31   = require('./lib/tradeItem_upgrade_28_31.js')(cheerio, this)
+  Gdsn.prototype.convert_tradeItem_28_31   = require('./lib/upgrade/tradeItem_upgrade_28_31.js')(cheerio, this)
   Gdsn.prototype.create_tp_item_rci_28     = require('./lib/rci_28.js')(cheerio, this)
 }
 

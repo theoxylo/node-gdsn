@@ -57,7 +57,7 @@ Gdsn.prototype.get_msg_info = function (xml) {
 }
 
 Gdsn.prototype.getTradeItemInfo = function (xml, msg_info) {
-  return new TradeItemInfo(Gdsn.trim_xml(xml), config) // cheerio
+  return new TradeItemInfo(Gdsn.trim_xml(xml), config)
 }
 
 Gdsn.prototype.get_party_info = function (xml, msg_info) {
@@ -65,7 +65,7 @@ Gdsn.prototype.get_party_info = function (xml, msg_info) {
 }
 
 Gdsn.prototype.getPartyInfo = function (xml, msg_info) {
-  return this.get_party_info(xml, msg_info) // cheerio
+  return this.get_party_info(xml, msg_info)
 }
 
 // stream extract methods
@@ -164,10 +164,11 @@ Gdsn.prototype.loadTemplatesSync = function (path) {
 // Note: trxOwner is the gln of the TP (DS or DR) initiating the gdsn conversation
 // .e.g. for CIN from SDP to RDP, trxOwner would be DS/publisher and same for following CIC
 Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOwner) { // 3.1
-  var $ = cheerio.load(this.templates.response, {  // 3.1
+  var $ = cheerio.load(this.templates.response, {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
   var new_msg_id = err_msg ? 'X_' : ''
   new_msg_id += 'RESP_' + req_msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
@@ -225,6 +226,7 @@ Gdsn.prototype.populateBprToGr = function (tp_msg_info) { // 3.1
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // instance ID, note that GR requires a unique message ID each time
@@ -287,6 +289,7 @@ Gdsn.prototype.populateCisToGr = function (tp_msg_info) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // SINGLE doc support:
@@ -343,6 +346,7 @@ Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // new values for this message
@@ -408,6 +412,7 @@ Gdsn.prototype.create_rci_to_gr = function (item, cmd) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // new values for this message
@@ -464,6 +469,7 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (sdp_cin, state) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
   if (!sdp_cin) return ''
 
@@ -492,6 +498,7 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   if (!tp_cic) return ''
@@ -566,6 +573,7 @@ Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   if (!tp_cihw) return ''

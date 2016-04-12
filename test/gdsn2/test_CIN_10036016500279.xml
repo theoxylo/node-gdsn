@@ -11,21 +11,21 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_28_10036016500279_10024951191010</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_28©_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:CreationDateAndTime>2016-01-06T01:01:01</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_28_10036016500279</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1</uniqueCreatorIdentification>
                 <contentOwner>
                     <gln>1100001011292</gln>
                 </contentOwner>
@@ -34,7 +34,7 @@
                 <eanucc:documentCommand>
                     <documentCommandHeader type="ADD">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1_CMD-1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1_CMD-1</uniqueCreatorIdentification>
                             <contentOwner>
                                 <gln>1100001011292</gln>
                             </contentOwner>
@@ -107,13 +107,13 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>BestTest2016 © Spring</brandName>
+                                            <brandName>Hello MDS © Spring</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <shortText>Short Description © 35</shortText>
+                                                    <shortText>En Description © 35</shortText>
                                                 </description>
                                                 <description>
                                                     <language>
@@ -125,7 +125,7 @@
                                                     <language>
                                                         <languageISOCode>es</languageISOCode>
                                                     </language>
-                                                    <shortText>ES Short Description © 35</shortText>
+                                                    <shortText>Es Short Description © 35</shortText>
                                                 </description>
                                             </descriptionShort>
                                             <functionalName>
@@ -139,7 +139,7 @@
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <shortText>Functional © &amp; &amp; &amp; &amp; &amp; &amp; &amp; Name 35</shortText>
+                                                    <shortText>English functionalName © 35</shortText>
                                                 </description>
                                                 <description>
                                                     <language>
@@ -955,6 +955,7 @@
                                     </tradeItemInformation>
                                     <extension>
                                         <gdsn:attributeValuePairExtension>
+                                            <value name="testUOM">QT</value>
                                             <value name="doesTradeItemCarryUSDAChildNutritionLabel">No</value>
                                             <value name="allergenRelevantDataProvided">true</value>
                                             <value name="foodCompositionAgencyNameCode">ANSES</value>
@@ -966,6 +967,8 @@
                                             <value name="servingSizeWeight">120 GR</value>
                                             <value name="tradeItemCubeMeasurement">114.641</value>
                                             <value name="tradeItemCubeMeasurementUOM">CI</value>
+                                            <value name="isTradeItemGlutenFree">false</value>
+                                            <value name="manufacturerName">SCHWAN'S FOOD SERVICE INC</value>
                                         </gdsn:attributeValuePairExtension>
                                         <food:foodAndBeverageTradeItemExtension>
                                             <foodAndBeverageInformation>
@@ -1905,7 +1908,7 @@
                                                     <classificationCategoryCode>10000279</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>BestTest2016 © Spring</brandName>
+                                            <brandName>Hello MDS © Spring</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -1970,7 +1973,7 @@
                                 </catalogueItemChildItemLink>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-                                <uniqueCreatorIdentification>CIN_28_10036016500279_TXN-1_CMD-1_DOC-1</uniqueCreatorIdentification>
+                                <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1_CMD-1_DOC-1</uniqueCreatorIdentification>
                                 <contentOwner>
                                     <gln>1100001011292</gln>
                                 </contentOwner>

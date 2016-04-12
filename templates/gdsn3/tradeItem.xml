@@ -15,19 +15,16 @@
         <gln/>
         <partyAddress>na</partyAddress>
         <partyName/>
-        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </brandOwner>
     <informationProviderOfTradeItem>
         <gln/>
         <partyAddress>na</partyAddress>
         <partyName/>
-        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </informationProviderOfTradeItem>
     <manufacturerOfTradeItem>
         <gln/>
         <partyAddress>na</partyAddress>
         <partyName/>
-        <partyRoleCode>INFORMATION_PROVIDER</partyRoleCode>
     </manufacturerOfTradeItem>
     <displayUnitInformation/>
     <gdsnTradeItemClassification>

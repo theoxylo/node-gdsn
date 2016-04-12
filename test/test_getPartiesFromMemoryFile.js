@@ -23,6 +23,7 @@ test('getPartiesFromMemoryFile', function (t) {
       _:0
       , normalizeWhitespace: true
       , xmlMode: true
+      , decodeEntities: false
     })
     console.log('parsed ' + $.length + ' elements in ' + (Date.now() - start2) + ' ms')
 

@@ -80,7 +80,7 @@
                                                     <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
                                                 </additionalPartyIdentification>
                                             </informationProvider>
-                                            <nameOfInformationProvider>Provider © ® ½ ¼ ¾ Name 35</nameOfInformationProvider>
+                                            <nameOfInformationProvider>ITN Test Party 292</nameOfInformationProvider>
                                         </informationProviderOfTradeItem>
                                         <targetMarketInformation>
                                             <targetMarketCountryCode>
@@ -1897,7 +1897,7 @@
                                                     <informationProvider>
                                                         <gln>1100001011292</gln>
                                                     </informationProvider>
-                                                    <nameOfInformationProvider>Provider © ® ½ ¼ ¾ Name 35</nameOfInformationProvider>
+                                                    <nameOfInformationProvider>ITN Test Party 292</nameOfInformationProvider>
                                                 </informationProviderOfTradeItem>
                                                 <targetMarketInformation>
                                                     <targetMarketCountryCode>

@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1460472480464_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1461688290063_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-04-12T14:48:00.464Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-04-26T16:31:30.063Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1460472480464_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1460472480464_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-04-12T14:48:00.464Z</creationDateTime>
+                <creationDateTime>2016-04-26T16:31:30.063Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1460472480464_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -79,7 +79,7 @@
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
                             <partyAddress>na</partyAddress>
-                            <partyName>Provider &amp;#xA9; &amp;#xAE; &amp;#xBD; &amp;#xBC; &amp;#xBE; Name 35</partyName>
+                            <partyName>ITN Test Party 292</partyName>
                         </informationProviderOfTradeItem>
                         <manufacturerOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
@@ -100,7 +100,7 @@
                             <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                         </displayUnitInformation>
                         <gdsnTradeItemClassification>
-                            <gpcCategoryCode>10000279</gpcCategoryCode>
+                            <gpcCategoryCode>10002478</gpcCategoryCode>
                             <gpcCategoryName>na</gpcCategoryName>
                             <gDSNTradeItemClassificationAttribute>
                                 <gpcAttributeTypeCode>20000002</gpcAttributeTypeCode>
@@ -138,7 +138,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-04-12T14:48:00.325Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-04-26T16:31:29.964Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;amp;amp;test/file</uniformResourceIdentifier>
@@ -154,7 +154,7 @@
                         </referencedFileInformation>
                         <referencedFileInformation>
                             <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-04-12T14:48:00.327Z</fileEffectiveStartDateTime>
+                            <fileEffectiveStartDateTime>2016-04-26T16:31:29.965Z</fileEffectiveStartDateTime>
                             <fileFormatName>JPG</fileFormatName>
                             <fileName>filename</fileName>
                             <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -165,6 +165,13 @@
                         <tradeItemInformation>
                             <productionVariantDescription languageCode="en">FIRST_NON_VARIANT</productionVariantDescription>
                             <extension>
+                                <alcohol_information:alcoholInformationModule xmlns:alcohol_information="urn:gs1:gdsn:alcohol_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:alcohol_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AlcoholInformationModule.xsd">
+                                    <alcoholInformation>
+                                        <alcoholicBeverageSubregion>US-CA</alcoholicBeverageSubregion>
+                                        <alcoholicPermissionLevel>21 years NOW</alcoholicPermissionLevel>
+                                        <percentageOfAlcoholByVolume>18.47</percentageOfAlcoholByVolume>
+                                    </alcoholInformation>
+                                </alcohol_information:alcoholInformationModule>
                                 <allergen_information:allergenInformationModule xmlns:allergen_information="urn:gs1:gdsn:allergen_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:allergen_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AllergenInformationModule.xsd">
                                     <allergenRelatedInformation>
                                         <allergenStatement languageCode="en">Contains many allergens</allergenStatement>
@@ -173,9 +180,6 @@
                                             <allergenTypeCode>X99</allergenTypeCode>
                                             <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
                                         </allergen>
-                                        <avpList>
-                                            <stringAVP attributeName="allergenRelevantDataProvided">true</stringAVP>
-                                        </avpList>
                                     </allergenRelatedInformation>
                                 </allergen_information:allergenInformationModule>
                                 <consumer_instructions:consumerInstructionsModule xmlns:consumer_instructions="urn:gs1:gdsn:consumer_instructions:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:consumer_instructions:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ConsumerInstructionsModule.xsd">
@@ -199,11 +203,14 @@
                                         <endMaximumBuyingQuantityDateTime>2018-01-01T11:59:59</endMaximumBuyingQuantityDateTime>
                                         <endMinimumBuyingQuantityDateTime>2018-01-01T11:59:59</endMinimumBuyingQuantityDateTime>
                                         <firstOrderDateTime>2016-01-01T01:01:01.009Z</firstOrderDateTime>
+                                        <goodsPickupLeadTime measurementUnitCode="DAY">40</goodsPickupLeadTime>
                                         <lastOrderDateTime>2018-12-01T01:01:01.009Z</lastOrderDateTime>
                                         <lastShipDateTime>2018-12-02T01:01:01.009Z</lastShipDateTime>
                                         <orderQuantityMaximum>143</orderQuantityMaximum>
                                         <orderQuantityMinimum>8</orderQuantityMinimum>
                                         <orderQuantityMultiple>16</orderQuantityMultiple>
+                                        <orderSizingFactor measurementUnitCode="BX">24</orderSizingFactor>
+                                        <orderSizingFactor measurementUnitCode="DZN">2</orderSizingFactor>
                                         <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
                                         <startDateMaximumBuyingQuantity>2016-01-01T11:59:59</startDateMaximumBuyingQuantity>
                                         <startDateMinimumBuyingQuantity>2016-01-01T11:59:59</startDateMinimumBuyingQuantity>
@@ -234,8 +241,11 @@
                                 </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <health_related_information:healthRelatedInformationModule xmlns:health_related_information="urn:gs1:gdsn:health_related_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_related_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthRelatedInformationModule.xsd">
                                     <healthRelatedInformation>
-                                        <nutritionalLabelTypeCode>1</nutritionalLabelTypeCode>
+                                        <isTradeItemChemicalNotIntendedForHumanConsumption>UNSPECIFIED</isTradeItemChemicalNotIntendedForHumanConsumption>
+                                        <nutritionalLabelTypeCode>KOSHER</nutritionalLabelTypeCode>
                                         <nutritionalLabelTypeCode>TEST_VALUE</nutritionalLabelTypeCode>
+                                        <nutritionalProgramCode>LOWFAT</nutritionalProgramCode>
+                                        <nutritionalProgramCode>VEGAN</nutritionalProgramCode>
                                     </healthRelatedInformation>
                                 </health_related_information:healthRelatedInformationModule>
                                 <health_wellness_packaging_marking:healthWellnessPackagingMarkingModule xmlns:health_wellness_packaging_marking="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthWellnessPackagingMarkingModule.xsd">
@@ -247,7 +257,9 @@
                                 </health_wellness_packaging_marking:healthWellnessPackagingMarkingModule>
                                 <marketing_information:marketingInformationModule xmlns:marketing_information="urn:gs1:gdsn:marketing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:marketing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/MarketingInformationModule.xsd">
                                     <marketingInformation>
-                                        <tradeItemFeatureBenefit languageCode="en"> en Feature Benefit X</tradeItemFeatureBenefit>
+                                        <tradeItemFeatureBenefit languageCode="en">Feature Benefit En</tradeItemFeatureBenefit>
+                                        <tradeItemFeatureBenefit languageCode="es">Feature Benefit Es</tradeItemFeatureBenefit>
+                                        <tradeItemMarketingMessage languageCode="en">Long Campaign Message Goes Here</tradeItemMarketingMessage>
                                         <marketingCampaign>
                                             <campaignEndDateTime>2018-01-01T01:01:01.009Z</campaignEndDateTime>
                                             <campaignName languageCode="en">Campaign Sell-More</campaignName>
@@ -327,7 +339,7 @@
                                 </security_tag_information:securityTagInformationModule>
                                 <sustainability_module:sustainabilityModule xmlns:sustainability_module="urn:gs1:gdsn:sustainability_module:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sustainability_module:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SustainabilityModule.xsd">
                                     <sustainabilityInformation>
-                                        <doesTradeItemContainPesticide>TRUE</doesTradeItemContainPesticide>
+                                        <doesTradeItemContainPesticide>UNSPECIFIED</doesTradeItemContainPesticide>
                                         <isTradeItemRigidPlasticPackagingContainer>TRUE</isTradeItemRigidPlasticPackagingContainer>
                                         <isTradeItemROHSCompliant>TRUE</isTradeItemROHSCompliant>
                                         <renewablePlantBasedPlasticComponentsPercent>21.23</renewablePlantBasedPlasticComponentsPercent>
@@ -406,7 +418,7 @@
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
-                                            <brandName>Hello MDS &amp;#xA9; Spring</brandName>
+                                            <brandName>MDS 0422</brandName>
                                             <languageSpecificBrandName languageCode="en">English brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificBrandName languageCode="es">Spanish brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &amp;#xA9; 70</languageSpecificSubbrandName>
@@ -480,18 +492,18 @@
                                 </trade_item_measurements:tradeItemMeasurementsModule>
                                 <trade_item_temperature_information:tradeItemTemperatureInformationModule xmlns:trade_item_temperature_information="urn:gs1:gdsn:trade_item_temperature_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_temperature_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemTemperatureInformationModule.xsd">
                                     <tradeItemTemperatureInformation>
-                                        <maximumTemperature temperatureMeasurementUnitCode="FA">100</maximumTemperature>
-                                        <minimumTemperature temperatureMeasurementUnitCode="FA">40</minimumTemperature>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FAH">100</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FAH">40</minimumTemperature>
                                         <temperatureQualifierCode>DELIVERY_TO_DISTRIBUTION_CENTRE</temperatureQualifierCode>
                                     </tradeItemTemperatureInformation>
                                     <tradeItemTemperatureInformation>
-                                        <maximumTemperature temperatureMeasurementUnitCode="FA">99</maximumTemperature>
-                                        <minimumTemperature temperatureMeasurementUnitCode="FA">39</minimumTemperature>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FAH">99</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FAH">39</minimumTemperature>
                                         <temperatureQualifierCode>DELIVERY_TO_MARKET</temperatureQualifierCode>
                                     </tradeItemTemperatureInformation>
                                     <tradeItemTemperatureInformation>
-                                        <maximumTemperature temperatureMeasurementUnitCode="FA">90</maximumTemperature>
-                                        <minimumTemperature temperatureMeasurementUnitCode="FA">50</minimumTemperature>
+                                        <maximumTemperature temperatureMeasurementUnitCode="FAH">90</maximumTemperature>
+                                        <minimumTemperature temperatureMeasurementUnitCode="FAH">50</minimumTemperature>
                                         <temperatureQualifierCode>STORAGE_HANDLING</temperatureQualifierCode>
                                     </tradeItemTemperatureInformation>
                                 </trade_item_temperature_information:tradeItemTemperatureInformationModule>
@@ -519,9 +531,6 @@
                                             <allergenTypeCode>NM</allergenTypeCode>
                                             <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
                                         </allergen>
-                                        <avpList>
-                                            <stringAVP attributeName="allergenRelevantDataProvided">true</stringAVP>
-                                        </avpList>
                                     </allergenRelatedInformation>
                                 </allergen_information:allergenInformationModule>
                                 <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
@@ -677,9 +686,6 @@
                                             <allergenTypeCode>NM</allergenTypeCode>
                                             <levelOfContainmentCode>CONTAINS</levelOfContainmentCode>
                                         </allergen>
-                                        <avpList>
-                                            <stringAVP attributeName="allergenRelevantDataProvided">true</stringAVP>
-                                        </avpList>
                                     </allergenRelatedInformation>
                                 </allergen_information:allergenInformationModule>
                                 <diet_information:dietInformationModule xmlns:diet_information="urn:gs1:gdsn:diet_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:diet_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DietInformationModule.xsd">
@@ -808,15 +814,15 @@
                             <publicationDateTime>2016-01-01T01:01:01.009Z</publicationDateTime>
                         </tradeItemSynchronisationDates>
                         <avpList>
-                            <stringAVP attributeName="testUOM">QT</stringAVP>
-                            <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">No</stringAVP>
-                            <stringAVP attributeName="allergenRelevantDataProvided">true</stringAVP>
+                            <stringAVP attributeName="testUOM">QRT</stringAVP>
+                            <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">true</stringAVP>
                             <stringAVP attributeName="foodCompositionAgencyNameCode">ANSES</stringAVP>
                             <stringAVP attributeName="foodCompositionCode">MR3155678 FORCE</stringAVP>
+                            <stringAVP attributeName="isAllergenRelevantDataProvided">true</stringAVP>
+                            <stringAVP attributeName="isNutrientRelevantDataProvided">true</stringAVP>
                             <stringAVP attributeName="isPrivate">true</stringAVP>
                             <stringAVP attributeName="isPrivateLabel">true</stringAVP>
-                            <stringAVP attributeName="nutrientRelevantDataProvided">true</stringAVP>
-                            <stringAVP attributeName="nutrientValueDerivation">ANALYTICAL</stringAVP>
+                            <stringAVP attributeName="nutrientValueDerivationCode">ANALYTICAL</stringAVP>
                             <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
                             <stringAVP attributeName="tradeItemCubeMeasurement">114.641</stringAVP>
                             <stringAVP attributeName="tradeItemCubeMeasurementUOM">INQ</stringAVP>
@@ -848,14 +854,14 @@
                                 <informationProviderOfTradeItem>
                                     <gln>1100001011292</gln>
                                     <partyAddress>na</partyAddress>
-                                    <partyName>Provider &amp;amp;#xA9; &amp;amp;#xAE; &amp;amp;#xBD; &amp;amp;#xBC; &amp;amp;#xBE; Name 35</partyName>
+                                    <partyName>ITN Test Party 292</partyName>
                                 </informationProviderOfTradeItem>
                                 <displayUnitInformation>
                                     <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
                                     <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                                 </displayUnitInformation>
                                 <gdsnTradeItemClassification>
-                                    <gpcCategoryCode>10000279</gpcCategoryCode>
+                                    <gpcCategoryCode>10002478</gpcCategoryCode>
                                     <gpcCategoryName>na</gpcCategoryName>
                                 </gdsnTradeItemClassification>
                                 <targetMarket>
@@ -863,9 +869,14 @@
                                 </targetMarket>
                                 <tradeItemInformation>
                                     <extension>
+                                        <alcohol_information:alcoholInformationModule xmlns:alcohol_information="urn:gs1:gdsn:alcohol_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:alcohol_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AlcoholInformationModule.xsd">
+                                            <alcoholInformation>
+                                                <alcoholicBeverageSubregion>US-CA</alcoholicBeverageSubregion>
+                                            </alcoholInformation>
+                                        </alcohol_information:alcoholInformationModule>
                                         <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
                                             <deliveryPurchasingInformation>
-                                                <startAvailabilityDateTime>2016-04-12T14:48:00.453Z</startAvailabilityDateTime>
+                                                <startAvailabilityDateTime>2016-04-26T16:31:30.052Z</startAvailabilityDateTime>
                                             </deliveryPurchasingInformation>
                                         </delivery_purchasing_information:deliveryPurchasingInformationModule>
                                         <health_wellness_packaging_marking:healthWellnessPackagingMarkingModule xmlns:health_wellness_packaging_marking="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthWellnessPackagingMarkingModule.xsd">
@@ -893,7 +904,7 @@
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
                                                 <brandNameInformation>
-                                                    <brandName>Hello MDS &amp;amp;#xA9; Spring</brandName>
+                                                    <brandName>MDS 0422</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
@@ -916,9 +927,25 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-04-12T14:48:00.463Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-04-12T14:48:00.463Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-04-26T16:31:30.060Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-04-26T16:31:30.060Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
+                                <avpList>
+                                    <stringAVP attributeName="testUOM">QRT</stringAVP>
+                                    <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">true</stringAVP>
+                                    <stringAVP attributeName="foodCompositionAgencyNameCode">ANSES</stringAVP>
+                                    <stringAVP attributeName="foodCompositionCode">MR3155678 FORCE</stringAVP>
+                                    <stringAVP attributeName="isAllergenRelevantDataProvided">true</stringAVP>
+                                    <stringAVP attributeName="isNutrientRelevantDataProvided">true</stringAVP>
+                                    <stringAVP attributeName="isPrivate">true</stringAVP>
+                                    <stringAVP attributeName="isPrivateLabel">true</stringAVP>
+                                    <stringAVP attributeName="nutrientValueDerivationCode">ANALYTICAL</stringAVP>
+                                    <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
+                                    <stringAVP attributeName="tradeItemCubeMeasurement">114.641</stringAVP>
+                                    <stringAVP attributeName="tradeItemCubeMeasurementUOM">INQ</stringAVP>
+                                    <stringAVP attributeName="isTradeItemGlutenFree">false</stringAVP>
+                                    <stringAVP attributeName="manufacturerName">SCHWAN&amp;amp;apos;S FOOD SERVICE INC</stringAVP>
+                                </avpList>
                             </tradeItem>
                         </catalogueItem>
                     </catalogueItemChildItemLink>

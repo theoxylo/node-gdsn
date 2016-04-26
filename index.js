@@ -173,11 +173,11 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOw
   var new_msg_id = err_msg ? 'X_' : ''
   new_msg_id += 'RESP_' + req_msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
 
-  log('config.homeDataPoolGln ' + config.homeDataPoolGln)
-  log('req_msg_info ' + req_msg_info)
   if (config.homeDataPoolGln != req_msg_info.receiver) {
     log('********** WARN: responding to non-DP message: ' + req_msg_info)
-    return
+    log('config.homeDataPoolGln ' + config.homeDataPoolGln)
+    log('req_msg_info ' + req_msg_info)
+    return ''
   }
 
   $('sh\\:Sender   > sh\\:Identifier').text(req_msg_info.receiver)
@@ -464,7 +464,7 @@ Gdsn.prototype.create_rci_to_gr = function (item, cmd) {
 
 // send CIC receive to source_dp SDP for subscribed item, this is AUTO, no TP directly involved
 Gdsn.prototype.populateRdpCicRecForSdpCin = function (sdp_cin, state) {
-  log('populateCicFromCin')
+  log('populateRdpCicRecForSdpCin ')
   var $ = cheerio.load(this.templates.cic_to_pub, { 
     _:0
     , normalizeWhitespace: true
@@ -506,7 +506,6 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
   // new values for this message
   var new_msg_id = 'CIC_' + Date.now() + '_' + tp_cic.recipient + '_' + tp_cic.gtin
   var now_iso = new Date().toISOString()
-  var recipient_dp = config.homeDataPoolGln
 
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(tp_cic.source_dp) // could be to self for local publisher
@@ -561,6 +560,79 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
 
   $('contentOwner > gln').text(tp_cic.recipient)
   $('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
+
+  return $.html()
+}
+
+Gdsn.prototype.populateCicToLocalPub = function (tp_cic) {
+
+  log('populateCicToLocalPub ')
+  var $ = cheerio.load(this.templates.cic_to_pub, { 
+    _:0
+    , normalizeWhitespace: true
+    , xmlMode: true
+    , decodeEntities: false
+  })
+
+  if (!tp_cic) return ''
+
+  // new values for this message
+  var new_msg_id = 'CIC_' + Date.now() + '_' + tp_cic.recipient + '_' + tp_cic.gtin
+  var now_iso = new Date().toISOString()
+
+  $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
+  $('sh\\:Receiver > sh\\:Identifier').text(tp_cic.provider) // could be to self for local publisher
+  $('sh\\:InstanceIdentifier').text(new_msg_id)
+
+  $('sh\\:CreationDateAndTime').text(now_iso) // when this message is created by DP (right now)
+
+  // original values from tp: trx/cmd/doc id and owner glns, created ts
+  // assume naming convention based on original msg_id and only support single doc
+  $('transactionIdentification > entityIdentification').text(new_msg_id + '_trx1')
+
+  $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1')
+
+  $('creationDateTime').text(now_iso)
+  $('catalogueItemConfirmationIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
+
+  var state = tp_cic.status
+  if (state != 'REVIEW' && state != 'SYNCHRONISED' && state != 'REJECTED') state = 'RECEIVED' // 3.1: no more cic 'ACCEPTED'
+  $('catalogueItemConfirmationState > catalogueItemConfirmationStateCode').text(state)
+  
+  $('catalogueItemConfirmationState > recipientGLN').text(tp_cic.recipient)
+  $('catalogueItemConfirmationState > recipientDataPool').text(config.homeDataPoolGln)
+
+  $('catalogueItemReference > dataSource').text(tp_cic.provider)
+  $('catalogueItemReference > gtin').text(tp_cic.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(tp_cic.tm)
+  if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cic.tm_sub)
+  }
+  else {
+    $('catalogueItemReference > targetMarketSubdivisionCode').remove()
+  }
+
+  var cicsd = $('catalogueItemConfirmationStatusDetail')
+  if (tp_cic.confirm_code && tp_cic.confirm_desc) {
+    $('confirmationStatusCatalogueItem > dataSource', cicsd).text(tp_cic.provider)
+    $('confirmationStatusCatalogueItem > gtin'      , cicsd).text(tp_cic.gtin)
+    $('confirmationStatusCatalogueItem > targetMarketCountryCode', cicsd).text(tp_cic.tm)
+    if (tp_cic.tm_sub && tp_cic.tm_sub != 'na') {
+      $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).text(tp_cic.tm_sub)
+    }
+    else {
+      $('confirmationStatusCatalogueItem > targetMarketSubdivisionCode', cicsd).remove()
+    }
+
+    $('catalogueItemConfirmationStatus > confirmationStatusCode'           , cicsd).text(tp_cic.confirm_code) 
+    $('catalogueItemConfirmationStatus > confirmationStatusCodeDescription', cicsd).text(tp_cic.confirm_desc)
+  }
+  else { // RECEIVED, SYNCHRONISED // and REVIEW?
+    cicsd.remove()
+  }
+
+  $('contentOwner > gln').text(tp_cic.recipient)
+  //$('eanucc\\:message > entityIdentification > contentOwner > gln').text(config.homeDataPoolGln) // sender
 
   return $.html()
 }

@@ -11,21 +11,21 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_28©_10036016500279_10024951191010</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_28c9_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
-            <sh:CreationDateAndTime>2016-01-06T01:01:01</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-04-20T01:02:03</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
                 <contentOwner>
                     <gln>1100001011292</gln>
                 </contentOwner>
@@ -34,7 +34,7 @@
                 <eanucc:documentCommand>
                     <documentCommandHeader type="ADD">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1_CMD-1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
                             <contentOwner>
                                 <gln>1100001011292</gln>
                             </contentOwner>
@@ -88,7 +88,7 @@
                                             </targetMarketCountryCode>
                                         </targetMarketInformation>
                                         <classificationCategoryCode>
-                                            <classificationCategoryCode>10000279</classificationCategoryCode>
+                                            <classificationCategoryCode>10002478</classificationCategoryCode>
                                             <additionalClassification>
                                                 <additionalClassificationAgencyName>1</additionalClassificationAgencyName>
                                                 <additionalClassificationCategoryCode>234</additionalClassificationCategoryCode>
@@ -107,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>Hello MDS © Spring</brandName>
+                                            <brandName>MDS 0422</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -589,6 +589,7 @@
                                                         <value>881.712</value>
                                                     </measurementValue>
                                                 </inBoxCubeDimension>
+						<percentageOfAlcoholByVolume>18.47</percentageOfAlcoholByVolume>
                                             </tradeItemMeasurements>
                                             <tradeItemOrderInformation>
                                                 <orderingLeadTime>
@@ -602,6 +603,9 @@
                                                 <orderSizingFactor>
                                                     <measurementValue unitOfMeasure="BX">
                                                         <value>24</value>
+                                                    </measurementValue>
+                                                    <measurementValue unitOfMeasure="DZ">
+                                                        <value>2</value>
                                                     </measurementValue>
                                                 </orderSizingFactor>
                                                 <agreedMinimumBuyingQuantity>12</agreedMinimumBuyingQuantity>
@@ -743,7 +747,13 @@
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <text>Feature Benefit X</text>
+                                                    <text>Feature Benefit En</text>
+                                                </tradeItemFeatureBenefit>
+                                                <tradeItemFeatureBenefit>
+                                                    <language>
+                                                        <languageISOCode>es</languageISOCode>
+                                                    </language>
+                                                    <text>Feature Benefit Es</text>
                                                 </tradeItemFeatureBenefit>
                                                 <tradeItemMarketingMessage>
                                                     <language>
@@ -751,6 +761,7 @@
                                                     </language>
                                                     <longText>Long Campaign Message Goes Here</longText>
                                                 </tradeItemMarketingMessage>
+                                                <tradeItemFeatureCode>New!</tradeItemFeatureCode>
                                             </marketingInformation>
                                             <materialComposition>
                                                 <materialAgencyCode>ANSI</materialAgencyCode>
@@ -874,7 +885,7 @@
                                                 <countryISOCode>840</countryISOCode>
                                             </tradeItemCountryOfLastProcessing>
                                             <tradeItemSustainabilityInformation areHazardousComponentsRemovable="TRUE" componentsLabeledForDisassemblyRecyclingPercent="60.50" doesTradeItemHaveRefuseObligations="TRUE" isTradeItemConsumerUpgradeableOrMaintainable="TRUE" isTradeItemDesignedForEasyDisassembly="TRUE" isTradeItemROHSCompliant="TRUE" isTradeItemRigidPlasticPackagingContainer="TRUE" isTradeItemUniversalWaste="TRUE">
-                                                <tradeItemEnvironmentalProperties doesTradeItemContainPesticide="TRUE" doesTradeItemContainPolyvinylChloride="TRUE" doesTradeItemContainPropellant="TRUE" doesTradeItemContainShortChainChlorinatedParaffins="TRUE" isTradeItemChemicalNotIntendedForHumanConsumption="TRUE" renewablePlantBasedPlasticComponentsPercent="21.23">
+                                                <tradeItemEnvironmentalProperties doesTradeItemContainPesticide="UNSPECIFIED" doesTradeItemContainPolyvinylChloride="UNSPECIFIED" doesTradeItemContainPropellant="UNSPECIFIED" doesTradeItemContainShortChainChlorinatedParaffins="UNSPECIFIED" isTradeItemChemicalNotIntendedForHumanConsumption="UNSPECIFIED" renewablePlantBasedPlasticComponentsPercent="21.23">
                                                     <rOHSComplianceFailureMaterial>ROHS dangerous material ABC</rOHSComplianceFailureMaterial>
                                                     <rOHSComplianceFailureMaterial>ROHS dangerous material XYZ</rOHSComplianceFailureMaterial>
                                                 </tradeItemEnvironmentalProperties>
@@ -956,19 +967,21 @@
                                     <extension>
                                         <gdsn:attributeValuePairExtension>
                                             <value name="testUOM">QT</value>
-                                            <value name="doesTradeItemCarryUSDAChildNutritionLabel">No</value>
-                                            <value name="allergenRelevantDataProvided">true</value>
+                                            <value name="doesTradeItemCarryUSDAChildNutritionLabel">yes</value>
                                             <value name="foodCompositionAgencyNameCode">ANSES</value>
                                             <value name="foodCompositionCode">MR3155678 FORCE</value>
+                                            <value name="allergenRelevantDataProvided">Yes</value>
+                                            <value name="nutrientRelevantDataProvided">YES</value>
                                             <value name="isPrivate">true</value>
                                             <value name="isPrivateLabel">true</value>
-                                            <value name="nutrientRelevantDataProvided">true</value>
                                             <value name="nutrientValueDerivation">ANALYTICAL</value>
                                             <value name="servingSizeWeight">120 GR</value>
                                             <value name="tradeItemCubeMeasurement">114.641</value>
                                             <value name="tradeItemCubeMeasurementUOM">CI</value>
-                                            <value name="isTradeItemGlutenFree">false</value>
+                                            <value name="isTradeItemGlutenFree">No</value>
                                             <value name="manufacturerName">SCHWAN'S FOOD SERVICE INC</value>
+                                            <value name="alcoholicBeverageSubregionOfOrigin">US-CA</value>
+                                            <value name="isTradeItemBiodegradable">YES</value>
                                         </gdsn:attributeValuePairExtension>
                                         <food:foodAndBeverageTradeItemExtension>
                                             <foodAndBeverageInformation>
@@ -1814,6 +1827,9 @@
                                                         <longText>Actuar como parte de un desayuno completo</longText>
                                                     </description>
                                                 </servingSuggestion>
+                                                <nutritionalProgramCode>LOWFAT</nutritionalProgramCode>
+                                                <nutritionalProgramCode>VEGAN</nutritionalProgramCode>
+                                                <alcoholicPermissionLevel>21 years NOW</alcoholicPermissionLevel>
                                             </foodAndBeverageMarketingInformationExtension>
                                             <tradeItemExternalInformation>
                                                 <fileName>my_file.txt</fileName>
@@ -1839,7 +1855,7 @@
                                                 <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
                                                 <typeOfInformation>PRODUCT_LABEL_IMAGE</typeOfInformation>
                                             </tradeItemExternalInformation>
-                                            <nutritionLabelTypeCode>1</nutritionLabelTypeCode>
+                                            <nutritionLabelTypeCode>KOSHER</nutritionLabelTypeCode>
                                             <nutritionLabelTypeCode>TEST_VALUE</nutritionLabelTypeCode>
                                         </food:foodAndBeverageTradeItemExtension>
                                     </extension>
@@ -1905,10 +1921,10 @@
                                                     </targetMarketCountryCode>
                                                 </targetMarketInformation>
                                                 <classificationCategoryCode>
-                                                    <classificationCategoryCode>10000279</classificationCategoryCode>
+                                                    <classificationCategoryCode>10002478</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                            <brandName>Hello MDS © Spring</brandName>
+                                                    <brandName>MDS 0422</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -1966,6 +1982,26 @@
                                                     </tradeItemMeasurements>
                                                 </tradingPartnerNeutralTradeItemInformation>
                                             </tradeItemInformation>
+                                            <extension>
+                                                <gdsn:attributeValuePairExtension>
+                                                    <value name="testUOM">QT</value>
+                                                    <value name="doesTradeItemCarryUSDAChildNutritionLabel">yes</value>
+                                                    <value name="foodCompositionAgencyNameCode">ANSES</value>
+                                                    <value name="foodCompositionCode">MR3155678 FORCE</value>
+                                                    <value name="allergenRelevantDataProvided">Yes</value>
+                                                    <value name="nutrientRelevantDataProvided">YES</value>
+                                                    <value name="isPrivate">true</value>
+                                                    <value name="isPrivateLabel">true</value>
+                                                    <value name="nutrientValueDerivation">ANALYTICAL</value>
+                                                    <value name="servingSizeWeight">120 GR</value>
+                                                    <value name="tradeItemCubeMeasurement">114.641</value>
+                                                    <value name="tradeItemCubeMeasurementUOM">CI</value>
+                                                    <value name="isTradeItemGlutenFree">No</value>
+                                                    <value name="manufacturerName">SCHWAN'S FOOD SERVICE INC</value>
+                                                    <value name="alcoholicBeverageSubregionOfOrigin">US-CA</value>
+                                                    <value name="isTradeItemBiodegradable">YES</value>
+                                                </gdsn:attributeValuePairExtension>
+                                            </extension>
                                         </tradeItem>
                                         <dataRecipient>1100001011285</dataRecipient>
                                         <sourceDataPool>1100001011285</sourceDataPool>
@@ -1973,7 +2009,7 @@
                                 </catalogueItemChildItemLink>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-                                <uniqueCreatorIdentification>CIN_28©_10036016500279_10024951191010_TXN-1_CMD-1_DOC-1</uniqueCreatorIdentification>
+                                <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
                                 <contentOwner>
                                     <gln>1100001011292</gln>
                                 </contentOwner>

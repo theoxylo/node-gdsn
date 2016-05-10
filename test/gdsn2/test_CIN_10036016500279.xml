@@ -11,39 +11,39 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_28c9_10036016500279_10024951191010</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_0506_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
-            <sh:CreationDateAndTime>2016-04-20T01:02:03</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-04-27T01:02:03.001Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
                 <contentOwner>
                     <gln>1100001011292</gln>
                 </contentOwner>
             </entityIdentification>
             <command>
                 <eanucc:documentCommand>
-                    <documentCommandHeader type="ADD">
+                    <documentCommandHeader type="CORRECT">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
                             <contentOwner>
                                 <gln>1100001011292</gln>
                             </contentOwner>
                         </entityIdentification>
                     </documentCommandHeader>
                     <documentCommandOperand>
-                        <gdsn:catalogueItemNotification creationDateTime="2016-01-01T16:21:49.226-08:00" documentStatus="ORIGINAL" isReload="false">
+                        <gdsn:catalogueItemNotification creationDateTime="2016-04-26T01:02:03.001Z" documentStatus="ORIGINAL" isReload="false">
                             <catalogueItem>
-                                <catalogueItemState state="IN_PROGRESS"/>
+                                <catalogueItemState state="REGISTERED"/>
                                 <tradeItem>
                                     <tradeItemUnitDescriptor>CASE</tradeItemUnitDescriptor>
                                     <tradeItemIdentification>
@@ -88,7 +88,7 @@
                                             </targetMarketCountryCode>
                                         </targetMarketInformation>
                                         <classificationCategoryCode>
-                                            <classificationCategoryCode>10002478</classificationCategoryCode>
+                                            <classificationCategoryCode>10000247</classificationCategoryCode>
                                             <additionalClassification>
                                                 <additionalClassificationAgencyName>1</additionalClassificationAgencyName>
                                                 <additionalClassificationCategoryCode>234</additionalClassificationCategoryCode>
@@ -107,25 +107,25 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>MDS 0422</brandName>
+                                            <brandName>ITN © 0506</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
                                                     </language>
-                                                    <shortText>En Description © 35</shortText>
+                                                    <shortText>En Short Description © 35</shortText>
                                                 </description>
                                                 <description>
                                                     <language>
                                                         <languageISOCode>fr</languageISOCode>
                                                     </language>
-                                                    <shortText>Fr Short Description © 35</shortText>
+                                                    <shortText>Fr Shorte Description © 35</shortText>
                                                 </description>
                                                 <description>
                                                     <language>
                                                         <languageISOCode>es</languageISOCode>
                                                     </language>
-                                                    <shortText>Es Short Description © 35</shortText>
+                                                    <shortText>Es Poco Description © 35</shortText>
                                                 </description>
                                             </descriptionShort>
                                             <functionalName>
@@ -403,7 +403,7 @@
                                             </tradeItemCountryOfOrigin>
                                             <tradeItemDateInformation>
                                                 <effectiveDate>2010-12-01</effectiveDate>
-                                                <lastChangeDateTime>2016-01-21T11:59:59</lastChangeDateTime>
+                                                <lastChangeDateTime>2015-01-21T11:59:59</lastChangeDateTime>
                                                 <publicationDate>2016-01-01</publicationDate>
                                                 <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
                                                 <consumerAvailabilityDateTime>2016-01-01T11:59:59</consumerAvailabilityDateTime>
@@ -412,7 +412,7 @@
                                                 <endDateMinimumBuyingQuantity>2018-01-01T11:59:59</endDateMinimumBuyingQuantity>
                                                 <endDateTimeOfExclusivity>2018-01-01T11:59:59</endDateTimeOfExclusivity>
                                                 <firstOrderDate>2016-01-01</firstOrderDate>
-                                                <firstShipDate>2015-12-02</firstShipDate>
+                                                <firstShipDate>2016-06-02</firstShipDate>
                                                 <lastOrderDate>2018-12-01</lastOrderDate>
                                                 <lastShipDate>2018-12-02</lastShipDate>
                                                 <startDateMaximumBuyingQuantity>2016-01-01T11:59:59</startDateMaximumBuyingQuantity>
@@ -443,7 +443,6 @@
                                                 </consumerUsageStorageInstructions>
                                                 <openedTradeItemLifespan>789</openedTradeItemLifespan>
                                                 <clampPressure unitOfMeasure="PS">
-                                                    <!-- maps to new 3.1 tradeItemHandlingModule -->
                                                     <value>12.5</value>
                                                 </clampPressure>
                                                 <handlingInstructionsCodeAgency>Agency 123</handlingInstructionsCodeAgency>
@@ -456,8 +455,10 @@
                                                     </description>
                                                 </handlingInstructionsDescription>
                                             </tradeItemHandlingInformation>
-                                            <tradeItemHierarchy isTradeItemPackedIrregularly="FALSE">
-                                                <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
+                                            <tradeItemHierarchy isTradeItemPackedIrregularly="TRUE">
+<!-- must be absent for irregular pack:
+<quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
+-->
                                                 <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
                                                 <quantityOfTradeItemsContainedInACompleteLayer>7</quantityOfTradeItemsContainedInACompleteLayer>
                                                 <quantityOfTradeItemsPerPallet>456789</quantityOfTradeItemsPerPallet>
@@ -539,11 +540,13 @@
                                                         <value>4.1</value>
                                                     </measurementValue>
                                                 </priceComparisonMeasurement>
+<!-- must be absent for irregular pack:
                                                 <tradeItemCompositionWidth>
                                                     <measurementValue unitOfMeasure="CM">
-                                                        <value>48.000001</value>
+                                                        <value>48.001</value>
                                                     </measurementValue>
                                                 </tradeItemCompositionWidth>
+-->
                                                 <casingTareWeight unitOfMeasure="OZ">
                                                     <value>12.5</value>
                                                 </casingTareWeight>
@@ -555,11 +558,13 @@
                                                         <value>3</value>
                                                     </measurementValue>
                                                 </nestingIncrement>
+<!-- must be absent for irregular pack:
                                                 <tradeItemCompositionDepth>
                                                     <measurementValue unitOfMeasure="CM">
                                                         <value>4</value>
                                                     </measurementValue>
                                                 </tradeItemCompositionDepth>
+-->
                                                 <tradeItemDisplayDimensions displayDimensionTypeCode="RETAIL_DISPLAY">
                                                     <displayDimensions>
                                                         <height>
@@ -589,7 +594,7 @@
                                                         <value>881.712</value>
                                                     </measurementValue>
                                                 </inBoxCubeDimension>
-						<percentageOfAlcoholByVolume>18.47</percentageOfAlcoholByVolume>
+                                                <percentageOfAlcoholByVolume>18.47</percentageOfAlcoholByVolume>
                                             </tradeItemMeasurements>
                                             <tradeItemOrderInformation>
                                                 <orderingLeadTime>
@@ -936,15 +941,11 @@
                                             <tradeItemBarCodeInformation>
                                                 <isBarCodeDerivable>true</isBarCodeDerivable>
                                                 <barCodeInformation>
-                                                    <barCodeValue>123456789012</barCodeValue>
-                                                    <barCodeValueType>UA</barCodeValueType>
-                                                </barCodeInformation>
-                                                <barCodeInformation>
-                                                    <barCodeValue>987654</barCodeValue>
+                                                    <barCodeValue>10036016500279</barCodeValue>
                                                     <barCodeValueType>UK</barCodeValueType>
                                                 </barCodeInformation>
                                                 <barCodeInformation>
-                                                    <barCodeValue>789</barCodeValue>
+                                                    <barCodeValue>036016500279</barCodeValue>
                                                     <barCodeValueType>UP</barCodeValueType>
                                                 </barCodeInformation>
                                             </tradeItemBarCodeInformation>
@@ -967,21 +968,21 @@
                                     <extension>
                                         <gdsn:attributeValuePairExtension>
                                             <value name="testUOM">QT</value>
-                                            <value name="doesTradeItemCarryUSDAChildNutritionLabel">yes</value>
+                                            <value name="doesTradeItemCarryUSDAChildNutritionLabel">no</value>
                                             <value name="foodCompositionAgencyNameCode">ANSES</value>
                                             <value name="foodCompositionCode">MR3155678 FORCE</value>
                                             <value name="allergenRelevantDataProvided">Yes</value>
                                             <value name="nutrientRelevantDataProvided">YES</value>
                                             <value name="isPrivate">true</value>
-                                            <value name="isPrivateLabel">true</value>
-                                            <value name="nutrientValueDerivation">ANALYTICAL</value>
+                                            <value name="isPrivateLabel">False</value>
                                             <value name="servingSizeWeight">120 GR</value>
                                             <value name="tradeItemCubeMeasurement">114.641</value>
                                             <value name="tradeItemCubeMeasurementUOM">CI</value>
                                             <value name="isTradeItemGlutenFree">No</value>
                                             <value name="manufacturerName">SCHWAN'S FOOD SERVICE INC</value>
-                                            <value name="alcoholicBeverageSubregionOfOrigin">US-CA</value>
-                                            <value name="isTradeItemBiodegradable">YES</value>
+                                            <value name="isTradeItemBiodegradable">false</value>
+                                            <value name="suggestedConsumerPack">7</value>
+                                            <value name="preliminaryStatusCode">PRELIMINARY</value>
                                         </gdsn:attributeValuePairExtension>
                                         <food:foodAndBeverageTradeItemExtension>
                                             <foodAndBeverageInformation>
@@ -1813,6 +1814,8 @@
                                                 </foodAndBeverageNutrientInformation>
                                             </foodAndBeverageInformation>
                                             <foodAndBeverageMarketingInformationExtension>
+                                                <nutritionalClaimCode>HIGH_FIBRE</nutritionalClaimCode>
+                                                <nutritionalClaimCode>ADDITIVE_FREE</nutritionalClaimCode>
                                                 <servingSuggestion>
                                                     <description>
                                                         <language>
@@ -1902,7 +1905,7 @@
                                 <sourceDataPool>1100001011285</sourceDataPool>
                                 <catalogueItemChildItemLink quantity="42">
                                     <catalogueItem>
-                                        <catalogueItemState state="IN_PROGRESS"/>
+                                        <catalogueItemState state="REGISTERED"/>
                                         <tradeItem>
                                             <tradeItemUnitDescriptor>BASE_UNIT_OR_EACH</tradeItemUnitDescriptor>
                                             <tradeItemIdentification>
@@ -1921,10 +1924,10 @@
                                                     </targetMarketCountryCode>
                                                 </targetMarketInformation>
                                                 <classificationCategoryCode>
-                                                    <classificationCategoryCode>10002478</classificationCategoryCode>
+                                                    <classificationCategoryCode>10000247</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>MDS 0422</brandName>
+                                                    <brandName>ITN © 0506</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -1949,7 +1952,7 @@
                                                         <isTradeItemAnOrderableUnit>true</isTradeItemAnOrderableUnit>
                                                         <isTradeItemAVariableUnit>false</isTradeItemAVariableUnit>
                                                     </tradeItemUnitIndicator>
-                                                    <barCodeType>UCC_EAN_128_SYMBOL</barCodeType>
+                                                    <barCodeType>NO_BARCODE</barCodeType>
                                                     <packagingMarking>
                                                         <isPackagingMarkedReturnable>false</isPackagingMarkedReturnable>
                                                     </packagingMarking>
@@ -1984,22 +1987,33 @@
                                             </tradeItemInformation>
                                             <extension>
                                                 <gdsn:attributeValuePairExtension>
-                                                    <value name="testUOM">QT</value>
-                                                    <value name="doesTradeItemCarryUSDAChildNutritionLabel">yes</value>
-                                                    <value name="foodCompositionAgencyNameCode">ANSES</value>
-                                                    <value name="foodCompositionCode">MR3155678 FORCE</value>
-                                                    <value name="allergenRelevantDataProvided">Yes</value>
-                                                    <value name="nutrientRelevantDataProvided">YES</value>
-                                                    <value name="isPrivate">true</value>
-                                                    <value name="isPrivateLabel">true</value>
+                                                    <value name="allergenRelevantDataProvided">No</value>
+                                                    <value name="nutrientRelevantDataProvided">no</value>
                                                     <value name="nutrientValueDerivation">ANALYTICAL</value>
-                                                    <value name="servingSizeWeight">120 GR</value>
-                                                    <value name="tradeItemCubeMeasurement">114.641</value>
-                                                    <value name="tradeItemCubeMeasurementUOM">CI</value>
-                                                    <value name="isTradeItemGlutenFree">No</value>
-                                                    <value name="manufacturerName">SCHWAN'S FOOD SERVICE INC</value>
+                                                    <value name="extendedTradeItemDateOnPackagingTypeCode">BEST_BEFORE</value>
+                                                    <value name="numberOfServingsPerPackageDecimal">4.25</value>
                                                     <value name="alcoholicBeverageSubregionOfOrigin">US-CA</value>
                                                     <value name="isTradeItemBiodegradable">YES</value>
+                                                    <value name="doesTradeItemCarryUSDAChildNutritionLabel">yes</value>
+                                                    <value name="regulatedProductName">PROPANE</value>
+                                                    <value name="tradeItemCubeMeasurement">2.242</value>
+                                                    <value name="tradeItemCubeMeasurementUOM">CF</value>
+                                                    <value name="isPrivateLabel">true</value>
+                                                    <value name="individualUnitMax">99.9</value>
+                                                    <value name="individualUnitMaxUOM">EA</value>
+                                                    <value name="individualUnitMin">5</value>
+                                                    <value name="individualUnitMinUOM">EA</value>
+                                                    <value name="consumerUsageInstructions">keep frozen</value>
+                                                    <value name="unspecifiedPreparationTypePreparationInstructions">thaw and serve</value>
+                                                    <value name="packagingMarkedLabelAccreditationCode">A-OK</value>
+                                                    <value name="isNutritionalClaimCodeTransFatFree">Yes</value>
+                                                    <value name="isNutritionalClaimCodeLowCholesterol">True</value>
+                                                    <value name="nutritionalClaimTypeCode">FREE_FROM</value>
+                                                    <value name="nutritionalClaimNutritionElement">MERCURY</value>
+                                                    <value name="measurementPrecisionOfNumberOfServingsPerPackage">Ounce</value>
+                                                    <value name="labelDescription">gud product</value>
+                                                    <value name="isTradeItemManagedByManufactureDate">Yes</value>
+                                                    <value name="isControlledSubstance">Yes</value>
                                                 </gdsn:attributeValuePairExtension>
                                             </extension>
                                         </tradeItem>
@@ -2009,7 +2023,7 @@
                                 </catalogueItemChildItemLink>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-                                <uniqueCreatorIdentification>CIN_28c9_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
+                                <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
                                 <contentOwner>
                                     <gln>1100001011292</gln>
                                 </contentOwner>

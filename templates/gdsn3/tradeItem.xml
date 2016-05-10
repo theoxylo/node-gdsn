@@ -13,17 +13,14 @@
     <tradeItemTradeChannelCode/>
     <brandOwner>
         <gln/>
-        <partyAddress>na</partyAddress>
         <partyName/>
     </brandOwner>
     <informationProviderOfTradeItem>
         <gln/>
-        <partyAddress>na</partyAddress>
         <partyName/>
     </informationProviderOfTradeItem>
     <manufacturerOfTradeItem>
         <gln/>
-        <partyAddress>na</partyAddress>
         <partyName/>
     </manufacturerOfTradeItem>
     <displayUnitInformation/>
@@ -46,7 +43,6 @@
             <quantityOfNextLowerLevelTradeItem/>
         </childTradeItem>
     </nextLowerLevelTradeItemInformation>
-    <referencedFileInformation/>
     <targetMarket>
         <targetMarketCountryCode/>
         <targetMarketSubdivisionCode/>

@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1461688290063_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1462811162328_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-04-26T16:31:30.063Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-05-09T16:26:02.328Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-04-26T16:31:30.063Z</creationDateTime>
+                <creationDateTime>2016-05-09T16:26:02.328Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1461688290063_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -64,6 +64,7 @@
                         <isTradeItemAService>false</isTradeItemAService>
                         <isTradeItemNonphysical>false</isTradeItemNonphysical>
                         <isTradeItemRecalled>false</isTradeItemRecalled>
+                        <preliminaryItemStatusCode>PRELIMINARY</preliminaryItemStatusCode>
                         <tradeItemUnitDescriptorCode>CASE</tradeItemUnitDescriptorCode>
                         <tradeItemTradeChannelCode>GROCERY</tradeItemTradeChannelCode>
                         <tradeItemTradeChannelCode>FOOD_SERVICE</tradeItemTradeChannelCode>
@@ -71,28 +72,24 @@
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
-                            <partyAddress>na</partyAddress>
                             <partyName>Brand X &amp;#xA9;</partyName>
                         </brandOwner>
                         <informationProviderOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
-                            <partyAddress>na</partyAddress>
                             <partyName>ITN Test Party 292</partyName>
                         </informationProviderOfTradeItem>
                         <manufacturerOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
-                            <partyAddress>na</partyAddress>
                             <partyName>Manufacturer ABC &amp;#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
                         <manufacturerOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011293</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011293</additionalPartyIdentification>
                             <gln>1100001011293</gln>
-                            <partyAddress>na</partyAddress>
                             <partyName>Manufacturer DEF &amp;#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
                         <displayUnitInformation>
@@ -100,8 +97,7 @@
                             <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                         </displayUnitInformation>
                         <gdsnTradeItemClassification>
-                            <gpcCategoryCode>10002478</gpcCategoryCode>
-                            <gpcCategoryName>na</gpcCategoryName>
+                            <gpcCategoryCode>10000247</gpcCategoryCode>
                             <gDSNTradeItemClassificationAttribute>
                                 <gpcAttributeTypeCode>20000002</gpcAttributeTypeCode>
                                 <gpcAttributeValueCode>30000564</gpcAttributeValueCode>
@@ -127,38 +123,6 @@
                                 <quantityOfNextLowerLevelTradeItem>42</quantityOfNextLowerLevelTradeItem>
                             </childTradeItem>
                         </nextLowerLevelTradeItemInformation>
-                        <referencedFileInformation>
-                            <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
-                            <contentDescription languageCode="en">TI Content Description</contentDescription>
-                            <fileEffectiveEndDateTime>2023-01-01T11:59:58</fileEffectiveEndDateTime>
-                            <fileEffectiveStartDateTime>2016-01-01T11:59:58</fileEffectiveStartDateTime>
-                            <fileFormatName>formatTI</fileFormatName>
-                            <fileName>my_ti_file.txt</fileName>
-                            <uniformResourceIdentifier>http://www.kayfabenews.com/wp-content/uploads/2015/02/puppy4.jpg</uniformResourceIdentifier>
-                        </referencedFileInformation>
-                        <referencedFileInformation>
-                            <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-04-26T16:31:29.964Z</fileEffectiveStartDateTime>
-                            <fileFormatName>JPG</fileFormatName>
-                            <fileName>filename</fileName>
-                            <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;amp;amp;test/file</uniformResourceIdentifier>
-                        </referencedFileInformation>
-                        <referencedFileInformation>
-                            <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
-                            <contentDescription languageCode="en">Content Description</contentDescription>
-                            <fileEffectiveEndDateTime>2023-01-01T11:59:59</fileEffectiveEndDateTime>
-                            <fileEffectiveStartDateTime>2016-01-01T11:59:59</fileEffectiveStartDateTime>
-                            <fileFormatName>formatX</fileFormatName>
-                            <fileName>my_file.txt</fileName>
-                            <uniformResourceIdentifier>https://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg</uniformResourceIdentifier>
-                        </referencedFileInformation>
-                        <referencedFileInformation>
-                            <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                            <fileEffectiveStartDateTime>2016-04-26T16:31:29.965Z</fileEffectiveStartDateTime>
-                            <fileFormatName>JPG</fileFormatName>
-                            <fileName>filename</fileName>
-                            <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
-                        </referencedFileInformation>
                         <targetMarket>
                             <targetMarketCountryCode>840</targetMarketCountryCode>
                         </targetMarket>
@@ -167,7 +131,6 @@
                             <extension>
                                 <alcohol_information:alcoholInformationModule xmlns:alcohol_information="urn:gs1:gdsn:alcohol_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:alcohol_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AlcoholInformationModule.xsd">
                                     <alcoholInformation>
-                                        <alcoholicBeverageSubregion>US-CA</alcoholicBeverageSubregion>
                                         <alcoholicPermissionLevel>21 years NOW</alcoholicPermissionLevel>
                                         <percentageOfAlcoholByVolume>18.47</percentageOfAlcoholByVolume>
                                     </alcoholInformation>
@@ -197,7 +160,7 @@
                                         <agreedMaximumBuyingQuantity>144</agreedMaximumBuyingQuantity>
                                         <agreedMinimumBuyingQuantity>12</agreedMinimumBuyingQuantity>
                                         <consumerFirstAvailabilityDateTime>2016-01-01T11:59:59</consumerFirstAvailabilityDateTime>
-                                        <firstShipDateTime>2015-12-02T01:01:01.009Z</firstShipDateTime>
+                                        <firstShipDateTime>2016-06-02T01:01:01.009Z</firstShipDateTime>
                                         <endAvailabilityDateTime>2018-01-01T11:59:59</endAvailabilityDateTime>
                                         <endDateTimeOfExclusivity>2018-01-01T11:59:59</endDateTimeOfExclusivity>
                                         <endMaximumBuyingQuantityDateTime>2018-01-01T11:59:59</endMaximumBuyingQuantityDateTime>
@@ -237,6 +200,12 @@
                                 <food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePreparationServingModule.xsd">
                                     <preparationServing>
                                         <preparationInstructions languageCode="en">Stir quickly and often over high heat</preparationInstructions>
+                                        <preparationTypeCode>STIR_FRYING</preparationTypeCode>
+                                    </preparationServing>
+                                    <preparationServing>
+                                        <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                        <servingSuggestion languageCode="en">Serve as part of a complete breakfast</servingSuggestion>
+                                        <servingSuggestion languageCode="es">Actuar como parte de un desayuno completo</servingSuggestion>
                                     </preparationServing>
                                 </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <health_related_information:healthRelatedInformationModule xmlns:health_related_information="urn:gs1:gdsn:health_related_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_related_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthRelatedInformationModule.xsd">
@@ -278,6 +247,14 @@
                                         </season>
                                     </marketingInformation>
                                 </marketing_information:marketingInformationModule>
+                                <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>HIGH_FIBRE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>ADDITIVE_FREE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                </nutritional_information:nutritionalInformationModule>
                                 <packaging_information:packagingInformationModule xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingInformationModule.xsd">
                                     <packaging>
                                         <platformTermsAndConditionsCode>1</platformTermsAndConditionsCode>
@@ -320,6 +297,40 @@
                                         </packagingDate>
                                     </packagingMarking>
                                 </packaging_marking:packagingMarkingModule>
+                                <referenced_file_detail_information:referencedFileDetailInformationModule xmlns:referenced_file_detail_information="urn:gs1:gdsn:referenced_file_detail_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:referenced_file_detail_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ReferencedFileDetailInformationModule.xsd">
+                                    <referencedFileHeader>
+                                        <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
+                                        <contentDescription languageCode="en">TI Content Description</contentDescription>
+                                        <fileEffectiveEndDateTime>2023-01-01T11:59:58</fileEffectiveEndDateTime>
+                                        <fileEffectiveStartDateTime>2016-01-01T11:59:58</fileEffectiveStartDateTime>
+                                        <fileFormatName>formatTI</fileFormatName>
+                                        <fileName>my_ti_file.txt</fileName>
+                                        <uniformResourceIdentifier>http://www.kayfabenews.com/wp-content/uploads/2015/02/puppy4.jpg</uniformResourceIdentifier>
+                                    </referencedFileHeader>
+                                    <referencedFileHeader>
+                                        <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
+                                        <fileEffectiveStartDateTime>2016-05-09T16:26:02.065Z</fileEffectiveStartDateTime>
+                                        <fileFormatName>JPG</fileFormatName>
+                                        <fileName>filename</fileName>
+                                        <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;amp;amp;test/file</uniformResourceIdentifier>
+                                    </referencedFileHeader>
+                                    <referencedFileHeader>
+                                        <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
+                                        <contentDescription languageCode="en">Content Description</contentDescription>
+                                        <fileEffectiveEndDateTime>2023-01-01T11:59:59</fileEffectiveEndDateTime>
+                                        <fileEffectiveStartDateTime>2016-01-01T11:59:59</fileEffectiveStartDateTime>
+                                        <fileFormatName>formatX</fileFormatName>
+                                        <fileName>my_file.txt</fileName>
+                                        <uniformResourceIdentifier>https://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg</uniformResourceIdentifier>
+                                    </referencedFileHeader>
+                                    <referencedFileHeader>
+                                        <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
+                                        <fileEffectiveStartDateTime>2016-05-09T16:26:02.068Z</fileEffectiveStartDateTime>
+                                        <fileFormatName>JPG</fileFormatName>
+                                        <fileName>filename</fileName>
+                                        <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
+                                    </referencedFileHeader>
+                                </referenced_file_detail_information:referencedFileDetailInformationModule>
                                 <safety_data_sheet:safetyDataSheetModule xmlns:safety_data_sheet="urn:gs1:gdsn:safety_data_sheet:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:safety_data_sheet:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SafetyDataSheetModule.xsd">
                                     <safetyDataSheetInformation>
                                         <sDSSheetNumber>123789</sDSSheetNumber>
@@ -373,20 +384,14 @@
                                 </textile_material:textileMaterialModule>
                                 <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
                                     <gs1TradeItemIdentificationKey>
-                                        <gs1TradeItemIdentificationKeyCode>UA</gs1TradeItemIdentificationKeyCode>
-                                        <gs1TradeItemIdentificationKeyValue>123456789012</gs1TradeItemIdentificationKeyValue>
+                                        <gs1TradeItemIdentificationKeyCode>GTIN_14</gs1TradeItemIdentificationKeyCode>
+                                        <gs1TradeItemIdentificationKeyValue>10036016500279</gs1TradeItemIdentificationKeyValue>
                                         <isBarCodeDerivable>true</isBarCodeDerivable>
                                         <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
                                     </gs1TradeItemIdentificationKey>
                                     <gs1TradeItemIdentificationKey>
-                                        <gs1TradeItemIdentificationKeyCode>UK</gs1TradeItemIdentificationKeyCode>
-                                        <gs1TradeItemIdentificationKeyValue>987654</gs1TradeItemIdentificationKeyValue>
-                                        <isBarCodeDerivable>true</isBarCodeDerivable>
-                                        <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
-                                    </gs1TradeItemIdentificationKey>
-                                    <gs1TradeItemIdentificationKey>
-                                        <gs1TradeItemIdentificationKeyCode>UP</gs1TradeItemIdentificationKeyCode>
-                                        <gs1TradeItemIdentificationKeyValue>789</gs1TradeItemIdentificationKeyValue>
+                                        <gs1TradeItemIdentificationKeyCode>GTIN_12</gs1TradeItemIdentificationKeyCode>
+                                        <gs1TradeItemIdentificationKeyValue>036016500279</gs1TradeItemIdentificationKeyValue>
                                         <isBarCodeDerivable>true</isBarCodeDerivable>
                                         <isBarCodeOnPackageVariableMeasureBarCode>true</isBarCodeOnPackageVariableMeasureBarCode>
                                     </gs1TradeItemIdentificationKey>
@@ -402,9 +407,9 @@
                                         <additionalTradeItemDescription languageCode="fr">French additionalTradeItemDescription &amp;#xA9; entre 500</additionalTradeItemDescription>
                                         <additionalTradeItemDescription languageCode="en">English additionalTradeItemDescription &amp;#xA9; now 500</additionalTradeItemDescription>
                                         <additionalTradeItemDescription languageCode="es">Spanish additionalTradeItemDescription &amp;#xA9; ahorra 500</additionalTradeItemDescription>
-                                        <descriptionShort languageCode="en">En Description &amp;#xA9; 35</descriptionShort>
-                                        <descriptionShort languageCode="fr">Fr Short Description &amp;#xA9; 35</descriptionShort>
-                                        <descriptionShort languageCode="es">Es Short Description &amp;#xA9; 35</descriptionShort>
+                                        <descriptionShort languageCode="en">En Short Description &amp;#xA9; 35</descriptionShort>
+                                        <descriptionShort languageCode="fr">Fr Shorte Description &amp;#xA9; 35</descriptionShort>
+                                        <descriptionShort languageCode="es">Es Poco Description &amp;#xA9; 35</descriptionShort>
                                         <functionalName languageCode="fr">French functionalName &amp;#xA9; 35</functionalName>
                                         <functionalName languageCode="en">English functionalName &amp;#xA9; 35</functionalName>
                                         <functionalName languageCode="es">Spanish functionalName &amp;#xA9; 35</functionalName>
@@ -418,7 +423,7 @@
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
-                                            <brandName>MDS 0422</brandName>
+                                            <brandName>ITN &amp;#xA9; 0506</brandName>
                                             <languageSpecificBrandName languageCode="en">English brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificBrandName languageCode="es">Spanish brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
                                             <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &amp;#xA9; 70</languageSpecificSubbrandName>
@@ -439,15 +444,15 @@
                                 </trade_item_handling:tradeItemHandlingModule>
                                 <trade_item_hierarchy:tradeItemHierarchyModule xmlns:trade_item_hierarchy="urn:gs1:gdsn:trade_item_hierarchy:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_hierarchy:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHierarchyModule.xsd">
                                     <tradeItemHierarchy>
-                                        <isTradeItemPackedIrregularly>UNSPECIFIED</isTradeItemPackedIrregularly>
+                                        <isTradeItemPackedIrregularly>TRUE</isTradeItemPackedIrregularly>
                                         <layerHeight measurementUnitCode="INH">12.5</layerHeight>
-                                        <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
                                         <quantityOfInnerPack>123</quantityOfInnerPack>
                                         <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
                                         <quantityOfNextLevelTradeItemWithinInnerPack>234</quantityOfNextLevelTradeItemWithinInnerPack>
                                         <quantityOfTradeItemsContainedInACompleteLayer>7</quantityOfTradeItemsContainedInACompleteLayer>
                                         <quantityOfTradeItemsPerPallet>456789</quantityOfTradeItemsPerPallet>
                                         <quantityOfTradeItemsPerPalletLayer>567890</quantityOfTradeItemsPerPalletLayer>
+                                        <suggestedConsumerPack>7</suggestedConsumerPack>
                                     </tradeItemHierarchy>
                                 </trade_item_hierarchy:tradeItemHierarchyModule>
                                 <trade_item_humidity_information:tradeItemHumidityInformationModule xmlns:trade_item_humidity_information="urn:gs1:gdsn:trade_item_humidity_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_humidity_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemHumidityInformationModule.xsd">
@@ -471,8 +476,6 @@
                                         <height measurementUnitCode="CMT">12.6</height>
                                         <inBoxCubeDimension measurementUnitCode="FTQ">6.123</inBoxCubeDimension>
                                         <netContent measurementUnitCode="KGM">5</netContent>
-                                        <tradeItemCompositionDepth measurementUnitCode="CMT">4</tradeItemCompositionDepth>
-                                        <tradeItemCompositionWidth measurementUnitCode="CMT">48.000001</tradeItemCompositionWidth>
                                         <width measurementUnitCode="CMT">50.000001</width>
                                         <pegMeasurements>
                                             <pegHoleNumber>2</pegHoleNumber>
@@ -568,10 +571,25 @@
                                     <preparationServing>
                                         <preparationInstructions languageCode="en">Bake at 350 degrees F for 30 minutes or until golden brown</preparationInstructions>
                                         <preparationInstructions languageCode="es">Hornee a 350 grados F durante 30 minutos o hasta que esten doradas</preparationInstructions>
+                                        <preparationTypeCode>BAKING</preparationTypeCode>
+                                    </preparationServing>
+                                    <preparationServing>
                                         <preparationInstructions languageCode="en">Fry at 410 degrees F for 12 minutes or until golden brown</preparationInstructions>
+                                        <preparationTypeCode>DEEP_FRYING</preparationTypeCode>
+                                    </preparationServing>
+                                    <preparationServing>
+                                        <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                        <servingSuggestion languageCode="en">Serve as part of a complete breakfast</servingSuggestion>
+                                        <servingSuggestion languageCode="es">Actuar como parte de un desayuno completo</servingSuggestion>
                                     </preparationServing>
                                 </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>HIGH_FIBRE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>ADDITIVE_FREE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
                                         <servingSize measurementUnitCode="ONZ">2.25</servingSize>
@@ -628,7 +646,20 @@
                                         </dietTypeInformation>
                                     </dietInformation>
                                 </diet_information:dietInformationModule>
+                                <food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePreparationServingModule.xsd">
+                                    <preparationServing>
+                                        <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                        <servingSuggestion languageCode="en">Serve as part of a complete breakfast</servingSuggestion>
+                                        <servingSuggestion languageCode="es">Actuar como parte de un desayuno completo</servingSuggestion>
+                                    </preparationServing>
+                                </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>HIGH_FIBRE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>ADDITIVE_FREE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
                                         <nutrientDetail>
@@ -712,10 +743,25 @@
                                     <preparationServing>
                                         <preparationInstructions languageCode="en">Bake at 350 degrees F for 30 minutes or until golden brown</preparationInstructions>
                                         <preparationInstructions languageCode="es">Hornee a 350 grados F durante 30 minutos o hasta que est&amp;#xFFFD;n doradas</preparationInstructions>
+                                        <preparationTypeCode>BAKING</preparationTypeCode>
+                                    </preparationServing>
+                                    <preparationServing>
                                         <preparationInstructions languageCode="en">Fry at 410 degrees F for 12 minutes or until golden brown</preparationInstructions>
+                                        <preparationTypeCode>DEEP_FRYING</preparationTypeCode>
+                                    </preparationServing>
+                                    <preparationServing>
+                                        <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                        <servingSuggestion languageCode="en">Serve as part of a complete breakfast</servingSuggestion>
+                                        <servingSuggestion languageCode="es">Actuar como parte de un desayuno completo</servingSuggestion>
                                     </preparationServing>
                                 </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>HIGH_FIBRE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>ADDITIVE_FREE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
                                         <servingSize measurementUnitCode="ONZ">2.25</servingSize>
@@ -765,7 +811,20 @@
                             <productionVariantDescription languageCode="en">100_GRAM_VEG_OIL</productionVariantDescription>
                             <productionVariantEffectiveDateTime>2016-01-06T01:01:01.009Z</productionVariantEffectiveDateTime>
                             <extension>
+                                <food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePreparationServingModule.xsd">
+                                    <preparationServing>
+                                        <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                        <servingSuggestion languageCode="en">Serve as part of a complete breakfast</servingSuggestion>
+                                        <servingSuggestion languageCode="es">Actuar como parte de un desayuno completo</servingSuggestion>
+                                    </preparationServing>
+                                </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
                                 <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>HIGH_FIBRE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
+                                    <nutritionalClaimDetail>
+                                        <nutritionalClaimTypeCode>ADDITIVE_FREE</nutritionalClaimTypeCode>
+                                    </nutritionalClaimDetail>
                                     <nutrientHeader>
                                         <preparationStateCode>PREPARED</preparationStateCode>
                                         <nutrientDetail>
@@ -808,26 +867,22 @@
                             </extension>
                         </tradeItemInformation>
                         <tradeItemSynchronisationDates>
-                            <lastChangeDateTime>2016-01-21T11:59:59</lastChangeDateTime>
+                            <lastChangeDateTime>2015-01-21T11:59:59</lastChangeDateTime>
                             <communityVisibilityDateTime>2016-01-01T11:59:59</communityVisibilityDateTime>
                             <effectiveDateTime>2010-12-01T01:01:01.009Z</effectiveDateTime>
                             <publicationDateTime>2016-01-01T01:01:01.009Z</publicationDateTime>
                         </tradeItemSynchronisationDates>
                         <avpList>
                             <stringAVP attributeName="testUOM">QRT</stringAVP>
-                            <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">true</stringAVP>
                             <stringAVP attributeName="foodCompositionAgencyNameCode">ANSES</stringAVP>
                             <stringAVP attributeName="foodCompositionCode">MR3155678 FORCE</stringAVP>
                             <stringAVP attributeName="isAllergenRelevantDataProvided">true</stringAVP>
                             <stringAVP attributeName="isNutrientRelevantDataProvided">true</stringAVP>
                             <stringAVP attributeName="isPrivate">true</stringAVP>
-                            <stringAVP attributeName="isPrivateLabel">true</stringAVP>
-                            <stringAVP attributeName="nutrientValueDerivationCode">ANALYTICAL</stringAVP>
                             <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
-                            <stringAVP attributeName="tradeItemCubeMeasurement">114.641</stringAVP>
-                            <stringAVP attributeName="tradeItemCubeMeasurementUOM">INQ</stringAVP>
                             <stringAVP attributeName="isTradeItemGlutenFree">false</stringAVP>
                             <stringAVP attributeName="manufacturerName">SCHWAN&amp;apos;S FOOD SERVICE INC</stringAVP>
+                            <stringAVP attributeName="preliminaryStatusCode">PRELIMINARY</stringAVP>
                         </avpList>
                     </tradeItem>
                     <catalogueItemChildItemLink>
@@ -853,7 +908,6 @@
                                 <tradeItemUnitDescriptorCode>BASE_UNIT_OR_EACH</tradeItemUnitDescriptorCode>
                                 <informationProviderOfTradeItem>
                                     <gln>1100001011292</gln>
-                                    <partyAddress>na</partyAddress>
                                     <partyName>ITN Test Party 292</partyName>
                                 </informationProviderOfTradeItem>
                                 <displayUnitInformation>
@@ -861,8 +915,7 @@
                                     <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                                 </displayUnitInformation>
                                 <gdsnTradeItemClassification>
-                                    <gpcCategoryCode>10002478</gpcCategoryCode>
-                                    <gpcCategoryName>na</gpcCategoryName>
+                                    <gpcCategoryCode>10000247</gpcCategoryCode>
                                 </gdsnTradeItemClassification>
                                 <targetMarket>
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
@@ -874,16 +927,50 @@
                                                 <alcoholicBeverageSubregion>US-CA</alcoholicBeverageSubregion>
                                             </alcoholInformation>
                                         </alcohol_information:alcoholInformationModule>
+                                        <consumer_instructions:consumerInstructionsModule xmlns:consumer_instructions="urn:gs1:gdsn:consumer_instructions:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:consumer_instructions:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ConsumerInstructionsModule.xsd">
+                                            <consumerInstructions>
+                                                <consumerStorageInstructions languageCode="en">keep frozen</consumerStorageInstructions>
+                                            </consumerInstructions>
+                                        </consumer_instructions:consumerInstructionsModule>
                                         <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
                                             <deliveryPurchasingInformation>
-                                                <startAvailabilityDateTime>2016-04-26T16:31:30.052Z</startAvailabilityDateTime>
+                                                <startAvailabilityDateTime>2016-05-09T16:26:02.267Z</startAvailabilityDateTime>
                                             </deliveryPurchasingInformation>
                                         </delivery_purchasing_information:deliveryPurchasingInformationModule>
+                                        <food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePreparationServingModule.xsd">
+                                            <servingQuantityInformation>
+                                                <numberOfServingsPerPackage>4.25</numberOfServingsPerPackage>
+                                                <numberOfServingsPerPackageMeasurementPrecisionCode>Ounce</numberOfServingsPerPackageMeasurementPrecisionCode>
+                                            </servingQuantityInformation>
+                                            <preparationServing>
+                                                <preparationInstructions languageCode="en">thaw and serve</preparationInstructions>
+                                                <preparationTypeCode>UNSPECIFIED</preparationTypeCode>
+                                            </preparationServing>
+                                        </food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule>
+                                        <health_related_information:healthRelatedInformationModule xmlns:health_related_information="urn:gs1:gdsn:health_related_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_related_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthRelatedInformationModule.xsd">
+                                            <healthRelatedInformation>
+                                                <nutritionalLabelTypeCode>1</nutritionalLabelTypeCode>
+                                            </healthRelatedInformation>
+                                        </health_related_information:healthRelatedInformationModule>
                                         <health_wellness_packaging_marking:healthWellnessPackagingMarkingModule xmlns:health_wellness_packaging_marking="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:health_wellness_packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/HealthWellnessPackagingMarkingModule.xsd">
                                             <healthWellnessPackagingMarking>
                                                 <isPackagingMarkedWithIngredients>false</isPackagingMarkedWithIngredients>
                                             </healthWellnessPackagingMarking>
                                         </health_wellness_packaging_marking:healthWellnessPackagingMarkingModule>
+                                        <nutritional_information:nutritionalInformationModule xmlns:nutritional_information="urn:gs1:gdsn:nutritional_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:nutritional_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/NutritionalInformationModule.xsd">
+                                            <nutritionalClaimDetail>
+                                                <nutritionalClaimTypeCode>FREE_FROM</nutritionalClaimTypeCode>
+                                                <nutritionalClaimNutrientElementCode>MERCURY</nutritionalClaimNutrientElementCode>
+                                            </nutritionalClaimDetail>
+                                            <nutritionalClaimDetail>
+                                                <nutritionalClaimTypeCode>FREE_FROM</nutritionalClaimTypeCode>
+                                                <nutritionalClaimNutrientElementCode>TRANS_FAT</nutritionalClaimNutrientElementCode>
+                                            </nutritionalClaimDetail>
+                                            <nutritionalClaimDetail>
+                                                <nutritionalClaimTypeCode>LOW</nutritionalClaimTypeCode>
+                                                <nutritionalClaimNutrientElementCode>CHOLESTEROL</nutritionalClaimNutrientElementCode>
+                                            </nutritionalClaimDetail>
+                                        </nutritional_information:nutritionalInformationModule>
                                         <packaging_marking:packagingMarkingModule xmlns:packaging_marking="urn:gs1:gdsn:packaging_marking:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:packaging_marking:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PackagingMarkingModule.xsd">
                                             <packagingMarking>
                                                 <hasBatchNumber>false</hasBatchNumber>
@@ -891,20 +978,30 @@
                                                 <isPriceOnPack>false</isPriceOnPack>
                                                 <isTradeItemMarkedAsRecyclable>false</isTradeItemMarkedAsRecyclable>
                                                 <offerOnPack>false</offerOnPack>
-                                                <packagingMarkedRecyclableScheme>na</packagingMarkedRecyclableScheme>
+                                                <packagingMarkedLabelAccreditationCode>A-OK</packagingMarkedLabelAccreditationCode>
+                                                <packagingMarkedRecyclableScheme>UNSPECIFIED</packagingMarkedRecyclableScheme>
+                                                <packagingDate>
+                                                    <tradeItemDateOnPackagingTypeCode>BEST_BEFORE</tradeItemDateOnPackagingTypeCode>
+                                                </packagingDate>
                                             </packagingMarking>
                                         </packaging_marking:packagingMarkingModule>
+                                        <sales_information:salesInformationModule xmlns:sales_information="urn:gs1:gdsn:sales_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sales_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SalesInformationModule.xsd">
+                                            <salesInformation>
+                                                <brandDistributionTypeCode>PRIVATE_LABEL_DISTRIBUTION</brandDistributionTypeCode>
+                                            </salesInformation>
+                                        </sales_information:salesInformationModule>
                                         <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
                                             <dataCarrier>
-                                                <dataCarrierTypeCode>GS1_128</dataCarrierTypeCode>
+                                                <dataCarrierTypeCode>NO_BARCODE</dataCarrierTypeCode>
                                             </dataCarrier>
                                         </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
                                         <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
+                                                <regulatedProductName languageCode="en">PROPANE</regulatedProductName>
                                                 <brandNameInformation>
-                                                    <brandName>MDS 0422</brandName>
+                                                    <brandName>ITN &amp;amp;#xA9; 0506</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
@@ -912,6 +1009,9 @@
                                             <tradeItemMeasurements>
                                                 <depth measurementUnitCode="CMT">25.99999</depth>
                                                 <height measurementUnitCode="CMT">12.6</height>
+                                                <inBoxCubeDimension measurementUnitCode="FTQ">2.242</inBoxCubeDimension>
+                                                <individualUnitMaximumSize measurementUnitCode="EA">99.9</individualUnitMaximumSize>
+                                                <individualUnitMinimumSize measurementUnitCode="EA">5</individualUnitMinimumSize>
                                                 <netContent measurementUnitCode="KGM">5</netContent>
                                                 <width measurementUnitCode="CMT">50.000001</width>
                                                 <tradeItemWeight>
@@ -927,24 +1027,13 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-04-26T16:31:30.060Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-04-26T16:31:30.060Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-05-09T16:26:02.316Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-05-09T16:26:02.316Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                                 <avpList>
-                                    <stringAVP attributeName="testUOM">QRT</stringAVP>
-                                    <stringAVP attributeName="doesTradeItemCarryUSDAChildNutritionLabel">true</stringAVP>
-                                    <stringAVP attributeName="foodCompositionAgencyNameCode">ANSES</stringAVP>
-                                    <stringAVP attributeName="foodCompositionCode">MR3155678 FORCE</stringAVP>
-                                    <stringAVP attributeName="isAllergenRelevantDataProvided">true</stringAVP>
-                                    <stringAVP attributeName="isNutrientRelevantDataProvided">true</stringAVP>
-                                    <stringAVP attributeName="isPrivate">true</stringAVP>
-                                    <stringAVP attributeName="isPrivateLabel">true</stringAVP>
+                                    <stringAVP attributeName="isAllergenRelevantDataProvided">false</stringAVP>
+                                    <stringAVP attributeName="isNutrientRelevantDataProvided">false</stringAVP>
                                     <stringAVP attributeName="nutrientValueDerivationCode">ANALYTICAL</stringAVP>
-                                    <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
-                                    <stringAVP attributeName="tradeItemCubeMeasurement">114.641</stringAVP>
-                                    <stringAVP attributeName="tradeItemCubeMeasurementUOM">INQ</stringAVP>
-                                    <stringAVP attributeName="isTradeItemGlutenFree">false</stringAVP>
-                                    <stringAVP attributeName="manufacturerName">SCHWAN&amp;amp;apos;S FOOD SERVICE INC</stringAVP>
                                 </avpList>
                             </tradeItem>
                         </catalogueItem>

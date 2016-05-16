@@ -11,21 +11,21 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_0506_10036016500279_10024951191010</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_0512_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:CreationDateAndTime>2016-04-27T01:02:03.001Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
                 <contentOwner>
                     <gln>1100001011292</gln>
                 </contentOwner>
@@ -34,7 +34,7 @@
                 <eanucc:documentCommand>
                     <documentCommandHeader type="CORRECT">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
                             <contentOwner>
                                 <gln>1100001011292</gln>
                             </contentOwner>
@@ -107,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>ITN © 0506</brandName>
+                                            <brandName>ITN © 0512</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -376,7 +376,7 @@
                                                 </packagingMaterialDescription>
                                                 <packagingTermsAndCondition>3</packagingTermsAndCondition>
                                                 <depositValueEffectiveDate>2016-01-01</depositValueEffectiveDate>
-                                                <depositValueEndDate>2018-01-01</depositValueEndDate>
+                                                <depositValueEndDate>2024-01-01</depositValueEndDate>
                                                 <returnablePackageDepositCode>Code 987</returnablePackageDepositCode>
                                                 <returnablePackageDepositAmount>
                                                     <currencyCode>
@@ -403,18 +403,18 @@
                                             </tradeItemCountryOfOrigin>
                                             <tradeItemDateInformation>
                                                 <effectiveDate>2010-12-01</effectiveDate>
-                                                <lastChangeDateTime>2015-01-21T11:59:59</lastChangeDateTime>
+                                                <lastChangeDateTime>2016-05-11T11:59:59</lastChangeDateTime>
                                                 <publicationDate>2016-01-01</publicationDate>
                                                 <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
                                                 <consumerAvailabilityDateTime>2016-01-01T11:59:59</consumerAvailabilityDateTime>
-                                                <endAvailabilityDateTime>2018-01-01T11:59:59</endAvailabilityDateTime>
-                                                <endDateMaximumBuyingQuantity>2018-01-01T11:59:59</endDateMaximumBuyingQuantity>
-                                                <endDateMinimumBuyingQuantity>2018-01-01T11:59:59</endDateMinimumBuyingQuantity>
-                                                <endDateTimeOfExclusivity>2018-01-01T11:59:59</endDateTimeOfExclusivity>
+                                                <endAvailabilityDateTime>2024-01-01T11:59:59</endAvailabilityDateTime>
+                                                <endDateMaximumBuyingQuantity>2024-01-01T11:59:59</endDateMaximumBuyingQuantity>
+                                                <endDateMinimumBuyingQuantity>2024-01-01T11:59:59</endDateMinimumBuyingQuantity>
+                                                <endDateTimeOfExclusivity>2024-01-01T11:59:59</endDateTimeOfExclusivity>
                                                 <firstOrderDate>2016-01-01</firstOrderDate>
                                                 <firstShipDate>2016-06-02</firstShipDate>
-                                                <lastOrderDate>2018-12-01</lastOrderDate>
-                                                <lastShipDate>2018-12-02</lastShipDate>
+                                                <lastOrderDate>2024-12-01</lastOrderDate>
+                                                <lastShipDate>2024-12-02</lastShipDate>
                                                 <startDateMaximumBuyingQuantity>2016-01-01T11:59:59</startDateMaximumBuyingQuantity>
                                                 <startDateMinimumBuyingQuantity>2016-01-01T11:59:59</startDateMinimumBuyingQuantity>
                                                 <communityVisibilityDateTime>2016-01-01T11:59:59</communityVisibilityDateTime>
@@ -456,7 +456,7 @@
                                                 </handlingInstructionsDescription>
                                             </tradeItemHandlingInformation>
                                             <tradeItemHierarchy isTradeItemPackedIrregularly="TRUE">
-<!-- must be absent for irregular pack:
+                                                <!-- must be absent for irregular pack:
 <quantityOfCompleteLayersContainedInATradeItem>6</quantityOfCompleteLayersContainedInATradeItem>
 -->
                                                 <quantityOfLayersPerPallet>234567</quantityOfLayersPerPallet>
@@ -540,7 +540,7 @@
                                                         <value>4.1</value>
                                                     </measurementValue>
                                                 </priceComparisonMeasurement>
-<!-- must be absent for irregular pack:
+                                                <!-- must be absent for irregular pack:
                                                 <tradeItemCompositionWidth>
                                                     <measurementValue unitOfMeasure="CM">
                                                         <value>48.001</value>
@@ -558,7 +558,7 @@
                                                         <value>3</value>
                                                     </measurementValue>
                                                 </nestingIncrement>
-<!-- must be absent for irregular pack:
+                                                <!-- must be absent for irregular pack:
                                                 <tradeItemCompositionDepth>
                                                     <measurementValue unitOfMeasure="CM">
                                                         <value>4</value>
@@ -629,7 +629,7 @@
                                             </tradeItemPalletInformation>
                                             <cataloguePrice>
                                                 <effectiveStartDate>2010-10-30</effectiveStartDate>
-                                                <effectiveEndDate>2018-01-01</effectiveEndDate>
+                                                <effectiveEndDate>2024-01-01</effectiveEndDate>
                                                 <tradeItemPrice>
                                                     <currencyCode>
                                                         <currencyISOCode>USD</currencyISOCode>
@@ -645,7 +645,7 @@
                                             </cataloguePrice>
                                             <suggestedRetailPrice>
                                                 <effectiveStartDate>2010-10-29</effectiveStartDate>
-                                                <effectiveEndDate>2018-01-01</effectiveEndDate>
+                                                <effectiveEndDate>2024-01-01</effectiveEndDate>
                                                 <tradeItemPrice>
                                                     <currencyCode>
                                                         <currencyISOCode>USD</currencyISOCode>
@@ -739,7 +739,7 @@
                                                 <countryISOCode>840</countryISOCode>
                                             </tradeItemCountryOfAssembly>
                                             <marketingInformation>
-                                                <campaignEndDate>2018-01-01</campaignEndDate>
+                                                <campaignEndDate>2024-01-01</campaignEndDate>
                                                 <campaignName>
                                                     <language>
                                                         <languageISOCode>en</languageISOCode>
@@ -828,7 +828,7 @@
                                                 <sellingUnitOfMeasure>Sell by the ounce</sellingUnitOfMeasure>
                                             </orderingAndSellingUnitOfMeasure>
                                             <season>
-                                                <seasonalAvailabilityEndDate>2018-01-01</seasonalAvailabilityEndDate>
+                                                <seasonalAvailabilityEndDate>2024-01-01</seasonalAvailabilityEndDate>
                                                 <seasonalAvailabilityStartDate>2016-01-01</seasonalAvailabilityStartDate>
                                                 <seasonCalendarYear>2010</seasonCalendarYear>
                                                 <seasonCalendarYear>2016</seasonCalendarYear>
@@ -959,7 +959,7 @@
                                             <regulatoryAct>Act ABC</regulatoryAct>
                                             <regulatoryAgency>Agency ABC</regulatoryAgency>
                                             <permitIdentification>
-                                                <permitEndDate>2018-01-01</permitEndDate>
+                                                <permitEndDate>2024-01-01</permitEndDate>
                                                 <permitStartDate>2016-01-01</permitStartDate>
                                                 <regulatoryPermitIdentification>id 123456-abc</regulatoryPermitIdentification>
                                             </permitIdentification>
@@ -1927,7 +1927,7 @@
                                                     <classificationCategoryCode>10000247</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>ITN © 0506</brandName>
+                                                    <brandName>ITN © 0512</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -1984,9 +1984,39 @@
                                                         </netContent>
                                                     </tradeItemMeasurements>
                                                 </tradingPartnerNeutralTradeItemInformation>
+                                                <tradeItemContactInformation>
+                                                    <partyIdentification><gln>1100001011292</gln></partyIdentification>
+                                                    <contactType>SALES</contactType>
+                                                    <availableTime>
+                                                        <language><languageISOCode>en</languageISOCode></language>
+                                                        <text>8:00 AM to 4:30 PM PT</text>
+                                                    </availableTime>
+                                                    <targetMarketCommunicationChannel>
+                                                        <communicationChannel communicationChannelCode="TELEPHONE" communicationNumber="800-349-2173"/>
+                                                        <communicationChannel communicationChannelCode="EMAIL" communicationNumber="CUSTOMERSERVICE@BOBSREDMILL.COM"/>
+                                                        <targetMarket>
+                                                            <targetMarketCountryCode>
+                                                                <countryISOCode>840</countryISOCode>
+                                                            </targetMarketCountryCode>
+                                                        </targetMarket>
+                                                    </targetMarketCommunicationChannel>
+                                                </tradeItemContactInformation>
+                                                <tradeItemContactInformation>
+                                                    <partyIdentification><gln>1100001011292</gln></partyIdentification>
+                                                    <contactType>CUSTOMER_SUPPORT</contactType>
+                                                    <availableTime>
+                                                        <language><languageISOCode>en</languageISOCode></language>
+                                                        <text>Discover the World Wide Web</text>
+                                                    </availableTime>
+                                                    <targetMarketCommunicationChannel>
+                                                        <communicationChannel communicationChannelCode="WEBSITE" communicationNumber="www.itradenetwork.com"/>
+                                                    </targetMarketCommunicationChannel>
+                                                </tradeItemContactInformation>
+                                                <brandDistributionType>GROCERY</brandDistributionType>
                                             </tradeItemInformation>
                                             <extension>
                                                 <gdsn:attributeValuePairExtension>
+                                                    <value name="keepThisCustomKEY">production value</value>
                                                     <value name="allergenRelevantDataProvided">No</value>
                                                     <value name="nutrientRelevantDataProvided">no</value>
                                                     <value name="nutrientValueDerivation">ANALYTICAL</value>
@@ -2014,6 +2044,11 @@
                                                     <value name="labelDescription">gud product</value>
                                                     <value name="isTradeItemManagedByManufactureDate">Yes</value>
                                                     <value name="isControlledSubstance">Yes</value>
+                                                    <value name="placeOfProvenance">grown only in CA</value>
+                                                    <value name="countryOfOriginStatement">grown in USA</value>
+                                                    <value name="displayTypeCode">KIOSK</value>
+                                                    <value name="fatPercentageInDryMatter">9.2</value>
+                                                    <value name="isTradeItemAFoodstuff">Yes</value>
                                                 </gdsn:attributeValuePairExtension>
                                             </extension>
                                         </tradeItem>
@@ -2023,7 +2058,7 @@
                                 </catalogueItemChildItemLink>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-                                <uniqueCreatorIdentification>CIN_0506_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
+                                <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
                                 <contentOwner>
                                     <gln>1100001011292</gln>
                                 </contentOwner>

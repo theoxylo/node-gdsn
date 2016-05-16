@@ -12,15 +12,15 @@
         <sh:DocumentIdentification>
             <sh:Standard>GS1</sh:Standard>
             <sh:TypeVersion>3.1</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_1462811162328_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_1463412167132_1100001011285_1100001011292_10036016500279</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
             <sh:MultipleType>false</sh:MultipleType>
-            <sh:CreationDateAndTime>2016-05-09T16:26:02.328Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-05-16T15:22:47.132Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <transaction>
         <transactionIdentification>
-            <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
+            <entityIdentification>CIN_1463412167132_1100001011285_1100001011292_10036016500279_t1</entityIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
@@ -28,18 +28,18 @@
         <documentCommand>
             <documentCommandHeader type="ADD">
                 <documentCommandIdentification>
-                    <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
+                    <entityIdentification>CIN_1463412167132_1100001011285_1100001011292_10036016500279_t1_c1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
                 </documentCommandIdentification>
             </documentCommandHeader>
             <catalogue_item_notification:catalogueItemNotification>
-                <creationDateTime>2016-05-09T16:26:02.328Z</creationDateTime>
+                <creationDateTime>2016-05-16T15:22:47.132Z</creationDateTime>
                 <documentStatusCode>ORIGINAL</documentStatusCode>
                 <documentActionCode>ADD</documentActionCode>
                 <catalogueItemNotificationIdentification>
-                    <entityIdentification>CIN_1462811162328_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
+                    <entityIdentification>CIN_1463412167132_1100001011285_1100001011292_10036016500279_t1_c1_d1</entityIdentification>
                     <contentOwner>
                         <gln>1100001011292</gln>
                     </contentOwner>
@@ -72,7 +72,7 @@
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
-                            <partyName>Brand X &amp;#xA9;</partyName>
+                            <partyName>Brand X &#xA9;</partyName>
                         </brandOwner>
                         <informationProviderOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
@@ -84,13 +84,13 @@
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011292</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011292</additionalPartyIdentification>
                             <gln>1100001011292</gln>
-                            <partyName>Manufacturer ABC &amp;#xA9; 70</partyName>
+                            <partyName>Manufacturer ABC &#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
                         <manufacturerOfTradeItem>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS">001011293</additionalPartyIdentification>
                             <additionalPartyIdentification additionalPartyIdentificationTypeCode="DUNS_PLUS_FOUR">1100001011293</additionalPartyIdentification>
                             <gln>1100001011293</gln>
-                            <partyName>Manufacturer DEF &amp;#xA9; 70</partyName>
+                            <partyName>Manufacturer DEF &#xA9; 70</partyName>
                         </manufacturerOfTradeItem>
                         <displayUnitInformation>
                             <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
@@ -161,14 +161,14 @@
                                         <agreedMinimumBuyingQuantity>12</agreedMinimumBuyingQuantity>
                                         <consumerFirstAvailabilityDateTime>2016-01-01T11:59:59</consumerFirstAvailabilityDateTime>
                                         <firstShipDateTime>2016-06-02T01:01:01.009Z</firstShipDateTime>
-                                        <endAvailabilityDateTime>2018-01-01T11:59:59</endAvailabilityDateTime>
-                                        <endDateTimeOfExclusivity>2018-01-01T11:59:59</endDateTimeOfExclusivity>
-                                        <endMaximumBuyingQuantityDateTime>2018-01-01T11:59:59</endMaximumBuyingQuantityDateTime>
-                                        <endMinimumBuyingQuantityDateTime>2018-01-01T11:59:59</endMinimumBuyingQuantityDateTime>
+                                        <endAvailabilityDateTime>2024-01-01T11:59:59</endAvailabilityDateTime>
+                                        <endDateTimeOfExclusivity>2024-01-01T11:59:59</endDateTimeOfExclusivity>
+                                        <endMaximumBuyingQuantityDateTime>2024-01-01T11:59:59</endMaximumBuyingQuantityDateTime>
+                                        <endMinimumBuyingQuantityDateTime>2024-01-01T11:59:59</endMinimumBuyingQuantityDateTime>
                                         <firstOrderDateTime>2016-01-01T01:01:01.009Z</firstOrderDateTime>
                                         <goodsPickupLeadTime measurementUnitCode="DAY">40</goodsPickupLeadTime>
-                                        <lastOrderDateTime>2018-12-01T01:01:01.009Z</lastOrderDateTime>
-                                        <lastShipDateTime>2018-12-02T01:01:01.009Z</lastShipDateTime>
+                                        <lastOrderDateTime>2024-12-01T01:01:01.009Z</lastOrderDateTime>
+                                        <lastShipDateTime>2024-12-02T01:01:01.009Z</lastShipDateTime>
                                         <orderQuantityMaximum>143</orderQuantityMaximum>
                                         <orderQuantityMinimum>8</orderQuantityMinimum>
                                         <orderQuantityMultiple>16</orderQuantityMultiple>
@@ -230,13 +230,13 @@
                                         <tradeItemFeatureBenefit languageCode="es">Feature Benefit Es</tradeItemFeatureBenefit>
                                         <tradeItemMarketingMessage languageCode="en">Long Campaign Message Goes Here</tradeItemMarketingMessage>
                                         <marketingCampaign>
-                                            <campaignEndDateTime>2018-01-01T01:01:01.009Z</campaignEndDateTime>
+                                            <campaignEndDateTime>2024-01-01T01:01:01.009Z</campaignEndDateTime>
                                             <campaignName languageCode="en">Campaign Sell-More</campaignName>
                                             <campaignStartDateTime>2016-01-01T01:01:01.009Z</campaignStartDateTime>
                                         </marketingCampaign>
                                         <season>
                                             <isTradeItemSeasonal>TRUE</isTradeItemSeasonal>
-                                            <seasonalAvailabilityEndDateTime>2018-01-01T01:01:01.009Z</seasonalAvailabilityEndDateTime>
+                                            <seasonalAvailabilityEndDateTime>2024-01-01T01:01:01.009Z</seasonalAvailabilityEndDateTime>
                                             <seasonalAvailabilityStartDateTime>2016-01-01T01:01:01.009Z</seasonalAvailabilityStartDateTime>
                                             <seasonCalendarYear>2010</seasonCalendarYear>
                                             <seasonCalendarYear>2016</seasonCalendarYear>
@@ -273,7 +273,7 @@
                                         </packagingMaterial>
                                         <packageDeposit>
                                             <depositValueEffectiveDateTime>2016-01-01T01:01:01.009Z</depositValueEffectiveDateTime>
-                                            <depositValueEndDateTime>2018-01-01T01:01:01.009Z</depositValueEndDateTime>
+                                            <depositValueEndDateTime>2024-01-01T01:01:01.009Z</depositValueEndDateTime>
                                             <returnablePackageDepositAmount currencyCode="USD">2.25</returnablePackageDepositAmount>
                                             <returnablePackageDepositIdentification>Code 987</returnablePackageDepositIdentification>
                                         </packageDeposit>
@@ -297,6 +297,13 @@
                                         </packagingDate>
                                     </packagingMarking>
                                 </packaging_marking:packagingMarkingModule>
+                                <place_of_item_activity:placeOfItemActivityModule xmlns:place_of_item_activity="urn:gs1:gdsn:place_of_item_activity:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:place_of_item_activity:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PlaceOfItemActivityModule.xsd">
+                                    <placeOfProductActivity>
+                                        <countryOfOrigin>
+                                            <countryCode>840</countryCode>
+                                        </countryOfOrigin>
+                                    </placeOfProductActivity>
+                                </place_of_item_activity:placeOfItemActivityModule>
                                 <referenced_file_detail_information:referencedFileDetailInformationModule xmlns:referenced_file_detail_information="urn:gs1:gdsn:referenced_file_detail_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:referenced_file_detail_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ReferencedFileDetailInformationModule.xsd">
                                     <referencedFileHeader>
                                         <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
@@ -309,10 +316,10 @@
                                     </referencedFileHeader>
                                     <referencedFileHeader>
                                         <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                                        <fileEffectiveStartDateTime>2016-05-09T16:26:02.065Z</fileEffectiveStartDateTime>
+                                        <fileEffectiveStartDateTime>2016-05-16T15:22:46.980Z</fileEffectiveStartDateTime>
                                         <fileFormatName>JPG</fileFormatName>
                                         <fileName>filename</fileName>
-                                        <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;amp;amp;test/file</uniformResourceIdentifier>
+                                        <uniformResourceIdentifier>http://example.com/image456/ampersand&amp;test/file</uniformResourceIdentifier>
                                     </referencedFileHeader>
                                     <referencedFileHeader>
                                         <referencedFileTypeCode>PRODUCT_IMAGE</referencedFileTypeCode>
@@ -325,7 +332,7 @@
                                     </referencedFileHeader>
                                     <referencedFileHeader>
                                         <referencedFileTypeCode>PRODUCT_LABEL_IMAGE</referencedFileTypeCode>
-                                        <fileEffectiveStartDateTime>2016-05-09T16:26:02.068Z</fileEffectiveStartDateTime>
+                                        <fileEffectiveStartDateTime>2016-05-16T15:22:46.981Z</fileEffectiveStartDateTime>
                                         <fileFormatName>JPG</fileFormatName>
                                         <fileName>filename</fileName>
                                         <uniformResourceIdentifier>http://example.com/FOOD-EXT/image456</uniformResourceIdentifier>
@@ -404,31 +411,31 @@
                                 </trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule>
                                 <trade_item_description:tradeItemDescriptionModule xmlns:trade_item_description="urn:gs1:gdsn:trade_item_description:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_description:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDescriptionModule.xsd">
                                     <tradeItemDescriptionInformation>
-                                        <additionalTradeItemDescription languageCode="fr">French additionalTradeItemDescription &amp;#xA9; entre 500</additionalTradeItemDescription>
-                                        <additionalTradeItemDescription languageCode="en">English additionalTradeItemDescription &amp;#xA9; now 500</additionalTradeItemDescription>
-                                        <additionalTradeItemDescription languageCode="es">Spanish additionalTradeItemDescription &amp;#xA9; ahorra 500</additionalTradeItemDescription>
-                                        <descriptionShort languageCode="en">En Short Description &amp;#xA9; 35</descriptionShort>
-                                        <descriptionShort languageCode="fr">Fr Shorte Description &amp;#xA9; 35</descriptionShort>
-                                        <descriptionShort languageCode="es">Es Poco Description &amp;#xA9; 35</descriptionShort>
-                                        <functionalName languageCode="fr">French functionalName &amp;#xA9; 35</functionalName>
-                                        <functionalName languageCode="en">English functionalName &amp;#xA9; 35</functionalName>
-                                        <functionalName languageCode="es">Spanish functionalName &amp;#xA9; 35</functionalName>
-                                        <invoiceName languageCode="en">en invoiceName &amp;#xA9; 35</invoiceName>
-                                        <invoiceName languageCode="es">es invoiceName &amp;#xA9; 35</invoiceName>
-                                        <invoiceName languageCode="fr">fr invoiceName &amp;#xA9; 35</invoiceName>
+                                        <additionalTradeItemDescription languageCode="fr">French additionalTradeItemDescription &#xA9; entre 500</additionalTradeItemDescription>
+                                        <additionalTradeItemDescription languageCode="en">English additionalTradeItemDescription &#xA9; now 500</additionalTradeItemDescription>
+                                        <additionalTradeItemDescription languageCode="es">Spanish additionalTradeItemDescription &#xA9; ahorra 500</additionalTradeItemDescription>
+                                        <descriptionShort languageCode="en">En Short Description &#xA9; 35</descriptionShort>
+                                        <descriptionShort languageCode="fr">Fr Shorte Description &#xA9; 35</descriptionShort>
+                                        <descriptionShort languageCode="es">Es Poco Description &#xA9; 35</descriptionShort>
+                                        <functionalName languageCode="fr">French functionalName &#xA9; 35</functionalName>
+                                        <functionalName languageCode="en">English functionalName &#xA9; 35</functionalName>
+                                        <functionalName languageCode="es">Spanish functionalName &#xA9; 35</functionalName>
+                                        <invoiceName languageCode="en">en invoiceName &#xA9; 35</invoiceName>
+                                        <invoiceName languageCode="es">es invoiceName &#xA9; 35</invoiceName>
+                                        <invoiceName languageCode="fr">fr invoiceName &#xA9; 35</invoiceName>
                                         <productRange>Best Product Range Ever 35</productRange>
-                                        <tradeItemDescription languageCode="en">English tradeItemDescription &amp;#xA9; 200</tradeItemDescription>
-                                        <tradeItemDescription languageCode="fr">French tradeItemDescription &amp;#xA9; 200</tradeItemDescription>
-                                        <tradeItemDescription languageCode="es">Spanish tradeItemDescription &amp;#xA9; 200</tradeItemDescription>
+                                        <tradeItemDescription languageCode="en">English tradeItemDescription &#xA9; 200</tradeItemDescription>
+                                        <tradeItemDescription languageCode="fr">French tradeItemDescription &#xA9; 200</tradeItemDescription>
+                                        <tradeItemDescription languageCode="es">Spanish tradeItemDescription &#xA9; 200</tradeItemDescription>
                                         <tradeItemFormDescription>Form 1</tradeItemFormDescription>
                                         <variantDescription languageCode="en">v1 d1</variantDescription>
                                         <brandNameInformation>
-                                            <brandName>ITN &amp;#xA9; 0506</brandName>
-                                            <languageSpecificBrandName languageCode="en">English brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
-                                            <languageSpecificBrandName languageCode="es">Spanish brand name YYY &amp;#xA9; 70</languageSpecificBrandName>
-                                            <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &amp;#xA9; 70</languageSpecificSubbrandName>
-                                            <languageSpecificSubbrandName languageCode="en">English subbrand name YYY &amp;#xA9; 70</languageSpecificSubbrandName>
-                                            <subBrand>A subbrand of Brand X &amp;#xA9; 70</subBrand>
+                                            <brandName>ITN &#xA9; 0512</brandName>
+                                            <languageSpecificBrandName languageCode="en">English brand name YYY &#xA9; 70</languageSpecificBrandName>
+                                            <languageSpecificBrandName languageCode="es">Spanish brand name YYY &#xA9; 70</languageSpecificBrandName>
+                                            <languageSpecificSubbrandName languageCode="es">Spanish subbrand name YYY &#xA9; 70</languageSpecificSubbrandName>
+                                            <languageSpecificSubbrandName languageCode="en">English subbrand name YYY &#xA9; 70</languageSpecificSubbrandName>
+                                            <subBrand>A subbrand of Brand X &#xA9; 70</subBrand>
                                         </brandNameInformation>
                                     </tradeItemDescriptionInformation>
                                 </trade_item_description:tradeItemDescriptionModule>
@@ -742,7 +749,7 @@
                                     </servingQuantityInformation>
                                     <preparationServing>
                                         <preparationInstructions languageCode="en">Bake at 350 degrees F for 30 minutes or until golden brown</preparationInstructions>
-                                        <preparationInstructions languageCode="es">Hornee a 350 grados F durante 30 minutos o hasta que est&amp;#xFFFD;n doradas</preparationInstructions>
+                                        <preparationInstructions languageCode="es">Hornee a 350 grados F durante 30 minutos o hasta que est&#xFFFD;n doradas</preparationInstructions>
                                         <preparationTypeCode>BAKING</preparationTypeCode>
                                     </preparationServing>
                                     <preparationServing>
@@ -867,7 +874,7 @@
                             </extension>
                         </tradeItemInformation>
                         <tradeItemSynchronisationDates>
-                            <lastChangeDateTime>2015-01-21T11:59:59</lastChangeDateTime>
+                            <lastChangeDateTime>2016-05-11T11:59:59</lastChangeDateTime>
                             <communityVisibilityDateTime>2016-01-01T11:59:59</communityVisibilityDateTime>
                             <effectiveDateTime>2010-12-01T01:01:01.009Z</effectiveDateTime>
                             <publicationDateTime>2016-01-01T01:01:01.009Z</publicationDateTime>
@@ -881,7 +888,7 @@
                             <stringAVP attributeName="isPrivate">true</stringAVP>
                             <stringAVP attributeName="servingSizeWeight">120 GR</stringAVP>
                             <stringAVP attributeName="isTradeItemGlutenFree">false</stringAVP>
-                            <stringAVP attributeName="manufacturerName">SCHWAN&amp;apos;S FOOD SERVICE INC</stringAVP>
+                            <stringAVP attributeName="manufacturerName">SCHWAN&apos;S FOOD SERVICE INC</stringAVP>
                             <stringAVP attributeName="preliminaryStatusCode">PRELIMINARY</stringAVP>
                         </avpList>
                     </tradeItem>
@@ -911,6 +918,7 @@
                                     <partyName>ITN Test Party 292</partyName>
                                 </informationProviderOfTradeItem>
                                 <displayUnitInformation>
+                                    <displayTypeCode>KIOSK</displayTypeCode>
                                     <hasDisplayReadyPackaging>NOT_APPLICABLE</hasDisplayReadyPackaging>
                                     <isTradeItemADisplayUnit>FALSE</isTradeItemADisplayUnit>
                                 </displayUnitInformation>
@@ -920,6 +928,35 @@
                                 <targetMarket>
                                     <targetMarketCountryCode>840</targetMarketCountryCode>
                                 </targetMarket>
+                                <tradeItemContactInformation>
+                                    <contactTypeCode>CUSTOMER_SUPPORT</contactTypeCode>
+                                    <availableTime languageCode="en">Discover the World Wide Web</availableTime>
+                                    <gln>1100001011292</gln>
+                                    <targetMarketCommunicationChannel>
+                                        <communicationChannel>
+                                            <communicationChannelCode>WEBSITE</communicationChannelCode>
+                                            <communicationValue>www.itradenetwork.com</communicationValue>
+                                        </communicationChannel>
+                                    </targetMarketCommunicationChannel>
+                                </tradeItemContactInformation>
+                                <tradeItemContactInformation>
+                                    <contactTypeCode>SALES</contactTypeCode>
+                                    <availableTime languageCode="en">8:00 AM to 4:30 PM PT</availableTime>
+                                    <gln>1100001011292</gln>
+                                    <targetMarketCommunicationChannel>
+                                        <targetMarket>
+                                            <targetMarketCountryCode>840</targetMarketCountryCode>
+                                        </targetMarket>
+                                        <communicationChannel>
+                                            <communicationChannelCode>TELEPHONE</communicationChannelCode>
+                                            <communicationValue>800-349-2173</communicationValue>
+                                        </communicationChannel>
+                                        <communicationChannel>
+                                            <communicationChannelCode>EMAIL</communicationChannelCode>
+                                            <communicationValue>CUSTOMERSERVICE@BOBSREDMILL.COM</communicationValue>
+                                        </communicationChannel>
+                                    </targetMarketCommunicationChannel>
+                                </tradeItemContactInformation>
                                 <tradeItemInformation>
                                     <extension>
                                         <alcohol_information:alcoholInformationModule xmlns:alcohol_information="urn:gs1:gdsn:alcohol_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:alcohol_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/AlcoholInformationModule.xsd">
@@ -932,9 +969,19 @@
                                                 <consumerStorageInstructions languageCode="en">keep frozen</consumerStorageInstructions>
                                             </consumerInstructions>
                                         </consumer_instructions:consumerInstructionsModule>
+                                        <controlled_substance:controlledSubstanceModule xmlns:controlled_substance="urn:gs1:gdsn:controlled_substance:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:controlled_substance:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/ControlledSubstanceModule.xsd">
+                                            <doesItemContainAControlledSubstance>TRUE</doesItemContainAControlledSubstance>
+                                        </controlled_substance:controlledSubstanceModule>
+                                        <dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule xmlns:dairy_fish_meat_poultry="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:dairy_fish_meat_poultry:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DairyFishMeatPoultryItemModule.xsd">
+                                            <dairyFishMeatPoultryInformation>
+                                                <cheeseInformation>
+                                                    <fatPercentageInDryMatter>9.2</fatPercentageInDryMatter>
+                                                </cheeseInformation>
+                                            </dairyFishMeatPoultryInformation>
+                                        </dairy_fish_meat_poultry:dairyFishMeatPoultryItemModule>
                                         <delivery_purchasing_information:deliveryPurchasingInformationModule xmlns:delivery_purchasing_information="urn:gs1:gdsn:delivery_purchasing_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:delivery_purchasing_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/DeliveryPurchasingInformationModule.xsd">
                                             <deliveryPurchasingInformation>
-                                                <startAvailabilityDateTime>2016-05-09T16:26:02.267Z</startAvailabilityDateTime>
+                                                <startAvailabilityDateTime>2016-05-16T15:22:47.117Z</startAvailabilityDateTime>
                                             </deliveryPurchasingInformation>
                                         </delivery_purchasing_information:deliveryPurchasingInformationModule>
                                         <food_and_beverage_preparation_serving:foodAndBeveragePreparationServingModule xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/FoodAndBeveragePreparationServingModule.xsd">
@@ -985,9 +1032,20 @@
                                                 </packagingDate>
                                             </packagingMarking>
                                         </packaging_marking:packagingMarkingModule>
+                                        <place_of_item_activity:placeOfItemActivityModule xmlns:place_of_item_activity="urn:gs1:gdsn:place_of_item_activity:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:place_of_item_activity:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/PlaceOfItemActivityModule.xsd">
+                                            <placeOfProductActivity>
+                                                <countryOfOriginStatement languageCode="en">grown in USA</countryOfOriginStatement>
+                                                <provenanceStatement languageCode="en">grown only in CA</provenanceStatement>
+                                            </placeOfProductActivity>
+                                        </place_of_item_activity:placeOfItemActivityModule>
+                                        <regulated_trade_item:regulatedTradeItemModule xmlns:regulated_trade_item="urn:gs1:gdsn:regulated_trade_item:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:regulated_trade_item:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/RegulatedTradeItemModule.xsd">
+                                            <regulatoryInformation>
+                                                <regulationTypeCode>FOODSTUFF_DIRECTIVE</regulationTypeCode>
+                                            </regulatoryInformation>
+                                        </regulated_trade_item:regulatedTradeItemModule>
                                         <sales_information:salesInformationModule xmlns:sales_information="urn:gs1:gdsn:sales_information:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:sales_information:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/SalesInformationModule.xsd">
                                             <salesInformation>
-                                                <brandDistributionTypeCode>PRIVATE_LABEL_DISTRIBUTION</brandDistributionTypeCode>
+                                                <brandDistributionTypeCode>GROCERY</brandDistributionTypeCode>
                                             </salesInformation>
                                         </sales_information:salesInformationModule>
                                         <trade_item_data_carrier_and_identification:tradeItemDataCarrierAndIdentificationModule xmlns:trade_item_data_carrier_and_identification="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:gs1:gdsn:trade_item_data_carrier_and_identification:xsd:3 http://www.gdsregistry.org/3.1/schemas/gs1/gdsn/TradeItemDataCarrierAndIdentificationModule.xsd">
@@ -999,9 +1057,10 @@
                                             <tradeItemDescriptionInformation>
                                                 <functionalName languageCode="en">Required functionalName 35</functionalName>
                                                 <functionalName languageCode="es">2nd functionalName es 35</functionalName>
+                                                <labelDescription languageCode="en">gud product</labelDescription>
                                                 <regulatedProductName languageCode="en">PROPANE</regulatedProductName>
                                                 <brandNameInformation>
-                                                    <brandName>ITN &amp;amp;#xA9; 0506</brandName>
+                                                    <brandName>ITN &#xA9; 0512</brandName>
                                                 </brandNameInformation>
                                             </tradeItemDescriptionInformation>
                                         </trade_item_description:tradeItemDescriptionModule>
@@ -1027,13 +1086,15 @@
                                     </extension>
                                 </tradeItemInformation>
                                 <tradeItemSynchronisationDates>
-                                    <lastChangeDateTime>2016-05-09T16:26:02.316Z</lastChangeDateTime>
-                                    <effectiveDateTime>2016-05-09T16:26:02.316Z</effectiveDateTime>
+                                    <lastChangeDateTime>2016-05-16T15:22:47.129Z</lastChangeDateTime>
+                                    <effectiveDateTime>2016-05-16T15:22:47.129Z</effectiveDateTime>
                                 </tradeItemSynchronisationDates>
                                 <avpList>
+                                    <stringAVP attributeName="keepThisCustomKEY">production value</stringAVP>
                                     <stringAVP attributeName="isAllergenRelevantDataProvided">false</stringAVP>
                                     <stringAVP attributeName="isNutrientRelevantDataProvided">false</stringAVP>
                                     <stringAVP attributeName="nutrientValueDerivationCode">ANALYTICAL</stringAVP>
+                                    <stringAVP attributeName="isTradeItemAFoodstuff">true</stringAVP>
                                 </avpList>
                             </tradeItem>
                         </catalogueItem>

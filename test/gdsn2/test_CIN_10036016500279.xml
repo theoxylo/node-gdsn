@@ -13,7 +13,7 @@
             <sh:TypeVersion>2.8</sh:TypeVersion>
             <sh:InstanceIdentifier>CIN_0512_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
-            <sh:CreationDateAndTime>2016-04-27T01:02:03.001Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-05-17T01:02:03.001Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
@@ -107,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>ITN © 0512</brandName>
+                                            <brandName>ITN © 0518</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -403,7 +403,7 @@
                                             </tradeItemCountryOfOrigin>
                                             <tradeItemDateInformation>
                                                 <effectiveDate>2010-12-01</effectiveDate>
-                                                <lastChangeDateTime>2016-05-11T11:59:59</lastChangeDateTime>
+                                                <lastChangeDateTime>2016-05-17T11:59:59</lastChangeDateTime>
                                                 <publicationDate>2016-01-01</publicationDate>
                                                 <startAvailabilityDateTime>2016-01-01T11:59:59</startAvailabilityDateTime>
                                                 <consumerAvailabilityDateTime>2016-01-01T11:59:59</consumerAvailabilityDateTime>
@@ -1927,7 +1927,7 @@
                                                     <classificationCategoryCode>10000247</classificationCategoryCode>
                                                 </classificationCategoryCode>
                                                 <tradeItemDescriptionInformation>
-                                                    <brandName>ITN © 0512</brandName>
+                                                    <brandName>ITN © 0518</brandName>
                                                     <functionalName>
                                                         <description>
                                                             <language>
@@ -2049,6 +2049,7 @@
                                                     <value name="displayTypeCode">KIOSK</value>
                                                     <value name="fatPercentageInDryMatter">9.2</value>
                                                     <value name="isTradeItemAFoodstuff">Yes</value>
+                                                    <value name="isNutritionalClaimCodeReducedFat">Yes</value>
                                                 </gdsn:attributeValuePairExtension>
                                             </extension>
                                         </tradeItem>

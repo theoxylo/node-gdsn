@@ -11,30 +11,30 @@
         <sh:DocumentIdentification>
             <sh:Standard>EAN.UCC</sh:Standard>
             <sh:TypeVersion>2.8</sh:TypeVersion>
-            <sh:InstanceIdentifier>CIN_0512_10036016500279_10024951191010</sh:InstanceIdentifier>
+            <sh:InstanceIdentifier>CIN_0523_10036016500279_10024951191010</sh:InstanceIdentifier>
             <sh:Type>catalogueItemNotification</sh:Type>
-            <sh:CreationDateAndTime>2016-05-17T01:02:03.001Z</sh:CreationDateAndTime>
+            <sh:CreationDateAndTime>2016-04-27T01:02:03.001Z</sh:CreationDateAndTime>
         </sh:DocumentIdentification>
     </sh:StandardBusinessDocumentHeader>
     <eanucc:message>
         <entityIdentification>
-            <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010</uniqueCreatorIdentification>
+            <uniqueCreatorIdentification>CIN_0523_10036016500279_10024951191010</uniqueCreatorIdentification>
             <contentOwner>
                 <gln>1100001011292</gln>
             </contentOwner>
         </entityIdentification>
         <eanucc:transaction>
             <entityIdentification>
-                <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
+                <uniqueCreatorIdentification>CIN_0523_10036016500279_10024951191010_t1</uniqueCreatorIdentification>
                 <contentOwner>
                     <gln>1100001011292</gln>
                 </contentOwner>
             </entityIdentification>
             <command>
                 <eanucc:documentCommand>
-                    <documentCommandHeader type="CORRECT">
+                    <documentCommandHeader type="ADD">
                         <entityIdentification>
-                            <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
+                            <uniqueCreatorIdentification>CIN_0523_10036016500279_10024951191010_t1_c1</uniqueCreatorIdentification>
                             <contentOwner>
                                 <gln>1100001011292</gln>
                             </contentOwner>
@@ -80,7 +80,7 @@
                                                     <additionalPartyIdentificationType>DUNS_PLUS_FOUR</additionalPartyIdentificationType>
                                                 </additionalPartyIdentification>
                                             </informationProvider>
-                                            <nameOfInformationProvider>ITN Test Party 292</nameOfInformationProvider>
+                                            <nameOfInformationProvider>ITN Test © Party 292</nameOfInformationProvider>
                                         </informationProviderOfTradeItem>
                                         <targetMarketInformation>
                                             <targetMarketCountryCode>
@@ -107,7 +107,7 @@
                                             </gDSNTradeItemClassificationAttribute>
                                         </classificationCategoryCode>
                                         <tradeItemDescriptionInformation>
-                                            <brandName>ITN © 0518</brandName>
+                                            <brandName>ITN © 0523</brandName>
                                             <descriptionShort>
                                                 <description>
                                                     <language>
@@ -2059,7 +2059,7 @@
                                 </catalogueItemChildItemLink>
                             </catalogueItem>
                             <catalogueItemNotificationIdentification>
-                                <uniqueCreatorIdentification>CIN_0512_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
+                                <uniqueCreatorIdentification>CIN_0523_10036016500279_10024951191010_t1_c1_d1</uniqueCreatorIdentification>
                                 <contentOwner>
                                     <gln>1100001011292</gln>
                                 </contentOwner>

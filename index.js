@@ -36,7 +36,6 @@ var Gdsn = module.exports = function (x_config) {
   Gdsn.prototype.cin_builder_31            = require('./lib/create_cin_31.js')(cheerio, this)
   Gdsn.prototype.forward_cin_to_subscriber = require('./lib/forward_cin_to_subscriber.js')(cheerio, this)
   Gdsn.prototype.convert_tradeItem_28_31   = require('./lib/upgrade/tradeItem_upgrade_28_31.js')(cheerio, this)
-  Gdsn.prototype.create_tp_item_rci_28     = require('./lib/rci_28.js')(cheerio, this)
 }
 
 Gdsn.prototype.create_cin = function create_cin_detect_version(items, receiver, command, reload, docStatus, sender) {
@@ -427,7 +426,7 @@ Gdsn.prototype.create_rci_to_gr = function (item, cmd) {
   $('documentCommand > documentCommandHeader').attr('type', cmd) // ADD, CORRECT
 
   // SINGLE doc support:
-  $('creationDateTime').text(new Date(item.created_ts || 1).toISOString())
+  $('creationDateTime').text(new Date().toISOString())
   $('registryCatalogueItemIdentification > entityIdentification').text(new_msg_id + '_trx1_cmd1_doc1')
   $('gpcCategoryCode').text(item.gpc)
   $('sourceDataPool').text(config.homeDataPoolGln)

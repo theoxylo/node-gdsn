@@ -345,8 +345,7 @@ Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
   })
 
   // new values for this message
-  var new_msg_id = 'RFCIN_to_GR_' + Date.now() + '_' + tp_msg_info.recipient
-
+  var new_msg_id = 'RFCIN_to_GR_' + Date.now() + '_' + tp_msg_info.recipient + '_' + tp_msg_info.provider + '_' + tp_msg_info.gtin
 
   $('sh\\:Sender > sh\\:Identifier').text(config.homeDataPoolGln)
   $('sh\\:Receiver > sh\\:Identifier').text(config.gdsn_gr_gln)
@@ -628,9 +627,9 @@ Gdsn.prototype.populateCicToLocalPub = function (tp_cic) {
   return $.html()
 }
 
-Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
+Gdsn.prototype.populateCihwToOtherDP = function (msg, recipient_dp) {
 
-  log('populateCihwToOtherSDP  ' + tp_cihw)
+  log('populateCihwToOtherDP  ' + msg)
 
   var $ = cheerio.load(this.templates.cihw_to_rdp, { 
     _:0
@@ -638,14 +637,14 @@ Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
     , xmlMode: true
   })
 
-  if (!tp_cihw) return ''
+  if (!msg) return ''
 
   // new values for this message
-  var new_msg_id = 'CIHW_' + Date.now() + '_' + tp_cihw.recipient + '_' + tp_cihw.gtin
+  var new_msg_id = 'CIHW_' + Date.now() + '_' + msg.recipient + '_' + msg.gtin + '_' + msg.provider
   var now_iso = new Date().toISOString()
 
-  $('sh\\:Sender > sh\\:Identifier').text(tp_cihw.source_dp)
-  $('sh\\:Receiver > sh\\:Identifier').text(tp_cihw.recipient_dp) // could be to self for local publisher
+  $('sh\\:Sender > sh\\:Identifier').text(msg.source_dp)
+  $('sh\\:Receiver > sh\\:Identifier').text(msg.recipient_dp || recipient_dp || msg.receiver) // could be to self for local publisher
   $('sh\\:InstanceIdentifier').text(new_msg_id)
 
   $('sh\\:CreationDateAndTime').text(now_iso) // when this message is created by DP (right now)
@@ -653,30 +652,30 @@ Gdsn.prototype.populateCihwToOtherSDP = function (tp_cihw) {
   // original values from tp: trx/cmd/doc id and owner glns, created ts
   // assume naming convention based on original msg_id and only support single doc per message
   $('transactionIdentification > entityIdentification').text(new_msg_id + '_t1')
-  $('contentOwner > gln').text(tp_cihw.provider) // sender
+  $('contentOwner > gln').text(msg.provider) // sender
 
   $('documentCommandIdentification > entityIdentification').text(new_msg_id + '_t1_c1')
 
-  try { var tp_created_iso = (new Date(tp_cihw.created_ts)).toISOString() }
+  try { var tp_created_iso = (new Date(msg.created_ts)).toISOString() }
   catch(e) { log('error getting orig created ts from tp msg document: ' + e) }
   $('creationDateTime').text(tp_created_iso || now_iso)
 
   $('catalogueItemHierarchicalWithdrawalIdentification > entityIdentification').text(new_msg_id + '_t1_c1_d1')
 
-  $('catalogueItemReference > dataSource').text(tp_cihw.provider)
-  $('catalogueItemReference > gtin').text(tp_cihw.gtin)
-  $('catalogueItemReference > targetMarketCountryCode').text(tp_cihw.tm)
-  if (tp_cihw.tm_sub && tp_cihw.tm_sub != 'na') {
-    $('catalogueItemReference > targetMarketSubdivisionCode').text(tp_cihw.tm_sub)
+  $('catalogueItemReference > dataSource').text(msg.provider)
+  $('catalogueItemReference > gtin').text(msg.gtin)
+  $('catalogueItemReference > targetMarketCountryCode').text(msg.tm)
+  if (msg.tm_sub && msg.tm_sub != 'na') {
+    $('catalogueItemReference > targetMarketSubdivisionCode').text(msg.tm_sub)
   }
   else {
     $('catalogueItemReference > targetMarketSubdivisionCode').remove()
   }
 
-  $('dataRecipient > gln').text(tp_cihw.recipient)
-  $('sourceDataPool > gln').text(tp_cihw.source_dp)
+  $('dataRecipient > gln').text(msg.recipient)
+  $('sourceDataPool > gln').text(msg.source_dp)
 
-  $('hierarchyDeletionReasonCode').text(tp_cihw.reason)
+  $('hierarchyDeletionReasonCode').text(msg.reason || 'PUBLICATION_WITHDRAWAL')
 
   return $.html()
 }

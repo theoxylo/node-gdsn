@@ -167,6 +167,7 @@ Gdsn.prototype.populateResponseToSender = function (err_msg, req_msg_info, trxOw
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
   var new_msg_id = err_msg ? 'X_' : ''
   new_msg_id += 'RESP_' + req_msg_info.msg_id // only as unique as the original msg id to handle resubmits with history
@@ -224,6 +225,7 @@ Gdsn.prototype.populateBprToGr = function (tp_msg_info) { // 3.1
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // instance ID, note that GR requires a unique message ID each time
@@ -286,6 +288,7 @@ Gdsn.prototype.populateCisToGr = function (tp_msg_info) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // SINGLE doc support:
@@ -342,6 +345,7 @@ Gdsn.prototype.populateRfcinToGr= function (tp_msg_info) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // new values for this message
@@ -406,6 +410,7 @@ Gdsn.prototype.create_rci_to_gr = function (item, cmd) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   // new values for this message
@@ -462,6 +467,7 @@ Gdsn.prototype.populateRdpCicRecForSdpCin = function (sdp_cin, state) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
   if (!sdp_cin) return ''
 
@@ -490,6 +496,7 @@ Gdsn.prototype.populateCicToSourceDP = function (tp_cic) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   if (!tp_cic) return ''
@@ -562,6 +569,7 @@ Gdsn.prototype.populateCicToLocalPub = function (tp_cic) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   if (!tp_cic) return ''
@@ -635,6 +643,7 @@ Gdsn.prototype.populateCihwToOtherDP = function (msg, recipient_dp) {
     _:0
     , normalizeWhitespace: true
     , xmlMode: true
+    , decodeEntities: false
   })
 
   if (!msg) return ''

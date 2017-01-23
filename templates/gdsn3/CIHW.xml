@@ -39,7 +39,11 @@
 </contentOwner>
 </catalogueItemHierarchicalWithdrawalIdentification>
 <catalogueItemStateCode>REGISTERED</catalogueItemStateCode>
-<hierarchyDeletionReasonCode codeListVersion="R1">TOKEN_REASON</hierarchyDeletionReasonCode>
+
+
+<hierarchyDeletionReasonCode>PUBLICATION_WITHDRAWAL</hierarchyDeletionReasonCode>
+
+
 <catalogueItemReference>
 <dataSource>TOKEN_DS_GLN</dataSource>
 <gtin>TOKEN_GTIN</gtin>

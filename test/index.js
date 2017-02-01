@@ -1,4 +1,4 @@
-var GdsnConstructor = require('gdsn')
+var GdsnConstructor = require('../index.js')
 var test            = require('tap').test
 
 test('validateGln', function (t) {

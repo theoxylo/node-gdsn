@@ -1,15 +1,15 @@
 {
   "name": "gdsn",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "GDSN utility library for Node.js",
   "engines": {
-    "node": ">=0.10.26"
+    "node": ">=4.0.0"
   },
   "author": {
     "name": "Theoxylo - https://github.com/theoxylo"
   },
   "dependencies": {
-    "cheerio": "0.17.0"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {
     "tap": "0.4.4"

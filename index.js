@@ -1,6 +1,6 @@
 var fs            = require('fs')
-var _             = require('underscore')
 var cheerio       = require('cheerio')
+
 var ItemStream    = require('./lib/ItemStream.js')
 var PartyStream   = require('./lib/PartyStream.js')
 var TradeItemInfo = require('./lib/TradeItemInfo.js')

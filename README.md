@@ -10,12 +10,8 @@ Provides useful utilities for data pools and trading parties.
 Get the latest published release from npm:
 
     npm install gdsn
-
-To run a quick test:
-
-    npm test
-
-
+    
+    
 ## Usage
 
 ### To validate a GLN:
@@ -83,3 +79,20 @@ gdsn.items.getEachTradeItemFromStream(readable, function (err, item) {
   }
 })
 ```
+
+
+## Development
+
+Clone the latest DEV release from GH:
+
+    git clone git@github.com:theoxylo/node-gdsn.git
+
+
+To run some quick tests:
+
+    cd node-gdsn
+    npm update
+    npm test
+
+
+Submit a pull request to contribute!

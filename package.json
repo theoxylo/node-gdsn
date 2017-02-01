@@ -1,6 +1,6 @@
 {
   "name": "gdsn",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "GDSN utility library for Node.js",
   "engines": {
     "node": ">=4.0.0"
@@ -35,8 +35,5 @@
   "bugs": {
     "url": "https://github.com/theoxylo/node-gdsn/issues"
   },
-  "homepage": "https://github.com/theoxylo/node-gdsn",
-  "_id": "gdsn@0.2.1",
-  "_resolved": "git://github.com/theoxylo/node-gdsn#53618ca063f4873fd208c711d6a22a8353cfa8f5",
-  "_from": "gdsn@git://github.com/theoxylo/node-gdsn"
+  "homepage": "https://github.com/theoxylo/node-gdsn"
 }

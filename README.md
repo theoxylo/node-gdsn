@@ -40,9 +40,9 @@ var isValid = gdsn.validateGtin(gtin) // return [true|false]
 console.log('GTIN ' + gtin + ' is ' + (isValid ? 'valid' : 'invalid'))
 ```
 
-### To extract all trade items from a CIN stream:
+### To extract all trade items from a CIN file:
   * large CIN files may be 10+ MB and contain hundreds of items
-  * this approach uses a callback to pass the complete array of items after the stream has ended
+  * this approach uses a callback to pass the complete array of items after the parsing has ended
 
 ```js
 var Gdsn = require('gdsn')

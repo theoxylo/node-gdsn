@@ -1,4 +1,4 @@
-var Gdsn = require('gdsn')
+var Gdsn = require('../index.js')
 var fs   = require('fs')
 var test = require('tap').test
 
